@@ -1,8 +1,7 @@
 
 <div class="container">
   <div class="search-container">
-    <input class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
-    <button  class="btn search-button mx-2">{{"Hr.Search"|translate}}</button>
+    <input (input)="onSearch($event)" class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
   </div>
   <div class="table-container" class="add-button">
     <button (click)="AddCity()"  class="btn btn-primary add-data-button">{{"Hr.AddCity"|translate}}</button>
@@ -11,6 +10,7 @@
   <div class="table-container">
 
     <p-table
+    #dt
     [rowsPerPageOptions]="[5, 10, 15, 20]"
     [paginator]="true"
     [rows]="5"

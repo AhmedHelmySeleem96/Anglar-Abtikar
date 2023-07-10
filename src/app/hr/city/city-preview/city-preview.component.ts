@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { XtraAndPosCityService, XtraAndPosCountryService } from 'src/app/shared/api';
@@ -18,6 +18,7 @@ export class CityPreviewComponent implements OnInit {
   cityData :any[] = [] ;
   countryData :any[] = [] ;
   cols :any ;
+  @ViewChild('dt') dt: any;
   ngOnInit(): void {
     this.XtraAndPOS_City.httpGetXtraAndPosCityGetCityService().subscribe((value : any)=>{
       let jsoncityData = JSON.parse(value);
@@ -44,7 +45,9 @@ export class CityPreviewComponent implements OnInit {
 
     this.router.navigate(['hr/city/createCity'], navigationExtras);
 }
-
+onSearch(searchValue:Event): void {
+  this.dt.filterGlobal((searchValue.target as HTMLInputElement).value, 'contains');
+}
 showDeleteConfirm(city: any) {
   this.toastr
     .info('Do you want to delete this city?', 'Confirmation', {
@@ -63,8 +66,8 @@ deleteCity(city: any) {
     id: city.Id,
   }).subscribe((value: any) => {
     let jsonData = JSON.parse(value);
-    this.toastr.success(jsonData.Message);
     this.toastr.clear();
+    this.toastr.success(jsonData.Message);
     this.refreshTable();
   }, (error: any) => {
     this.toastr.error('Failed to delete city.');

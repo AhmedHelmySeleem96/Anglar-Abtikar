@@ -1,8 +1,8 @@
 <div class="container">
   <div class="search-container">
-    <input class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
-    <button  class="btn search-button mx-2">{{"Hr.Search"|translate}}</button>
+    <input (input)="onSearch($event)" class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
   </div>
+
   <div class="table-container" class="add-button">
     <button (click)="addCountry()"  class="btn btn-primary add-data-button">{{"Hr.AddCountry"|translate}}</button>
   </div>
@@ -14,7 +14,7 @@
     [rows]="5"
     [columns]="cols"
     [value]="countryData"
-    sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" >
+    sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}"  #dt>
       <ng-template pTemplate="header" let-columns>
         <tr>
           <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field">
