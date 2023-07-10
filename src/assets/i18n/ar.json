@@ -21,20 +21,25 @@
   "Phone":"الهاتف",
   "Color":"اللون",
   "Hr" : "شئون الموظفين"
+
 },
 "Hr":{
 "City" : " المدن",
 "CityNameAr" : "اسم المدينة",
 "CityNameEn" :"اسم المدينة لاتيني",
+"CountryNameAr" : "اسم المدينة",
+"CountryNameEn" :"اسم المدينة لاتيني",
 "Notes" : "ملاحظات",
 "SelectCountry" : "اختر الدولة",
 "NameAr" : "الاسم",
 "NameEn" : "الاسم بالانجليزية",
 "Country" : "اسم الدولة",
 "AddCity" : "اضافة مدينة",
+"AddCountry" : "اضافة دولة",
 "Search" : "بحث",
 "Export" : " تصدير ملف اكسيل",
-"Print" : "طباعه"
+"Print" : "طباعه",
+"Countrynav" : "الدول"
 },
 "CityId":"كود المدينة",
 "CreatedDate" :"تاريخ الانشاء",

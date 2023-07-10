@@ -1,9 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Subscription } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { CityDto, XtraAndPosCityService, XtraAndPosCountryService } from 'src/app/shared/api';
+import {  XtraAndPosCityService, XtraAndPosCountryService } from 'src/app/shared/api';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -16,19 +15,19 @@ export class CreateCityComponent {
     private toastr:ToastrService,
     private XtraAndPOS_City :XtraAndPosCityService
     ,private XtraAndPos_Country :  XtraAndPosCountryService,private fb:FormBuilder,private route: ActivatedRoute){}
-     Data = [] ;
     isEdit:boolean= false ;
      formCity :FormGroup= this.fb.group({cityNameAr: new FormControl('', [Validators.required]),
      cityNameEn: new FormControl('', [Validators.required]),
      countryId :new FormControl('', [Validators.required]),
      notes: new FormControl(null),})
-     selectedCountry: any;
     countryData :any[]= [] ;
     cityData:any[]= [] ;
     currentCity :any ;
     ngOnInit(): void {
-       this.isEdit = this.route.snapshot.queryParams['edit'] === 'true';
-      const updatedcityData = JSON.parse(this.route.root.snapshot.queryParams['cityData']);
+       this.isEdit = this.route.snapshot.queryParams['edit'] ;
+       const queryParams = this.route.root.snapshot.queryParams;
+       if(queryParams['cityData']){
+      const updatedcityData = JSON.parse(queryParams['cityData']);
       this.currentCity = updatedcityData ;
       if (this.isEdit && updatedcityData) {
         this.formCity.patchValue({
@@ -36,7 +35,8 @@ export class CreateCityComponent {
           cityNameEn: updatedcityData.NameEn,
           countryId: updatedcityData.CountryId,
           notes: updatedcityData.Notes
-        });      }
+
+        });   }   }
       this.XtraAndPos_Country.httpGetXtraAndPosCountryGetCountryService().subscribe((value:any)=>{
         let jsonData = JSON.parse(value);
         this.countryData = jsonData.Obj.country;

@@ -1,13 +1,11 @@
-
 <div class="container">
   <div class="search-container">
     <input class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
     <button  class="btn search-button mx-2">{{"Hr.Search"|translate}}</button>
   </div>
   <div class="table-container" class="add-button">
-    <button (click)="AddCity()"  class="btn btn-primary add-data-button">{{"Hr.AddCity"|translate}}</button>
+    <button (click)="addCountry()"  class="btn btn-primary add-data-button">{{"Hr.AddCountry"|translate}}</button>
   </div>
-
   <div class="table-container">
 
     <p-table
@@ -15,7 +13,7 @@
     [paginator]="true"
     [rows]="5"
     [columns]="cols"
-    [value]="cityData"
+    [value]="countryData"
     sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" >
       <ng-template pTemplate="header" let-columns>
         <tr>
@@ -25,23 +23,20 @@
           </th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-city let-columns="columns">
+      <ng-template pTemplate="body" let-country let-columns="columns">
         <tr>
           <td *ngFor="let col of columns">
-            <span class="table-data" *ngIf="col.field == 'CountryId'">
-              {{ getCountry(city[col.field]).NameAr }}
-            </span>
             <span class="table-data" *ngIf="col.field == 'CreatedDate'">
-              {{ city[col.field] | date:'shortDate' }}
+              {{ country[col.field] | date:'shortDate' }}
             </span>
-            <span class="table-data" *ngIf="col.field != 'CountryId' &&col.field != 'CreatedDate'">
-              {{ city[col.field] }}
+            <span class="table-data" *ngIf="col.field != 'CreatedDate'">
+              {{ country[col.field] }}
             </span>
           </td>
           <td>
             <div style="text-align: center">
-              <img src="assets/images/editIcon.png" class="mx-3" (click)=" setEdit(city)" />
-              <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteConfirm(city)" />
+              <img src="assets/images/editIcon.png" class="mx-3" (click)=" setEdit(country)" />
+              <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteConfirm(country)" />
             </div>
           </td>
         </tr>

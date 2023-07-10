@@ -18,7 +18,6 @@ export class CityPreviewComponent implements OnInit {
   cityData :any[] = [] ;
   countryData :any[] = [] ;
   cols :any ;
-  products  = [{name : 'ahmed'}]
   ngOnInit(): void {
     this.XtraAndPOS_City.httpGetXtraAndPosCityGetCityService().subscribe((value : any)=>{
       let jsoncityData = JSON.parse(value);
@@ -78,10 +77,10 @@ refreshTable() {
     this.cityData = jsoncityData.Obj.city;
   });
 }
-GetCountry(id :any){
+getCountry(id :any){
   return this.countryData.filter((r)=>r.Id===id)[0]
 }
-GoHome(){
+goHome(){
   this.router.navigateByUrl('');
 }
 }
