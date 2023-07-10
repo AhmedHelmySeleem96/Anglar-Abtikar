@@ -1,0 +1,235 @@
+<section class="container-fluid p-0">
+
+  <div class="d-flex justify-content-center align-items-start flwx-wrap" >
+
+    <div class="col-12 banner">
+      <div class="title">
+        <span *ngIf="_Apiservice.Language =='ar'">{{categoryinfo.NameAr}}</span>
+        <span *ngIf="_Apiservice.Language =='en'">{{categoryinfo.NameEn}}</span>
+      </div>
+      <img class="col-12" src="{{categoryinfo.ItemGroupImage}}" alt="">
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="Recent  container-fluid" id="ProductsSection">
+  <!-- <div
+  infinite-scroll
+  [infiniteScrollDistance]="100"
+  [infiniteScrollUpDistance]="100"
+  [infiniteScrollThrottle]="100"
+  [scrollWindow]="true"
+  (scrolled)="ProductsPagination()"> -->
+
+  <div>
+
+  <div class="d-flex flex-wrap justify-content-center align-items-center py-4">
+
+  <ng-container  *ngFor="let item of ItemUnitArr " >
+
+  <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2  p-3 ">
+
+    <div class="overflow-hidden box BodyactiveWhite">
+
+      <div class="overflow-hidden imgBox py-4 text-center">
+
+        <img width="100" height="100" loading="lazy" [routerLink]="['/productdetails/' ,item.Id]" [src]="item.ItemImages[0].ImagePath" class="col-12 mx-auto h-100"  alt="ProductImage">
+      </div>
+
+      <div>
+
+        <div class=" px-3 mt-3">
+
+          <h2 class="productName text-center py-1 " *ngIf="_Apiservice.Language =='ar'">{{item.NameAr}}</h2>
+          <h2 class="productName text-center py-1"  *ngIf="_Apiservice.Language =='en'">{{item.NameEn}}</h2>
+
+          <div class="py-1 categoryPlaceHolder" >
+            <ng-container *ngFor="let category of categoryArr">
+              <div *ngIf="category.Id == item.ItemGroupId">
+                <span  class="categorytype"  *ngIf="_Apiservice.Language =='ar'"> {{category.NameAr}} </span>
+                <span class="categorytype"    *ngIf="_Apiservice.Language =='en'"> {{category.NameEn}} </span>
+              </div>
+            </ng-container>
+          </div>
+
+        </div>
+
+<div>
+  <h3 class="d-block  py-1 px-3" *ngIf=" item.Qty > 0"> {{item.Qty}}</h3>
+  <h3  *ngIf="item.Qty == 0" class="text-danger d-block text-center p-1">{{"HomePage.OutofStoke" | translate}}</h3>
+</div>
+
+<h3 class=" py-1 px-3">  {{item.Price}}  ريال</h3>
+
+<div class="text-center">
+
+  <a class=" btn  " target="_blank" aria-label="Read productdetails" [routerLink]="['/productdetails/' ,item.Id]">
+    <svg width="25" height="25" fill="#ff8100" class="bi bi-eye-fill" viewBox="0 0 16 16">
+      <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+      <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+    </svg>
+   </a>
+
+  <span *ngIf=" item.Qty > 0" (click)="addToCart(item)" class=" btn "  type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+    <svg  width="25" height="25" fill="#ff8100" class="bi bi-cart-plus-fill m-auto" viewBox="0 0 16 16">
+      <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z"/>
+    </svg>
+  </span>
+
+  <span *ngIf=" item.Qty <= 0" class="icone btn btn-outline-dark mx-3" (click)="addToCart(item)" >
+    <svg  width="25" height="25" fill="currentColor" class="bi bi-cart-plus-fill m-auto" viewBox="0 0 16 16">
+      <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z"/>
+    </svg>
+  </span>
+
+</div>
+
+<div class="text-center py-1 px-3">
+    <ngb-rating  [(rate)]="item.ratingPercentage" [max]="5" labelForId="fuels" aria-label="Rating"
+    [readonly]="item.ratingPercentage >= 0 ? true : false">
+     <ng-template let-fill="fill" let-index="index" >
+       <span class="bi-star" [class.filled]="fill === 100" >&#9733;</span>
+     </ng-template>
+   </ngb-rating>
+  </div>
+
+  </div>
+
+  </div>
+
+  </div>
+
+  </ng-container>
+
+  </div>
+
+  </div>
+
+</section>
+
+
+
+<section class="filter categories container-fluid py-3 my-3 py-md-4 my-md-4">
+
+
+  <div *ngIf="_Apiservice.isServer == false" >
+    <div class="direction" style="direction: ltr !important;" dir="ltr">
+
+      <swiper [config]="categorySlide">
+
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide mx-auto" *ngFor="let slide of categoryArr;let i = index">
+
+              <div class="text-center" [routerLink]="['/categorydetails/' ,slide.Id]">
+                <img class="col-11 px-xl-2 mx-auto" src="{{slide.ItemGroupImage}}" alt="">
+                <div>
+                  <span class="d-block" *ngIf="_Apiservice.Language =='ar'">{{slide.NameAr}}</span>
+                  <span class="d-block" *ngIf="_Apiservice.Language =='en'">{{slide.NameEn}}</span>
+                </div>
+              </div>
+
+          </div>
+
+        </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+
+      </swiper>
+
+
+    </div>
+  </div>
+
+
+
+</section>
+
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title col-11 fs-4" id="offcanvasNavbarLabel">{{"HomePage.Cart" | translate}} ( {{cartitemsArr.length}} : {{"HomePage.Products" | translate}} )</h5>
+    <div class="col-1 mx-auto text-center">
+      <button type="button" class="btn-close fs-4" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+  </div>
+
+  <div class="offcanvas-body p-0 Cart">
+
+    <ng-container *ngFor="let cartitem of cartitemsArr">
+
+<div class="d-flex my-3 bg-white py-2">
+
+  <div class="col-3">
+
+    <img width="60" height="80" loading="lazy" class="col-12 px-2"  [src]="cartitem.ItemImages[0].ImagePath" title="{{'HomePage.ProductImage' | translate}}" alt="{{'HomePage.ProductImage' | translate}}">
+
+</div>
+
+<div class="col-9">
+
+  <span *ngIf="_Apiservice.Language == 'ar'" class="d-flex justify-content-between align-items-center col-12  " title="{{'HomePage.ProductName' | translate}}"> {{cartitem.NameAr}}
+    <svg (click)="removeCart(cartitem)" width="20" height="20" fill="#333" class="bi bi-x-circle" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+      <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+    </svg>
+</span>
+
+<span *ngIf="_Apiservice.Language == 'en'" class=" d-flex justify-content-between align-items-center col-12 " title="{{'HomePage.ProductName' | translate}}"> {{cartitem.NameEn}}
+  <svg (click)="removeCart(cartitem)" width="20" height="20" fill="#333" class="bi bi-x-circle" viewBox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+  </svg>
+</span>
+
+  <span class="d-block col-12  " title="{{'HomePage.ProductPrice' | translate}}"> {{"HomePage.Price" | translate}} : {{cartitem.Price}} ريال</span>
+
+<div class="d-flex">
+
+<span class="d-block col-4 ">
+    <button title="{{'HomePage.ButtonupQuantity' | translate}}" (click)="upQuantity(cartitem)"  class="btn btnUpQuantity  py-0 m-1 fs-3">+</button>
+    <button title="{{'HomePage.ButtondownQuantity' | translate}}" [disabled]="cartitem.Quantity <= 1" (click)="downQuantity(cartitem)" class="btn btnDownQuantity py-0 m-1  px-3 fs-3">-</button>
+</span>
+
+  <span class="d-block col-3 text-center ">{{cartitem.Quantity}}</span>
+  <span class="d-block col-3 text-center " title="{{'HomePage.ItemTotal' | translate}}">{{getItemTotal(cartitem)}}</span>
+
+</div>
+
+
+
+</div>
+
+</div>
+
+      </ng-container>
+
+  </div>
+
+<div class="bg-white">
+
+  <div class="p-3">
+    <span class="fs-4 fw-bold"> {{"HomePage.Total" | translate }} : {{totalCart()}}</span>
+  </div>
+
+
+<div class="d-flex">
+
+  <div class="col-6 p-3">
+    <button title="{{'HomePage.CheckCart' | translate}}" (click)="buy()" class="btn btnCheck d-block w-100">{{"HomePage.check" | translate}} </button>
+  </div>
+
+  <div class="col-6 p-3">
+    <button title="{{'HomePage.ClearCart' | translate}}" (click)="clear()" class="btn btnClearCart text-white  d-block w-100">{{"HomePage.clear" | translate}}</button>
+  </div>
+
+</div>
+
+</div>
+
+</div>

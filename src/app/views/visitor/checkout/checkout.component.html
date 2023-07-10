@@ -1,0 +1,72 @@
+<section class="container-fluid   CheckCart" title="{{'Checkout.CheckCart' | translate}}">
+
+  <div class="breadcrumb  BodyactiveWhite my-5 py-4 px-3">
+    <a [routerLink]="['/user/home']">{{"Checkout.Home" | translate}}</a>
+    <span class="mx-2">/</span>
+    <span class="mx-2">{{"Checkout.PurchaseConfirmation" | translate}}</span>
+  </div>
+
+  <div class="d-flex justify-content-between flex-wrap">
+
+    <div class="col-12 col-md-4 col-lg-4 mt-4 mt-md-0">
+
+      <h2 *ngIf="_Apiservice.Language =='ar'" class="position-relative px-3 px-lg-0 m-lg-4 overflow-hidden">
+        <span class="ps-5">{{"Checkout.TotalOrder" | translate}}</span>
+      </h2>
+
+      <h2 *ngIf="_Apiservice.Language =='en'" class="position-relative px-3 px-lg-0 m-lg-4 overflow-hidden">
+        <span class="pe-5">{{"Checkout.TotalOrder" | translate}}</span>
+      </h2>
+
+  <div class="BodyactiveWhite p-4">
+
+    <div class="d-flex justify-content-between BodyactiveWhite rounded-3 mb-3" *ngFor="let item of cartitemsArr">
+
+      <div class="col-6 position-relative">
+        <span *ngIf="_Apiservice.Language == 'ar'" class="fs-4 d-block p-3 " title="{{'Checkout.ProductName' | translate}}"> {{item.NameAr}}</span>
+        <span *ngIf="_Apiservice.Language == 'en'"  class="fs-4 d-block p-3 " title="{{'Checkout.ProductName' | translate}}"> {{item.NameEn}}</span>
+        <span class="fs-4 d-block p-2 p-lg-3" title="{{'Checkout.ProductPrice' | translate}}"> {{'Checkout.Price' | translate}} : {{item.Price}}</span>
+        <span class="fs-4 d-block p-2 p-lg-3 " title="{{'Checkout.ItemTotal' | translate}}"> {{"Checkout.Total" | translate}} : {{getItemTotal(item)}}</span>
+      </div>
+
+      <div class="col-6  position-relative p-3">
+        <span class="fs-4  col-12 p-2 p-lg-3 quantityNum " title="{{'Checkout.ProductQuantity' | translate}}">{{item.Quantity}}</span>
+        <img width="120" height="120" src="{{item.ItemImages[0].ImagePath}}" title="{{'Checkout.ProductImage' | translate}}" alt="{{'Checkout.ProductImage' | translate}}">
+      </div>
+
+    </div>
+
+  </div>
+
+    <div class=" d-flex justify-content-between total p-3 fw-bold fs-3">
+      <span class="col-6">{{"Checkout.Total" | translate}}  : </span>
+      <span class="col-6">{{totalCart()}}</span>
+     </div>
+
+
+
+    </div>
+
+    <div class="col-12 col-md-7  mt-4 mt-md-0">
+
+      <h2 *ngIf="_Apiservice.Language =='ar'" class="position-relative px-3 px-lg-0 m-lg-4 overflow-hidden">
+        <span class="ps-5">{{"Checkout.OrderDetails" | translate}}</span>
+      </h2>
+
+      <h2 *ngIf="_Apiservice.Language =='en'" class="position-relative px-3 px-lg-0 m-lg-4 overflow-hidden">
+        <span class="pe-5">{{"Checkout.OrderDetails" | translate}}</span>
+      </h2>
+
+      <form class="BodyactiveWhite p-4">
+
+          <!-- <button  [disabled]="totalCart() <= 0" type="submit" class="btn mb-4 fs-3 d-block w-100" (click)="Apply()">{{"Checkout.Apply" | translate}}  <span class="mx-2">{{totalCart()}}</span> </button> -->
+          <button   type="submit" class="btn mb-4 fs-3 d-block w-100" (click)="payment()">{{"Checkout.Apply" | translate}}  <span class="mx-2">{{totalCart()}}</span> </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  </section>
+

@@ -1,0 +1,60 @@
+
+<div class="container">
+  <div class="search-container">
+    <input class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
+    <button  class="btn search-button mx-2">{{"Hr.Search"|translate}}</button>
+  </div>
+  <div class="table-container" class="add-button">
+    <button (click)="AddCity()"  class="btn btn-primary add-data-button">{{"Hr.AddCity"|translate}}</button>
+  </div>
+
+  <div class="table-container">
+
+    <p-table
+    [rowsPerPageOptions]="[5, 10, 15, 20]"
+    [paginator]="true"
+    [rows]="5"
+    [columns]="cols"
+    [value]="cityData"
+    sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" >
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field">
+            {{ col.header | translate }}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-city let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns">
+            <span class="table-data" *ngIf="col.field == 'CountryId'">
+              {{ GetCountry(city[col.field]).NameAr }}
+            </span>
+            <span class="table-data" *ngIf="col.field == 'CreatedDate'">
+              {{ city[col.field] | date:'shortDate' }}
+            </span>
+            <span class="table-data" *ngIf="col.field != 'CountryId' &&col.field != 'CreatedDate'">
+              {{ city[col.field] }}
+            </span>
+          </td>
+          <td>
+            <div style="text-align: center">
+              <img src="assets/images/editIcon.png" class="mx-3" (click)=" setEdit(city)" />
+              <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteConfirm(city)" />
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+
+</div>
+<div class="bottom-buttons">
+  <button (click)="AddCity()" class="btn btn-primary add-data-button">{{"Hr.Print" | translate}}</button>
+  <span class="button-space"></span>
+  <button (click)="AddCity()" class="btn btn-primary add-data-button">{{"Hr.Export" | translate}}</button>
+  <span class="button-space"></span>
+  <button (click)="GoHome()" class="btn btn-primary add-data-button">{{"Cancel" | translate}}</button>
+</div>
+</div>

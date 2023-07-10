@@ -1,0 +1,283 @@
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+  font-family: "Arabic";
+  src: local("Arabic"),
+  url("assets/font/Cairo-VariableFont_wght.ttf") format("opentype")
+}
+
+html[lang=ar] body {
+  font-family:'Arabic' !important ;
+}
+/* html[lang=en]  {
+  right: 5px !important;
+} */
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box !important;
+  outline: none !important;
+  border: none;
+  text-transform: capitalize ;
+  word-break: 1.5px ;
+  line-height: 1.6;
+  text-decoration: none !important;
+}
+:root {
+  --red:#fa4f09;
+  --black:#333;
+  --white:#fff;
+  --light-color:#666;
+  --light-bg:#eee;
+}
+body.active {
+  --black:#fff;
+  --white:#212529;
+  --light-color:#aaa;
+  --light-bg:#343a40;
+}
+html,body {
+  font-size: 62.5%;
+  margin: 0px ;
+  padding: 0px ;
+  overflow-x: hidden ;
+  font-weight: 400;
+  scroll-behavior: smooth;
+  scroll-padding-top: 8rem;
+  background: var(--white);
+}
+body {
+  padding-top: 60px !important;
+}
+body::-webkit-scrollbar {
+  width: 1rem;
+}
+body::-webkit-scrollbar-track {
+ background: transparent;
+}
+body::-webkit-scrollbar-thumb {
+ background-color:#ff8100;
+ transition: .3s;
+}
+main {
+  /* padding-top: 60px; */
+  min-height: 100vh;
+}
+textarea {
+  resize: none;
+}
+input,textarea,select {
+  box-shadow: none !important;
+}
+/* .Header-Top span.pointer {
+  cursor: pointer;
+  color: #333 !important;
+} */
+.dropdown-menu span.pointer {
+  cursor: pointer;
+  color: #333 !important;
+  font-size: 1.5rem !important;
+}
+/* .Header-Top {
+  border-bottom: 1px solid var(--light-color);
+  font-size: 1.6rem !important;
+}
+.Header-Top span {
+  font-size: 1.6rem !important;
+} */
+
+/* .Header-Top {
+  background: var(--light-bg);
+  color:var(--black) ;
+} */
+
+nav {
+  background: var(--light-bg) !important;
+  color:var(--black) !important ;
+}
+footer {
+  border-top: 1px solid var(--light-color);
+  background: var(--light-bg) !important;
+  color:var(--black) !important ;
+}
+footer a {
+  color:var(--black) !important ;
+  margin-bottom:15px !important ;
+}
+nav button {
+  box-shadow: none !important;
+  border: none !important;
+}
+nav .navbar-nav a {
+  cursor: pointer;
+  color:var(--black) !important ;
+  font-size: 1.6rem !important;
+  font-weight: 500 !important;
+  padding: 0.2rem !important;
+  margin: 0.3rem 0.5rem !important;
+}
+nav .navbar-nav a:hover {
+  transition: 0.4s;
+  color: #ff8100 !important;
+}
+nav .icone-bar {
+  background: var(--light-color) !important;
+  height: 3px !important;
+  width: 25px !important;
+  display: block !important;
+  margin-bottom: 5px !important;
+}
+nav a.activeroute {
+  color: #ff8100 !important;
+}
+nav span {
+  color:var(--black) !important ;
+}
+nav input {
+  box-shadow: none !important;
+  font-size: 1.6rem !important;
+}
+nav input:focus {
+  border:  1px solid #ff8100 !important;
+}
+nav .search {
+  border: none !important;
+  background-color: #ff8100;
+}
+nav .search:focus,nav .search:hover {
+  border: none !important;
+  background-color: #ff8100;
+}
+.dropdown-menu {
+  top: 115% !important;
+  left: -30px !important;
+}
+
+body .BodyactiveWhite{
+  box-shadow: 1px 1px 5px #bbb !important;
+}
+body .BodyactiveWhite svg {
+  color: #333 !important;
+}
+body.active .BodyactiveWhite svg {
+  color: #fff !important;
+}
+body.active .BodyactiveWhite{
+  background: var(--light-bg) !important;
+  box-shadow: none !important;
+  color: #aaa !important;
+}
+
+body.active .clientReview span {
+  color: #fff;
+}
+
+ /* global */
+#toast-container {
+  font-size: 1.5rem !important;
+  z-index: 99999999999999999999;
+}
+
+#toast-container .ngx-toastr {
+  background-color: #fff !important;
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+#toast-container .ngx-toastr .toast-title {
+  padding: 5px 10px !important;
+}
+
+#toast-container .ngx-toastr .toast-message {
+  padding: 10px !important;
+}
+
+#toast-container  .toast-progress  {
+  opacity: 1 !important;
+}
+
+#toast-container  .toast-error {
+  color: #dc3545;
+}
+
+#toast-container  .toast-warning {
+  color: #ffca2c;
+}
+
+#toast-container  .toast-info {
+  color: #0dcaf0;
+}
+
+#toast-container  .toast-success {
+  color: #198754;
+}
+
+#toast-container  .toast-warning {
+  color: #f89406;
+}
+
+#toast-container  .toast-info {
+  color: #2f96b4;
+}
+
+#toast-container  .toast-show  {
+  color: #333;
+}
+
+
+#toast-container .toast-error .toast-progress {
+  background-color: #dc3545;
+}
+
+#toast-container .toast-warning .toast-progress {
+  background-color: #ffca2c;
+}
+
+#toast-container .toast-info .toast-progress {
+  background-color: #0dcaf0;
+}
+
+#toast-container .toast-success .toast-progress {
+  background-color: #198754;
+}
+
+#toast-container .toast-warning .toast-progress {
+  background-color: #f89406;
+}
+
+#toast-container .toast-show .toast-progress {
+  background-color: #333;
+}
+ /* global */
+
+
+ /* login page */
+html[lang=ar] .eye {
+  left: 5px !important;
+}
+html[lang=en] .eye {
+  right: 5px !important;
+}
+ /* login page */
+
+
+/* home page */
+section.banner .swiper-pagination-bullet,
+section.banner .swiper-pagination-bullet-active {
+  padding: 10px !important;
+  height: 2rem !important;
+  width: 2rem !important;
+}
+section.banner .swiper-pagination-bullet-active,
+section.banner .swiper-pagination-bullet-active{
+  background-color: #ff8100 !important;
+}
+
+html[lang=en] .direction,
+html[lang=ar] .direction {
+  direction: rtl !important;
+}
+
+
+/* home page */

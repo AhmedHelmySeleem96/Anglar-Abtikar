@@ -1,0 +1,104 @@
+
+
+<section>
+
+  <div class="container-fluid px-0">
+
+  <div class="d-flex flex-wrap  min-vh-100">
+
+  <div class="mask col-md-6 col-lg-7">
+
+  <div class="container">
+
+  <div class="mt-5 col-11 col-md-10 col-lg-9 mx-auto">
+      <h3>{{"LoginPage.Tokeep" | translate}}</h3>
+  </div>
+
+  </div>
+
+  </div>
+
+  <div class="col-12 col-md-6 col-lg-5 BodyactiveWhite">
+
+  <div class="container pt-4 form">
+
+  <div class="d-flex flex-wrap">
+
+      <div class="col-11 mx-auto px-lg-4">
+          <a [routerLink]="'/home' "> {{"LoginPage.Store"| translate}}
+              <svg width="30" height="30" fill="#ffba00"  class="bi bi-cart-check-fill" viewBox="0 0 16 16">
+                  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+              </svg>
+          </a>
+      </div>
+
+      <div class="col-11 mx-auto  py-4 py-md-5 px-lg-4 ">
+          <h3>{{"LoginPage.Login" | translate}} </h3>
+          <form [formGroup]="Formlogin" (ngSubmit)="login(Formlogin)">
+
+              <div class="mt-5 ">
+                  <input  id="UserName" type="UserName"  formControlName="UserName"   required  placeholder="{{'LoginPage.UserName' | translate}}" class="form-control">
+              </div>
+
+              <div class="my-5 position-relative">
+                  <input type="password"   [type]="showpass ? 'password' : 'text'"   formControlName="Password"  placeholder="{{'LoginPage.Password' | translate}}" class="form-control">
+                  <div class="eye">
+                    <svg (click)="showpass = !showpass" *ngIf="!showpass" width="25"  fill="#333" class="bi bi-eye " viewBox="0 0 16 16">
+                      <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                      <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                     </svg>
+
+                    <svg (click)="showpass = !showpass" *ngIf="showpass" width="25"  fill="#333" class="bi bi-eye-slash " viewBox="0 0 16 16">
+                      <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
+                      <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
+                      <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
+                    </svg>
+                  </div>
+
+              </div>
+
+              <div class="text-end">
+                <a class="forget" [routerLink]="'/auth/forgetpass'">{{"LoginPage.ForgetPassword" | translate}}</a>
+              </div>
+
+              <div class="my-4">
+                  <button class="d-block w-100 py-3" (click)="login(Formlogin)">   {{"LoginPage.Login"|translate}}</button>
+              </div>
+
+              <div class="text-center">
+                  <a class="forget" [routerLink]="'/auth/register'"> <span class="text-dark">{{"LoginPage.NotMember"| translate}}</span> {{"LoginPage.Register" | translate}}</a>
+              </div>
+
+              <!-- <div class="col-12 d-flex justify-content-center mt-5">
+                <div class="col-12 mx-auto" style="width: 100% !important;" id="buttonDiv"></div>
+              </div> -->
+
+          </form>
+      </div>
+
+
+  </div>
+
+  </div>
+
+  </div>
+
+  </div>
+
+  </div>
+
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

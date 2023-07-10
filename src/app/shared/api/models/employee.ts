@@ -1,0 +1,58 @@
+/* tslint:disable */
+/* eslint-disable */
+import { EmployeeFiles } from './employee-files';
+export interface Employee {
+  bankAccount?: null | string;
+  bankAccountId?: number;
+  branch?: null | string;
+  branchId?: number;
+  branchName?: null | string;
+  cancelBy?: null | string;
+  cancelById?: number;
+  cancelDate?: string;
+  companyId?: number;
+  companyName?: null | string;
+  createById?: null | string;
+  createByName?: null | string;
+  createdDate?: string;
+  dateOfStart?: string;
+  dealingWithCustomers?: null | string;
+  dealingWithCustomersId?: number;
+  docRefGuid?: string;
+  educationalStage?: null | string;
+  employeefileId?: number;
+  employeefiles?: null | Array<EmployeeFiles>;
+  firstName?: null | string;
+  gender?: number;
+  guid?: string;
+  id?: number;
+  isActive?: boolean;
+  isSalesRepresentative?: boolean;
+  isUpdated?: boolean;
+  jobId?: number;
+  jobName?: null | string;
+  jobTitle?: null | string;
+  lastModifiedDate?: string;
+  lastName?: null | string;
+  lastUpdatedBy?: null | string;
+  lastUpdatedDate?: string;
+  modifyById?: null | string;
+  modifyByName?: null | string;
+  modifyCount?: number;
+  nameAr?: null | string;
+  nameEn?: null | string;
+  nationalityId?: number;
+  nationalityName?: null | string;
+  no?: number;
+  notes?: null | string;
+  possibilityOfAddingDiscount?: boolean;
+  possibilityOfChangingThePrice?: boolean;
+  secoundName?: null | string;
+  sectoionId?: number;
+  sectoionName?: null | string;
+  storage?: null | string;
+  storageId?: number;
+  treasury?: null | string;
+  treasuryId?: number;
+  updatedCount?: number;
+}

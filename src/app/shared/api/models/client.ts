@@ -1,0 +1,55 @@
+/* tslint:disable */
+/* eslint-disable */
+export interface Client {
+  address?: null | string;
+  batchesNumber?: number;
+  branchId?: number;
+  branchName?: null | string;
+  cancelBy?: null | string;
+  cancelById?: number;
+  cancelDate?: string;
+  commercialNo?: null | string;
+  companyId?: number;
+  companyName?: null | string;
+  createById?: null | string;
+  createByName?: null | string;
+  createdDate?: string;
+  creditDays?: number;
+  creditNotes?: null | string;
+  customerGroups?: number;
+  customerRatings?: number;
+  debt?: number;
+  defaultDiscPer?: number;
+  delegate?: number;
+  docRefGuid?: string;
+  firstDate?: string;
+  guid?: string;
+  handlingCondition?: number;
+  id?: number;
+  isActive?: boolean;
+  isUpdated?: boolean;
+  lastModifiedDate?: string;
+  lastUpdatedBy?: null | string;
+  lastUpdatedDate?: string;
+  modifyById?: null | string;
+  modifyByName?: null | string;
+  modifyCount?: number;
+  nameAr?: null | string;
+  nameEn?: null | string;
+  nationalID?: null | string;
+  no?: number;
+  notes?: null | string;
+  phoneNo?: null | string;
+  priceType?: number;
+  privateCoding?: null | string;
+  region?: number;
+  salesManId?: number;
+  salesManName?: null | string;
+  taxNo?: null | string;
+  tbL016ID?: number;
+  termSale?: number;
+  totalCash?: number;
+  totalDebt?: number;
+  totalSales?: number;
+  updatedCount?: number;
+}

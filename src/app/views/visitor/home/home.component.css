@@ -1,0 +1,205 @@
+
+@media (min-width:768px) {
+  section.banner .banner-small img  {
+    min-height: 26rem !important;
+    max-height: 26rem !important;
+  }
+  section.banner .banner-big img  {
+    min-height: 52.5rem !important;
+    max-height: 52.5rem !important;
+  }
+}
+
+@media (max-width:768px) {
+  section.banner .banner-small img  {
+    min-height: 20rem !important;
+    max-height: 20rem !important;
+  }
+  section.banner .banner-big img  {
+    min-height: 20rem !important;
+    max-height: 20rem !important;
+  }
+}
+
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  transition: 0.4s !important;
+  color: #bbb !important;
+  font-size: 3.5rem !important;
+  font-weight: bold !important;
+}
+.swiper-button-next:hover::after ,
+.swiper-button-prev:hover::after {
+  color: #ff8100 !important;
+}
+section.banner .banner-big .swiper-button-next,
+section.banner .banner-big .swiper-button-prev {
+  transition: 0.4s;
+   opacity: 0;
+}
+section.banner .banner-big:hover .swiper-button-next,
+section.banner .banner-big:hover .swiper-button-prev {
+   opacity: 1;
+}
+
+/* ********************* Filter ******************************** */
+
+section.categories .swiper-slide img {
+  min-height: 15rem ;
+  max-height: 15rem ;
+  cursor: pointer;
+}
+
+section.categories .swiper-slide span.d-block {
+  font-size: 1.7rem;
+  text-align: center;
+  padding: 10px 0px;
+  color:var(--black) !important ;
+
+
+}
+section.categories .swiper-slide img {
+  border-radius: 40px 40px 0px 0px  ;
+}
+section.categories .swiper-button-prev,
+section.categories .swiper-button-next {
+  background: var(--light-bg) !important;
+  padding: 0px 20px !important;
+  text-align: center !important;
+  border-radius: 50% !important;
+}
+section.categories .swiper-button-prev::after,
+section.categories .swiper-button-next::after {
+  font-size: 1.7rem !important;
+
+}
+/* ********************* Filter ******************************** */
+
+
+/* ********************* Recent ******************************** */
+section.Recent {
+  padding-bottom: 50px;
+}
+section.Recent img {
+  background-color: #fff;
+  transition: .5s;
+  min-height: 25rem;
+  max-height: 25rem;
+}
+section.Recent .box:hover  img {
+  transform: scale(1.2);
+}
+section.Recent .box {
+  border: 1px solid #DDDDDD;
+  box-shadow: 0 0 10px #DDDDDD;
+  border-radius: 5px;
+  position: relative;
+}
+section.Recent .box:hover {
+  cursor: pointer;
+  border: 1px solid #ff8100;
+  box-shadow: 0 0 15px #ff8100;
+}
+section.Recent .box h2 {
+  font-size: 1.7rem !important;
+  font-weight: 500 !important;
+}
+section.Recent .box h3 {
+  font-size: 1.7rem !important;
+  font-weight: 500 !important;
+}
+section.Recent span.categorytype {
+  color: #fff;
+  background-color: #ff8100 !important;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 1.4rem !important;
+}
+.Recent .filled {
+  color: #ff8100 !important;
+}
+.Recent .bi-star {
+  font-size: 2.5rem !important;
+}
+.Recent  .imgBox {
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+section.Recent .box:hover .productAction {
+  display: flex;
+}
+section.Recent .icone {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+section.Recent .icone:hover svg {
+  color: #FFD333 !important;
+}
+section.Recent button.SeeMore {
+  border: 1.5px solid #FFD333;
+  border-radius: 3px;
+  color: #FFD333;
+  padding: 10px 20px;
+  font-size: 2rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+section.Recent button.SeeMore:hover {
+  color: #fff;
+  background-color: #FFD333;
+}
+section.Recent .categoryPlaceHolder {
+  position: absolute;
+  top: 0px;
+}
+/* ********************* Recent ******************************** */
+
+
+/* ********************* Cart ******************************** */
+.Cart {
+  background-color: #f5f5f5;
+}
+.Cart span {
+  font-size: 1.6rem;
+  padding: 0px 10px;
+}
+.Cart .bi-x-circle {
+  cursor: pointer;
+}
+.Cart .btnUpQuantity {
+  background-color: #ff8100 !important;
+  color: #fff !important;
+  font-size: 1.5rem !important;
+  box-shadow: none !important;
+  border-radius: 5px !important;
+}
+.Cart .btnDownQuantity {
+  background-color: #333 !important;
+  color: #fff !important;
+  font-size: 1.5rem !important;
+  box-shadow: none !important;
+  border-radius: 5px !important;
+}
+.btnClearCart {
+  background-color: #333 !important;
+  color: #fff !important;
+  font-size: 1.6rem !important;
+}
+.btnCheck {
+  background-color: #ff8100 !important;
+  color: #fff !important;
+  font-size: 1.6rem !important;
+}
+.offcanvas button {
+  box-shadow: none !important;
+}
+.offcanvas {
+  z-index: 2000000;
+}
+/* ********************* Cart ******************************** */

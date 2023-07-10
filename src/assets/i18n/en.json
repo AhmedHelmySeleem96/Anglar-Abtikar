@@ -1,0 +1,146 @@
+{
+
+"DIR": "ltr",
+
+"navBar":{
+  "Home":"Home",
+  "About":"About",
+  "Contact":"Contact",
+  "Setting":"Setting",
+  "MyAccount":"My Account",
+  "MyOrders":"My Orders",
+  "Messages":"Messages",
+  "Profile":"Profile",
+  "Password":"Password",
+  "Account":"Account",
+  "Login":"Login",
+  "Register":"Register",
+  "logout":"Logout",
+  "Language":"Language",
+  "Search":"Search",
+  "Theme":"Theme",
+  "Phone":"Phone",
+  "Color":"Color",
+  "Hr" : "Hr",
+  "SelectCountry" : "Select Country"
+
+},
+"Hr":{
+"City" : "City ",
+"CityNameAr" : "City Name Ar",
+"CityNameEn" :"City Name En",
+"Notes" : "Notes",
+"Search" : "Search",
+"Export" : " Export To Excel",
+"Print" : "Print"
+},
+"CityId":"City Id",
+"CreatedDate" :"Creation Date",
+"NameAr" : "الاسم",
+"NameEn" : "الاسم بالانجليزية",
+"Country" : "اسم الدولة",
+"Notes" : "Notes",
+"Cancel" : "Cancel",
+
+"LoginPage":{
+  "Store":"Store",
+  "Tokeep":"To keep connected with largest shop in the world .",
+  "Login":"Login",
+  "UserName":"UserName",
+  "Email":"Email",
+  "Password":"Password",
+  "Register":"Register",
+  "ForgetPassword":"Forget Password ?",
+  "NotMember":"Not a Member ?"
+  },
+
+  "RegisterPage":{
+    "Store":"Store",
+    "UserName":"UserName",
+    "NameAr":"Name",
+    "PhoneNumber":"Phone Number",
+    "Login":"Login",
+    "Email":"Email",
+    "Password":"Password",
+    "Register":"Register",
+    "ForgetPassword":"Forget Password ?",
+    "RetypePassword":"Retype Password",
+    "Ihave":"Have Account ?"
+  },
+
+
+"ProductDetails":{
+  "Home":"Home",
+  "ProductDetails":"ProductDetails",
+  "AddCart":"AddCart",
+  "Reviews":"Reviews",
+  "Shareon":"Share On",
+  "ProductDescription":"Product Description",
+  "Review":"Leave Your Review",
+  "SendReview":"Send Review",
+  "AreYouSure":"Are You Sure ?",
+  "Cancle":"Cancle",
+  "Sure":"Sure",
+  "GiveProductRating":"Give Product Rating",
+  "HowToUse":"How To Use",
+  "Specifications":"Specifications"
+},
+
+"Checkout":{
+  "Home":"Home",
+  "CheckCart":"Check Cart",
+  "PurchaseConfirmation":"Purchase Confirmation",
+  "TotalOrder":"Total Order",
+  "ProductName":"Product Name",
+  "ProductPrice":"Product Price",
+  "ProductImage":"Product Image",
+  "ProductQuantity":"Product Quantity",
+  "Total":"Total",
+  "OrderDetails":"Order Details",
+  "Name":"Name",
+  "Email":"Email",
+  "Address":"Address",
+  "Doyouwanttoadddetails":"Do You Want To Add Any Details To The Order",
+  "Phone":"Phone",
+  "Apply":"Apply",
+  "ReturnToShopping":"Return To Shopping",
+  "ItemTotal":"Item Total",
+  "Price":"Price",
+  "CheckYourMobile":"Please Check Your Mobile Number",
+  "EnterCode":"Enter Sent Code",
+  "ConfirmOrder":"Confirm Order",
+  "VerifyCode":"Verify",
+  "Change":"Change"
+},
+
+"CategoryDetailsPage":{
+"Categories":"Categories"
+},
+
+"HomePage":{
+  "ShopNow":"Shop Now",
+  "Categories":"Categories",
+  "AllProducts":"All Products",
+  "Showing":"Showing",
+  "Products":"Products",
+  "ProductImage":"Product Image",
+  "ProductPrice":"Product Price",
+  "OutofStoke":"Out OF Stoke",
+  "Cart":"Cart",
+  "ProductName":"Product Name",
+  "Price":"Price",
+  "ButtonupQuantity":"Button Up Quantity",
+  "ButtondownQuantity":"Button Down Quantity",
+  "ItemTotal":"Item Total",
+  "CheckCart":"Check Cart",
+  "ClearCart":"Clear Cart",
+  "clear":"Clear",
+  "check":"Check",
+  "Total":"Total",
+  "SeeMore":"See More"
+},
+"Save": "Save",
+"Update" : "Update",
+"Delete" : "Delete"
+
+}

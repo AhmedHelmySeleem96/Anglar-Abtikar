@@ -1,0 +1,147 @@
+
+.dotsLoader {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 999999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+ .dots-holder {
+	 width: 200px;
+	 height: 200px;
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 justify-content: space-around;
+	 position: relative;
+}
+ .dots-holder .dot {
+	 width: 24px;
+	 height: 24px;
+	 background: #ff8100;
+	 border-radius: 24px;
+	 position: relative;
+	 bottom: 0;
+	 animation: bouncy 3s cubic-bezier(0.9, 0, 0.1, 1) infinite alternate;
+	 align-self: flex-end;
+}
+ .dot-1 {
+	 animation-delay: 0.15s !important;
+}
+ .dot-2 {
+	 animation-delay: 0.3s !important;
+}
+ .dot-3 {
+	 animation-delay: 0.45s !important;
+}
+ .dot-4 {
+	 animation-delay: 0.6s !important;
+}
+ .dot-5 {
+	 animation-delay: 0.75s !important;
+}
+ @keyframes bouncy {
+	 0% {
+		 height: 24px;
+	}
+	 25% {
+		 height: 100%;
+	}
+	 50% {
+		 height: 24px;
+		 align-self: flex-start;
+	}
+	 75% {
+		 height: 100%;
+	}
+}
+
+footer .top {
+  border-bottom: 0.5px solid var(--light-color);
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+footer .top span,footer .top p {
+  font-size: 1.6rem;
+  padding: 10px;
+}
+footer .medium p {
+font-size: 1.6rem;
+}
+footer .medium p.title {
+  font-size: 2rem ;
+  font-weight: bold;
+}
+@media (min-width:767px) {
+  footer .col-md-4:nth-child(2),
+  footer .col-md-4:nth-child(3)  {
+    text-align: center;
+  }
+}
+
+
+* {
+	 box-sizing: border-box;
+}
+ body {
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 height: 100vh;
+	 background: #eef;
+}
+ .dots-holder {
+	 width: 200px;
+	 height: 200px;
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 justify-content: space-around;
+	 position: relative;
+}
+ .dots-holder .dot {
+	 width: 24px;
+	 height: 24px;
+	 background: #ff8100;
+	 border-radius: 24px;
+	 position: relative;
+	 bottom: 0;
+	 animation: bouncy 3s cubic-bezier(0.9, 0, 0.1, 1) infinite alternate;
+	 align-self: flex-end;
+}
+ .dot-1 {
+	 animation-delay: 0.15s !important;
+}
+ .dot-2 {
+	 animation-delay: 0.3s !important;
+}
+ .dot-3 {
+	 animation-delay: 0.45s !important;
+}
+ .dot-4 {
+	 animation-delay: 0.6s !important;
+}
+ .dot-5 {
+	 animation-delay: 0.75s !important;
+}
+ @keyframes bouncy {
+	 0% {
+		 height: 24px;
+	}
+	 25% {
+		 height: 100%;
+	}
+	 50% {
+		 height: 24px;
+		 align-self: flex-start;
+	}
+	 75% {
+		 height: 100%;
+	}
+}

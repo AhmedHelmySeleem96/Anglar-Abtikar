@@ -1,0 +1,195 @@
+<!-- start header -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top  p-0 bg-body-tertiary flex-wrap">
+
+  <!-- <div class="Header-Top col-12">
+
+    <div class="d-flex justify-content-center align-items-center flex-wrap">
+
+    <div class="col-12 col-md-6 p-2">
+    {{"navBar.Phone" | translate}} :  01032882094
+    </div>
+
+    <div class="col-12 col-md-6 p-2">
+
+    <div class="d-flex justify-content-start">
+
+    <div class=" d-flex align-items-center">
+    <span>{{"navBar.Language" | translate}} : </span>
+    <div class="nav-item dropdown mx-4">
+
+        <a aria-label="Language"  href="#" class="nav-link p-0 d-flex align-items-center justify-content-between" data-bs-toggle="dropdown">
+
+          <span class="col-11 col-lg-8  text-nowrap p-0">
+
+          <svg  width="30" height="30" fill="currentColor" class="bi bi-globe-americas" viewBox="0 0 16 16">
+            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM2.04 4.326c.325 1.329 2.532 2.54 3.717 3.19.48.263.793.434.743.484-.08.08-.162.158-.242.234-.416.396-.787.749-.758 1.266.035.634.618.824 1.214 1.017.577.188 1.168.38 1.286.983.082.417-.075.988-.22 1.52-.215.782-.406 1.48.22 1.48 1.5-.5 3.798-3.186 4-5 .138-1.243-2-2-3.5-2.5-.478-.16-.755.081-.99.284-.172.15-.322.279-.51.216-.445-.148-2.5-2-1.5-2.5.78-.39.952-.171 1.227.182.078.099.163.208.273.318.609.304.662-.132.723-.633.039-.322.081-.671.277-.867.434-.434 1.265-.791 2.028-1.12.712-.306 1.365-.587 1.579-.88A7 7 0 1 1 2.04 4.327Z"/>
+          </svg>
+
+        </span>
+
+        </a>
+
+        <div class="dropdown-menu m-0">
+          <span class="d-block text-center pointer" (click)="changeLanguage('ar')">العربية</span>
+          <span class="d-block text-center pointer" (click)="changeLanguage('en')">English</span>
+        </div>
+
+    </div>
+
+    </div>
+
+    <div class=" d-flex align-items-center">
+      <span>{{"navBar.Color" | translate}}  : </span>
+      <div class="nav-item dropdown mx-4">
+
+        <a aria-label="Them"  href="#" class="nav-link p-0 d-flex align-items-center justify-content-between" data-bs-toggle="dropdown">
+
+          <span class="col-11 col-lg-8  text-nowrap p-0">
+
+            <svg  width="30" height="30" fill="currentColor" class="bi bi-brightness-high" viewBox="0 0 16 16">
+              <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+            </svg>
+
+        </span>
+
+        </a>
+
+        <div class="dropdown-menu m-0">
+          <span class="d-block text-center pointer" (click)="changeThems('Dark')">Dark</span>
+          <span class="d-block text-center pointer" (click)="changeThems('White')">Light</span>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div>
+
+
+
+
+
+    </div>
+
+    </div>
+
+
+    </div>
+
+    </div>
+    </div> -->
+
+  <div class="container-lg p-3">
+
+    <a aria-label="Read More Home LOGO" [routerLink]="'/user/home' " class="navbar-brand px-0">
+      <span class="fs-3  p-2">Abtikar</span>
+    </a>
+
+    <button aria-labelledby="open" title="open" name="open" class="navbar-toggler p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="icone-bar"></span>
+      <span class="icone-bar"></span>
+      <span class="icone-bar"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse " id="navbarCollapse">
+      <div class="navbar-nav mx-auto text-center py-0 align-items-lg-center">
+
+        <a aria-label="Read Home" routerLinkActive="activeroute" [routerLink]="'/home' " class="   my-3 my-lg-0">{{"navBar.Home" | translate}}</a>
+
+        <a aria-label="Read About" routerLinkActive="activeroute" [routerLink]="'/about'" class="   my-3 my-lg-0">{{"navBar.About" | translate}}</a>
+
+        <a aria-label="Read contact" routerLinkActive="activeroute" [routerLink]="'/contact' " class="   my-3 my-lg-0">{{"navBar.Contact" | translate}}</a>
+
+        <div class="nav-item dropdown m-0 p-0">
+          <a aria-label="Language"  href="#" class="nav-link p-0 " data-bs-toggle="dropdown">
+            <span class="d-block  text-nowrap p-0">
+              {{"navBar.Language" | translate}}
+              <svg  width="15" fill="#ff8100"  class='mx-1' viewBox="0 0 16 16">
+                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM2.04 4.326c.325 1.329 2.532 2.54 3.717 3.19.48.263.793.434.743.484-.08.08-.162.158-.242.234-.416.396-.787.749-.758 1.266.035.634.618.824 1.214 1.017.577.188 1.168.38 1.286.983.082.417-.075.988-.22 1.52-.215.782-.406 1.48.22 1.48 1.5-.5 3.798-3.186 4-5 .138-1.243-2-2-3.5-2.5-.478-.16-.755.081-.99.284-.172.15-.322.279-.51.216-.445-.148-2.5-2-1.5-2.5.78-.39.952-.171 1.227.182.078.099.163.208.273.318.609.304.662-.132.723-.633.039-.322.081-.671.277-.867.434-.434 1.265-.791 2.028-1.12.712-.306 1.365-.587 1.579-.88A7 7 0 1 1 2.04 4.327Z"/>
+              </svg>          </span>
+          </a>
+          <div class="dropdown-menu m-0">
+            <span class="d-block text-center pointer" (click)="changeLanguage('ar')">العربية</span>
+            <span class="d-block text-center pointer" (click)="changeLanguage('en')">English</span>
+          </div>
+      </div>
+
+      <div class="nav-item dropdown m-0 p-0">
+        <a aria-label="Them"  href="#" class="nav-link p-0 " data-bs-toggle="dropdown">
+          <span class="d-block  text-nowrap p-0">
+            {{"navBar.Color" | translate}}
+            <svg  width="15" fill="#ff8100"  class='mx-1' viewBox="0 0 16 16">
+              <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+            </svg>
+          </span>
+        </a>
+        <div class="dropdown-menu m-0">
+          <span class="d-block text-center pointer" (click)="changeThems('Dark')">Dark</span>
+          <span class="d-block text-center pointer" (click)="changeThems('White')">Light</span>
+        </div>
+      </div>
+
+      <div class="nav-item dropdown m-0 p-0">
+        <a aria-label="Them"  href="#" class="nav-link p-0 " data-bs-toggle="dropdown">
+          <span class="d-block  text-nowrap p-0 ">
+            {{"navBar.Account" | translate}}
+            <svg  width="15" fill="#ff8100"  class='mx-1' viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+            </svg>
+        </span>
+        </a>
+        <div class="dropdown-menu m-0">
+          <span class="d-block text-center pointer" [routerLink]="'/auth/login'">{{"navBar.Login" | translate}}</span>
+          <span class="d-block text-center pointer" [routerLink]="'/auth/register'">{{"navBar.Register" | translate}}</span>
+        </div>
+      </div>
+
+      <div class="nav-item dropdown m-0 p-0">
+        <a aria-label="Them"  href="#" class="nav-link p-0 " data-bs-toggle="dropdown">
+          <span class="d-block  text-nowrap p-0 ">
+            {{"navBar.Hr" | translate}}
+            <svg  width="15" fill="#ff8100"  class='mx-1' viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+            </svg>
+        </span>
+        </a>
+        <div class="dropdown-menu m-0">
+          <span class="d-block text-center pointer" [routerLink]="'/auth/login'">{{"navBar.Login" | translate}}</span>
+          <span class="d-block text-center pointer" [routerLink]="'/auth/register'">{{"navBar.Register" | translate}}</span>
+        </div>
+      </div>
+
+        <a aria-label="Read contact" (click)="logout()"  [routerLink]="'/' " class="   my-3 my-lg-0">{{"navBar.logout" | translate}}</a>
+
+
+      </div>
+
+      <div class="form-inline my-2 my-lg-0 d-flex col-lg-3">
+        <input [(ngModel)]="searching" class="form-control mr-sm-2" type="search" placeholder="{{'navBar.Search' | translate}}">
+        <button (click)="search()" class="btn   search    mx-2">
+          <svg width="20" height="20" fill="#fff" class="bi bi-search fw-bold" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+</nav>
+<!-- end header -->
+
+
+
+
+
+
+<main>
+    <router-outlet></router-outlet>
+</main>

@@ -1,0 +1,55 @@
+/* tslint:disable */
+/* eslint-disable */
+import { DocType } from './doc-type';
+import { InitGlType } from './init-gl-type';
+export interface GlDetail {
+  accTreeCode?: null | string;
+  accTreeGuid?: string;
+  accTreeId?: number;
+  accTreeName?: null | string;
+  accTreeParentCode?: null | string;
+  accTreeParentId?: number;
+  accTreeParentName?: null | string;
+  branchId?: number;
+  branchName?: null | string;
+  cancelBy?: null | string;
+  cancelById?: number;
+  cancelDate?: string;
+  companyId?: number;
+  companyName?: null | string;
+  costCenterCode?: null | string;
+  costCenterId?: number;
+  costCenterName?: null | string;
+  createById?: null | string;
+  createByName?: null | string;
+  createdDate?: string;
+  credit?: number;
+  debit?: number;
+  docDate?: string;
+  docName?: null | string;
+  docNo?: number;
+  docRefGuid?: string;
+  docType?: DocType;
+  glId?: number;
+  guid?: string;
+  id?: number;
+  initGlType?: InitGlType;
+  isActive?: boolean;
+  isUpdated?: boolean;
+  lastModifiedDate?: string;
+  lastUpdatedBy?: null | string;
+  lastUpdatedDate?: string;
+  modifyById?: null | string;
+  modifyByName?: null | string;
+  modifyCount?: number;
+  nameAr?: null | string;
+  nameEn?: null | string;
+  no?: number;
+  notes?: null | string;
+  objectId?: number;
+  parentNo?: number;
+  personalCredit?: number;
+  personalDebit?: number;
+  personalId?: number;
+  updatedCount?: number;
+}
