@@ -19,7 +19,6 @@ export class CountryCreateComponent implements OnInit {
     formCountry :FormGroup= this.fb.group({countryNameAr: new FormControl('', [Validators.required]),
     countryNameEn: new FormControl('', [Validators.required]),
     notes: new FormControl(null),})
-    cityData:any[]= [] ;
     currentcountry :any ;
     ngOnInit(): void {
        this.isEdit = this.route.snapshot.queryParams['edit'] ;
@@ -31,7 +30,6 @@ export class CountryCreateComponent implements OnInit {
         this.formCountry.patchValue({
           countryNameAr: updatedcountryData.NameAr,
           countryNameEn: updatedcountryData.NameEn,
-          countryId: updatedcountryData.CountryId,
           notes: updatedcountryData.Notes
         });    }  }
 

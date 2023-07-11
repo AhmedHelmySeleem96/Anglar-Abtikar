@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="search-container">
+    <input (input)="onSearch($event)" class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
+  </div>
+
+  <div class="table-container" class="add-button">
+    <button (click)="addNationality()"  class="btn btn-primary add-data-button">{{"Hr.AddNationality"|translate}}</button>
+  </div>
+  <div class="table-container">
+    <p-table
+    [rowsPerPageOptions]="[5, 10, 15, 20]"
+    [paginator]="true"
+    [rows]="5"
+    [columns]="cols"
+    [value]="nationalityData"
+    sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}"  #dt>
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field">
+            {{ col.header | translate }}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-nationality let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns">
+            <span class="table-data" *ngIf="col.field == 'CreatedDate'">
+              {{ nationality[col.field] | date:'shortDate' }}
+            </span>
+            <span class="table-data" *ngIf="col.field != 'CreatedDate'">
+              {{ nationality[col.field] }}
+            </span>
+          </td>
+          <td>
+            <div style="text-align: center">
+              <img src="assets/images/editIcon.png" class="mx-3" (click)=" setEdit(nationality)" />
+              <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteConfirm(nationality)" />
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+
+</div>
+<div class="bottom-buttons">
+  <button  class="btn btn-primary add-data-button">{{"Hr.Print" | translate}}</button>
+  <span class="button-space"></span>
+  <button  class="btn btn-primary add-data-button">{{"Hr.Export" | translate}}</button>
+  <span class="button-space"></span>
+  <button (click)="goHome()" class="btn btn-primary add-data-button">{{"Cancel" | translate}}</button>
+</div>
+</div>

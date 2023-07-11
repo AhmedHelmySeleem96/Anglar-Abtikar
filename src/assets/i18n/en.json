@@ -31,6 +31,8 @@
   "CityNameEn" :"City Name En",
   "CountryNameAr" : "Country Name Ar",
   "CountryNameEn" : "Country Name En",
+  "NationalityNameAr" : "Nationality Name Ar",
+  "NationalityNameEn" : "Nationality Name En",
   "Notes" : "Notes",
   "SelectCountry" : "Select Country",
   "NameAr" : "Name Ar",
@@ -38,10 +40,12 @@
   "Country" : "Country Name",
   "AddCity" : "Add City",
   "AddCountry" : "AddCountry",
+  "AddNationality" : "AddNationality",
   "Search" : "Search",
   "Export" : "Export To Excel",
   "Print" : "Print",
-  "Countrynav" : "Country"
+  "Countrynav" : "Country",
+  "Nationalitynav" : "Nationality"
 },
 "CityId":"City Id",
 "CreatedDate" :"Creation Date",
