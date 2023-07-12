@@ -13,6 +13,7 @@ export interface BuyInvoice {
   branchName?: null | string;
   buyInvoiceCosts?: null | Array<BuyInvoiceCosts>;
   buyInvoiceDetails?: null | Array<BuyInvoiceDetails>;
+  buyOfferId?: number;
   cancelBy?: null | string;
   cancelById?: number;
   cancelDate?: string;
@@ -60,9 +61,11 @@ export interface BuyInvoice {
   totalBuyCost?: number;
   totalDisc?: number;
   totalDiscRate?: number;
+  totalDiscafterVat?: number;
   totalInvoice?: number;
   totalInvoiceAfterDisc?: number;
   totalInvoiceAfterVat?: number;
+  totalInvoiceDu?: number;
   totalInvoiceGross?: number;
   totalInvoiceVatAmount?: number;
   totalVatRate?: number;

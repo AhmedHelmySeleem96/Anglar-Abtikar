@@ -38,6 +38,8 @@ export interface ItemUnit {
   manualCode?: null | string;
   maxLimit?: number;
   minLimit?: number;
+  model?: null | string;
+  modelType?: null | string;
   modifyById?: null | string;
   modifyByName?: null | string;
   modifyCount?: number;

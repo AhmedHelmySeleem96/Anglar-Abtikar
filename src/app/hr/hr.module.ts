@@ -7,12 +7,14 @@ import { CityComponent } from './city/city.component';
 import { HrComponent } from './hr.component';
 import { CountryComponent } from './country/country.component';
 import { NationalityComponent } from './nationality/nationality.component';
+import { OrgstructlevelComponent } from './orgstructlevel/orgstructlevel.component';
 @NgModule({
   declarations: [
   CityComponent,
   HrComponent,
   CountryComponent,
   NationalityComponent,
+  OrgstructlevelComponent,
   ],
   imports: [
     CommonModule,
@@ -23,6 +25,8 @@ import { NationalityComponent } from './nationality/nationality.component';
         path : "country" , loadChildren: () => import('./country/country.module').then(m => m.CountryModule)
       },{
         path : "nationality" , loadChildren: () => import('./nationality/nationality.module').then(m => m.NationalityModule)
+      },{
+        path : "orgstructlevel" , loadChildren: () => import('./orgstructlevel/orgstructlevel.module').then(m => m.OrgstructlevelModule)
       }]
     }]),
     TranslateModule,

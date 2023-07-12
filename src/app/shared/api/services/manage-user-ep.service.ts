@@ -109,4 +109,51 @@ export class ManageUserEpService extends BaseService {
     );
   }
 
+  /** Path part for operation `httpDeleteManageUserDelete()` */
+  static readonly HttpDeleteManageUserDeletePath = '/ManageUser/Delete';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpDeleteManageUserDelete()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpDeleteManageUserDelete$Response(
+    params?: {
+      id?: string;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, ManageUserEpService.HttpDeleteManageUserDeletePath, 'delete');
+    if (params) {
+      rb.query('id', params.id, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpDeleteManageUserDelete$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpDeleteManageUserDelete(
+    params?: {
+      id?: string;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpDeleteManageUserDelete$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
 }

@@ -1,5 +1,6 @@
 
 <div class="container">
+  <h3>{{ "Hr.City" | translate }}</h3>
   <div class="search-container">
     <input (input)="onSearch($event)" class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
   </div>
@@ -19,15 +20,18 @@
     sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" >
       <ng-template pTemplate="header" let-columns>
         <tr>
-          <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field">
+          <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field" [style.text-align]="'right'">
             {{ col.header | translate }}
             <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+          <th class="ui-sortable-column table-data" [style.text-align]="'right'">
+            {{ 'Actions' | translate }}
           </th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-city let-columns="columns">
         <tr>
-          <td *ngFor="let col of columns">
+          <td *ngFor="let col of columns" [style.text-align]="'right'">
             <span class="table-data" *ngIf="col.field == 'CountryId'">
               {{ getCountry(city[col.field]).NameAr }}
             </span>

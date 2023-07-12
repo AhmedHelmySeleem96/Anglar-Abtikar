@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+import { PaymentMethod } from './payment-method';
 import { SearchStatus } from './search-status';
 export interface SearchModel {
   branchID?: number;
@@ -10,6 +11,7 @@ export interface SearchModel {
   isShiftOpen?: boolean;
   itemID?: number;
   objectId?: number;
+  paymentMethod?: PaymentMethod;
   paymentType?: number;
   salesManId?: number;
   searchStatus?: SearchStatus;

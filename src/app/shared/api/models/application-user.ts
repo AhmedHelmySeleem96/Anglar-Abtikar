@@ -21,6 +21,8 @@ export interface ApplicationUser {
   passwordHash?: null | string;
   phoneNumber?: null | string;
   phoneNumberConfirmed?: boolean;
+  pricePolicyId?: number;
+  pricePolicyName?: null | string;
   role?: RoleGroup;
   roleId?: number;
   roleName?: null | string;

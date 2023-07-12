@@ -67,9 +67,11 @@ export interface Transfer {
   toStoreName?: null | string;
   totalDisc?: number;
   totalDiscRate?: number;
+  totalDiscafterVat?: number;
   totalInvoice?: number;
   totalInvoiceAfterDisc?: number;
   totalInvoiceAfterVat?: number;
+  totalInvoiceDu?: number;
   totalInvoiceGross?: number;
   totalInvoiceVatAmount?: number;
   totalQty?: number;

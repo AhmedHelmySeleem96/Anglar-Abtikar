@@ -29,6 +29,11 @@
   "City" : " Cities",
   "CityNameAr" : "City Name Ar",
   "CityNameEn" :"City Name En",
+  "Orgstruct" : "Organization Structure Level",
+  "OrgstructNameAr" : "Level Name",
+  "OrgstructNameEn" :"Level Name English",
+  "SelectParent": "Select Parent",
+  "ParentId": "Select Parent ",
   "CountryNameAr" : "Country Name Ar",
   "CountryNameEn" : "Country Name En",
   "NationalityNameAr" : "Nationality Name Ar",
@@ -45,7 +50,9 @@
   "Export" : "Export To Excel",
   "Print" : "Print",
   "Countrynav" : "Country",
-  "Nationalitynav" : "Nationality"
+  "Nationalitynav" : "Nationality",
+  "ExpandAll": "Expnd All Levels",
+  "CollapseAll" : "Collapse All Levels"
 },
 "CityId":"City Id",
 "CreatedDate" :"Creation Date",
@@ -54,6 +61,8 @@
 "Country" : "اسم الدولة",
 "Notes" : "Notes",
 "Cancel" : "Cancel",
+"Actions" : "Actions",
+"CountryId" : "Country Id",
 
 "LoginPage":{
   "Store":"Store",

@@ -3,18 +3,20 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {  XtraAndPosCityService, XtraAndPosCountryService } from 'src/app/shared/api';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-city',
   templateUrl: './create-city.component.html',
   styleUrls: ['./create-city.component.css']
 })
-export class CreateCityComponent {
+export class CreateCityComponent implements OnInit {
   constructor(
     private toastr:ToastrService,
     private XtraAndPOS_City :XtraAndPosCityService
-    ,private XtraAndPos_Country :  XtraAndPosCountryService,private fb:FormBuilder,private route: ActivatedRoute){}
+    ,private XtraAndPos_Country :  XtraAndPosCountryService,
+    private router: Router,
+    private fb:FormBuilder,private route: ActivatedRoute){}
     isEdit:boolean= false ;
      formCity :FormGroup= this.fb.group({cityNameAr: new FormControl('', [Validators.required]),
      cityNameEn: new FormControl('', [Validators.required]),
@@ -42,6 +44,9 @@ export class CreateCityComponent {
         this.countryData = jsonData.Obj.country;
       });
     }
+    goHome(){
+      this.router.navigateByUrl('hr/city');
+    }
     OnSubmit(Form: FormGroup) {
       if(!this.isEdit){
       if(this.formCity.valid)
@@ -68,6 +73,7 @@ export class CreateCityComponent {
       });
       }
         }
+
     }
 
 

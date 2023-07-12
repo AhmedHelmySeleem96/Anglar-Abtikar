@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { XtraAndPosEmployeeEpService } from 'src/app/shared/api';
+import { XtraAndPosNationalityService } from 'src/app/shared/api';
 @Component({
   selector: 'app-nationality-preview',
   templateUrl: './nationality-preview.component.html',
@@ -9,7 +9,7 @@ import { XtraAndPosEmployeeEpService } from 'src/app/shared/api';
 })
 export class NationalityPreviewComponent implements OnInit  {
   constructor(private router: Router,private toastr:ToastrService
-    ,private XtraAndPosEmployeeEpService :  XtraAndPosEmployeeEpService){};
+    ,private XtraAndPosNationalityService :  XtraAndPosNationalityService){};
     addNationality(){
       this.router.navigateByUrl('hr/nationality/createNationality');
     }
@@ -18,19 +18,20 @@ export class NationalityPreviewComponent implements OnInit  {
     @ViewChild('dt') dt: any;
     ngOnInit(): void {
 
-      this.XtraAndPosEmployeeEpService.httpGetExtraAndPosEmployeeManagementInfo().subscribe((value:any)=>{
+      this.XtraAndPosNationalityService.httpGetXtraAndPosNationalityGetNationalityService().subscribe((value:any)=>{
         let jsonData = JSON.parse(value);
         console.log(jsonData)
         this.nationalityData = jsonData.Obj.nationality;
       });
       this.cols = [
         { field: 'Id', header: 'CityId' },
-        { field: 'CreatedDate', header: 'CreatedData' },
+        { field: 'CreatedDate', header: 'CreatedDate' },
         { field: 'NameAr', header: 'NameAr' },
         { field: 'NameEn', header: 'NameEn' },
         { field: 'Notes', header: 'Notes' },
       ];
     }
+
     setEdit(nationality: any) {
       const navigationExtras: NavigationExtras = {
         queryParams: { edit: true, nationalityData: JSON.stringify(nationality)
@@ -56,7 +57,7 @@ export class NationalityPreviewComponent implements OnInit  {
         });
     }
     deleteNationality(nationality: any) {
-      this.XtraAndPosEmployeeEpService.httpDeleteExtraAndPosEmployeeDeleteNationality({
+      this.XtraAndPosNationalityService.httpDeleteXtraAndPosNationalityDeleteNationalityService({
         id: nationality.Id,
       }).subscribe((value: any) => {
         let jsonData = JSON.parse(value);
@@ -69,7 +70,7 @@ export class NationalityPreviewComponent implements OnInit  {
     }
 
     refreshTable() {
-      this.XtraAndPosEmployeeEpService.httpGetExtraAndPosEmployeeManagementInfo().subscribe((value: any) => {
+      this.XtraAndPosNationalityService.httpGetXtraAndPosNationalityGetNationalityService().subscribe((value: any) => {
         let jsonnationalityData = JSON.parse(value);
         this.nationalityData = jsonnationalityData.Obj.nationality;
       });

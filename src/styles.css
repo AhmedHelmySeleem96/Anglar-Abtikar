@@ -278,6 +278,7 @@ html[lang=en] .direction,
 html[lang=ar] .direction {
   direction: rtl !important;
 }
+p-paginator{
+  direction: ltr !important;
+}
 
-
-/* home page */

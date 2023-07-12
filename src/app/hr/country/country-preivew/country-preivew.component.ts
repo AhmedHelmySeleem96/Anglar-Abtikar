@@ -24,8 +24,8 @@ ngOnInit(): void {
     this.countryData = jsonData.Obj.country;
   });
   this.cols = [
-    { field: 'Id', header: 'CityId' },
-    { field: 'CreatedDate', header: 'CreatedData' },
+    { field: 'Id', header: 'CountryId' },
+    { field: 'CreatedDate', header: 'CreatedDate' },
     { field: 'NameAr', header: 'NameAr' },
     { field: 'NameEn', header: 'NameEn' },
     { field: 'Notes', header: 'Notes' },
@@ -44,7 +44,7 @@ onSearch(searchValue:Event): void {
 }
 showDeleteConfirm(country: any) {
   this.toastr
-    .info('Do you want to delete this city?', 'Confirmation', {
+    .info('Do you want to delete this Country?', 'Confirmation', {
       timeOut: 0,
       extendedTimeOut: 0,
       closeButton: true,
@@ -64,7 +64,7 @@ deleteCountry(country: any) {
     this.toastr.success(jsonData.Message);
     this.refreshTable();
   }, (error: any) => {
-    this.toastr.error('Failed to delete city.');
+    this.toastr.error('Failed to delete country.');
   });
 }
 
@@ -79,6 +79,32 @@ getCountry(id :any){
 }
 goHome(){
   this.router.navigateByUrl('');
+}
+exportData() {
+  this.XtraAndPos_Country.httpGetXtraAndPosCountryGetCountryService().subscribe(
+    (value: any) => {
+      let jsonData = JSON.parse(value);
+      let countryData = jsonData.Obj.country;
+
+      // Perform the necessary data manipulation and formatting for export
+
+      // Example: Convert the data to a CSV string
+      let csvData = this.convertToCsv(countryData);
+
+      // Example: Save the CSV file using file-saver library
+      const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8' });
+      // saveAs(blob, 'data.csv');
+    },
+    (error: any) => {
+      // Handle error if necessary
+    }
+  );
+}
+
+convertToCsv(data: any[]): string {
+  let headerRow = Object.keys(data[0]).join(',');
+  let contentRows = data.map((item) => Object.values(item).join(','));
+  return headerRow + '\n' + contentRows.join('\n');
 }
 }
 

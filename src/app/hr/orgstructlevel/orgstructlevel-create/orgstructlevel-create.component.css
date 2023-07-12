@@ -87,18 +87,6 @@ h3 {
   font-size: 1.9rem;
   background: linear-gradient(90deg, #ffba00 0%, #ff6c00 100%);
 }
-.add-data-button {
-  font-size: 18px;
-  background-color:  #ff6c00;
-  color: #fff;
-  border: none;
-}
-.bottom-buttons{
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-
- }
 
 .eye {
   position: absolute;
@@ -112,3 +100,77 @@ h3 {
   align-items: center;
   padding: 0 5px;
 }
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.custom-textbox {
+  height: 30px;
+  width: 300px;
+}
+.add-button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+}
+.table-data{
+  font-size: 15px;
+  border: none;
+  /* text-align: right !important; */
+}
+.add-data-button {
+  font-size: 18px;
+  background-color:  #ff6c00;
+  color: #fff;
+  border: none;
+}
+.above-buttons{
+  display: flex;
+  margin-top: 5px;
+}
+.search-button {
+  background-color: #ff6c00;
+  color: #fff;
+  border: none;
+  height: 30px;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.table {
+  font-size: 16px;
+}
+
+.table th {
+  background-color: #ff6c00;
+  color: #fff;
+}
+
+.table td {
+  vertical-align: middle;
+}
+.bottom-buttons{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+ }
+ .bottom-buttons-style{
+  background-color:  #ff6c00;
+  color: #fff;
+  border: none;
+
+ }
+ .button-space{
+  margin-right : 10px;
+ }

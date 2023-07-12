@@ -27,6 +27,11 @@
 "City" : " المدن",
 "CityNameAr" : "اسم المدينة",
 "CityNameEn" :"اسم المدينة بالانجليزية",
+"Orgstruct" : " مستويات الهيكل التنظيمي",
+"OrgStructNameAr" : "اسم المستوى",
+"OrgStructNameEn" :"اسم المستوى بالانجليزية",
+"SelectParent" : "المستوى التابع له",
+"ParentId" : "اختر المستوى",
 "CountryNameAr" : "اسم المدينة",
 "CountryNameEn" :"اسم المدينة بالانجليزية",
 "NationalityNameAr" : "اسم الجنسيه",
@@ -44,7 +49,9 @@
 "Export" : " تصدير ملف اكسيل",
 "Print" : "طباعه",
 "Countrynav" : "الدول",
-"Nationalitynav" : "الجنسيات"
+"Nationalitynav" : "الجنسيات",
+"ExpandAll": "فتح جميع المستويات",
+"CollapseAll" : "غلق جميع المستويات"
 },
 "CityId":"كود المدينة",
 "CreatedDate" :"تاريخ الانشاء",
@@ -53,6 +60,8 @@
 "Country" : "اسم الدولة",
 "Notes" : "ملاحظات",
 "Cancel" : "الغاء",
+"Actions"  : "اجراءات",
+"CountryId" : "كود الدولة",
 "ProductDetails":{
   "Home":"الرئيسية",
   "AddCart":"اضافة الي السلة",

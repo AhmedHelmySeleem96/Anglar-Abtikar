@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { XtraAndPosEmployeeEpService } from 'src/app/shared/api';
+import { ActivatedRoute, Router } from '@angular/router';
+import { XtraAndPosNationalityService } from 'src/app/shared/api';
 
 
 
@@ -14,7 +14,8 @@ import { XtraAndPosEmployeeEpService } from 'src/app/shared/api';
 export class NationalityCreateComponent implements OnInit  {
   constructor(
     private toastr:ToastrService,
-    private XtraAndPosEmployeeEpService :  XtraAndPosEmployeeEpService,private fb:FormBuilder,private route: ActivatedRoute){}
+    private router: Router,
+    private XtraAndPosNationalityService :  XtraAndPosNationalityService,private fb:FormBuilder,private route: ActivatedRoute){}
     isEdit:boolean= false ;
     formNationality :FormGroup= this.fb.group({nationalityNameAr: new FormControl('', [Validators.required]),
     nationalityNameEn: new FormControl('', [Validators.required]),
@@ -34,12 +35,15 @@ export class NationalityCreateComponent implements OnInit  {
        });    }  }
 
    }
+   goHome(){
+    this.router.navigateByUrl('hr/nationality');
+  }
    OnSubmit(Form: FormGroup) {
     if(!this.isEdit){
     if(this.formNationality.valid)
     {
     let model = this.formNationality.value;
-    this.XtraAndPosEmployeeEpService.httpPostExtraAndPosEmployeeAddNationality({
+    this.XtraAndPosNationalityService.httpPostXtraAndPosNationalityCreateNationalityService({
       body : model
     }).subscribe((value:any)=>{
       let jsonData = JSON.parse(value);
@@ -51,7 +55,8 @@ export class NationalityCreateComponent implements OnInit  {
   }else{
     let model = this.formNationality.value;
     model.Id = this.currentNationality.Id;
-    this.XtraAndPosEmployeeEpService.httpPutExtraAndPosEmployeeUpdateNationality({
+    this.XtraAndPosNationalityService.httpPutXtraAndPosNationalityUpdateNationalityService({
+      id : this.currentNationality.Id,
       body: model
     }).subscribe((value: any) => {
       let jsonData = JSON.parse(value);

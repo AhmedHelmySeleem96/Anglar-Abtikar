@@ -40,6 +40,8 @@ export interface Client {
   no?: number;
   notes?: null | string;
   phoneNo?: null | string;
+  pricePolicyId?: number;
+  pricePolicyName?: null | string;
   priceType?: number;
   privateCoding?: null | string;
   region?: number;

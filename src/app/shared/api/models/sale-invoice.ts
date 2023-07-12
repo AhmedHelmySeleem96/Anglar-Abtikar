@@ -52,6 +52,7 @@ export interface SaleInvoice {
   pricePolicyName?: null | string;
   qrCode?: null | string;
   saleInvoiceDetails?: null | Array<SaleInvoiceDetails>;
+  saleOfferId?: number;
   salesManId?: number;
   salesManName?: null | string;
   shiftId?: number;
@@ -61,9 +62,11 @@ export interface SaleInvoice {
   tbL022ID?: number;
   totalDisc?: number;
   totalDiscRate?: number;
+  totalDiscafterVat?: number;
   totalInvoice?: number;
   totalInvoiceAfterDisc?: number;
   totalInvoiceAfterVat?: number;
+  totalInvoiceDu?: number;
   totalInvoiceGross?: number;
   totalInvoiceVatAmount?: number;
   totalVatRate?: number;

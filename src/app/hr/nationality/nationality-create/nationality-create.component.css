@@ -87,7 +87,18 @@ h3 {
   font-size: 1.9rem;
   background: linear-gradient(90deg, #ffba00 0%, #ff6c00 100%);
 }
+.add-data-button {
+  font-size: 18px;
+  background-color:  #ff6c00;
+  color: #fff;
+  border: none;
+}
+.bottom-buttons{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 
+ }
 .eye {
   position: absolute;
   top: 0 !important;

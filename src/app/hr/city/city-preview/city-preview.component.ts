@@ -30,7 +30,7 @@ export class CityPreviewComponent implements OnInit {
     });
     this.cols = [
       { field: 'Id', header: 'CityId' },
-      { field: 'CreatedDate', header: 'CreatedData' },
+      { field: 'CreatedDate', header: 'CreatedDate' },
       { field: 'NameAr', header: 'NameAr' },
       { field: 'NameEn', header: 'NameEn' },
       { field: 'CountryId', header: 'Country' },

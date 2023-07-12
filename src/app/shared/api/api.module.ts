@@ -40,6 +40,7 @@ import { XtraAndPosEmployeeEpService } from './services/xtra-and-pos-employee-ep
 import { XtraAndPosFinanceEpService } from './services/xtra-and-pos-finance-ep.service';
 import { XtraAndPosGeneralLedgerEpService } from './services/xtra-and-pos-general-ledger-ep.service';
 import { XtraAndPosItemEpService } from './services/xtra-and-pos-item-ep.service';
+import { XtraAndPosNationalityService } from './services/xtra-and-pos-nationality.service';
 import { XtraAndPosOrgStructLevelsService } from './services/xtra-and-pos-org-struct-levels.service';
 import { XtraAndPosReturnSaleInvoiceEpService } from './services/xtra-and-pos-return-sale-invoice-ep.service';
 import { XtraAndPosSaleInvoiceEpService } from './services/xtra-and-pos-sale-invoice-ep.service';
@@ -94,6 +95,7 @@ import { XtraAndPosTreasuryEpService } from './services/xtra-and-pos-treasury-ep
     XtraAndPosFinanceEpService,
     XtraAndPosGeneralLedgerEpService,
     XtraAndPosItemEpService,
+    XtraAndPosNationalityService,
     XtraAndPosOrgStructLevelsService,
     XtraAndPosReturnSaleInvoiceEpService,
     XtraAndPosSaleInvoiceEpService,

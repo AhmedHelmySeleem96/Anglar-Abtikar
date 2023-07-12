@@ -28,6 +28,19 @@ section {
     font-size: 3rem;
   }
 }
+.add-data-button {
+  font-size: 18px;
+  background-color:  #ff6c00;
+  color: #fff;
+  border: none;
+}
+.bottom-buttons{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+ }
+
 .form select {
   font-size: 1.7rem;
   padding: 0.8rem 1.3rem;

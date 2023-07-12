@@ -13,9 +13,12 @@
     <div class="form-group mt-5">
       <input   id="notes" type="notes" formControlName="notes" placeholder="{{ 'Hr.Notes' | translate }}" class="form-control">
     </div>
-    <div class="my-4">
-      <button   class="d-block w-100 py-3"  >{{ 'Save' | translate }}</button>
+    <div class="bottom-buttons">
+      <button type="submit"  class="d-block w-100 py-3"  >{{ 'Save' | translate }}</button>
+      <span class="button-space"></span>
+      <button (click)="goHome()" class="btn btn-primary add-data-button">{{"Cancel" | translate}}</button>
     </div>
+
 
   </form>
 </div>

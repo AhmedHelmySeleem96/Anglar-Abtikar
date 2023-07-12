@@ -1,4 +1,6 @@
 <div class="container">
+  <h2>{{ "Hr.Countrynav" | translate }}</h2>
+
   <div class="search-container">
     <input (input)="onSearch($event)" class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
   </div>
@@ -17,15 +19,18 @@
     sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}"  #dt>
       <ng-template pTemplate="header" let-columns>
         <tr>
-          <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field">
+          <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field" [style.text-align]="'right'" >
             {{ col.header | translate }}
             <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+          <th class="ui-sortable-column table-data" [style.text-align]="'right'">
+            {{ 'Actions' | translate }}
           </th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-country let-columns="columns">
         <tr>
-          <td *ngFor="let col of columns">
+          <td *ngFor="let col of columns" [style.text-align]="'right'">
             <span class="table-data" *ngIf="col.field == 'CreatedDate'">
               {{ country[col.field] | date:'shortDate' }}
             </span>
@@ -48,7 +53,7 @@
 <div class="bottom-buttons">
   <button  class="btn btn-primary add-data-button">{{"Hr.Print" | translate}}</button>
   <span class="button-space"></span>
-  <button  class="btn btn-primary add-data-button">{{"Hr.Export" | translate}}</button>
+  <button (click)="exportData()" class="btn btn-primary add-data-button">{{"Hr.Export" | translate}}</button>
   <span class="button-space"></span>
   <button (click)="goHome()" class="btn btn-primary add-data-button">{{"Cancel" | translate}}</button>
 </div>

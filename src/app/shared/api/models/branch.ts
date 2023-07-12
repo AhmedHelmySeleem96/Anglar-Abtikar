@@ -49,6 +49,8 @@ export interface Branch {
   postalBox?: null | string;
   postalZone?: null | string;
   priceLength?: number;
+  pricePolicyId?: number;
+  pricePolicyName?: null | string;
   priceSeparator?: number;
   priceStart?: number;
   qtyLength?: number;

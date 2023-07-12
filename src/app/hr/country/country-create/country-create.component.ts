@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {  XtraAndPosCountryService } from 'src/app/shared/api';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class CountryCreateComponent implements OnInit {
   constructor(
     private toastr:ToastrService,
+    private router: Router,
     private XtraAndPos_Country :  XtraAndPosCountryService,private fb:FormBuilder,private route: ActivatedRoute){}
 
     isEdit:boolean= false ;
@@ -33,6 +34,9 @@ export class CountryCreateComponent implements OnInit {
           notes: updatedcountryData.Notes
         });    }  }
 
+    }
+    goHome(){
+      this.router.navigateByUrl('hr/country');
     }
     OnSubmit(Form: FormGroup) {
       if(!this.isEdit){
