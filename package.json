@@ -34,8 +34,10 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "@popperjs/core": "^2.11.6",
+    "@types/file-saver": "^2.0.5",
     "bootstrap": "^5.2.0",
     "express": "^4.15.2",
+    "file-saver": "^2.0.5",
     "jwt-decode": "^3.1.2",
     "localstorage-polyfill": "^1.0.1",
     "ngx-toastr": "^16.1.0",
@@ -45,6 +47,7 @@
     "swagger-angular-generator": "^4.2.2",
     "swiper": "^6.8.4",
     "tslib": "^2.5.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.12.0"
   },
   "devDependencies": {

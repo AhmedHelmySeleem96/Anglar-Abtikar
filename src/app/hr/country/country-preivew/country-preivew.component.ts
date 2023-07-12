@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { XtraAndPosCountryService } from 'src/app/shared/api';
+import { saveAs } from 'file-saver';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-country-preivew',
@@ -80,31 +82,53 @@ getCountry(id :any){
 goHome(){
   this.router.navigateByUrl('');
 }
+
+
 exportData() {
-  this.XtraAndPos_Country.httpGetXtraAndPosCountryGetCountryService().subscribe(
-    (value: any) => {
-      let jsonData = JSON.parse(value);
-      let countryData = jsonData.Obj.country;
+  const tableData = this.countryData.map((country) => {
+    return {
+      id:country.Id,
+      createdDate : country.CreatedDate,
+      countryNameAr: country.NameAr,
+      countryNameEn: country.NameEn,
+      notes: country.Notes
+    };
+  });
 
-      // Perform the necessary data manipulation and formatting for export
+  const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(tableData);
+  const columnWidths = this.calculateColumnWidths(tableData);
+  worksheet['!cols'] = columnWidths;
+  const workbook: XLSX.WorkBook = { Sheets: { 'Data': worksheet }, SheetNames: ['Data'] };
+  const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+  const blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+  saveAs(blob, 'Data.xlsx');
+}
 
-      // Example: Convert the data to a CSV string
-      let csvData = this.convertToCsv(countryData);
+calculateColumnWidths(data: any[]): XLSX.ColInfo[] {
+  const columnWidths: XLSX.ColInfo[] = [];
 
-      // Example: Save the CSV file using file-saver library
-      const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8' });
-      // saveAs(blob, 'data.csv');
-    },
-    (error: any) => {
-      // Handle error if necessary
+  const columns = Object.keys(data[0]);
+  for (let i = 0; i < columns.length; i++) {
+    const column = columns[i];
+    const columnWidth: XLSX.ColInfo = { width: 0, wch: 0, MDW: 0 };
+    let maxLength = column.length;
+    for (let j = 0; j < data.length; j++) {
+      const cellValue = data[j][column];
+      const cellLength = cellValue ? cellValue.toString().length : 0;
+      if (cellLength > maxLength) {
+        maxLength = cellLength;
+      }
     }
-  );
+
+    columnWidth.width = maxLength * 1.2;
+    columnWidth.wch = maxLength;
+    columnWidth.MDW = 1;
+
+    columnWidths.push(columnWidth);
+  }
+
+  return columnWidths;
 }
 
-convertToCsv(data: any[]): string {
-  let headerRow = Object.keys(data[0]).join(',');
-  let contentRows = data.map((item) => Object.values(item).join(','));
-  return headerRow + '\n' + contentRows.join('\n');
-}
 }
 

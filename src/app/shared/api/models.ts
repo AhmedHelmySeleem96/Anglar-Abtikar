@@ -25,6 +25,7 @@ export { CompanySetting } from './models/company-setting';
 export { CostCenter } from './models/cost-center';
 export { CostInvoiceDto } from './models/cost-invoice-dto';
 export { CountryDto } from './models/country-dto';
+export { CountryDtoForExport } from './models/country-dto-for-export';
 export { Currency } from './models/currency';
 export { DefaultOptions } from './models/default-options';
 export { DocType } from './models/doc-type';
