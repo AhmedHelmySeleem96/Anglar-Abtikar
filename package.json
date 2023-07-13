@@ -38,6 +38,8 @@
     "bootstrap": "^5.2.0",
     "express": "^4.15.2",
     "file-saver": "^2.0.5",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.29",
     "jwt-decode": "^3.1.2",
     "localstorage-polyfill": "^1.0.1",
     "ngx-toastr": "^16.1.0",

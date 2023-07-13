@@ -4,7 +4,13 @@ import { ToastrService } from 'ngx-toastr';
 import { XtraAndPosCountryService } from 'src/app/shared/api';
 import { saveAs } from 'file-saver';
 import * as XLSX from 'xlsx';
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
+import { UserOptions } from 'jspdf-autotable';
 
+interface jsPDFCustom extends jsPDF {
+  autoTable: (options: UserOptions) => void;
+}
 @Component({
   selector: 'app-country-preivew',
   templateUrl: './country-preivew.component.html',
@@ -81,6 +87,35 @@ getCountry(id :any){
 }
 goHome(){
   this.router.navigateByUrl('');
+}
+
+printPdf() {
+  const tableData = this.countryData.map((country) => {
+    return {
+      id: country.Id,
+      createdDate: country.CreatedDate,
+      countryNameAr: country.NameAr,
+      countryNameEn: country.NameEn,
+      notes: country.Notes
+    };
+  });
+
+  const columns = Object.keys(tableData[0]);
+  const rows = tableData.map(Object.values);
+
+  const doc = new jsPDF() as jsPDFCustom;
+
+  doc.addFont('src/assets/font/Cairo-VariableFont_wght', 'Arabic', 'normal');
+  doc.setFont('Arabic');
+
+  doc.autoTable({
+    head: [columns],
+    body: rows,
+    columnStyles: {
+      countryNameAr: { font: 'Arabic' }
+    }
+  });
+  doc.save('Data.pdf');
 }
 
 
