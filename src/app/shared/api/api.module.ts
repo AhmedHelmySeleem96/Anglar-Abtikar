@@ -42,6 +42,7 @@ import { XtraAndPosGeneralLedgerEpService } from './services/xtra-and-pos-genera
 import { XtraAndPosItemEpService } from './services/xtra-and-pos-item-ep.service';
 import { XtraAndPosNationalityService } from './services/xtra-and-pos-nationality.service';
 import { XtraAndPosOrgStructLevelsService } from './services/xtra-and-pos-org-struct-levels.service';
+import { XtraAndPosOrgStructuresService } from './services/xtra-and-pos-org-structures.service';
 import { XtraAndPosReturnSaleInvoiceEpService } from './services/xtra-and-pos-return-sale-invoice-ep.service';
 import { XtraAndPosSaleInvoiceEpService } from './services/xtra-and-pos-sale-invoice-ep.service';
 import { XtraAndPosSaleOfferPricesEpService } from './services/xtra-and-pos-sale-offer-prices-ep.service';
@@ -97,6 +98,7 @@ import { XtraAndPosTreasuryEpService } from './services/xtra-and-pos-treasury-ep
     XtraAndPosItemEpService,
     XtraAndPosNationalityService,
     XtraAndPosOrgStructLevelsService,
+    XtraAndPosOrgStructuresService,
     XtraAndPosReturnSaleInvoiceEpService,
     XtraAndPosSaleInvoiceEpService,
     XtraAndPosSaleOfferPricesEpService,

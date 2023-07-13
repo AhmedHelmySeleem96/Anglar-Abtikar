@@ -1,0 +1,100 @@
+<div class="container">
+  <span class="button-space"></span>
+<h3>{{ "Hr.Orgstructures" | translate }}</h3>
+<span class="button-space"></span>
+<div class="above-buttons">
+  <button (click)="expandAll()" class="btn btn-primary bottom-buttons-style ">{{ 'Hr.ExpandAll' | translate }}</button>
+  <span class="button-space"></span>
+  <button (click)="collapseAll()" class="btn btn-primary  bottom-buttons-style">{{ 'Hr.CollapseAll' | translate }}</button>
+</div>
+<span class="button-space"></span>
+<p-tree (nodeSelect)="setEdit($event)" [value]="treeData" class="w-full md:w-30rem" selectionMode="single" [(selection)]="selectedNode"></p-tree>
+
+
+<div class="col-5 mx-auto py-4 py-md-5 px-lg-4">
+
+  <form #formElement (change)="onParentSelect($event)" [formGroup]="formorgStruct" (ngSubmit)="OnSubmit(formorgStruct)" class="form">
+    <div class="form-group mt-5">
+      <label for="LevelId">{{ 'Hr.SelectParent' | translate }}</label>
+      <select   id="LevelId" formControlName="LevelId"  class="form-control"  >
+        <option  value="" disabled selected>{{ 'Hr.ParentId' | translate }}</option>
+        <option *ngFor="let item of orgStructLevels " [value]="item.Id">{{ item.NameAr }}</option>
+      </select>
+    </div>
+    <div class="form-group mt-5">
+      <label for="ParentId">{{ 'Hr.SelectStructures' | translate }}</label>
+      <select   id="ParentId" formControlName="ParentId"  class="form-control"  >
+        <option  value="" disabled selected>{{ 'Hr.LevelId' | translate }}</option>
+        <option *ngFor="let item of orgStructuresDataDropDown " [value]="item.Id">{{ item.NameAr }}</option>
+      </select>
+    </div>
+    <div class="form-group mt-5">
+      <input  id="NameAr" type="NameAr" formControlName="NameAr" required placeholder="{{ 'Hr.OrgStructNameAr' | translate }}" class="form-control">
+    </div>
+
+    <div class="form-group mt-5">
+      <input   id="NameEn" type="NameEn" formControlName="NameEn" required placeholder="{{ 'Hr.OrgStructNameEn' | translate }}" class="form-control">
+    </div>
+
+
+
+    <div class="bottom-buttons">
+      <button type="submit"  class="d-block w-100 py-3"  >{{ 'Save' | translate }}</button>
+      <span class="button-space"></span>
+      <button (click)="goHome()" class="btn btn-primary add-data-button">{{"Cancel" | translate}}</button>
+    </div>
+  </form>
+</div>
+<div class="container">
+  <div class="search-container">
+    <input (input)="onSearch($event)" class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
+  </div>
+
+  <div class="table-container">
+    <p-table
+      [rowsPerPageOptions]="[5, 10, 15, 20]"
+      [paginator]="true"
+      [rows]="5"
+      [columns]="cols"
+      [value]="orgStructuresData"
+      sortMode="multiple"
+      styleClass="p-datatable-striped"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      #dt
+    >
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field" [style.text-align]="'right'">
+            {{ col.header | translate }}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+          <th class="ui-sortable-column table-data" [style.text-align]="'right'">
+            {{ 'Actions' | translate }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-level let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns" [style.text-align]="'right'">
+            <span class="table-data" *ngIf="col.field == 'LevelId'">
+              {{ level[col.field] !== 0 ? getLevel(level[col.field]).NameAr : '' }}
+            </span>
+            <span class="table-data" *ngIf="col.field == 'ParentId'">
+              {{ level[col.field] !== 0 ? getParent(level[col.field]).NameAr : '' }}
+            </span>
+            <span class="table-data" *ngIf="col.field != 'LevelId' && col.field != 'ParentId'">
+              {{ level[col.field] }}
+            </span>
+          </td>
+          <td [style.text-align]="'center'">
+            <div style="text-align: center">
+              <img src="assets/images/editIcon.png" class="mx-3" (click)="setEdit(level)" />
+              <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteConfirm(level)" />
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+</div>

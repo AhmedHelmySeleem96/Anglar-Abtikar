@@ -11,7 +11,6 @@ import { StrictHttpResponse } from '../strict-http-response';
 import { RequestBuilder } from '../request-builder';
 
 import { CountryDto } from '../models/country-dto';
-import { CountryDtoForExport } from '../models/country-dto-for-export';
 
 @Injectable({ providedIn: 'root' })
 export class XtraAndPosCountryService extends BaseService {
@@ -203,53 +202,6 @@ export class XtraAndPosCountryService extends BaseService {
     context?: HttpContext
   ): Observable<void> {
     return this.httpGetXtraAndPosCountryGetCountryService$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
-    );
-  }
-
-  /** Path part for operation `httpPostXtraAndPosCountryExportCountryData()` */
-  static readonly HttpPostXtraAndPosCountryExportCountryDataPath = '/XtraAndPOS_Country/ExportCountryData';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `httpPostXtraAndPosCountryExportCountryData()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  httpPostXtraAndPosCountryExportCountryData$Response(
-    params?: {
-      body?: Array<CountryDtoForExport>
-    },
-    context?: HttpContext
-  ): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(this.rootUrl, XtraAndPosCountryService.HttpPostXtraAndPosCountryExportCountryDataPath, 'post');
-    if (params) {
-      rb.body(params.body, 'application/json');
-    }
-
-    return this.http.request(
-      rb.build({ responseType: 'text', accept: '*/*', context })
-    ).pipe(
-      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `httpPostXtraAndPosCountryExportCountryData$Response()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  httpPostXtraAndPosCountryExportCountryData(
-    params?: {
-      body?: Array<CountryDtoForExport>
-    },
-    context?: HttpContext
-  ): Observable<void> {
-    return this.httpPostXtraAndPosCountryExportCountryData$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

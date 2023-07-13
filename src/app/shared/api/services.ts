@@ -36,6 +36,7 @@ export { XtraAndPosGeneralLedgerEpService } from './services/xtra-and-pos-genera
 export { XtraAndPosItemEpService } from './services/xtra-and-pos-item-ep.service';
 export { XtraAndPosNationalityService } from './services/xtra-and-pos-nationality.service';
 export { XtraAndPosOrgStructLevelsService } from './services/xtra-and-pos-org-struct-levels.service';
+export { XtraAndPosOrgStructuresService } from './services/xtra-and-pos-org-structures.service';
 export { XtraAndPosReturnSaleInvoiceEpService } from './services/xtra-and-pos-return-sale-invoice-ep.service';
 export { XtraAndPosSaleInvoiceEpService } from './services/xtra-and-pos-sale-invoice-ep.service';
 export { XtraAndPosSaleOfferPricesEpService } from './services/xtra-and-pos-sale-offer-prices-ep.service';

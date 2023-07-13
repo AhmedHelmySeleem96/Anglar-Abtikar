@@ -39,7 +39,6 @@ treeData: TreeNode[] = [];
     }
 
     OnSubmit(Form: FormGroup) {
-      debugger
       if(!this.isEdit){
       if(this.formorgStruct.valid)
       {
@@ -157,7 +156,6 @@ treeData: TreeNode[] = [];
         }
 
         getLevel(id :any){
-          console.log(this.orgStructData.filter((r)=>r.Id===id)[0])
           return this.orgStructData.filter((r)=>r.Id===id)[0]
         }
         goHome(){
