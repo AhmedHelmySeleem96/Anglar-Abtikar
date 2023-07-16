@@ -67,6 +67,7 @@ export interface Item {
   totalOutQty?: number;
   type?: ItemType;
   typeOfProfit?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
   valueOfProfit?: number;
   vat?: number;

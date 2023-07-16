@@ -815,6 +815,53 @@ export class ReportEpService extends BaseService {
     );
   }
 
+  /** Path part for operation `httpPostInitGlReportInitGlRecept()` */
+  static readonly HttpPostInitGlReportInitGlReceptPath = '/InitGlReport/InitGlRecept';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostInitGlReportInitGlRecept()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpPostInitGlReportInitGlRecept$Response(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, ReportEpService.HttpPostInitGlReportInitGlReceptPath, 'post');
+    if (params) {
+      rb.query('id', params.id, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostInitGlReportInitGlRecept$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpPostInitGlReportInitGlRecept(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostInitGlReportInitGlRecept$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
   /** Path part for operation `httpPostItemAcvityItemActivity()` */
   static readonly HttpPostItemAcvityItemActivityPath = '/ItemAcvity/ItemActivity';
 

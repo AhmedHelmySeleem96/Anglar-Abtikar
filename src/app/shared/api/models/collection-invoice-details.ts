@@ -42,5 +42,6 @@ export interface CollectionInvoiceDetails {
   supplierName?: null | string;
   treasuryId?: number;
   treasuryName?: null | string;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

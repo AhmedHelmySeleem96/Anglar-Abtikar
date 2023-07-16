@@ -391,4 +391,48 @@ export class XtraAndPosAccTreeEpService extends BaseService {
     );
   }
 
+  /** Path part for operation `httpDeleteExtraAndPosAccTreeDeleteAll()` */
+  static readonly HttpDeleteExtraAndPosAccTreeDeleteAllPath = '/ExtraAndPOS_AccTree/DeleteAll';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpDeleteExtraAndPosAccTreeDeleteAll()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpDeleteExtraAndPosAccTreeDeleteAll$Response(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosAccTreeEpService.HttpDeleteExtraAndPosAccTreeDeleteAllPath, 'delete');
+    if (params) {
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpDeleteExtraAndPosAccTreeDeleteAll$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpDeleteExtraAndPosAccTreeDeleteAll(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpDeleteExtraAndPosAccTreeDeleteAll$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
 }

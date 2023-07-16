@@ -64,6 +64,7 @@ export interface Branch {
   taxNo?: null | string;
   tbL005ID?: number;
   transferWithPrice?: boolean;
+  updateFlag?: null | string;
   updatedCount?: number;
   zakatAuthority?: boolean;
 }

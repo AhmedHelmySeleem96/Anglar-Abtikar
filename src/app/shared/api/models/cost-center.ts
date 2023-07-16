@@ -29,5 +29,6 @@ export interface CostCenter {
   no?: number;
   notes?: null | string;
   tbL005ID?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

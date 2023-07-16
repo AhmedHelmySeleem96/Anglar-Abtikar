@@ -31,5 +31,6 @@ export interface ItemSpare {
   spareQty?: number;
   supplierId?: number;
   supplierName?: null | string;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

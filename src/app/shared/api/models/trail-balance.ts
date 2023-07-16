@@ -39,5 +39,6 @@ export interface TrailBalance {
   no?: number;
   notes?: null | string;
   toDate?: string;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

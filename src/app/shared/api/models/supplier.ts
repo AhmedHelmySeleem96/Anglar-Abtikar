@@ -68,6 +68,7 @@ export interface Supplier {
   totalCash?: number;
   totalDebt?: number;
   totalSales?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
   webSite?: null | string;
   whatsApp?: null | string;

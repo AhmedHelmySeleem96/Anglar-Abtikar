@@ -65,6 +65,7 @@ export interface SaleOfferPrice {
   totalInvoiceVatAmount?: number;
   totalVatRate?: number;
   treasuryId?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
   userId?: string;
   visa?: number;

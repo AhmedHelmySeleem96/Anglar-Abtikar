@@ -32,5 +32,6 @@ export interface WebsiteDto {
   no?: number;
   notes?: null | string;
   type?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

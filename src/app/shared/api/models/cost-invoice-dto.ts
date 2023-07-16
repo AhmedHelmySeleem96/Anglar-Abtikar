@@ -30,5 +30,6 @@ export interface CostInvoiceDto {
   no?: number;
   notes?: null | string;
   totalBuyCost?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

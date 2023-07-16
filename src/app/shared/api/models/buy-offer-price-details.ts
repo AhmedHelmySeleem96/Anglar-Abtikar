@@ -43,6 +43,7 @@ export interface BuyOfferPriceDetails {
   totalPriceAfterDiscount?: number;
   totalPriceAfterVat?: number;
   unitDiscount?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
   vat?: number;
   vatAmount?: number;

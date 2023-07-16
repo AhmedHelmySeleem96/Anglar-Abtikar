@@ -74,6 +74,7 @@ export interface FinanceSettings {
   treasuryCashAccountCode?: null | string;
   treasuryCashAccountID?: number;
   treasuryCashAccountName?: null | string;
+  updateFlag?: null | string;
   updatedCount?: number;
   vatAccount?: string;
   vatAccountCode?: null | string;

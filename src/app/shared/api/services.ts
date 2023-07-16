@@ -22,6 +22,7 @@ export { TrailBalanceControllerService } from './services/trail-balance-controll
 export { UserEpService } from './services/user-ep.service';
 export { WebsiteEpService } from './services/website-ep.service';
 export { XtraAndPosAccTreeEpService } from './services/xtra-and-pos-acc-tree-ep.service';
+export { XtraAndPosAllowenceService } from './services/xtra-and-pos-allowence.service';
 export { XtraAndPosBranchEpService } from './services/xtra-and-pos-branch-ep.service';
 export { XtraAndPosBuyOfferPricesEpService } from './services/xtra-and-pos-buy-offer-prices-ep.service';
 export { XtraAndPosCityService } from './services/xtra-and-pos-city.service';
@@ -33,7 +34,9 @@ export { XtraAndPosDefaultOptionsEpService } from './services/xtra-and-pos-defau
 export { XtraAndPosEmployeeEpService } from './services/xtra-and-pos-employee-ep.service';
 export { XtraAndPosFinanceEpService } from './services/xtra-and-pos-finance-ep.service';
 export { XtraAndPosGeneralLedgerEpService } from './services/xtra-and-pos-general-ledger-ep.service';
+export { XtraAndPosHospitalService } from './services/xtra-and-pos-hospital.service';
 export { XtraAndPosItemEpService } from './services/xtra-and-pos-item-ep.service';
+export { XtraAndPosLookUpsService } from './services/xtra-and-pos-look-ups.service';
 export { XtraAndPosNationalityService } from './services/xtra-and-pos-nationality.service';
 export { XtraAndPosOrgStructLevelsService } from './services/xtra-and-pos-org-struct-levels.service';
 export { XtraAndPosOrgStructuresService } from './services/xtra-and-pos-org-structures.service';

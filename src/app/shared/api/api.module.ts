@@ -28,6 +28,7 @@ import { TrailBalanceControllerService } from './services/trail-balance-controll
 import { UserEpService } from './services/user-ep.service';
 import { WebsiteEpService } from './services/website-ep.service';
 import { XtraAndPosAccTreeEpService } from './services/xtra-and-pos-acc-tree-ep.service';
+import { XtraAndPosAllowenceService } from './services/xtra-and-pos-allowence.service';
 import { XtraAndPosBranchEpService } from './services/xtra-and-pos-branch-ep.service';
 import { XtraAndPosBuyOfferPricesEpService } from './services/xtra-and-pos-buy-offer-prices-ep.service';
 import { XtraAndPosCityService } from './services/xtra-and-pos-city.service';
@@ -39,7 +40,9 @@ import { XtraAndPosDefaultOptionsEpService } from './services/xtra-and-pos-defau
 import { XtraAndPosEmployeeEpService } from './services/xtra-and-pos-employee-ep.service';
 import { XtraAndPosFinanceEpService } from './services/xtra-and-pos-finance-ep.service';
 import { XtraAndPosGeneralLedgerEpService } from './services/xtra-and-pos-general-ledger-ep.service';
+import { XtraAndPosHospitalService } from './services/xtra-and-pos-hospital.service';
 import { XtraAndPosItemEpService } from './services/xtra-and-pos-item-ep.service';
+import { XtraAndPosLookUpsService } from './services/xtra-and-pos-look-ups.service';
 import { XtraAndPosNationalityService } from './services/xtra-and-pos-nationality.service';
 import { XtraAndPosOrgStructLevelsService } from './services/xtra-and-pos-org-struct-levels.service';
 import { XtraAndPosOrgStructuresService } from './services/xtra-and-pos-org-structures.service';
@@ -84,6 +87,7 @@ import { XtraAndPosTreasuryEpService } from './services/xtra-and-pos-treasury-ep
     UserEpService,
     WebsiteEpService,
     XtraAndPosAccTreeEpService,
+    XtraAndPosAllowenceService,
     XtraAndPosBranchEpService,
     XtraAndPosBuyOfferPricesEpService,
     XtraAndPosCityService,
@@ -95,7 +99,9 @@ import { XtraAndPosTreasuryEpService } from './services/xtra-and-pos-treasury-ep
     XtraAndPosEmployeeEpService,
     XtraAndPosFinanceEpService,
     XtraAndPosGeneralLedgerEpService,
+    XtraAndPosHospitalService,
     XtraAndPosItemEpService,
+    XtraAndPosLookUpsService,
     XtraAndPosNationalityService,
     XtraAndPosOrgStructLevelsService,
     XtraAndPosOrgStructuresService,

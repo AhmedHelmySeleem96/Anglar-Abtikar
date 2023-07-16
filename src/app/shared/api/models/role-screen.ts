@@ -33,6 +33,7 @@ export interface RoleScreen {
   roleGroupId?: number;
   screen?: Screen;
   screenType?: ScreenType;
+  updateFlag?: null | string;
   updatedCount?: number;
   viewActions?: null | Array<ViewAction>;
   visible?: boolean;

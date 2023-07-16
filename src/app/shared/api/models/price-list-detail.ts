@@ -33,5 +33,6 @@ export interface PriceListDetail {
   uniteOnePrice?: number;
   uniteThreePrice?: number;
   uniteTwoPrice?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

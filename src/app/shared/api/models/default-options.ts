@@ -40,6 +40,7 @@ export interface DefaultOptions {
   supplierGuide?: string;
   toStoreId?: number;
   treasuryId?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
   userId?: string;
   userName?: null | string;

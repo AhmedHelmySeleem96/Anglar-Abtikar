@@ -31,6 +31,7 @@ export interface CompanySetting {
   no?: number;
   notes?: null | string;
   taxNo?: null | string;
+  updateFlag?: null | string;
   updatedCount?: number;
   vatPer?: number;
   vatType?: VatType;

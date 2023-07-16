@@ -39,6 +39,7 @@ export interface Shift {
   returnToView?: ReturnToView;
   startCash?: number;
   treasuryId?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
   userId?: string;
   userName?: null | string;

@@ -32,5 +32,6 @@ export interface PriceList {
   priceListDetail?: null | Array<PriceListDetail>;
   pricePolicyId?: number;
   pricePolicyName?: null | string;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

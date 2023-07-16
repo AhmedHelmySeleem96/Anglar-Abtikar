@@ -1,0 +1,23 @@
+<div class="col-7 mx-auto py-4 py-md-5 px-lg-4">
+  <h3>{{ "Hr.Hospitalnav" | translate }}</h3>
+  <form [formGroup]="formHospital" (ngSubmit)="OnSubmit(formHospital)" class="form">
+
+    <div class="form-group mt-5">
+      <input  id="hospitalNameAr" type="hospitalNameAr" formControlName="hospitalNameAr" required placeholder="{{ 'Hr.HospitalNameAr' | translate }}" class="form-control">
+    </div>
+
+    <div class="form-group mt-5">
+      <input   id="hospitalNameEn" type="hospitalNameEn" formControlName="hospitalNameEn" required placeholder="{{ 'Hr.HospitalNameEn' | translate }}" class="form-control">
+    </div>
+
+    <div class="form-group mt-5">
+      <input   id="notes" type="notes" formControlName="notes" placeholder="{{ 'Hr.Notes' | translate }}" class="form-control">
+    </div>
+    <div class="bottom-buttons">
+      <button type="submit"  class="d-block w-100 py-3"  >{{ 'Save' | translate }}</button>
+      <span class="button-space"></span>
+      <button (click)="goHome()" class="btn btn-primary add-data-button">{{"Cancel" | translate}}</button>
+    </div>
+
+  </form>
+</div>

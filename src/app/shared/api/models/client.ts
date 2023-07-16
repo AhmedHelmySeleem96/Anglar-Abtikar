@@ -53,5 +53,6 @@ export interface Client {
   totalCash?: number;
   totalDebt?: number;
   totalSales?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

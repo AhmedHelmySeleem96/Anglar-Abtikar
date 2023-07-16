@@ -38,5 +38,6 @@ export interface AccTree {
   parentId?: number;
   parentName?: null | string;
   tbL004ID?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

@@ -38,5 +38,6 @@ export interface CollectionInvoice {
   treasuryId?: number;
   treasuryName?: null | string;
   treasuryTransactionsDetails?: null | Array<CollectionInvoiceDetails>;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

@@ -47,6 +47,7 @@ export interface TransferDetails {
   transferId?: number;
   transferStatus?: TransferStatus;
   unitDiscount?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
   vat?: number;
   vatAmount?: number;

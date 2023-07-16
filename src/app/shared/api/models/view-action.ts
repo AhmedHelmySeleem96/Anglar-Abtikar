@@ -32,6 +32,7 @@ export interface ViewAction {
   parentNo?: Screen;
   roleScreenId?: number;
   roleScreenName?: null | string;
+  updateFlag?: null | string;
   updatedCount?: number;
   visible?: boolean;
 }

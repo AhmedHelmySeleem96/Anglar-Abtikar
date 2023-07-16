@@ -80,6 +80,7 @@ export interface Transfer {
   transferDocStatus?: TransferDocStatus;
   transferStatus?: TransferStatus;
   treasuryId?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
   userId?: string;
   visa?: number;

@@ -51,5 +51,6 @@ export interface GlDetail {
   personalCredit?: number;
   personalDebit?: number;
   personalId?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

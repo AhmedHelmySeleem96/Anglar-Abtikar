@@ -34,5 +34,6 @@ export interface AccountingPeriod {
   settlementLastDate?: string;
   stablishDate?: string;
   startDate?: string;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

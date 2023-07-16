@@ -12,6 +12,7 @@ export interface BuyInvoiceCosts {
   cancelDate?: string;
   companyId?: number;
   companyName?: null | string;
+  costsVatPercent?: number;
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
@@ -35,5 +36,6 @@ export interface BuyInvoiceCosts {
   price?: number;
   reverseAccTreeId?: number;
   reverseAccTreeName?: null | string;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

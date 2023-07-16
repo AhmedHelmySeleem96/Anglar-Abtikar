@@ -40,5 +40,6 @@ export interface TreasuryTransactionOut {
   treasuryTransactionOutDetails?: null | Array<TreasuryTransactionOutDetail>;
   treasuryType?: TreasuryType;
   typeofpayment?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

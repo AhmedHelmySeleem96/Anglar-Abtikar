@@ -54,5 +54,6 @@ export interface Employee {
   storageId?: number;
   treasury?: null | string;
   treasuryId?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

@@ -34,5 +34,6 @@ export interface ItemGroup {
   notes?: null | string;
   parentCode?: null | string;
   tbl006ID?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

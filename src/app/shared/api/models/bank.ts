@@ -30,5 +30,6 @@ export interface Bank {
   no?: number;
   notes?: null | string;
   tbL025ID?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

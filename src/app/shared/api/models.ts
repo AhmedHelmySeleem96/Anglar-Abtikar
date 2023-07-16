@@ -2,6 +2,7 @@
 /* eslint-disable */
 export { AccTree } from './models/acc-tree';
 export { AccountingPeriod } from './models/accounting-period';
+export { AllowenceDto } from './models/allowence-dto';
 export { ApplicationUser } from './models/application-user';
 export { Bank } from './models/bank';
 export { BankAccount } from './models/bank-account';
@@ -38,6 +39,7 @@ export { Gl } from './models/gl';
 export { GlDetail } from './models/gl-detail';
 export { HrManagment } from './models/hr-managment';
 export { HrSection } from './models/hr-section';
+export { HospitalDto } from './models/hospital-dto';
 export { InitGlCreateData } from './models/init-gl-create-data';
 export { InitGlCreateLine } from './models/init-gl-create-line';
 export { InitGlRecept } from './models/init-gl-recept';

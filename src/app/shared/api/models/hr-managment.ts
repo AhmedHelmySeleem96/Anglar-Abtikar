@@ -28,5 +28,6 @@ export interface HrManagment {
   no?: number;
   notes?: null | string;
   sections?: null | Array<HrSection>;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

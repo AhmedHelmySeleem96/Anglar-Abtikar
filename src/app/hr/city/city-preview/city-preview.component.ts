@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { XtraAndPosCityService, XtraAndPosCountryService } from 'src/app/shared/api';
 import { ExportData } from 'src/app/services/Export-data.service';
+import { XtraAndPosCityService, XtraAndPosCountryService } from 'src/app/shared/api';
 @Component({
   selector: 'app-city-preview',
   templateUrl: './city-preview.component.html',

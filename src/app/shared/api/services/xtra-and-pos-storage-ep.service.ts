@@ -812,6 +812,53 @@ export class XtraAndPosStorageEpService extends BaseService {
     );
   }
 
+  /** Path part for operation `httpPostExtraAndPosOpenBalanceByArrowOpenByArrow()` */
+  static readonly HttpPostExtraAndPosOpenBalanceByArrowOpenByArrowPath = '/ExtraAndPOS_OpenBalanceByArrow/OpenByArrow';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostExtraAndPosOpenBalanceByArrowOpenByArrow()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosOpenBalanceByArrowOpenByArrow$Response(
+    params?: {
+      body?: RequestResult
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosStorageEpService.HttpPostExtraAndPosOpenBalanceByArrowOpenByArrowPath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostExtraAndPosOpenBalanceByArrowOpenByArrow$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosOpenBalanceByArrowOpenByArrow(
+    params?: {
+      body?: RequestResult
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostExtraAndPosOpenBalanceByArrowOpenByArrow$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
   /** Path part for operation `httpPostExtraAndPosTransferTransferByArrow()` */
   static readonly HttpPostExtraAndPosTransferTransferByArrowPath = '/ExtraAndPOS_Transfer/TransferByArrow';
 

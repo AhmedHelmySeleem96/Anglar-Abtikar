@@ -58,7 +58,17 @@
   "Countrynav" : "Country",
   "Nationalitynav" : "Nationality",
   "ExpandAll": "Expnd All Levels",
-  "CollapseAll" : "Collapse All Levels"
+  "CollapseAll" : "Collapse All Levels",
+  "Hospitalnav" : "Hospital",
+"AddHospital" : "AddHospital",
+"Hospital" :" Hospital Name",
+"HospitalNameAr" : "Hospital Name",
+"HospitalNameEn" :"Hospital Name By English",
+"Allowencenav" : "Allowence",
+"AddAllowence" : "AddAllowence",
+"Allowence" :" Allowence Name",
+"AllowenceNameAr" : "Allowence Name",
+"AllowenceNameEn" :"Allowence Name By English"
 },
 "CityId":"City Id",
 "CreatedDate" :"Creation Date",
@@ -69,7 +79,11 @@
 "Cancel" : "Cancel",
 "Actions" : "Actions",
 "CountryId" : "Country Id",
-
+"Hospital" : " Hospital Name",
+"HospitalId" :"Hospital Id",
+"Allowence" : " Allowence Name",
+"AllowenceId" :"Allowence Id",
+"StatusId" : "StatusId",
 "LoginPage":{
   "Store":"Store",
   "Tokeep":"To keep connected with largest shop in the world .",

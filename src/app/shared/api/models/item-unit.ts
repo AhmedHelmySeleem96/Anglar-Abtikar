@@ -58,6 +58,7 @@ export interface ItemUnit {
   unitCode?: null | string;
   unitId?: number;
   unitName?: null | string;
+  updateFlag?: null | string;
   updatedCount?: number;
   value?: number;
   vat?: number;

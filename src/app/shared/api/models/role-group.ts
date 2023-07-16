@@ -30,5 +30,6 @@ export interface RoleGroup {
   notes?: null | string;
   roleScreens?: null | Array<RoleScreen>;
   roleType?: RoleType;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

@@ -27,5 +27,6 @@ export interface Currency {
   nameEn?: null | string;
   no?: number;
   notes?: null | string;
+  updateFlag?: null | string;
   updatedCount?: number;
 }

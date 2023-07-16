@@ -46,6 +46,7 @@ export interface StorageOpenDetailsDto {
   unitDiscount?: number;
   unitId?: number;
   unitName?: null | string;
+  updateFlag?: null | string;
   updatedCount?: number;
   vat?: number;
   vatAmount?: number;

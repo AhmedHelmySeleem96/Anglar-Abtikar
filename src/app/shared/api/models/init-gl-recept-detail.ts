@@ -41,5 +41,6 @@ export interface InitGlReceptDetail {
   objectId?: number;
   objectName?: null | string;
   parentNo?: number;
+  updateFlag?: null | string;
   updatedCount?: number;
 }
