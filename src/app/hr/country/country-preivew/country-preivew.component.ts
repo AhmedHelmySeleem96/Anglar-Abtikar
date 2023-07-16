@@ -3,7 +3,6 @@ import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { XtraAndPosCountryService } from 'src/app/shared/api';
 import { ExportData } from 'src/app/services/Export-data.service';
-import { table } from 'console';
 
 @Component({
   selector: 'app-country-preivew',
@@ -110,7 +109,7 @@ exportData() {
       notes: country.Notes
     };
   });
-this.ExportData.toExcel(table,'country.xlsx')
+this.ExportData.toExcel(tableData,'country.xlsx')
 
 }
 
