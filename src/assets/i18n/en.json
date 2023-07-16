@@ -38,6 +38,8 @@
 "OrgStructureNameEn" :"Structure Name English",
   "SelectParent": "Select Parent",
   "ParentId": "Select Parent ",
+  "SelectLevel" :"SelectLevel",
+"LevelId" : "LevelId",
   "CountryNameAr" : "Country Name Ar",
   "CountryNameEn" : "Country Name En",
   "NationalityNameAr" : "Nationality Name Ar",

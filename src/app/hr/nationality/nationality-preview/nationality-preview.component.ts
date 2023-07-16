@@ -2,14 +2,18 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { XtraAndPosNationalityService } from 'src/app/shared/api';
+import { ExportData } from 'src/app/services/Export-data.service';
+
+
 @Component({
   selector: 'app-nationality-preview',
   templateUrl: './nationality-preview.component.html',
-  styleUrls: ['./nationality-preview.component.css']
+  styleUrls: ['./nationality-preview.component.css'],
+  providers: [ExportData]
 })
 export class NationalityPreviewComponent implements OnInit  {
   constructor(private router: Router,private toastr:ToastrService
-    ,private XtraAndPosNationalityService :  XtraAndPosNationalityService){};
+    ,private XtraAndPosNationalityService :  XtraAndPosNationalityService,private ExportData :ExportData){};
     addNationality(){
       this.router.navigateByUrl('hr/nationality/createNationality');
     }
@@ -30,6 +34,35 @@ export class NationalityPreviewComponent implements OnInit  {
         { field: 'NameEn', header: 'NameEn' },
         { field: 'Notes', header: 'Notes' },
       ];
+    }
+    exportData() {
+      const tableData = this.nationalityData.map((nationality) => {
+        return {
+          id:nationality.Id,
+          createdDate : nationality.CreatedDate,
+          nationalityNameAr: nationality.NameAr,
+          nationalityNameEn: nationality.NameEn,
+          notes: nationality.Notes
+        };
+      });
+
+      this.ExportData.toExcel(tableData,'nationality.xlsx')
+    }
+
+
+    printPdf() {
+      const tableData = this.nationalityData.map((nationality) => {
+        return {
+          id:nationality.Id,
+          createdDate : nationality.CreatedDate,
+          nationalityNameAr: nationality.NameAr,
+          nationalityNameEn: nationality.NameEn,
+          notes: nationality.Notes
+        };
+      });
+
+      const columns = ['ملاحظات',' الاسم بالانجليزية','الاسم ','تاريخ الانشاء','كود الجنسية'];
+      this.ExportData.printPdf(tableData,columns,'nationality.pdf')
     }
 
     setEdit(nationality: any) {

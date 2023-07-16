@@ -47,9 +47,9 @@
 
 </div>
 <div class="bottom-buttons">
-  <button  class="btn btn-primary add-data-button">{{"Hr.Print" | translate}}</button>
+  <button (click)="printPdf()" class="btn btn-primary add-data-button">{{"Hr.Print" | translate}}</button>
   <span class="button-space"></span>
-  <button  class="btn btn-primary add-data-button">{{"Hr.Export" | translate}}</button>
+  <button  (click)="exportData()" class="btn btn-primary add-data-button">{{"Hr.Export" | translate}}</button>
   <span class="button-space"></span>
   <button (click)="goHome()" class="btn btn-primary add-data-button">{{"Cancel" | translate}}</button>
 </div>

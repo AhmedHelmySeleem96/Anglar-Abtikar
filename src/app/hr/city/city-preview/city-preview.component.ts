@@ -2,16 +2,17 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { XtraAndPosCityService, XtraAndPosCountryService } from 'src/app/shared/api';
-
+import { ExportData } from 'src/app/services/Export-data.service';
 @Component({
   selector: 'app-city-preview',
   templateUrl: './city-preview.component.html',
-  styleUrls: ['./city-preview.component.css']
+  styleUrls: ['./city-preview.component.css'],
+  providers: [ExportData]
 })
 export class CityPreviewComponent implements OnInit {
   constructor(private router: Router,private toastr:ToastrService
     ,private XtraAndPOS_City :XtraAndPosCityService
-    ,private XtraAndPos_Country :  XtraAndPosCountryService){};
+    ,private XtraAndPos_Country :  XtraAndPosCountryService,private ExportData :ExportData){};
     AddCity(){
       this.router.navigateByUrl('hr/city/createCity');
   }
@@ -36,6 +37,33 @@ export class CityPreviewComponent implements OnInit {
       { field: 'CountryId', header: 'Country' },
       { field: 'Notes', header: 'Notes' },
     ];
+  }
+  exportData() {
+    const tableData = this.cityData.map((city) => {
+      return {
+        notes: city.Notes,
+        countryId: (this.getCountry(city.CountryId)).NameAr,
+        cityNameEn: city.NameEn,
+        cityNameAr: city.NameAr,
+        createdDate : city.CreatedDate,
+        id:city.Id
+      };
+    });
+this.ExportData.toExcel(tableData,'city.xlsx')
+  }
+  printPdf() {
+    const tableData = this.cityData.map((city) => {
+      return {
+        notes: city.Notes,
+        countryId: (this.getCountry(city.CountryId)).NameAr,
+        cityNameEn: city.NameEn,
+        cityNameAr: city.NameAr,
+        createdDate : city.CreatedDate,
+        id:city.Id
+      };
+    });
+    const columns = ['كود المدينة','تاريخ الانشاء','الاسم','الاسم بالانجليزية','الدولة','ملاحظات'].reverse();
+    this.ExportData.printPdf(tableData,columns,'city.pdf')
   }
   setEdit(city: any) {
     const navigationExtras: NavigationExtras = {

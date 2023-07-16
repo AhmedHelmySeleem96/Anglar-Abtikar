@@ -2,23 +2,18 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { XtraAndPosCountryService } from 'src/app/shared/api';
-import { saveAs } from 'file-saver';
-import * as XLSX from 'xlsx';
-import { jsPDF } from 'jspdf';
-import 'jspdf-autotable';
-import { UserOptions } from 'jspdf-autotable';
+import { ExportData } from 'src/app/services/Export-data.service';
+import { table } from 'console';
 
-interface jsPDFCustom extends jsPDF {
-  autoTable: (options: UserOptions) => void;
-}
 @Component({
   selector: 'app-country-preivew',
   templateUrl: './country-preivew.component.html',
-  styleUrls: ['./country-preivew.component.css']
+  styleUrls: ['./country-preivew.component.css'],
+  providers: [ExportData]
 })
 export class CountryPreivewComponent implements OnInit  {
   constructor(private router: Router,private toastr:ToastrService
-    ,private XtraAndPos_Country :  XtraAndPosCountryService){};
+    ,private XtraAndPos_Country :  XtraAndPosCountryService,private ExportData :ExportData){};
 addCountry(){
   this.router.navigateByUrl('hr/country/createCountry');
 }
@@ -92,30 +87,16 @@ goHome(){
 printPdf() {
   const tableData = this.countryData.map((country) => {
     return {
-      id: country.Id,
-      createdDate: country.CreatedDate,
-      countryNameAr: country.NameAr,
+      notes: country.Notes,
       countryNameEn: country.NameEn,
-      notes: country.Notes
+      countryNameAr: country.NameAr,
+      createdDate: country.CreatedDate,
+      id: country.Id
     };
   });
 
-  const columns = Object.keys(tableData[0]);
-  const rows = tableData.map(Object.values);
-
-  const doc = new jsPDF() as jsPDFCustom;
-
-  doc.addFont('src/assets/font/Cairo-VariableFont_wght', 'Arabic', 'normal');
-  doc.setFont('Arabic');
-
-  doc.autoTable({
-    head: [columns],
-    body: rows,
-    columnStyles: {
-      countryNameAr: { font: 'Arabic' }
-    }
-  });
-  doc.save('Data.pdf');
+ const columns = ['ملاحظات',' الاسم بالانجليزية','الاسم ','تاريخ الانشاء','كود الدولة'];
+  this.ExportData.printPdf(tableData,columns,'country.pdf')
 }
 
 
@@ -129,41 +110,11 @@ exportData() {
       notes: country.Notes
     };
   });
+this.ExportData.toExcel(table,'country.xlsx')
 
-  const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(tableData);
-  const columnWidths = this.calculateColumnWidths(tableData);
-  worksheet['!cols'] = columnWidths;
-  const workbook: XLSX.WorkBook = { Sheets: { 'Data': worksheet }, SheetNames: ['Data'] };
-  const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-  const blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-  saveAs(blob, 'Data.xlsx');
 }
 
-calculateColumnWidths(data: any[]): XLSX.ColInfo[] {
-  const columnWidths: XLSX.ColInfo[] = [];
 
-  const columns = Object.keys(data[0]);
-  for (let i = 0; i < columns.length; i++) {
-    const column = columns[i];
-    const columnWidth: XLSX.ColInfo = { width: 0, wch: 0, MDW: 0 };
-    let maxLength = column.length;
-    for (let j = 0; j < data.length; j++) {
-      const cellValue = data[j][column];
-      const cellLength = cellValue ? cellValue.toString().length : 0;
-      if (cellLength > maxLength) {
-        maxLength = cellLength;
-      }
-    }
-
-    columnWidth.width = maxLength * 1.2;
-    columnWidth.wch = maxLength;
-    columnWidth.MDW = 1;
-
-    columnWidths.push(columnWidth);
-  }
-
-  return columnWidths;
-}
 
 }
 
