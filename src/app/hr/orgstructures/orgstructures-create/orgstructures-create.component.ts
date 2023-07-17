@@ -14,12 +14,8 @@ export class OrgstructuresCreateComponent  implements OnInit {
     private toastr:ToastrService,
     private orgStructLevelsService: XtraAndPosOrgStructLevelsService,
     private XtraAndPosOrgStructuresService: XtraAndPosOrgStructuresService,
-    private fb:FormBuilder,private router: Router,private route: ActivatedRoute){}
-    formorgStruct :FormGroup= this.fb.group({NameAr: new FormControl('', [Validators.required]),
-    NameEn: new FormControl('', [Validators.required]),
-    parentId :new FormControl(0),
-    LevelId :new FormControl('', [Validators.required]),
-     })
+    private fb:FormBuilder,private router: Router,private route: ActivatedRoute){this.formorgStruct = this.createForm();}
+
     orgStructLevels :any[]= [] ;
     orgStructuresDataDropDown :any [] = []
     cols :any ;
@@ -30,7 +26,17 @@ export class OrgstructuresCreateComponent  implements OnInit {
 @ViewChild('dt') dt: any;
 treeData: TreeNode[] = [];
 orgStructuresData:any[] = [] ;
+ formorgStruct :FormGroup ;
+ createForm(): FormGroup {
+  return this.fb.group({
+    NameAr: new FormControl('', [Validators.required]),
+    NameEn: new FormControl('', [Validators.required]),
+    ParentId: new FormControl(0),
+    LevelId: new FormControl('', [Validators.required]),
+  });
+}
 ngOnInit(): void {
+  this.createForm();
   this.orgStructLevelsService.httpGetXtraAndPosOrgStructLevelsGetOrgStructLevelService().subscribe((value: any) => {
     let jsonData = JSON.parse(value);
     this.orgStructLevels = jsonData.Obj.OrgStructLevels;
@@ -39,11 +45,12 @@ ngOnInit(): void {
   this.cols = [
     { field: 'NameAr', header: 'Hr.OrgStructureNameAr' },
     { field: 'NameEn', header: 'Hr.OrgStructureNameEn' },
-    { field: 'ParentId', header: 'Hr.SelectParent' },
-    { field: 'LevelId', header: 'Hr.SelectLevel' },
+    { field: 'ParentId', header: 'Hr.SelectLevel' },
+    { field: 'LevelId', header: 'Hr.SelectParent' },
   ];
 }
 OnSubmit(Form: FormGroup) {
+  debugger
   if(!this.isEdit){
   if(this.formorgStruct.valid)
   {
@@ -56,6 +63,7 @@ OnSubmit(Form: FormGroup) {
       this.refreshTable();
       if(jsonData.IsSuccess===true){
         this.formorgStruct.reset();
+        this.createForm();
       }
   })}else{
     this.toastr.success("ادخل البيانات المطلوبة")
@@ -72,6 +80,7 @@ OnSubmit(Form: FormGroup) {
         this.toastr.success(jsonData.Message);
         if(jsonData.IsSuccess===true){
           this.formorgStruct.reset();
+          this.createForm();
         }
         this.refreshTable();
         this.isEdit = false;
@@ -81,7 +90,6 @@ OnSubmit(Form: FormGroup) {
 }
     }
     onParentSelect(event: Event) {
-      debugger
       const target = event.target as HTMLSelectElement;
       const parentId = target.value;
       if (parentId) {
@@ -93,15 +101,23 @@ OnSubmit(Form: FormGroup) {
         if(jsonData.Message){
         this.toastr.success(jsonData.Message);
         }
-        this.orgStructuresDataDropDown = jsonData.Obj.OrgStructures;
+        this.orgStructuresDataDropDown = jsonData.Obj.orgstructures;
+
       })
     }
     }
     setEdit(level: any) {
+      console.log(level)
+      // let jsonData ;
+      // this.XtraAndPosOrgStructuresService.httpGetXtraAndPosOrgStructuresGetOrgStructuresServiceById({
+      //   id : level.LevelId,
+      // }).subscribe((value:any)=>{
+      //  jsonData = JSON.parse(value);});
       this.formorgStruct.patchValue({
-        levelNameAr: level.NameAr,
-        levelNameEn: level.NameEn,
-        parentId: level.ParentId
+        NameAr: level.NameAr,
+        NameEn: level.NameEn,
+        ParentId: level.ParentId,
+        LevelId: level.LevelId
       });
       this.isEdit = true;
       this.currentLevelId = level.Id;
@@ -145,7 +161,8 @@ OnSubmit(Form: FormGroup) {
     refreshTable() {
       this.XtraAndPosOrgStructuresService.httpGetXtraAndPosOrgStructuresGetOrgStructuresService().subscribe((value: any) => {
         let jsonData = JSON.parse(value);
-        this.orgStructuresData = jsonData.Obj.OrgStructures;
+        this.orgStructuresData = jsonData.Obj.orgStructures;
+        this.treeData = this.generateTreeData(this.orgStructuresData);
       });
     }
     generateTreeData(orgStructData: any[]): TreeNode[] {
