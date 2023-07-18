@@ -33,7 +33,7 @@
             {{ hospital[col.field] | date:'shortDate' }}
           </span>
           <span class="table-data" *ngIf="col.field == 'StatusId'">
-            {{ getStatus(hospital[col.field]).name | date:'shortDate' }}
+            {{ getStatus(hospital[col.field]).name }}
           </span>
           <span class="table-data" *ngIf="col.field != 'CreatedDate' && col.field != 'StatusId'">
             {{ hospital[col.field] }}

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import {  XtraAndPosHospitalService } from 'src/app/shared/api';
+import {  XtraAndPosHospitalService,XtraAndPosLookUpsService } from 'src/app/shared/api';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -12,15 +12,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class HospitalCreateComponent implements OnInit{
   constructor(
     private toastr:ToastrService,
-    private router: Router,
+    private router: Router,  private XtraAndPosLookUpsService :XtraAndPosLookUpsService,
     private XtraAndPosHospitalService :  XtraAndPosHospitalService,private fb:FormBuilder,private route: ActivatedRoute){}
     isEdit:boolean= false ;
-    formHospital :FormGroup= this.fb.group({hospitalNameAr: new FormControl('', [Validators.required]),
-    hospitalNameEn: new FormControl('', [Validators.required]),
-    statusId:new FormControl(1),
+    formHospital :FormGroup= this.fb.group({NameAr: new FormControl('', [Validators.required]),
+    NameEn: new FormControl('', [Validators.required]),
+    StatusId:new FormControl('1'),
     notes: new FormControl(null),})
     currenthospital :any ;
+    statusData :any[] = [];
     ngOnInit(): void {
+      this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetStatus().subscribe((value:any)=>{
+        let jsonData = JSON.parse(value);
+        this.statusData = jsonData;
+      });
        this.isEdit = this.route.snapshot.queryParams['edit'] ;
        const queryParams = this.route.root.snapshot.queryParams;
        if(queryParams['hospitalData']){
@@ -28,8 +33,8 @@ export class HospitalCreateComponent implements OnInit{
       this.currenthospital = updatedhospitalData ;
       if (this.isEdit && updatedhospitalData) {
         this.formHospital.patchValue({
-          hospitalNameAr: updatedhospitalData.NameAr,
-          hospitalNameEn: updatedhospitalData.NameEn,
+          NameAr: updatedhospitalData.NameAr,
+          NameEn: updatedhospitalData.NameEn,
           statusId : updatedhospitalData.StatusId,
           notes: updatedhospitalData.Notes
         });    }  }
@@ -39,6 +44,7 @@ export class HospitalCreateComponent implements OnInit{
       this.router.navigateByUrl('hr/hospital');
     }
     OnSubmit(Form: FormGroup) {
+      debugger
       if(!this.isEdit){
       if(this.formHospital.valid)
       {

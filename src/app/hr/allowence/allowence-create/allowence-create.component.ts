@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import {  XtraAndPosAllowenceService } from 'src/app/shared/api';
+import {  XtraAndPosAllowenceService,XtraAndPosLookUpsService } from 'src/app/shared/api';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
@@ -13,15 +13,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AllowenceCreateComponent implements OnInit {
   constructor(
     private toastr:ToastrService,
-    private router: Router,
+    private router: Router, private XtraAndPosLookUpsService :XtraAndPosLookUpsService,
     private XtraAndPosAllowenceService :  XtraAndPosAllowenceService,private fb:FormBuilder,private route: ActivatedRoute){}
     isEdit:boolean= false ;
-    formAllowence :FormGroup= this.fb.group({allowenceNameAr: new FormControl('', [Validators.required]),
-    allowenceNameEn: new FormControl('', [Validators.required]),
-    statusId:new FormControl(1),
+    formAllowence :FormGroup= this.fb.group({NameAr: new FormControl('', [Validators.required]),
+    NameEn: new FormControl('', [Validators.required]),
+    StatusId:new FormControl('1'),
     notes: new FormControl(null),})
     currentallowence :any ;
+    statusData : any[] = [] ;
     ngOnInit(): void {
+      this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetStatus().subscribe((value:any)=>{
+        let jsonData = JSON.parse(value);
+        this.statusData = jsonData;
+      });
+     console.log(this.statusData) ;
        this.isEdit = this.route.snapshot.queryParams['edit'] ;
        const queryParams = this.route.root.snapshot.queryParams;
        if(queryParams['allowenceData']){
@@ -29,8 +35,8 @@ export class AllowenceCreateComponent implements OnInit {
       this.currentallowence = updatedallowenceData ;
       if (this.isEdit && updatedallowenceData) {
         this.formAllowence.patchValue({
-          allowenceNameAr: updatedallowenceData.NameAr,
-          allowenceNameEn: updatedallowenceData.NameEn,
+          NameAr: updatedallowenceData.NameAr,
+          NameEn: updatedallowenceData.NameEn,
           statusId : updatedallowenceData.StatusId,
           notes: updatedallowenceData.Notes
         });    }  }

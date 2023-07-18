@@ -24,9 +24,10 @@ export class NationalityCreateComponent implements OnInit  {
     ngOnInit(): void {
       this.isEdit = this.route.snapshot.queryParams['edit'] ;
       const queryParams = this.route.root.snapshot.queryParams;
-      if(queryParams['NationalityData']){
-     const updatedNationalityData = JSON.parse(queryParams['NationalityData']);
+      if(queryParams['nationalityData']){
+     const updatedNationalityData = JSON.parse(queryParams['nationalityData']);
      this.currentNationality = updatedNationalityData ;
+
      if (this.isEdit && updatedNationalityData) {
        this.formNationality.patchValue({
          nationalityNameAr: updatedNationalityData.NameAr,

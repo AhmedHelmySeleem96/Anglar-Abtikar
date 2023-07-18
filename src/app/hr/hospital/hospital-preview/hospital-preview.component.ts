@@ -23,10 +23,7 @@ export class HospitalPreviewComponent implements OnInit {
       @ViewChild('dt') dt: any;
 
       ngOnInit(): void {
-        this.XtraAndPosHospitalService.httpGetXtraAndPosHospitalGetHospitalService().subscribe((value:any)=>{
-          let jsonData = JSON.parse(value);
-          this.hospitalData = jsonData.Obj.Hospital;
-        });
+        this.refreshTable();
         this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetStatus().subscribe((value:any)=>{
           let jsonData = JSON.parse(value);
           this.statusData = jsonData;
@@ -41,9 +38,11 @@ export class HospitalPreviewComponent implements OnInit {
         ];
       }
       getStatus(Id :any){
+        console.log(this.statusData.filter(r=>r.id===Id)[0])
         return this.statusData.filter(r=>r.id===Id)[0];
       }
       setEdit(hospital: any) {
+        debugger
         const navigationExtras: NavigationExtras = {
           queryParams: { edit: true, hospitalData: JSON.stringify(hospital)
           },

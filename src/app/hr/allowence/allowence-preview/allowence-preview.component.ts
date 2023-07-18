@@ -24,10 +24,7 @@ export class AllowencePreviewComponent implements OnInit {
     @ViewChild('dt') dt: any;
 
     ngOnInit(): void {
-      this.XtraAndPosAllowenceService.httpGetXtraAndPosAllowenceGetAllowenceService().subscribe((value:any)=>{
-        let jsonData = JSON.parse(value);
-        this.allowenceData = jsonData.Obj.Allowence;
-      });
+     this.refreshTable();
       this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetStatus().subscribe((value:any)=>{
         let jsonData = JSON.parse(value);
         this.statusData = jsonData;

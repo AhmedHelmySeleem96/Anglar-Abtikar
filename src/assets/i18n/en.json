@@ -51,6 +51,7 @@
   "Country" : "Country Name",
   "AddCity" : "Add City",
   "AddCountry" : "AddCountry",
+  "SelectStatus" : "SelectStatus",
   "AddNationality" : "AddNationality",
   "Search" : "Search",
   "Export" : "Export To Excel",

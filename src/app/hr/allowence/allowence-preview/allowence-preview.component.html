@@ -33,7 +33,7 @@
             {{ allowence[col.field] | date:'shortDate' }}
           </span>
           <span class="table-data" *ngIf="col.field == 'StatusId'">
-            {{ getStatus(allowence[col.field]).name | date:'shortDate' }}
+            {{ getStatus(allowence[col.field]).name }}
           </span>
           <span class="table-data" *ngIf="col.field != 'CreatedDate' && col.field != 'StatusId'">
             {{ allowence[col.field] }}
