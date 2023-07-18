@@ -1,10 +1,68 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {  XtraAndPosAllowenceService } from 'src/app/shared/api';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-allowence-create',
   templateUrl: './allowence-create.component.html',
   styleUrls: ['./allowence-create.component.css']
 })
-export class AllowenceCreateComponent {
+export class AllowenceCreateComponent implements OnInit {
+  constructor(
+    private toastr:ToastrService,
+    private router: Router,
+    private XtraAndPosAllowenceService :  XtraAndPosAllowenceService,private fb:FormBuilder,private route: ActivatedRoute){}
+    isEdit:boolean= false ;
+    formAllowence :FormGroup= this.fb.group({allowenceNameAr: new FormControl('', [Validators.required]),
+    allowenceNameEn: new FormControl('', [Validators.required]),
+    statusId:new FormControl(1),
+    notes: new FormControl(null),})
+    currentallowence :any ;
+    ngOnInit(): void {
+       this.isEdit = this.route.snapshot.queryParams['edit'] ;
+       const queryParams = this.route.root.snapshot.queryParams;
+       if(queryParams['allowenceData']){
+      const updatedallowenceData = JSON.parse(queryParams['allowenceData']);
+      this.currentallowence = updatedallowenceData ;
+      if (this.isEdit && updatedallowenceData) {
+        this.formAllowence.patchValue({
+          allowenceNameAr: updatedallowenceData.NameAr,
+          allowenceNameEn: updatedallowenceData.NameEn,
+          statusId : updatedallowenceData.StatusId,
+          notes: updatedallowenceData.Notes
+        });    }  }
 
+    }
+    goHome(){
+      this.router.navigateByUrl('hr/allowence');
+    }
+    OnSubmit(Form: FormGroup) {
+      if(!this.isEdit){
+      if(this.formAllowence.valid)
+      {
+      let model = this.formAllowence.value;
+      this.XtraAndPosAllowenceService.httpPostXtraAndPosAllowenceCreateAllowenceService({
+        body : model
+      }).subscribe((value:any)=>{
+        let jsonData = JSON.parse(value);
+          this.toastr.success(jsonData.Message)
+          this.formAllowence.reset();
+      })}else{
+        this.toastr.success("ادخل البيانات المطلوبة")
+      }
+    }else{
+      let model = this.formAllowence.value;
+      model.Id = this.currentallowence.Id;
+      this.XtraAndPosAllowenceService.httpPutXtraAndPosAllowenceUpdateAllowenceService({
+        id: this.currentallowence.Id,
+        body: model
+      }).subscribe((value: any) => {
+        let jsonData = JSON.parse(value);
+        this.toastr.success(jsonData.Message);
+      });
+      }
+        }
 }
