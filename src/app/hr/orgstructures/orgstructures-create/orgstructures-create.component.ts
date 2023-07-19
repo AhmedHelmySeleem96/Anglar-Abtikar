@@ -3,7 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {    OrgStructuresCreateDto, XtraAndPosOrgStructLevelsService, XtraAndPosOrgStructuresService } from 'src/app/shared/api';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TreeNode } from 'primeng/api';
+import { MessageService, TreeNode } from 'primeng/api';
 @Component({
   selector: 'app-orgstructures-create',
   templateUrl: './orgstructures-create.component.html',
@@ -50,7 +50,6 @@ ngOnInit(): void {
   ];
 }
 OnSubmit(Form: FormGroup) {
-  debugger
   if(!this.isEdit){
   if(this.formorgStruct.valid)
   {
@@ -90,6 +89,7 @@ OnSubmit(Form: FormGroup) {
 }
     }
     onParentSelect(event: Event) {
+      this.orgStructuresDataDropDown  = [];
       const target = event.target as HTMLSelectElement;
       const parentId = target.value;
       if (parentId) {
@@ -102,17 +102,10 @@ OnSubmit(Form: FormGroup) {
         this.toastr.success(jsonData.Message);
         }
         this.orgStructuresDataDropDown = jsonData.Obj.orgstructures;
-
       })
     }
     }
     setEdit(level: any) {
-      console.log(level)
-      // let jsonData ;
-      // this.XtraAndPosOrgStructuresService.httpGetXtraAndPosOrgStructuresGetOrgStructuresServiceById({
-      //   id : level.LevelId,
-      // }).subscribe((value:any)=>{
-      //  jsonData = JSON.parse(value);});
       this.formorgStruct.patchValue({
         NameAr: level.NameAr,
         NameEn: level.NameEn,
@@ -172,6 +165,7 @@ OnSubmit(Form: FormGroup) {
         const treeNode: TreeNode = {
           data: node,
           label: node.NameAr,
+          icon: 'pi pi-fw pi-inbox',
           children: []
         };
         idToNodeMap[node.Id] = treeNode;

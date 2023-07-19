@@ -44,7 +44,6 @@ export class HospitalCreateComponent implements OnInit{
       this.router.navigateByUrl('hr/hospital');
     }
     OnSubmit(Form: FormGroup) {
-      debugger
       if(!this.isEdit){
       if(this.formHospital.valid)
       {

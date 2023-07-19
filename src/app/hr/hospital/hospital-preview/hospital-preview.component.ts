@@ -38,11 +38,9 @@ export class HospitalPreviewComponent implements OnInit {
         ];
       }
       getStatus(Id :any){
-        console.log(this.statusData.filter(r=>r.id===Id)[0])
         return this.statusData.filter(r=>r.id===Id)[0];
       }
       setEdit(hospital: any) {
-        debugger
         const navigationExtras: NavigationExtras = {
           queryParams: { edit: true, hospitalData: JSON.stringify(hospital)
           },
