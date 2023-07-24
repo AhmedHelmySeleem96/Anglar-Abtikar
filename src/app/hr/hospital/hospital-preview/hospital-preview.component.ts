@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { XtraAndPosHospitalService, XtraAndPosLookUpsService } from 'src/app/shared/api';
 import { ExportData } from 'src/app/services/Export-data.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-hospital-preview',
   templateUrl: './hospital-preview.component.html',
@@ -11,19 +12,31 @@ import { ExportData } from 'src/app/services/Export-data.service';
 
 })
 export class HospitalPreviewComponent implements OnInit {
-    constructor(private router: Router,private toastr:ToastrService
+    constructor(private router: Router,private toastr:ToastrService,private fb:FormBuilder
       ,private XtraAndPosHospitalService :  XtraAndPosHospitalService,private ExportData :ExportData,
-      private XtraAndPosLookUpsService :XtraAndPosLookUpsService){};
+      private XtraAndPosLookUpsService :XtraAndPosLookUpsService){this.formHospital = this.createForm();};
       addHospital(){
         this.router.navigateByUrl('hr/hospital/createHospital');
       }
+      formHospital : FormGroup;
+      createForm() : FormGroup{
+        return this.fb.group({NameAr: new FormControl('', [Validators.required]),
+        NameEn: new FormControl('', [Validators.required]),
+        StatusId:new FormControl('1'),
+        notes: new FormControl(null),})
+      }
+      isEdit:boolean= false ;
+
       hospitalData :any[] = [] ;
       statusData : any[] = [];
       cols :any ;
+      currenthospitalId: any  ;
       @ViewChild('dt') dt: any;
+      @ViewChild('formElement') formElement!: ElementRef;
 
       ngOnInit(): void {
         this.refreshTable();
+        this.createForm();
         this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetStatus().subscribe((value:any)=>{
           let jsonData = JSON.parse(value);
           this.statusData = jsonData;
@@ -41,12 +54,22 @@ export class HospitalPreviewComponent implements OnInit {
         return this.statusData.filter(r=>r.id===Id)[0];
       }
       setEdit(hospital: any) {
-        const navigationExtras: NavigationExtras = {
-          queryParams: { edit: true, hospitalData: JSON.stringify(hospital)
-          },
-        };
+        this.formHospital.patchValue({
+          NameAr: hospital.NameAr,
+          NameEn: hospital.NameEn,
+          statusId : hospital.StatusId,
+          notes: hospital.Notes
+        });
+        this.isEdit = true;
+        this.currenthospitalId = hospital.Id;
 
-        this.router.navigate(['hr/hospital/createHospital'], navigationExtras);
+        this.focusOnForm();
+      }
+      focusOnForm() {
+        if (this.formElement && this.formElement.nativeElement) {
+          this.formElement.nativeElement.scrollIntoView({ behavior: 'smooth' });
+          this.formElement.nativeElement.focus();
+        }
       }
       onSearch(searchValue:Event): void {
         this.dt.filterGlobal((searchValue.target as HTMLInputElement).value, 'contains');
@@ -72,11 +95,46 @@ export class HospitalPreviewComponent implements OnInit {
           this.toastr.clear();
           this.toastr.success(jsonData.Message);
           this.refreshTable();
+          this.formHospital.reset();
+          this.formHospital.get('StatusId')?.setValue('1');
         }, (error: any) => {
           this.toastr.error('Failed to delete hospital.');
         });
       }
+      OnSubmit(Form: FormGroup) {
+        debugger
+        if(!this.isEdit){
+        if(this.formHospital.valid)
+        {
+        let model = this.formHospital.value;
+        model.statusId= 1  ;
+        this.XtraAndPosHospitalService.httpPostXtraAndPosHospitalCreateHospitalService({
+          body : model
+        }).subscribe((value:any)=>{
+          let jsonData = JSON.parse(value);
+            this.toastr.success(jsonData.Message)
+            this.formHospital.reset();
+          this.formHospital.get('StatusId')?.setValue('1');
+            this.refreshTable();
+        })}else{
+          this.toastr.success("ادخل البيانات المطلوبة")
+        }
+      }else{
+        let model = this.formHospital.value;
+        model.Id = this.currenthospitalId;
+        this.XtraAndPosHospitalService.httpPutXtraAndPosHospitalUpdateHospitalService({
+          id: this.currenthospitalId,
+          body: model
+        }).subscribe((value: any) => {
+          let jsonData = JSON.parse(value);
+          this.toastr.success(jsonData.Message);
+          this.refreshTable();
+          this.isEdit=false;
+          this.formHospital.reset();
 
+        });
+        }
+          }
       refreshTable() {
         this.XtraAndPosHospitalService.httpGetXtraAndPosHospitalGetHospitalService().subscribe((value: any) => {
           let jsonhospitalData = JSON.parse(value);

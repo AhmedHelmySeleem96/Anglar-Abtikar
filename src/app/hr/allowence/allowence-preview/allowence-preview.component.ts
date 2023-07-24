@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { XtraAndPosAllowenceService, XtraAndPosLookUpsService } from 'src/app/shared/api';
 import { ExportData } from 'src/app/services/Export-data.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-allowence-preview',
@@ -12,17 +13,24 @@ import { ExportData } from 'src/app/services/Export-data.service';
 
 })
 export class AllowencePreviewComponent implements OnInit {
-  constructor(private router: Router,private toastr:ToastrService
+  constructor(private router: Router,private toastr:ToastrService,private fb:FormBuilder
     ,private XtraAndPosAllowenceService :  XtraAndPosAllowenceService,private ExportData :ExportData,
     private XtraAndPosLookUpsService :XtraAndPosLookUpsService){};
     addAllowence(){
       this.router.navigateByUrl('hr/allowence/createAllowence');
     }
+    isEdit:boolean= false ;
+    formAllowence :FormGroup= this.fb.group({NameAr: new FormControl('', [Validators.required]),
+    NameEn: new FormControl('', [Validators.required]),
+    StatusId:new FormControl('1'),
+    notes: new FormControl(null),})
     allowenceData :any[] = [] ;
     statusData : any[] = [];
     cols :any ;
     @ViewChild('dt') dt: any;
+    @ViewChild('formElement') formElement!: ElementRef;
 
+    currentallowenceId:any ;
     ngOnInit(): void {
      this.refreshTable();
       this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetStatus().subscribe((value:any)=>{
@@ -41,14 +49,58 @@ export class AllowencePreviewComponent implements OnInit {
     getStatus(Id :any){
       return this.statusData.filter(r=>r.id===Id)[0];
     }
-    setEdit(allowence: any) {
-      const navigationExtras: NavigationExtras = {
-        queryParams: { edit: true, allowenceData: JSON.stringify(allowence)
-        },
-      };
 
-      this.router.navigate(['hr/allowence/createAllowence'], navigationExtras);
-    }
+    OnSubmit(Form: FormGroup) {
+      if(!this.isEdit){
+      if(this.formAllowence.valid)
+      {
+      let model = this.formAllowence.value;
+      this.XtraAndPosAllowenceService.httpPostXtraAndPosAllowenceCreateAllowenceService({
+        body : model
+      }).subscribe((value:any)=>{
+        let jsonData = JSON.parse(value);
+          this.toastr.success(jsonData.Message)
+          this.formAllowence.reset();
+        this.formAllowence.get('StatusId')?.setValue('1');
+          this.refreshTable();
+
+      })}else{
+        this.toastr.success("ادخل البيانات المطلوبة")
+      }
+    }else{
+      let model = this.formAllowence.value;
+      model.Id = this.currentallowenceId;
+      this.XtraAndPosAllowenceService.httpPutXtraAndPosAllowenceUpdateAllowenceService({
+        id: this.currentallowenceId,
+        body: model
+      }).subscribe((value: any) => {
+        let jsonData = JSON.parse(value);
+        this.toastr.success(jsonData.Message);
+        this.formAllowence.reset();
+        this.isEdit= false;
+        this.refreshTable();
+
+      });
+      }
+        }
+        setEdit(allowence: any) {
+          this.formAllowence.patchValue({
+            NameAr: allowence.NameAr,
+            NameEn: allowence.NameEn,
+            statusId : allowence.StatusId,
+            notes: allowence.Notes
+          });
+          this.isEdit = true;
+          this.currentallowenceId = allowence.Id;
+
+          this.focusOnForm();
+        }
+        focusOnForm() {
+          if (this.formElement && this.formElement.nativeElement) {
+            this.formElement.nativeElement.scrollIntoView({ behavior: 'smooth' });
+            this.formElement.nativeElement.focus();
+          }
+        }
     onSearch(searchValue:Event): void {
       this.dt.filterGlobal((searchValue.target as HTMLInputElement).value, 'contains');
     }
@@ -73,6 +125,9 @@ export class AllowencePreviewComponent implements OnInit {
         this.toastr.clear();
         this.toastr.success(jsonData.Message);
         this.refreshTable();
+        this.formAllowence.reset();
+        this.formAllowence.get('StatusId')?.setValue('1');
+
       }, (error: any) => {
         this.toastr.error('Failed to delete allowence.');
       });

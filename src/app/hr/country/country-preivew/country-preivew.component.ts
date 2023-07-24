@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { XtraAndPosCountryService } from 'src/app/shared/api';
 import { ExportData } from 'src/app/services/Export-data.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-country-preivew',
@@ -11,7 +12,7 @@ import { ExportData } from 'src/app/services/Export-data.service';
   providers: [ExportData]
 })
 export class CountryPreivewComponent implements OnInit  {
-  constructor(private router: Router,private toastr:ToastrService
+  constructor(private router: Router,private toastr:ToastrService,private fb:FormBuilder
     ,private XtraAndPos_Country :  XtraAndPosCountryService,private ExportData :ExportData){};
 addCountry(){
   this.router.navigateByUrl('hr/country/createCountry');
@@ -19,7 +20,12 @@ addCountry(){
 countryData :any[] = [] ;
 cols :any ;
 @ViewChild('dt') dt: any;
-
+formCountry :FormGroup= this.fb.group({countryNameAr: new FormControl('', [Validators.required]),
+countryNameEn: new FormControl('', [Validators.required]),
+notes: new FormControl(null),})
+isEdit:boolean= false ;
+@ViewChild('formElement') formElement!: ElementRef;
+currentcountryId :any ;
 ngOnInit(): void {
   this.XtraAndPos_Country.httpGetXtraAndPosCountryGetCountryService().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
@@ -33,13 +39,24 @@ ngOnInit(): void {
     { field: 'Notes', header: 'Notes' },
   ];
 }
-setEdit(country: any) {
-  const navigationExtras: NavigationExtras = {
-    queryParams: { edit: true, countryData: JSON.stringify(country)
-    },
-  };
 
-  this.router.navigate(['hr/country/createCountry'], navigationExtras);
+
+setEdit(country: any) {
+  this.formCountry.patchValue({
+    countryNameAr: country.NameAr,
+    countryNameEn: country.NameEn,
+    notes: country.Notes
+  });
+  this.isEdit = true;
+  this.currentcountryId = country.Id;
+
+  this.focusOnForm();
+}
+focusOnForm() {
+  if (this.formElement && this.formElement.nativeElement) {
+    this.formElement.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    this.formElement.nativeElement.focus();
+  }
 }
 onSearch(searchValue:Event): void {
   this.dt.filterGlobal((searchValue.target as HTMLInputElement).value, 'contains');
@@ -65,6 +82,7 @@ deleteCountry(country: any) {
     this.toastr.clear();
     this.toastr.success(jsonData.Message);
     this.refreshTable();
+    this.formCountry.reset();
   }, (error: any) => {
     this.toastr.error('Failed to delete country.');
   });
@@ -82,7 +100,37 @@ getCountry(id :any){
 goHome(){
   this.router.navigateByUrl('');
 }
+onSubmit(Form: FormGroup) {
+  if(!this.isEdit){
+  if(this.formCountry.valid)
+  {
+  let model = this.formCountry.value;
+  this.XtraAndPos_Country.httpPostXtraAndPosCountryCreateCountryService({
+    body : model
+  }).subscribe((value:any)=>{
+    let jsonData = JSON.parse(value);
+      this.toastr.success(jsonData.Message)
+      this.formCountry.reset();
+      this.refreshTable();
+  })}else{
+    this.toastr.success("ادخل البيانات المطلوبة")
+  }
+}else{
+  let model = this.formCountry.value;
+  model.Id = this.currentcountryId;
+  this.XtraAndPos_Country.httpPutXtraAndPosCountryUpdateCountryService({
+    id: this.currentcountryId,
+    body: model
+  }).subscribe((value: any) => {
+    let jsonData = JSON.parse(value);
+    this.toastr.success(jsonData.Message);
+    this.refreshTable()
+    this.formCountry.reset();
+    this.isEdit = false;
+  });
+  }
 
+    }
 printPdf() {
   const tableData = this.countryData.map((country) => {
     return {

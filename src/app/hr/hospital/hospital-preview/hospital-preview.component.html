@@ -1,13 +1,42 @@
+<div class="col-7 mx-auto py-4 py-md-5 px-lg-4">
+  <h3>{{ "Hr.Hospitalnav" | translate }}</h3>
+  <form #formElement [formGroup]="formHospital" (ngSubmit)="OnSubmit(formHospital)" class="form">
+
+    <div class="form-group mt-5">
+      <input  id="NameAr" type="NameAr" formControlName="NameAr" required placeholder="{{ 'Hr.HospitalNameAr' | translate }}" class="form-control">
+    </div>
+
+    <div class="form-group mt-5">
+      <input   id="NameEn" type="NameEn" formControlName="NameEn" required placeholder="{{ 'Hr.HospitalNameEn' | translate }}" class="form-control">
+    </div>
+    <div class="form-group mt-5" *ngIf="isEdit">
+      <label for="StatusId">{{ 'Hr.SelectStatus' | translate }}</label>
+      <select   id="StatusId" formControlName="StatusId"  class="form-control"  >
+        <option  value="" disabled selected>{{ 'Hr.SelectStatus' | translate }}</option>
+        <option *ngFor="let status of statusData " [value]="status.id">{{ status.name }}</option>
+      </select>
+    </div>
+    <div class="form-group mt-5">
+      <input   id="notes" type="notes" formControlName="notes" placeholder="{{ 'Hr.Notes' | translate }}" class="form-control">
+    </div>
+    <div class="bottom-buttons">
+      <button type="submit"  class="d-block w-100 py-3"  >{{ 'Save' | translate }}</button>
+      <span class="button-space"></span>
+      <button (click)="goHome()" class="btn btn-primary add-data-button">{{"Cancel" | translate}}</button>
+    </div>
+
+  </form>
+</div>
+
 <div class="container">
-  <h2>{{ "Hr.Hospitalnav" | translate }}</h2>
 
   <div class="search-container">
     <input (input)="onSearch($event)" class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
   </div>
 
-  <div class="table-container" class="add-button">
+  <!-- <div class="table-container" class="add-button">
     <button (click)="addHospital()"  class="btn btn-primary add-data-button">{{"Hr.AddHospital"|translate}}</button>
-  </div>
+  </div> -->
   <p-table
   [rowsPerPageOptions]="[5, 10, 15, 20]"
   [paginator]="true"

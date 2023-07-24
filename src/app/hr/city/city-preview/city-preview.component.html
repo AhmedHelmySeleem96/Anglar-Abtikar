@@ -1,12 +1,43 @@
+<div class="col-7 mx-auto py-4 py-md-5 px-lg-4">
+  <h3>{{ "Hr.City" | translate }}</h3>
+  <form #formElement [formGroup]="formCity" (ngSubmit)="OnSubmit(formCity)" class="form">
+
+    <div class="form-group mt-5">
+      <input  id="cityNameAr" type="cityNameAr" formControlName="cityNameAr" required placeholder="{{ 'Hr.CityNameAr' | translate }}" class="form-control">
+    </div>
+
+    <div class="form-group mt-5">
+      <input   id="cityNameEn" type="cityNameEn" formControlName="cityNameEn" required placeholder="{{ 'Hr.CityNameEn' | translate }}" class="form-control">
+    </div>
+    <div class="form-group mt-5">
+      <label for="countryDropdown">{{ 'Hr.SelectCountry' | translate }}</label>
+      <select   id="countryId" formControlName="countryId"  class="form-control"  >
+        <option  value="" disabled selected>{{ 'Hr.SelectCountry' | translate }}</option>
+        <option *ngFor="let country of countryData " [value]="country.Id">{{ country.NameAr }}</option>
+      </select>
+    </div>
+     <!-- <div class="form-group mt-5">
+      <p-dropdown  *ngFor="let country of countryData" [style]="{'width':'100%'}" [(ngModel)]="selectedCountry" [options]="country" optionLabel="country.NameAr" [filter]="true" filterBy="country.NameAr" [showClear]="true" placeholder="{{ 'Hr.SelectCountry' | translate }}"></p-dropdown>
+    </div> -->
+    <div class="form-group mt-5">
+      <input   id="notes" type="notes" formControlName="notes" placeholder="{{ 'Hr.Notes' | translate }}" class="form-control">
+    </div>
+    <div class="bottom-buttons">
+      <button type="submit"  class="d-block w-100 py-3"  >{{ 'Save' | translate }}</button>
+      <span class="button-space"></span>
+      <button (click)="goHome()" class="btn btn-primary add-data-button">{{"Cancel" | translate}}</button>
+    </div>
+
+  </form>
+</div>
 
 <div class="container">
-  <h3>{{ "Hr.City" | translate }}</h3>
   <div class="search-container">
     <input (input)="onSearch($event)" class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
   </div>
-  <div class="table-container" class="add-button">
+  <!-- <div class="table-container" class="add-button">
     <button (click)="AddCity()"  class="btn btn-primary add-data-button">{{"Hr.AddCity"|translate}}</button>
-  </div>
+  </div> -->
 
   <div class="table-container" id="pdfContent">
 

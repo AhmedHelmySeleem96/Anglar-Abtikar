@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { XtraAndPosNationalityService } from 'src/app/shared/api';
 import { ExportData } from 'src/app/services/Export-data.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { ExportData } from 'src/app/services/Export-data.service';
   providers: [ExportData]
 })
 export class NationalityPreviewComponent implements OnInit  {
-  constructor(private router: Router,private toastr:ToastrService
+  constructor(private router: Router,private toastr:ToastrService,private fb:FormBuilder
     ,private XtraAndPosNationalityService :  XtraAndPosNationalityService,private ExportData :ExportData){};
     addNationality(){
       this.router.navigateByUrl('hr/nationality/createNationality');
@@ -20,6 +21,13 @@ export class NationalityPreviewComponent implements OnInit  {
     nationalityData :any[] = [] ;
     cols :any ;
     @ViewChild('dt') dt: any;
+    isEdit:boolean= false ;
+    currentnationalityId : any ;
+    formNationality :FormGroup= this.fb.group({nationalityNameAr: new FormControl('', [Validators.required]),
+    nationalityNameEn: new FormControl('', [Validators.required]),
+    notes: new FormControl(null),})
+@ViewChild('formElement') formElement!: ElementRef;
+
     ngOnInit(): void {
 
       this.XtraAndPosNationalityService.httpGetXtraAndPosNationalityGetNationalityService().subscribe((value:any)=>{
@@ -64,14 +72,53 @@ export class NationalityPreviewComponent implements OnInit  {
       const columns = ['ملاحظات',' الاسم بالانجليزية','الاسم ','تاريخ الانشاء','كود الجنسية'];
       this.ExportData.printPdf(tableData,columns,'nationality.pdf')
     }
+    OnSubmit(Form: FormGroup) {
+      if(!this.isEdit){
+      if(this.formNationality.valid)
+      {
+      let model = this.formNationality.value;
+      this.XtraAndPosNationalityService.httpPostXtraAndPosNationalityCreateNationalityService({
+        body : model
+      }).subscribe((value:any)=>{
+        let jsonData = JSON.parse(value);
+          this.toastr.success(jsonData.Message)
+          this.formNationality.reset();
+          this.refreshTable();
+      })}else{
+        this.toastr.success("ادخل البيانات المطلوبة")
+      }
+    }else{
+      let model = this.formNationality.value;
+      model.Id = this.currentnationalityId;
+      this.XtraAndPosNationalityService.httpPutXtraAndPosNationalityUpdateNationalityService({
+        id : this.currentnationalityId,
+        body: model
+      }).subscribe((value: any) => {
+        let jsonData = JSON.parse(value);
+        this.toastr.success(jsonData.Message);
+        this.formNationality.reset();
+        this.isEdit= false;
+        this.refreshTable();
 
+      });
+      }
+        }
     setEdit(nationality: any) {
-      const navigationExtras: NavigationExtras = {
-        queryParams: { edit: true, nationalityData: JSON.stringify(nationality)
-        },
-      };
+      this.formNationality.patchValue({
+        nationalityNameAr: nationality.NameAr,
+        nationalityNameEn: nationality.NameEn,
+        notes: nationality.Notes
+      });
+      this.isEdit = true;
+      this.currentnationalityId = nationality.Id;
 
-      this.router.navigate(['hr/nationality/createNationality'], navigationExtras);
+      this.focusOnForm();
+    }
+    focusOnForm() {
+      if (this.formElement && this.formElement.nativeElement) {
+        this.formElement.nativeElement.scrollIntoView({ behavior: 'smooth' });
+        this.formElement.nativeElement.focus();
+      }
     }
     onSearch(searchValue:Event): void {
       this.dt.filterGlobal((searchValue.target as HTMLInputElement).value, 'contains');
@@ -97,6 +144,7 @@ export class NationalityPreviewComponent implements OnInit  {
         this.toastr.clear();
         this.toastr.success(jsonData.Message);
         this.refreshTable();
+        this.formNationality.reset();
       }, (error: any) => {
         this.toastr.error('Failed to delete city.');
       });

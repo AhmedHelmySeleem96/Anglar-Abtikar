@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ExportData } from 'src/app/services/Export-data.service';
@@ -11,14 +12,22 @@ import { XtraAndPosCityService, XtraAndPosCountryService } from 'src/app/shared/
 })
 export class CityPreviewComponent implements OnInit {
   constructor(private router: Router,private toastr:ToastrService
-    ,private XtraAndPOS_City :XtraAndPosCityService
+    ,private XtraAndPOS_City :XtraAndPosCityService,
+    private fb:FormBuilder
     ,private XtraAndPos_Country :  XtraAndPosCountryService,private ExportData :ExportData){};
     AddCity(){
       this.router.navigateByUrl('hr/city/createCity');
   }
+  isEdit:boolean= false ;
+     formCity :FormGroup= this.fb.group({cityNameAr: new FormControl('', [Validators.required]),
+     cityNameEn: new FormControl('', [Validators.required]),
+     countryId :new FormControl('', [Validators.required]),
+     notes: new FormControl(null),})
   cityData :any[] = [] ;
   countryData :any[] = [] ;
   cols :any ;
+  currentcityId: any ;
+@ViewChild('formElement') formElement!: ElementRef;
   @ViewChild('dt') dt: any;
   ngOnInit(): void {
     this.XtraAndPOS_City.httpGetXtraAndPosCityGetCityService().subscribe((value : any)=>{
@@ -38,6 +47,58 @@ export class CityPreviewComponent implements OnInit {
       { field: 'Notes', header: 'Notes' },
     ];
   }
+  setEdit(city: any) {
+    this.formCity.patchValue({
+      cityNameAr: city.NameAr,
+      cityNameEn: city.NameEn,
+      countryId: city.CountryId,
+      notes: city.Notes
+
+    });
+    this.isEdit = true;
+    this.currentcityId = city.Id;
+
+    this.focusOnForm();
+  }
+  focusOnForm() {
+    if (this.formElement && this.formElement.nativeElement) {
+      this.formElement.nativeElement.scrollIntoView({ behavior: 'smooth' });
+      this.formElement.nativeElement.focus();
+    }
+  }
+  OnSubmit(Form: FormGroup) {
+    if(!this.isEdit){
+    if(this.formCity.valid)
+    {
+    let model = this.formCity.value;
+    this.XtraAndPOS_City.httpPostXtraAndPosCityCreateCityService({
+      body : model
+    }).subscribe((value:any)=>{
+      let jsonData = JSON.parse(value);
+        this.toastr.success(jsonData.Message)
+        this.formCity.reset();
+    this.refreshTable()
+
+    })}else{
+      this.toastr.success("ادخل البيانات المطلوبة")
+    }
+  }else{
+    let model = this.formCity.value;
+    model.Id = this.currentcityId;
+    this.XtraAndPOS_City.httpPutXtraAndPosCityUpdateCityService({
+      id: this.currentcityId,
+      body: model
+    }).subscribe((value: any) => {
+      let jsonData = JSON.parse(value);
+      this.toastr.success(jsonData.Message);
+    this.isEdit = false;
+    this.formCity.reset();
+    this.refreshTable()
+
+    });
+    }
+      }
+
   exportData() {
     const tableData = this.cityData.map((city) => {
       return {
@@ -65,14 +126,6 @@ this.ExportData.toExcel(tableData,'city.xlsx')
     const columns = ['كود المدينة','تاريخ الانشاء','الاسم','الاسم بالانجليزية','الدولة','ملاحظات'].reverse();
     this.ExportData.printPdf(tableData,columns,'city.pdf')
   }
-  setEdit(city: any) {
-    const navigationExtras: NavigationExtras = {
-      queryParams: { edit: true, cityData: JSON.stringify(city)
-      },
-    };
-
-    this.router.navigate(['hr/city/createCity'], navigationExtras);
-}
 onSearch(searchValue:Event): void {
   this.dt.filterGlobal((searchValue.target as HTMLInputElement).value, 'contains');
 }
@@ -97,6 +150,7 @@ deleteCity(city: any) {
     this.toastr.clear();
     this.toastr.success(jsonData.Message);
     this.refreshTable();
+    this.formCity.reset();
   }, (error: any) => {
     this.toastr.error('Failed to delete city.');
   });
