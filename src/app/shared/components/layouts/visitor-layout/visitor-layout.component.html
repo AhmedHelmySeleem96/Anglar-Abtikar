@@ -181,6 +181,12 @@
         </a>
         <div class="dropdown-menu m-0">
           <span class="d-block text-center pointer" [routerLink]="'/hr/city'">{{"Hr.City" | translate}}</span>
+          <span class="d-block text-center pointer" [routerLink]="'/hr/country'">{{"Hr.Countrynav" | translate}}</span>
+          <span class="d-block text-center pointer" [routerLink]="'/hr/nationality'">{{"Hr.Nationalitynav" | translate}}</span>
+          <span class="d-block text-center pointer" [routerLink]="'/hr/orgstructlevel'">{{"Hr.Orgstruct" | translate}}</span>
+          <span class="d-block text-center pointer" [routerLink]="'/hr/orgstructures'">{{"Hr.Orgstructures" | translate}}</span>
+          <span class="d-block text-center pointer" [routerLink]="'/hr/hospital'">{{"Hr.Hospitalnav" | translate}}</span>
+          <span class="d-block text-center pointer" [routerLink]="'/hr/allowence'">{{"Hr.Allowencenav" | translate}}</span>
         </div>
       </div>
       <a aria-label="Read contact" (click)="logout()" *ngIf="userLogin" [routerLink]="'/' " class="   my-3 my-lg-0">{{"navBar.logout" | translate}}</a>
