@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface StorageOpenDetailsDto {
+  bonus?: boolean;
   branchId?: number;
   branchName?: null | string;
   cancelBy?: null | string;
@@ -18,6 +19,7 @@ export interface StorageOpenDetailsDto {
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;

@@ -45,6 +45,7 @@ export interface Transfer {
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isUpdated?: boolean;
   itemsNo?: number;
   lastModifiedDate?: string;
@@ -58,6 +59,8 @@ export interface Transfer {
   no?: number;
   notes?: null | string;
   paymentType?: PaymentType;
+  pricePolicyId?: number;
+  pricePolicyName?: null | string;
   qrCode?: null | string;
   shiftId?: number;
   storeGuid?: string;

@@ -7,6 +7,7 @@ export interface TreasuryTransactionOutDetail {
   amount?: number;
   bankAccountNo?: null | string;
   bankId?: number;
+  bankName?: null | string;
   branchId?: number;
   branchName?: null | string;
   buyInvoiceId?: number;
@@ -26,6 +27,7 @@ export interface TreasuryTransactionOutDetail {
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;

@@ -1,7 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import {   OrgStructLevelCreateDto, XtraAndPosOrgStructLevelsService } from 'src/app/shared/api';
+import {   OrgStructLevelCreateDto, XtraAndPosBranchEpService, XtraAndPosOrgStructLevelsService } from 'src/app/shared/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TreeNode } from 'primeng/api';
 
@@ -13,29 +13,39 @@ import { TreeNode } from 'primeng/api';
 export class OrgstructlevelCreateComponent  implements OnInit {
   constructor(
     private toastr:ToastrService,
-    private orgStructLevelsService: XtraAndPosOrgStructLevelsService,
+    private orgStructLevelsService: XtraAndPosOrgStructLevelsService,private XtraAndPosBranchEpService : XtraAndPosBranchEpService,
     private fb:FormBuilder,private router: Router,private route: ActivatedRoute){}
     formorgStruct :FormGroup= this.fb.group({levelNameAr: new FormControl('', [Validators.required]),
     levelNameEn: new FormControl('', [Validators.required]),
     parentId :new FormControl(0),
-     })
+    branchId :new FormControl('', [Validators.required]),
+  })
     orgStructData :any[]= [] ;
+    parentDropDown : any[] = [] ;
     cols :any ;
     isEdit : boolean = false;
     currentLevelId : any ;
+
     selectedNode: TreeNode | null = null;
     @ViewChild('formElement') formElement!: ElementRef;
 @ViewChild('dt') dt: any;
 treeData: TreeNode[] = [];
+BranchData : any[] = [] ;
 
+recursiveTemplate!: TemplateRef<any>;
 
     ngOnInit(): void {
       this.refreshTable();
       this.cols = [
         { field: 'NameAr', header: 'Hr.OrgStructNameAr' },
         { field: 'NameEn', header: 'Hr.OrgStructNameEn' },
+        { field: 'BranchId', header: 'Hr.BranchId' },
         { field: 'ParentId', header: 'Hr.SelectParent' },
       ];
+      this.XtraAndPosBranchEpService.httpGetBranchGetAllForDropDown().subscribe((value:any)=>{
+        let jsonData = JSON.parse(value);
+        this.BranchData = jsonData ;
+      })
     }
 
     OnSubmit(Form: FormGroup) {
@@ -51,6 +61,7 @@ treeData: TreeNode[] = [];
           this.refreshTable();
           if(jsonData.IsSuccess===true){
             this.formorgStruct.reset();
+            this.formorgStruct.get('parentId')?.setValue('0');
           }
       })}else{
         this.toastr.success("ادخل البيانات المطلوبة")
@@ -67,6 +78,8 @@ treeData: TreeNode[] = [];
             this.toastr.success(jsonData.Message);
             if(jsonData.IsSuccess===true){
               this.formorgStruct.reset();
+            this.formorgStruct.get('parentId')?.setValue('0');
+
             }
             this.refreshTable();
             this.isEdit = false;
@@ -74,6 +87,9 @@ treeData: TreeNode[] = [];
         })
       }
     }
+        }
+        getBranch(id :any){
+          return this.BranchData.filter((r)=>r.Id===id)[0]
         }
 
         setEdit(level: any) {
@@ -120,7 +136,19 @@ treeData: TreeNode[] = [];
             this.toastr.error('Failed to delete Level.');
           });
         }
-
+        onBranchChange(event:Event){
+          const target = event.target as HTMLSelectElement;
+          const branchId = target.value;
+          if(branchId){
+            let branch  = Number(branchId) ;
+          this.orgStructLevelsService.httpGetXtraAndPosOrgStructLevelsGetParentOrgStructLevelService({
+                branchId : branch
+          }).subscribe((value : any)=>{
+            let jsonData = JSON.parse(value);
+            this.parentDropDown = jsonData.Obj.OrgStructLevels;
+          })
+        }
+      }
         refreshTable() {
           this.orgStructLevelsService.httpGetXtraAndPosOrgStructLevelsGetOrgStructLevelService().subscribe((value: any) => {
             let jsonData = JSON.parse(value);
@@ -131,30 +159,30 @@ treeData: TreeNode[] = [];
         }
         generateTreeData(orgStructData: any[]): TreeNode[] {
           const treeNodes: TreeNode[] = [];
-          const idToNodeMap: { [key: number]: TreeNode } = {};
+          const branchMap: { [key: number]: TreeNode } = {};
+
           for (const node of orgStructData) {
+            const branchId = node.BranchId;
             const treeNode: TreeNode = {
               data: node,
               label: node.NameAr,
               children: []
             };
-            idToNodeMap[node.Id] = treeNode;
-          }
-
-          for (const node of orgStructData) {
-            if (node.ParentId !== 0) {
-              const parent = idToNodeMap[node.ParentId];
-              if (parent) {
-                parent.children = parent.children || [];
-                parent.children.push(idToNodeMap[node.Id]);              }
+            if (branchMap[branchId]) {
+              branchMap[branchId].children?.push(treeNode);
             } else {
-              treeNodes.push(idToNodeMap[node.Id]);
+
+              const branchNode: TreeNode = {
+                data: { NameAr: this.getBranch(branchId).NameAr },
+                label: this.getBranch(branchId)?.NameAr,
+                children: [treeNode]
+              };
+              branchMap[branchId] = branchNode;
+              treeNodes.push(branchNode);
             }
           }
-
           return treeNodes;
         }
-
         getLevel(id :any){
           return this.orgStructData.filter((r)=>r.Id===id)[0]
         }

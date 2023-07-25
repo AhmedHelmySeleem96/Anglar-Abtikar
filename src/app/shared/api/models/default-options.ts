@@ -23,6 +23,7 @@ export interface DefaultOptions {
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isPermenent?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;

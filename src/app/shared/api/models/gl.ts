@@ -33,6 +33,7 @@ export interface Gl {
   id?: number;
   initGlType?: InitGlType;
   isActive?: boolean;
+  isCanceled?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;

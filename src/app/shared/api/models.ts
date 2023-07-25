@@ -81,6 +81,7 @@ export { SaleInvoiceReturn } from './models/sale-invoice-return';
 export { SaleInvoiceReturnDetails } from './models/sale-invoice-return-details';
 export { SaleOfferPrice } from './models/sale-offer-price';
 export { SaleOfferPriceDetails } from './models/sale-offer-price-details';
+export { SaleinvoicefilterDto } from './models/saleinvoicefilter-dto';
 export { ScreenType } from './models/screen-type';
 export { SearchModel } from './models/search-model';
 export { SearchStatus } from './models/search-status';

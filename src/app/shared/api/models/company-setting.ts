@@ -18,6 +18,7 @@ export interface CompanySetting {
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isTaxIncluded?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;

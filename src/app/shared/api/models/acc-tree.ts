@@ -17,10 +17,13 @@ export interface AccTree {
   customSort?: number;
   docRefGuid?: string;
   drOrCr: number;
+  endAcc?: number;
+  endAccName?: null | string;
   glType: number;
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isCostCenter?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;

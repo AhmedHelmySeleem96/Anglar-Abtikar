@@ -2,7 +2,11 @@
 /* eslint-disable */
 export interface SearchStorage {
   fromDate?: string;
-  itemUniteid?: number;
+  itemID?: number;
+  itemUnitId?: number;
+  modelName?: null | string;
+  modelTypeName?: null | string;
+  pricingID?: number;
   storeId?: number;
   toDate?: string;
 }

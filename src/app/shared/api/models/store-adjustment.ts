@@ -37,6 +37,7 @@ export interface StoreAdjustment {
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isUpdated?: boolean;
   itemType?: null | string;
   itemTypeID?: number;
@@ -51,6 +52,8 @@ export interface StoreAdjustment {
   no?: number;
   notes?: null | string;
   paymentType?: PaymentType;
+  pricePolicyId?: number;
+  pricePolicyName?: null | string;
   qrCode?: null | string;
   shiftId?: number;
   storageName?: null | string;

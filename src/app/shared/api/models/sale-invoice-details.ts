@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface SaleInvoiceDetails {
+  bonus?: boolean;
   branchId?: number;
   branchName?: null | string;
   cancelBy?: null | string;
@@ -19,6 +20,7 @@ export interface SaleInvoiceDetails {
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;

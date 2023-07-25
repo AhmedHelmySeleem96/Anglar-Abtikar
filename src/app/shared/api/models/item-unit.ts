@@ -24,6 +24,7 @@ export interface ItemUnit {
   howToUse?: null | string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isUpdated?: boolean;
   itemCode?: null | string;
   itemGroupGuid?: string;

@@ -17,6 +17,7 @@ export interface AccountingPeriod {
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isPeriodAYear?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;

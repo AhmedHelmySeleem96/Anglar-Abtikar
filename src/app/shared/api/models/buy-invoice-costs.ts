@@ -20,6 +20,7 @@ export interface BuyInvoiceCosts {
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isPriceScale?: boolean;
   isUpdated?: boolean;
   isVatScale?: boolean;

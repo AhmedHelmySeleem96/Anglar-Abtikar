@@ -27,6 +27,7 @@
 },
 "Hr":{
   "City" : " Cities",
+  "SelectBranch" :"SelectBranch",
   "CityNameAr" : "City Name Ar",
   "CityNameEn" :"City Name En",
   "Orgstruct" : "Organization Structure Level",

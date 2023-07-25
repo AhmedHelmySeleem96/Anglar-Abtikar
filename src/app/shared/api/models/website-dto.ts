@@ -20,6 +20,7 @@ export interface WebsiteDto {
   id?: number;
   imagePath?: null | string;
   isActive?: boolean;
+  isCanceled?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;

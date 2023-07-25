@@ -31,6 +31,8 @@ export interface Branch {
   industry?: null | string;
   invoiceThem?: InvoiceThem;
   isActive?: boolean;
+  isCanceled?: boolean;
+  isMustOpenShift?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;

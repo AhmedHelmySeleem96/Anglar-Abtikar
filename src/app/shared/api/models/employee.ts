@@ -27,6 +27,7 @@ export interface Employee {
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isSalesRepresentative?: boolean;
   isUpdated?: boolean;
   jobId?: number;

@@ -17,6 +17,7 @@ export interface HrSection {
   hrManagmentId?: number;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isUpdated?: boolean;
   jobs?: null | Array<Job>;
   lastModifiedDate?: string;

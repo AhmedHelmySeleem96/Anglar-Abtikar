@@ -2,6 +2,7 @@
 /* eslint-disable */
 export interface StoreAdjustmentDetalils {
   aw?: number;
+  bonus?: boolean;
   branchId?: number;
   branchName?: null | string;
   cancelBy?: null | string;
@@ -22,6 +23,7 @@ export interface StoreAdjustmentDetalils {
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;

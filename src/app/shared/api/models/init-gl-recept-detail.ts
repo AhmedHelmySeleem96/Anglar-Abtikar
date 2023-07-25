@@ -25,6 +25,7 @@ export interface InitGlReceptDetail {
   initGlReceptId?: number;
   initGlType?: InitGlType;
   isActive?: boolean;
+  isCanceled?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;

@@ -2,6 +2,7 @@
 /* eslint-disable */
 import { TransferStatus } from './transfer-status';
 export interface TransferDetails {
+  bonus?: boolean;
   branchId?: number;
   branchName?: null | string;
   cancelBy?: null | string;
@@ -19,6 +20,7 @@ export interface TransferDetails {
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isUpdated?: boolean;
   itemBalance?: number;
   lastModifiedDate?: string;

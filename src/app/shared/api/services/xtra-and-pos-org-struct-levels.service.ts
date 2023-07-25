@@ -206,4 +206,51 @@ export class XtraAndPosOrgStructLevelsService extends BaseService {
     );
   }
 
+  /** Path part for operation `httpGetXtraAndPosOrgStructLevelsGetParentOrgStructLevelService()` */
+  static readonly HttpGetXtraAndPosOrgStructLevelsGetParentOrgStructLevelServicePath = '/XtraAndPOS_OrgStructLevels/GetParentOrgStructLevelService';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetXtraAndPosOrgStructLevelsGetParentOrgStructLevelService()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosOrgStructLevelsGetParentOrgStructLevelService$Response(
+    params: {
+      branchId: number;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosOrgStructLevelsService.HttpGetXtraAndPosOrgStructLevelsGetParentOrgStructLevelServicePath, 'get');
+    if (params) {
+      rb.query('branchId', params.branchId, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetXtraAndPosOrgStructLevelsGetParentOrgStructLevelService$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosOrgStructLevelsGetParentOrgStructLevelService(
+    params: {
+      branchId: number;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetXtraAndPosOrgStructLevelsGetParentOrgStructLevelService$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
 }

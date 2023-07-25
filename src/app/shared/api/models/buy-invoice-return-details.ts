@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface BuyInvoiceReturnDetails {
+  bonus?: boolean;
   branchId?: number;
   branchName?: null | string;
   buyInvoiceDetailId?: number;
@@ -19,6 +20,7 @@ export interface BuyInvoiceReturnDetails {
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;

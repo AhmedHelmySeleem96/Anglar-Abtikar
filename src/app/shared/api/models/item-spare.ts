@@ -15,6 +15,7 @@ export interface ItemSpare {
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isUpdated?: boolean;
   itemUnitSpareId?: number;
   itemUnitSpareName?: null | string;

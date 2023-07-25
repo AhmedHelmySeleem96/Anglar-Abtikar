@@ -15,6 +15,7 @@ export interface Currency {
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isDefault?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;

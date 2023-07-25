@@ -36,6 +36,7 @@ export interface SaleOfferPrice {
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;
@@ -48,6 +49,8 @@ export interface SaleOfferPrice {
   no?: number;
   notes?: null | string;
   paymentType?: PaymentType;
+  pricePolicyId?: number;
+  pricePolicyName?: null | string;
   qrCode?: null | string;
   saleOfferPriceDetails?: null | Array<SaleOfferPriceDetails>;
   shiftId?: number;

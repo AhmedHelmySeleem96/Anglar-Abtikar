@@ -102,7 +102,6 @@ export class HospitalPreviewComponent implements OnInit {
         });
       }
       OnSubmit(Form: FormGroup) {
-        debugger
         if(!this.isEdit){
         if(this.formHospital.valid)
         {
@@ -131,6 +130,7 @@ export class HospitalPreviewComponent implements OnInit {
           this.refreshTable();
           this.isEdit=false;
           this.formHospital.reset();
+          this.formHospital.get('StatusId')?.setValue('1');
 
         });
         }

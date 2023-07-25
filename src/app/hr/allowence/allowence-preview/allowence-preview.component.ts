@@ -77,6 +77,7 @@ export class AllowencePreviewComponent implements OnInit {
         let jsonData = JSON.parse(value);
         this.toastr.success(jsonData.Message);
         this.formAllowence.reset();
+        this.formAllowence.get('StatusId')?.setValue('1');
         this.isEdit= false;
         this.refreshTable();
 

@@ -17,6 +17,7 @@ export interface ItemGroup {
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isParent?: boolean;
   isUpdated?: boolean;
   item?: null | Array<Item>;

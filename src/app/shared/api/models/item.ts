@@ -31,6 +31,9 @@ export interface Item {
   id?: number;
   imeges?: null | Blob;
   isActive?: boolean;
+  isCanceled?: boolean;
+  isModelRepeated?: boolean;
+  isModelTypeRepeated?: boolean;
   isUpdated?: boolean;
   itemGroupCode?: null | string;
   itemGroupGuid?: string;

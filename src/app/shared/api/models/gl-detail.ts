@@ -35,6 +35,7 @@ export interface GlDetail {
   id?: number;
   initGlType?: InitGlType;
   isActive?: boolean;
+  isCanceled?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;
@@ -51,6 +52,9 @@ export interface GlDetail {
   personalCredit?: number;
   personalDebit?: number;
   personalId?: number;
+  treasuryGuid?: string;
+  treasuryId?: number;
+  treasuryName?: null | string;
   updateFlag?: null | string;
   updatedCount?: number;
 }

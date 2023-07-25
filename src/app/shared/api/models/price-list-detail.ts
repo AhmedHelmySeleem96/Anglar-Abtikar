@@ -15,6 +15,7 @@ export interface PriceListDetail {
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isUpdated?: boolean;
   itemUniteId?: number;
   itemUniteName?: number;

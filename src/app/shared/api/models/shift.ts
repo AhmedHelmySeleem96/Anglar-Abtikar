@@ -24,6 +24,7 @@ export interface Shift {
   id?: number;
   invoicesNo?: number;
   isActive?: boolean;
+  isCanceled?: boolean;
   isOpen?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;
