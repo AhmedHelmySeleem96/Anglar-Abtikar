@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import {    OrgStructuresCreateDto, XtraAndPosOrgStructLevelsService, XtraAndPosOrgStructuresService } from 'src/app/shared/api';
+import {    OrgStructuresCreateDto, XtraAndPosBranchEpService, XtraAndPosOrgStructLevelsService, XtraAndPosOrgStructuresService } from 'src/app/shared/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService, TreeNode } from 'primeng/api';
 @Component({
@@ -12,10 +12,10 @@ import { MessageService, TreeNode } from 'primeng/api';
 export class OrgstructuresCreateComponent  implements OnInit {
   constructor(
     private toastr:ToastrService,
-    private orgStructLevelsService: XtraAndPosOrgStructLevelsService,
+    private orgStructLevelsService: XtraAndPosOrgStructLevelsService,private XtraAndPosBranchEpService : XtraAndPosBranchEpService,
     private XtraAndPosOrgStructuresService: XtraAndPosOrgStructuresService,
     private fb:FormBuilder,private router: Router,private route: ActivatedRoute){this.formorgStruct = this.createForm();}
-
+    branchData : any[] = [] ;
     orgStructLevels :any[]= [] ;
     orgStructuresDataDropDown :any [] = []
     cols :any ;
@@ -27,12 +27,14 @@ export class OrgstructuresCreateComponent  implements OnInit {
 treeData: TreeNode[] = [];
 orgStructuresData:any[] = [] ;
  formorgStruct :FormGroup ;
+ parentDropDown : any[] = [] ;
  createForm(): FormGroup {
   return this.fb.group({
     NameAr: new FormControl('', [Validators.required]),
     NameEn: new FormControl('', [Validators.required]),
     ParentId: new FormControl(0),
     LevelId: new FormControl('', [Validators.required]),
+    branchId :new FormControl('', [Validators.required]),
   });
 }
 ngOnInit(): void {
@@ -41,11 +43,16 @@ ngOnInit(): void {
     let jsonData = JSON.parse(value);
     this.orgStructLevels = jsonData.Obj.OrgStructLevels;
   });
+  this.XtraAndPosBranchEpService.httpGetBranchGetAllForDropDown().subscribe((value:any)=>{
+    let jsonData = JSON.parse(value);
+    this.branchData = jsonData ;
+  })
   this.refreshTable();
   this.cols = [
     { field: 'NameAr', header: 'Hr.OrgStructureNameAr' },
     { field: 'NameEn', header: 'Hr.OrgStructureNameEn' },
     { field: 'ParentId', header: 'Hr.SelectLevel' },
+    { field: 'BranchId', header: 'Hr.BranchId' },
     { field: 'LevelId', header: 'Hr.SelectParent' },
   ];
 }
@@ -62,6 +69,7 @@ OnSubmit(Form: FormGroup) {
       this.refreshTable();
       if(jsonData.IsSuccess===true){
         this.formorgStruct.reset();
+        this.formorgStruct.get('parentId')?.setValue('0');
         this.createForm();
       }
   })}else{
@@ -79,6 +87,7 @@ OnSubmit(Form: FormGroup) {
         this.toastr.success(jsonData.Message);
         if(jsonData.IsSuccess===true){
           this.formorgStruct.reset();
+          this.formorgStruct.get('parentId')?.setValue('0');
           this.createForm();
         }
         this.refreshTable();
@@ -105,6 +114,22 @@ OnSubmit(Form: FormGroup) {
       })
     }
     }
+    getBranch(id :any){
+      return this.branchData.filter((r)=>r.Id===id)[0]
+    }
+    onBranchChange(event:Event){
+      const target = event.target as HTMLSelectElement;
+      const branchId = target.value;
+      if(branchId){
+        let branch  = Number(branchId) ;
+      this.XtraAndPosOrgStructuresService.httpGetXtraAndPosOrgStructuresGetParentOrgStructLevelService({
+            branchId : branch
+      }).subscribe((value : any)=>{
+        let jsonData = JSON.parse(value);
+        this.parentDropDown = jsonData.Obj.OrgStructLevels;
+      })
+    }
+  }
     setEdit(level: any) {
       this.formorgStruct.patchValue({
         NameAr: level.NameAr,

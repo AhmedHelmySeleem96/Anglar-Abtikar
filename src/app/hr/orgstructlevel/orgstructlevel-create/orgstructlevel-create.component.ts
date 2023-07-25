@@ -30,7 +30,7 @@ export class OrgstructlevelCreateComponent  implements OnInit {
     @ViewChild('formElement') formElement!: ElementRef;
 @ViewChild('dt') dt: any;
 treeData: TreeNode[] = [];
-BranchData : any[] = [] ;
+branchData : any[] = [] ;
 
 recursiveTemplate!: TemplateRef<any>;
 
@@ -44,7 +44,7 @@ recursiveTemplate!: TemplateRef<any>;
       ];
       this.XtraAndPosBranchEpService.httpGetBranchGetAllForDropDown().subscribe((value:any)=>{
         let jsonData = JSON.parse(value);
-        this.BranchData = jsonData ;
+        this.branchData = jsonData ;
       })
     }
 
@@ -89,7 +89,7 @@ recursiveTemplate!: TemplateRef<any>;
     }
         }
         getBranch(id :any){
-          return this.BranchData.filter((r)=>r.Id===id)[0]
+          return this.branchData.filter((r)=>r.Id===id)[0]
         }
 
         setEdit(level: any) {

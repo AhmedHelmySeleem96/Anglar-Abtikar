@@ -253,4 +253,51 @@ export class XtraAndPosOrgStructuresService extends BaseService {
     );
   }
 
+  /** Path part for operation `httpGetXtraAndPosOrgStructuresGetParentOrgStructLevelService()` */
+  static readonly HttpGetXtraAndPosOrgStructuresGetParentOrgStructLevelServicePath = '/XtraAndPOS_OrgStructures/GetParentOrgStructLevelService';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetXtraAndPosOrgStructuresGetParentOrgStructLevelService()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosOrgStructuresGetParentOrgStructLevelService$Response(
+    params: {
+      branchId: number;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosOrgStructuresService.HttpGetXtraAndPosOrgStructuresGetParentOrgStructLevelServicePath, 'get');
+    if (params) {
+      rb.query('branchId', params.branchId, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetXtraAndPosOrgStructuresGetParentOrgStructLevelService$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosOrgStructuresGetParentOrgStructLevelService(
+    params: {
+      branchId: number;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetXtraAndPosOrgStructuresGetParentOrgStructLevelService$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
 }
