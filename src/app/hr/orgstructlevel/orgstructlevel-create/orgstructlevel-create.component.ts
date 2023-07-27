@@ -173,7 +173,7 @@ recursiveTemplate!: TemplateRef<any>;
             } else {
 
               const branchNode: TreeNode = {
-                data: { NameAr: this.getBranch(branchId).NameAr },
+                data: { NameAr: this.getBranch(branchId)?.NameAr },
                 label: this.getBranch(branchId)?.NameAr,
                 children: [treeNode]
               };

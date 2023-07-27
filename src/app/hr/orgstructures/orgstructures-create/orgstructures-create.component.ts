@@ -23,6 +23,7 @@ export class OrgstructuresCreateComponent  implements OnInit {
     currentLevelId : any ;
     selectedNode: TreeNode | null = null;
     @ViewChild('formElement') formElement!: ElementRef;
+    @ViewChild('branchElement') branchElement!: ElementRef<HTMLSelectElement>;
 @ViewChild('dt') dt: any;
 treeData: TreeNode[] = [];
 orgStructuresData:any[] = [] ;
@@ -99,12 +100,14 @@ OnSubmit(Form: FormGroup) {
     }
     onParentSelect(event: Event) {
       this.orgStructuresDataDropDown  = [];
+      const selectedBranch = this.branchElement.nativeElement.selectedIndex;
       const target = event.target as HTMLSelectElement;
       const parentId = target.value;
-      if (parentId) {
+      if (parentId&&selectedBranch) {
         let Id = Number(parentId)
       this.XtraAndPosOrgStructuresService.httpGetXtraAndPosOrgStructuresGetOrgStructuresServiceById({
         id : Id,
+        branchId : selectedBranch
       }).subscribe((value:any)=>{
         let jsonData = JSON.parse(value);
         if(jsonData.Message){
@@ -118,6 +121,8 @@ OnSubmit(Form: FormGroup) {
       return this.branchData.filter((r)=>r.Id===id)[0]
     }
     onBranchChange(event:Event){
+      this.formorgStruct.get('ParentId')?.setValue('0')
+      this.formorgStruct.get('LevelId')?.setValue('')
       const target = event.target as HTMLSelectElement;
       const branchId = target.value;
       if(branchId){
@@ -170,6 +175,8 @@ OnSubmit(Form: FormGroup) {
         let jsonData = JSON.parse(value);
         this.toastr.clear();
         this.toastr.success(jsonData.Message);
+        this.formorgStruct.reset();
+        this.formorgStruct.get('parentId')?.setValue('0');
         this.refreshTable();
       }, (error: any) => {
         this.toastr.error('Failed to delete Level.');

@@ -218,12 +218,14 @@ export class XtraAndPosOrgStructuresService extends BaseService {
   httpGetXtraAndPosOrgStructuresGetOrgStructuresServiceById$Response(
     params: {
       id: number;
+      branchId: number;
     },
     context?: HttpContext
   ): Observable<StrictHttpResponse<void>> {
     const rb = new RequestBuilder(this.rootUrl, XtraAndPosOrgStructuresService.HttpGetXtraAndPosOrgStructuresGetOrgStructuresServiceByIdPath, 'get');
     if (params) {
       rb.query('id', params.id, {"style":"form"});
+      rb.query('branchId', params.branchId, {"style":"form"});
     }
 
     return this.http.request(
@@ -245,6 +247,7 @@ export class XtraAndPosOrgStructuresService extends BaseService {
   httpGetXtraAndPosOrgStructuresGetOrgStructuresServiceById(
     params: {
       id: number;
+      branchId: number;
     },
     context?: HttpContext
   ): Observable<void> {

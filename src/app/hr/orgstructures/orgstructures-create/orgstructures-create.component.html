@@ -10,13 +10,17 @@
 <span class="button-space"></span>
 <p-tree [filter]="true" (nodeSelect)="setEdit($event)" [value]="treeData" class="w-full md:w-30rem" selectionMode="single" [(selection)]="selectedNode"></p-tree>
 
-
+<!-- <p-tree [value]="treeData" selectionMode="single" [(selection)]="selectedNode">
+  <ng-template let-node pTemplate="default">
+    <span>{{ node.label }}</span>
+  </ng-template>
+</p-tree> -->
 <div class="col-5 mx-auto py-4 py-md-5 px-lg-4">
 
   <form #formElement  [formGroup]="formorgStruct" (ngSubmit)="OnSubmit(formorgStruct)" class="form">
     <div class="form-group mt-5">
       <label for="branchId">{{ 'Hr.SelectBranch' | translate }}</label>
-      <select (change)="onBranchChange($event)"   id="branchId" formControlName="branchId"  class="form-control"  >
+      <select #branchElement (change)="onBranchChange($event)"   id="branchId" formControlName="branchId"  class="form-control"  >
         <option  value="" disabled selected>{{ 'Hr.BranchId' | translate }}</option>
         <option *ngFor="let item of branchData " [value]="item.Id">{{ item.NameAr }}</option>
       </select>
@@ -84,10 +88,10 @@
         <tr>
           <td *ngFor="let col of columns" [style.text-align]="'right'">
             <span class="table-data" *ngIf="col.field == 'ParentId'">
-              {{ level[col.field] && level[col.field] !== 0 ? getLevel(level[col.field]).NameAr : '' }}
+              {{ level[col.field] && level[col.field] !== 0 ? getLevel(level[col.field])?.NameAr : '' }}
             </span>
             <span class="table-data" *ngIf="col.field == 'LevelId'">
-              {{level[col.field]&& level[col.field] !== 0 ? getParent(level[col.field]).NameAr : '' }}
+              {{level[col.field]&& level[col.field] !== 0 ? getParent(level[col.field])?.NameAr : '' }}
             </span>
             <span class="table-data" *ngIf="col.field == 'BranchId'">
               {{ getBranch(level[col.field])?.NameAr }}
