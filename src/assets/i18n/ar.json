@@ -34,6 +34,7 @@
 "OrgStructNameAr" : "اسم المستوى",
 "OrgStructNameEn" :"اسم المستوى بالانجليزية",
 "OrgStructureNameAr" : "اسم الهيكل",
+"BranchId" : "الفرع",
 "OrgStructureNameEn" :"اسم المستوى بالانجليزية",
 "SelectParent" : "المستوى التابع له",
 "SelectLevel" : "الهيكل التابع له",

@@ -45,6 +45,7 @@ recursiveTemplate!: TemplateRef<any>;
       this.XtraAndPosBranchEpService.httpGetBranchGetAllForDropDown().subscribe((value:any)=>{
         let jsonData = JSON.parse(value);
         this.branchData = jsonData ;
+        this.refreshTable();
       })
     }
 

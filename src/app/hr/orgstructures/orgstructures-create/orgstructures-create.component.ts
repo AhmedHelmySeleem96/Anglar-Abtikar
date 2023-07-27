@@ -47,6 +47,7 @@ ngOnInit(): void {
   this.XtraAndPosBranchEpService.httpGetBranchGetAllForDropDown().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
     this.branchData = jsonData ;
+    this.refreshTable();
   })
   this.refreshTable();
   this.cols = [
@@ -192,30 +193,57 @@ OnSubmit(Form: FormGroup) {
     }
     generateTreeData(orgStructData: any[]): TreeNode[] {
       const treeNodes: TreeNode[] = [];
-      const branchMap: { [key: number]: TreeNode } = {};
+      const branchMap: { [key: number]: TreeNode } = {}; // Add type annotation for branchMap
+      const parentMap: { [key: number]: TreeNode } = {};
 
       for (const node of orgStructData) {
         const branchId = node.BranchId;
+        const parentId = node.ParentId;
+        const levelId = node.LevelId;
+
         const treeNode: TreeNode = {
           data: node,
           label: node.NameAr,
           children: []
         };
-        if (branchMap[branchId]) {
-          branchMap[branchId].children?.push(treeNode);
-        } else {
 
+        if (branchMap[branchId]) {
+          if (parentMap[parentId]) {
+            parentMap[parentId].children?.push(treeNode);
+          } else {
+            const parentNode: TreeNode = {
+              data: { NameAr: this.getLevel(parentId)?.NameAr },
+              label: this.getLevel(parentId)?.NameAr,
+              children: [treeNode]
+            };
+            parentMap[parentId] = parentNode;
+            branchMap[branchId].children?.push(parentNode);
+          }
+        } else {
           const branchNode: TreeNode = {
             data: { NameAr: this.getBranch(branchId)?.NameAr },
             label: this.getBranch(branchId)?.NameAr,
+            children: []
+          };
+
+          const parentNode: TreeNode = {
+            data: { NameAr: this.getLevel(parentId)?.NameAr },
+            label: this.getLevel(parentId)?.NameAr,
             children: [treeNode]
           };
+
+          parentMap[parentId] = parentNode;
           branchMap[branchId] = branchNode;
-          treeNodes.push(branchNode);
+          branchMap[branchId].children?.push(parentNode);
         }
+      }
+
+      for (const branchKey of Object.keys(branchMap)) {
+        treeNodes.push(branchMap[parseInt(branchKey, 10)]); // Convert branchKey to a number
       }
       return treeNodes;
     }
+
 
     getLevel(id :any){
       return this.orgStructuresData.filter((r)=>r.Id===id)[0]

@@ -41,6 +41,7 @@
   "ParentId": "Select Parent ",
   "SelectLevel" :"SelectLevel",
 "LevelId" : "LevelId",
+"BranchId" : "الفرع",
   "CountryNameAr" : "Country Name Ar",
   "CountryNameEn" : "Country Name En",
   "NationalityNameAr" : "Nationality Name Ar",

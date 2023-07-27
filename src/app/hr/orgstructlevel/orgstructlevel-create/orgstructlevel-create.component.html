@@ -9,20 +9,20 @@
 </div>
 <span class="button-space"></span>
 <!-- <p-tree [filter]="true" (nodeSelect)="setEdit($event)" [value]="treeData" class="w-full md:w-30rem" selectionMode="single" [(selection)]="selectedNode"></p-tree> -->
-
+<div class="container" *ngIf="branchData.length > 0"></div>
 <p-tree [value]="treeData" selectionMode="single" [(selection)]="selectedNode">
   <ng-template let-node pTemplate="default">
     <span>{{ node.label }}</span>
   </ng-template>
 </p-tree>
-
+</div>
 <div class="col-5 mx-auto py-4 py-md-5 px-lg-4">
 
   <form #formElement [formGroup]="formorgStruct" (ngSubmit)="OnSubmit(formorgStruct)" class="form">
     <div class="form-group mt-5">
-      <label for="branchId">{{ 'Hr.SelectBranch' | translate }}</label>
-      <select (change)="onBranchChange($event)"   id="branchId" formControlName="branchId"  class="form-control"  >
-        <option  value="" disabled selected>{{ 'Hr.BranchId' | translate }}</option>
+      <label for="branchId">{{ 'Hr.BranchId' | translate }}</label>
+      <select (change)="onBranchChange($event)"   id="BranchId" formControlName="branchId"  class="form-control"  >
+        <option  value="" disabled selected>{{ 'Hr.SelectBranch' | translate }}</option>
         <option *ngFor="let item of branchData " [value]="item.Id">{{ item.NameAr }}</option>
       </select>
     </div>
