@@ -192,28 +192,28 @@ OnSubmit(Form: FormGroup) {
     }
     generateTreeData(orgStructData: any[]): TreeNode[] {
       const treeNodes: TreeNode[] = [];
-      const idToNodeMap: { [key: number]: TreeNode } = {};
+      const branchMap: { [key: number]: TreeNode } = {};
+
       for (const node of orgStructData) {
+        const branchId = node.BranchId;
         const treeNode: TreeNode = {
           data: node,
           label: node.NameAr,
-          icon: 'pi pi-fw pi-inbox',
           children: []
         };
-        idToNodeMap[node.Id] = treeNode;
-      }
-
-      for (const node of orgStructData) {
-        if (node.ParentId !== 0) {
-          const parent = idToNodeMap[node.ParentId];
-          if (parent) {
-            parent.children = parent.children || [];
-            parent.children.push(idToNodeMap[node.Id]);              }
+        if (branchMap[branchId]) {
+          branchMap[branchId].children?.push(treeNode);
         } else {
-          treeNodes.push(idToNodeMap[node.Id]);
+
+          const branchNode: TreeNode = {
+            data: { NameAr: this.getBranch(branchId)?.NameAr },
+            label: this.getBranch(branchId)?.NameAr,
+            children: [treeNode]
+          };
+          branchMap[branchId] = branchNode;
+          treeNodes.push(branchNode);
         }
       }
-
       return treeNodes;
     }
 
