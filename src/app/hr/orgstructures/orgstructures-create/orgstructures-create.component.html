@@ -12,11 +12,7 @@
   <p-tree [filter]="true" (nodeSelect)="setEdit($event)" [value]="treeData" class="w-full md:w-30rem" selectionMode="single" [(selection)]="selectedNode"></p-tree>
 </div>
 
-<!-- <p-tree [value]="treeData" selectionMode="single" [(selection)]="selectedNode">
-  <ng-template let-node pTemplate="default">
-    <span>{{ node.label }}</span>
-  </ng-template>
-</p-tree> -->
+
 <div class="col-5 mx-auto py-4 py-md-5 px-lg-4">
 
   <form #formElement  [formGroup]="formorgStruct" (ngSubmit)="OnSubmit(formorgStruct)" class="form">
