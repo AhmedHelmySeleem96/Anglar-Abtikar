@@ -11,6 +11,8 @@ import { OrgstructlevelComponent } from './orgstructlevel/orgstructlevel.compone
 import { OrgstructuresComponent } from './orgstructures/orgstructures.component';
 import { AllowenceComponent } from './allowence/allowence.component';
 import { HospitalComponent } from './hospital/hospital.component';
+import { JobsComponent } from './jobs/jobs.component';
+import { JobModule } from './jobs/jobs.module';
 @NgModule({
   declarations: [
   CityComponent,
@@ -21,6 +23,7 @@ import { HospitalComponent } from './hospital/hospital.component';
   OrgstructuresComponent,
   AllowenceComponent,
   HospitalComponent,
+JobsComponent
   ],
   imports: [
     CommonModule,
@@ -39,6 +42,8 @@ import { HospitalComponent } from './hospital/hospital.component';
         path : "hospital" , loadChildren: () => import('./hospital/hospital.module').then(m => m.HospitalModule)
       },{
         path : "allowence" , loadChildren: () => import('./allowence/allowence.module').then(m => m.AllowenecModule)
+      },{
+        path : "jobs" , loadChildren: () => import('./jobs/jobs.module').then(m => m.JobModule)
       }]
     }]),
     TranslateModule,

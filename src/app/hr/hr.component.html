@@ -87,6 +87,23 @@
           <span class="d-block text-center pointer" [routerLink]="'/hr/orgstructures'">{{"Hr.Orgstructures" | translate}}</span>
           <span class="d-block text-center pointer" [routerLink]="'/hr/hospital'">{{"Hr.Hospitalnav" | translate}}</span>
           <span class="d-block text-center pointer" [routerLink]="'/hr/allowence'">{{"Hr.Allowencenav" | translate}}</span>
+          <div class="dropdown">
+            <span class="d-block text-center pointer" data-toggle="dropdown">
+              {{ "Hr.JobNamenav" | translate }}
+              <span class="caret"></span>
+            </span>
+            <div class="submenu dropdown-menu">
+              <span class="d-block text-center pointer" [routerLink]="'/hr/jobs/createJobs'">
+                {{ "Hr.CreateJobs" | translate }}
+              </span>
+              <span class="d-block text-center pointer" [routerLink]="'/hr/jobs/jobsNames'">
+                {{ "Hr.JobsNames" | translate }}
+              </span>
+              <span class="d-block text-center pointer" [routerLink]="'/hr/jobs/jobsCategories'">
+                {{ "Hr.JobsCategories" | translate }}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
       </div>

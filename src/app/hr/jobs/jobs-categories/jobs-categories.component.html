@@ -1,13 +1,13 @@
 <div class="col-7 mx-auto py-4 py-md-5 px-lg-4">
-  <h3>{{ "Hr.Allowencenav" | translate }}</h3>
-  <form #formElement [formGroup]="formAllowence" (ngSubmit)="OnSubmit(formAllowence)" class="form">
+  <h3>{{ "Hr.JobCatnav" | translate }}</h3>
+  <form #formElement [formGroup]="formJob" (ngSubmit)="OnSubmit(formJob)" class="form">
 
     <div class="form-group mt-5">
-      <input  id="NameAr" type="NameAr" formControlName="NameAr" required placeholder="{{ 'Hr.AllowenceNameAr' | translate }}" class="form-control">
+      <input  id="NameAr" type="NameAr" formControlName="NameAr" required placeholder="{{ 'Hr.JobCatNameAr' | translate }}" class="form-control">
     </div>
 
     <div class="form-group mt-5">
-      <input   id="NameEn" type="NameEn" formControlName="NameEn" required placeholder="{{ 'Hr.AllowenceNameEn' | translate }}" class="form-control">
+      <input   id="NameEn" type="NameEn" formControlName="NameEn" required placeholder="{{ 'Hr.JobCatNameEn' | translate }}" class="form-control">
     </div>
     <div class="form-group mt-5" *ngIf="isEdit">
       <label for="StatusId">{{ 'Hr.SelectStatus' | translate }}</label>
@@ -33,14 +33,14 @@
   </div>
 
   <!-- <div class="table-container" class="add-button">
-    <button (click)="addAllowence()"  class="btn btn-primary add-data-button">{{"Hr.AddAllowence"|translate}}</button>
+    <button (click)="addJob()"  class="btn btn-primary add-data-button">{{"Hr.AddJob"|translate}}</button>
   </div> -->
   <p-table
   [rowsPerPageOptions]="[5, 10, 15, 20]"
   [paginator]="true"
   [rows]="5"
   [columns]="cols"
-  [value]="allowenceData"
+  [value]="JobData"
   sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}"  #dt>
     <ng-template pTemplate="header" let-columns>
       <tr>
@@ -53,23 +53,23 @@
         </th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-allowence let-columns="columns">
+    <ng-template pTemplate="body" let-Job let-columns="columns">
       <tr>
         <td *ngFor="let col of columns" [style.text-align]="'right'">
           <span class="table-data" *ngIf="col.field == 'CreatedDate'">
-            {{ allowence[col.field] | date:'shortDate' }}
+            {{ Job[col.field] | date:'shortDate' }}
           </span>
           <span class="table-data" *ngIf="col.field == 'StatusId'">
-            {{ getStatus(allowence[col.field]).name }}
+            {{ getStatus(Job[col.field]).name }}
           </span>
           <span class="table-data" *ngIf="col.field != 'CreatedDate' && col.field != 'StatusId'">
-            {{ allowence[col.field] }}
+            {{ Job[col.field] }}
           </span>
         </td>
         <td>
           <div style="text-align: center">
-            <img src="assets/images/editIcon.png" class="mx-3" (click)=" setEdit(allowence)" />
-            <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteConfirm(allowence)" />
+            <img src="assets/images/editIcon.png" class="mx-3" (click)=" setEdit(Job)" />
+            <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteConfirm(Job)" />
           </div>
         </td>
       </tr>

@@ -1,0 +1,130 @@
+<div class="col-7 mx-auto py-4 py-md-5 px-lg-4">
+  <h3>{{ "Hr.JobCreate" | translate }}</h3>
+  <form #formElement [formGroup]="formJob" (ngSubmit)="OnSubmit(formJob)" class="form">
+    <div class="row">
+      <div class="form-group col-md-4 mt-5">
+        <input id="SNO" type="number" formControlName="SNO" required placeholder="{{ 'Hr.SNO' | translate }}" class="form-control">
+      </div>
+      <div class="form-group col-md-4 mt-5">
+        <select #branchElement id="branchId" formControlName="BranchId" class="form-control">
+        <option  value="" disabled selected>{{ 'Hr.SelectBranch' | translate }}</option>
+        <option *ngFor="let item of branchData " [value]="item.Id">{{ item.NameAr }}</option>
+      </select>
+    </div>
+    <div class="form-group col-md-4 mt-5">
+      <select #branchElement id="jobCategory" formControlName="JobCategoryId" class="form-control">
+        <option  value="" disabled selected>{{ 'Hr.SelectJobCategory' | translate }}</option>
+        <option *ngFor="let item of jobCatData " [value]="item.Id">{{ item.NameAr }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row" *ngIf="jobDifServiceData != null">
+    <div class="form-group col-md-4 mt-5" *ngFor="let item of jobDifServiceData; let i = index">
+      <label for="item.LevelName">{{'Hr.Select' + jobDifNames[i] | translate }}</label>
+      <select required [id]="item.LevelName" [formControlName]="'Level' + (i + 1) + 'Id'" class="form-control">
+        <option value="" disabled selected>{{ 'Hr.Select' + jobDifNames[i] | translate }}</option>
+        <option *ngFor="let org of item.OrgStructureNames; let j = index" [value]="item.OrgStructureIds[j]">{{ org }}</option>
+      </select>
+    </div>
+</div>
+  <div class="row">
+    <div class="form-group col-md-4 mt-5">
+      <input id="NameAr" type="NameAr" formControlName="NameAr" required placeholder="{{ 'Hr.JobCatNameAr' | translate }}" class="form-control">
+    </div>
+    <div class="form-group col-md-4 mt-5">
+      <input id="NameEn" type="NameEn" formControlName="NameEn" required placeholder="{{ 'Hr.JobCatNameEn' | translate }}" class="form-control">
+    </div>
+    <div class="form-group col-md-4 mt-5" *ngIf="isEdit">
+      <label for="StatusId">{{ 'Hr.SelectStatus' | translate }}</label>
+      <select id="StatusId" formControlName="StatusId" class="form-control">
+        <option  value="" disabled selected>{{ 'Hr.SelectStatus' | translate }}</option>
+        <option *ngFor="let status of statusData " [value]="status.id">{{ status.name }}</option>
+      </select>
+    </div>
+    <div class="form-group col-md-4 mt-5" *ngIf="isEdit">
+      <select id="StatusId" formControlName="StatusId" class="form-control">
+        <option value="" disabled selected>{{ 'Hr.SelectStatus' | translate }}</option>
+        <option *ngFor="let status of statusData" [value]="status.id">{{ status.name }}</option>
+      </select>
+    </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-4 mt-5">
+        <input id="MaxJobsNo" type="number" formControlName="MaxJobsNo" required placeholder="{{ 'Hr.MaxJobsNo' | translate }}" class="form-control">
+      </div>
+      <div class="form-group col-md-4 mt-5">
+        <input id="notes" type="notes" formControlName="notes" placeholder="{{ 'Hr.Notes' | translate }}" class="form-control">
+      </div>
+    </div>
+
+    <div class="bottom-buttons">
+      <button type="submit" class="d-block w-100 py-3">{{ 'Save' | translate }}</button>
+    </div>
+  </form>
+</div>
+
+
+<div class="container">
+
+  <div class="search-container">
+    <input (input)="onSearch($event)" class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
+  </div>
+  <p-table
+  [rowsPerPageOptions]="[5, 10, 15, 20]"
+  [paginator]="true"
+  [rows]="5"
+  [columns]="cols"
+  [value]="JobData"
+  sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}"  #dt>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field" [style.text-align]="'right'" >
+          {{ col.header | translate }}
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
+        <th class="ui-sortable-column table-data" [style.text-align]="'right'">
+          {{ 'Actions' | translate }}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-Job let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns" [style.text-align]="'right'">
+          <span class="table-data" *ngIf="col.field == 'CreatedDate'">
+            {{ Job[col.field] | date:'shortDate' }}
+          </span>
+          <span class="table-data" *ngIf="col.field == 'StatusId'">
+            {{ getStatus(Job[col.field])?.name }}
+          </span>
+          <span class="table-data" *ngIf="col.field.includes('Level')">
+            {{ Job[col.field] && Job[col.field] !== 0 ? getLevelName(Job[col.field])?.NameAr : '' }}
+          </span>
+          <span class="table-data" *ngIf="col.field == 'BranchId'">
+            {{ getBranch(Job[col.field])?.NameAr }}
+          </span>
+          <span class="table-data" *ngIf="col.field == 'JobCategoryId'">
+            {{ getJobCategory(Job[col.field])?.NameAr }}
+          </span>
+          <span class="table-data" *ngIf="col.field != 'CreatedDate'&&col.field != 'JobCategoryId' &&col.field != 'BranchId' && col.field != 'StatusId' && !col.field.includes('Level') ">
+            {{ Job[col.field] }}
+          </span>
+        </td>
+        <td>
+          <div style="text-align: center">
+            <img src="assets/images/editIcon.png" class="mx-3" (click)=" setEdit(Job)" />
+            <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteConfirm(Job)" />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+
+</div>
+<div class="bottom-buttons">
+<button (click)="printPdf()" class="btn btn-primary add-data-button">{{"Hr.Print" | translate}}</button>
+<span class="button-space"></span>
+<button (click)="exportData()" class="btn btn-primary add-data-button">{{"Hr.Export" | translate}}</button>
+<span class="button-space"></span>
+<button (click)="goHome()" class="btn btn-primary add-data-button">{{"Cancel" | translate}}</button>
+</div>

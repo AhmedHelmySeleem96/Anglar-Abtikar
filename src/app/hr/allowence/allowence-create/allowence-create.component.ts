@@ -27,7 +27,6 @@ export class AllowenceCreateComponent implements OnInit {
         let jsonData = JSON.parse(value);
         this.statusData = jsonData;
       });
-     console.log(this.statusData) ;
        this.isEdit = this.route.snapshot.queryParams['edit'] ;
        const queryParams = this.route.root.snapshot.queryParams;
        if(queryParams['allowenceData']){

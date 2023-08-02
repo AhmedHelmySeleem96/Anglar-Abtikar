@@ -32,7 +32,6 @@ export class NationalityPreviewComponent implements OnInit  {
 
       this.XtraAndPosNationalityService.httpGetXtraAndPosNationalityGetNationalityService().subscribe((value:any)=>{
         let jsonData = JSON.parse(value);
-        console.log(jsonData)
         this.nationalityData = jsonData.Obj.nationality;
       });
       this.cols = [

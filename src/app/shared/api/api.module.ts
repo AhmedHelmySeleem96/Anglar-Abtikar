@@ -42,6 +42,9 @@ import { XtraAndPosFinanceEpService } from './services/xtra-and-pos-finance-ep.s
 import { XtraAndPosGeneralLedgerEpService } from './services/xtra-and-pos-general-ledger-ep.service';
 import { XtraAndPosHospitalService } from './services/xtra-and-pos-hospital.service';
 import { XtraAndPosItemEpService } from './services/xtra-and-pos-item-ep.service';
+import { XtraAndPosJobCategoryService } from './services/xtra-and-pos-job-category.service';
+import { XtraAndPosJobDifinitionService } from './services/xtra-and-pos-job-difinition.service';
+import { XtraAndPosJobNameService } from './services/xtra-and-pos-job-name.service';
 import { XtraAndPosLookUpsService } from './services/xtra-and-pos-look-ups.service';
 import { XtraAndPosNationalityService } from './services/xtra-and-pos-nationality.service';
 import { XtraAndPosOrgStructLevelsService } from './services/xtra-and-pos-org-struct-levels.service';
@@ -101,6 +104,9 @@ import { XtraAndPosTreasuryEpService } from './services/xtra-and-pos-treasury-ep
     XtraAndPosGeneralLedgerEpService,
     XtraAndPosHospitalService,
     XtraAndPosItemEpService,
+    XtraAndPosJobCategoryService,
+    XtraAndPosJobDifinitionService,
+    XtraAndPosJobNameService,
     XtraAndPosLookUpsService,
     XtraAndPosNationalityService,
     XtraAndPosOrgStructLevelsService,

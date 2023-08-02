@@ -36,6 +36,9 @@ export { XtraAndPosFinanceEpService } from './services/xtra-and-pos-finance-ep.s
 export { XtraAndPosGeneralLedgerEpService } from './services/xtra-and-pos-general-ledger-ep.service';
 export { XtraAndPosHospitalService } from './services/xtra-and-pos-hospital.service';
 export { XtraAndPosItemEpService } from './services/xtra-and-pos-item-ep.service';
+export { XtraAndPosJobCategoryService } from './services/xtra-and-pos-job-category.service';
+export { XtraAndPosJobDifinitionService } from './services/xtra-and-pos-job-difinition.service';
+export { XtraAndPosJobNameService } from './services/xtra-and-pos-job-name.service';
 export { XtraAndPosLookUpsService } from './services/xtra-and-pos-look-ups.service';
 export { XtraAndPosNationalityService } from './services/xtra-and-pos-nationality.service';
 export { XtraAndPosOrgStructLevelsService } from './services/xtra-and-pos-org-struct-levels.service';

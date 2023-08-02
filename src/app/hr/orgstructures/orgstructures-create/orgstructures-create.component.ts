@@ -200,7 +200,6 @@ OnSubmit(Form: FormGroup) {
         const branchId = node.BranchId;
         const parentId = node.ParentId;
         const levelId = node.LevelId;
-console.log(node);
         const treeNode: TreeNode = {
           data: node,
           label: node.NameAr,
