@@ -53,6 +53,7 @@ import { XtraAndPosReturnSaleInvoiceEpService } from './services/xtra-and-pos-re
 import { XtraAndPosSaleInvoiceEpService } from './services/xtra-and-pos-sale-invoice-ep.service';
 import { XtraAndPosSaleOfferPricesEpService } from './services/xtra-and-pos-sale-offer-prices-ep.service';
 import { XtraAndPosShiftEpService } from './services/xtra-and-pos-shift-ep.service';
+import { XtraAndPosSpecializationsService } from './services/xtra-and-pos-specializations.service';
 import { XtraAndPosStorageEpService } from './services/xtra-and-pos-storage-ep.service';
 import { XtraAndPosSupplierEpService } from './services/xtra-and-pos-supplier-ep.service';
 import { XtraAndPosTreasuriesEpService } from './services/xtra-and-pos-treasuries-ep.service';
@@ -115,6 +116,7 @@ import { XtraAndPosTreasuryEpService } from './services/xtra-and-pos-treasury-ep
     XtraAndPosSaleInvoiceEpService,
     XtraAndPosSaleOfferPricesEpService,
     XtraAndPosShiftEpService,
+    XtraAndPosSpecializationsService,
     XtraAndPosStorageEpService,
     XtraAndPosSupplierEpService,
     XtraAndPosTreasuriesEpService,

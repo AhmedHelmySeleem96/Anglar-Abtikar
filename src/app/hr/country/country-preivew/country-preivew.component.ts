@@ -4,21 +4,25 @@ import { ToastrService } from 'ngx-toastr';
 import { XtraAndPosCountryService } from 'src/app/shared/api';
 import { ExportData } from 'src/app/services/Export-data.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-country-preivew',
   templateUrl: './country-preivew.component.html',
   styleUrls: ['./country-preivew.component.css'],
-  providers: [ExportData]
+  providers: [ExportData,MessageService]
 })
 export class CountryPreivewComponent implements OnInit  {
   constructor(private router: Router,private toastr:ToastrService,private fb:FormBuilder
-    ,private XtraAndPos_Country :  XtraAndPosCountryService,private ExportData :ExportData){};
+    ,private XtraAndPos_Country :  XtraAndPosCountryService,private ExportData :ExportData,
+    private MessageService : MessageService,public translate :TranslateService){};
 addCountry(){
   this.router.navigateByUrl('hr/country/createCountry');
 }
 countryData :any[] = [] ;
 cols :any ;
+deleteId : any ;
 @ViewChild('dt') dt: any;
 formCountry :FormGroup= this.fb.group({countryNameAr: new FormControl('', [Validators.required]),
 countryNameEn: new FormControl('', [Validators.required]),
@@ -62,32 +66,34 @@ onSearch(searchValue:Event): void {
   this.dt.filterGlobal((searchValue.target as HTMLInputElement).value, 'contains');
 }
 showDeleteConfirm(country: any) {
-  this.toastr
-    .info('Do you want to delete this Country?', 'Confirmation', {
-      timeOut: 0,
-      extendedTimeOut: 0,
-      closeButton: true,
-      positionClass: 'toast-top-center',
-      tapToDismiss: false,
-    })
-    .onTap.subscribe(() => {
-      this.deleteCountry(country);
-    });
+  this.deleteId = country.Id,
+  this.MessageService.add({
+    key: 'c',
+    sticky: true,
+    severity: 'warn',
+    summary: this.translate.instant('AreYouSureToDelete') + ' ' + country.NameAr + ' ' + this.translate.instant('?'),
+    detail: this.translate.instant('Confirmtoproceed'),
+  });
 }
-deleteCountry(country: any) {
+onDeleteConfirm() {
   this.XtraAndPos_Country.httpDeleteXtraAndPosCountryDeleteCountryService({
-    id: country.Id,
+    id: this.deleteId,
   }).subscribe((value: any) => {
     let jsonData = JSON.parse(value);
-    this.toastr.clear();
-    this.toastr.success(jsonData.Message);
+    this.deleteId = 0;
+    this.MessageService.add({
+      severity: 'success',
+      detail: jsonData.Message});
     this.refreshTable();
     this.formCountry.reset();
+    this.MessageService.clear('c')
   }, (error: any) => {
     this.toastr.error('Failed to delete country.');
   });
 }
-
+onDeleteReject() {
+  this.MessageService.clear('c');
+}
 refreshTable() {
   this.XtraAndPos_Country.httpGetXtraAndPosCountryGetCountryService().subscribe((value: any) => {
     let jsoncountryData = JSON.parse(value);
@@ -109,11 +115,15 @@ onSubmit(Form: FormGroup) {
     body : model
   }).subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
-      this.toastr.success(jsonData.Message)
+    this.MessageService.add({
+      severity: 'success',
+      detail: jsonData.Message});
       this.formCountry.reset();
       this.refreshTable();
   })}else{
-    this.toastr.success("ادخل البيانات المطلوبة")
+    this.MessageService.add({
+      severity: 'error',
+      detail: this.translate.instant('EnterAllData')});
   }
 }else{
   let model = this.formCountry.value;
@@ -123,7 +133,9 @@ onSubmit(Form: FormGroup) {
     body: model
   }).subscribe((value: any) => {
     let jsonData = JSON.parse(value);
-    this.toastr.success(jsonData.Message);
+    this.MessageService.add({
+      severity: 'success',
+      detail: jsonData.Message});
     this.refreshTable()
     this.formCountry.reset();
     this.isEdit = false;

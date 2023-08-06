@@ -6,20 +6,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
-import { HospitalCreateComponent } from './hospital-create/hospital-create.component';
-import { HospitalPreviewComponent } from './hospital-preview/hospital-preview.component';
-import { MessagesModule } from 'primeng/messages';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TreeModule } from 'primeng/tree';
+import { SpecializationsCreateComponent } from './specializations-create/specializations-create.component';
 
 @NgModule({
   declarations: [
-    HospitalCreateComponent,
-    HospitalPreviewComponent
+    SpecializationsCreateComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild([{path :'' ,component:HospitalPreviewComponent}
-    ,{path:'createHospital' ,component:HospitalCreateComponent}]
+    RouterModule.forChild([{path :'' ,component:SpecializationsCreateComponent}]
    ),
     TranslateModule,
     FormsModule,
@@ -27,9 +23,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     TableModule,
     DropdownModule,
     ToastModule,
-    ConfirmDialogModule,
-    MessagesModule
+    TreeModule,
   ]
 })
-export class HospitalModule {
+export class SpecializationsModule {
  }

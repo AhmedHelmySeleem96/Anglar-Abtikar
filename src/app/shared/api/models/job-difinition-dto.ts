@@ -1,12 +1,12 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface JobDifinitionDto {
-  jobCategoryId?: number;
-  level1Id?: number;
-  level2Id?: number;
-  level3Id?: number;
-  level4Id?: number;
-  maxJobsNo?: number;
+  jobCategoryId?: null | number;
+  level1Id?: null | number;
+  level2Id?: null | number;
+  level3Id?: null | number;
+  level4Id?: null | number;
+  maxJobsNo?: null | number;
   nameAr?: null | string;
   nameEn?: null | string;
   notes?: null | string;

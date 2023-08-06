@@ -92,6 +92,7 @@ export { SearchStorage } from './models/search-storage';
 export { SeedOptions } from './models/seed-options';
 export { Shift } from './models/shift';
 export { ShippingDto } from './models/shipping-dto';
+export { SpecializationsDto } from './models/specializations-dto';
 export { Storage } from './models/storage';
 export { StorageOpenDetailsDto } from './models/storage-open-details-dto';
 export { StorageOpenDto } from './models/storage-open-dto';

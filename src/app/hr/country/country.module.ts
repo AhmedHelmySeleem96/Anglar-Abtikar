@@ -7,7 +7,10 @@ import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
 import { CountryPreivewComponent } from './country-preivew/country-preivew.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CountryCreateComponent } from './country-create/country-create.component';
+import { MessagesModule } from 'primeng/messages';
+
 @NgModule({
   declarations: [
     CountryPreivewComponent,
@@ -23,7 +26,9 @@ import { CountryCreateComponent } from './country-create/country-create.componen
     ReactiveFormsModule,
     TableModule,
     DropdownModule,
-    ToastModule
+    ToastModule,
+    ConfirmDialogModule,
+    MessagesModule
   ]
 })
 export class CountryModule {

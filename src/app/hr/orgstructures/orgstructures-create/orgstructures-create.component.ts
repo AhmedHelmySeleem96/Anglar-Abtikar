@@ -188,66 +188,109 @@ OnSubmit(Form: FormGroup) {
       this.XtraAndPosOrgStructuresService.httpGetXtraAndPosOrgStructuresGetOrgStructuresService().subscribe((value: any) => {
         let jsonData = JSON.parse(value);
         this.orgStructuresData = jsonData.Obj.orgStructures;
-        this.treeData = this.generateTreeData(this.orgStructuresData);
-      });
-    }
-    generateTreeData(orgStructData: any[]): TreeNode[] {
-      const treeNodes: TreeNode[] = [];
-      const branchMap: { [key: number]: TreeNode } = {};
-      const parentMap: { [key: number]: TreeNode } = {};
-
-      for (const node of orgStructData) {
-        const branchId = node.BranchId;
-        const parentId = node.ParentId;
-        const levelId = node.LevelId;
-        const treeNode: TreeNode = {
-          data: node,
-          label: node.NameAr,
-          children: []
-        };
-
-        if (branchMap[branchId]) {
-          if (parentMap[parentId]) {
-            if (!parentMap[parentId].children?.some((child) => child.label === treeNode.label)) {
-              parentMap[parentId].children?.push(treeNode);
-            }
-          } else {
-            const parentNode: TreeNode = {
-              data: { NameAr: this.getLevel(parentId)?.NameAr },
-              label: this.getLevel(parentId)?.NameAr,
-              children: [treeNode]
-            };
-            parentMap[parentId] = parentNode;
-            if (!branchMap[branchId].children?.some((child) => child.label === parentNode.label)) {
-              branchMap[branchId].children?.push(parentNode);
-            }
-          }
-        } else {
-          const branchNode: TreeNode = {
-            data: { NameAr: this.getBranch(branchId)?.NameAr },
-            label: this.getBranch(branchId)?.NameAr,
-            children: []
-          };
-
-          const parentNode: TreeNode = {
-            data: { NameAr: this.getParent(parentId)?.NameAr },
-            label: this.getParent(parentId)?.NameAr,
-            children: [treeNode]
-          };
-
-          parentMap[parentId] = parentNode;
-          branchMap[branchId] = branchNode;
-          if (!branchNode.children?.some((child) => child.label === parentNode.label)) {
-            branchNode.children?.push(parentNode);
+        debugger
+        const branches: any[] =[];
+        for (const iterator of this.orgStructuresData) {
+          if(branches.filter((r)=>r.label==this.getBranch(iterator.BranchId)?.NameAr).length==0){
+            branches.push({label:this.getBranch(iterator.BranchId)?.NameAr,key :iterator.BranchId})
           }
         }
-      }
-
-      for (const branchKey of Object.keys(branchMap)) {
-        treeNodes.push(branchMap[parseInt(branchKey, 10)]);
-      }
-      return treeNodes;
+        for (const iterator of branches) {
+          iterator.children = this.buildTree(this.orgStructuresData.filter((r)=>r.BranchId==iterator.key),0)
+        }
+        this.treeData = branches;
+        console.log(this.orgStructuresData)
+        // this.treeData = this.generateTreeData(this.orgStructuresData);
+      });
     }
+    // generateTreeData(orgStructData: any[]): TreeNode[] {
+    //   const treeNodes: TreeNode[] = [];
+    //   const branchMap: { [key: number]: TreeNode } = {};
+    //   const parentMap: { [key: number]: TreeNode } = {};
+
+    //   for (const node of orgStructData) {
+    //     const branchId = node.BranchId;
+    //     const parentId = node.ParentId;
+    //     const levelId = node.LevelId;
+    //     const treeNode: TreeNode = {
+    //       data: node,
+    //       label: node.NameAr,
+    //       children: []
+    //     };
+
+    //     if (branchMap[branchId]) {
+    //       if (parentMap[parentId]) {
+    //         if (!parentMap[parentId].children?.some((child) => child.label === treeNode.label)) {
+    //           parentMap[parentId].children?.push(treeNode);
+    //         }
+    //       } else {
+    //         const parentNode: TreeNode = {
+    //           data: { NameAr: this.getLevel(parentId)?.NameAr },
+    //           label: this.getLevel(parentId)?.NameAr,
+    //           children: [treeNode]
+    //         };
+    //         parentMap[parentId] = parentNode;
+    //         if (!branchMap[branchId].children?.some((child) => child.label === parentNode.label)) {
+    //           branchMap[branchId].children?.push(parentNode);
+    //         }
+    //       }
+    //     } else {
+    //       const branchNode: TreeNode = {
+    //         data: { NameAr: this.getBranch(branchId)?.NameAr },
+    //         label: this.getBranch(branchId)?.NameAr,
+    //         children: []
+    //       };
+
+    //       const parentNode: TreeNode = {
+    //         data: { NameAr: this.getParent(parentId)?.NameAr },
+    //         label: this.getParent(parentId)?.NameAr,
+    //         children: [treeNode]
+    //       };
+
+    //       parentMap[parentId] = parentNode;
+    //       branchMap[branchId] = branchNode;
+    //       if (!branchNode.children?.some((child) => child.label === parentNode.label)) {
+    //         branchNode.children?.push(parentNode);
+    //       }
+    //     }
+    //   }
+
+    //   for (const branchKey of Object.keys(branchMap)) {
+    //     treeNodes.push(branchMap[parseInt(branchKey, 10)]);
+    //   }
+    //   console.log(treeNodes);
+    //   return treeNodes;
+    // }
+
+     buildTree(nodes: any, parentId: number | null): TreeNode[] {
+      debugger
+      const children: TreeNode[] = [];
+      for (const node of nodes.filter((n:any) => n.ParentId === parentId)) {
+        const childNode: TreeNode = {
+          key : node.Id,
+          label: node.NameAr,
+
+        };
+        const nestedChildren = this.buildTree(nodes, node.Id);
+        if (nestedChildren.length > 0) {
+          childNode.children = nestedChildren;
+        }
+        children.push(childNode);
+      }
+      return children;
+    }
+
+     convertToStructuredJSON(rows: any): TreeNode[] {
+      debugger
+      const baseParents = rows.filter((row:any) => row.ParentId === 0);
+      const structuredJSON: TreeNode[] = [];
+      for (const baseParent of baseParents) {
+        const tree = this.buildTree(rows, baseParent.Id);
+        structuredJSON.push(...tree);
+      }
+      return structuredJSON;
+    }
+
 
     getLevel(id :any){
       return this.orgStructuresData.filter((r)=>r.Id===id)[0]

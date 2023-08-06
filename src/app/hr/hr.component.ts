@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./hr.component.css']
 })
 export class HrComponent {
-
+  isOpened = false ;
 }

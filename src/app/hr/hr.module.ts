@@ -13,6 +13,8 @@ import { AllowenceComponent } from './allowence/allowence.component';
 import { HospitalComponent } from './hospital/hospital.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { JobModule } from './jobs/jobs.module';
+import { SpecializationsComponent } from './specializations/specializations.component';
+import { SpecializationsCreateComponent } from './specializations/specializations-create/specializations-create.component';
 @NgModule({
   declarations: [
   CityComponent,
@@ -23,7 +25,8 @@ import { JobModule } from './jobs/jobs.module';
   OrgstructuresComponent,
   AllowenceComponent,
   HospitalComponent,
-JobsComponent
+JobsComponent,
+SpecializationsComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +47,8 @@ JobsComponent
         path : "allowence" , loadChildren: () => import('./allowence/allowence.module').then(m => m.AllowenecModule)
       },{
         path : "jobs" , loadChildren: () => import('./jobs/jobs.module').then(m => m.JobModule)
+      },{
+        path : "specializations" , loadChildren: () => import('./specializations/specializations.module').then(m => m.SpecializationsModule)
       }]
     }]),
     TranslateModule,

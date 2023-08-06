@@ -79,3 +79,17 @@
   <button (click)="goHome()" class="btn btn-primary add-data-button">{{"Cancel" | translate}}</button>
 </div>
 </div>
+<p-toast position="top-center"></p-toast>
+<<p-toast position="center" key="c" (onClose)="onDeleteReject()" [baseZIndex]="5000">
+  <ng-template let-message pTemplate="message">
+    <div style="text-align: center">
+      <i class="pi pi-exclamation-triangle" ></i>
+      <h3>{{ message.summary }}</h3>
+      <p>{{ message.detail }}</p>
+    </div>
+    <div class="bottom-buttons">
+      <button type="button" pButton (click)="onDeleteConfirm()" label="Yes" class="ui-button-success"></button>
+      <button type="button" pButton (click)="onDeleteReject()" label="No" class="ui-button-secondary"></button>
+    </div>
+  </ng-template>
+</p-toast>

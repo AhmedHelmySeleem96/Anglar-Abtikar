@@ -23,6 +23,9 @@
   "Hr" : "شئون الموظفين"
 
 },
+"AreYouSureToDelete" : "هل انت متاكد من حذف",
+"Confirmtoproceed": "تاكيد ليتم المسح",
+"EnterAllData":"ادخل البيانات المطلوبه",
 "Hr":{
 "City" : " المدن",
 "Selectالادرات": "اختر الادارات",
@@ -68,13 +71,15 @@
 "Hospital" : "اسم المستشفي",
 "HospitalNameAr" : "اسم المستشفي",
 "HospitalNameEn" :"اسم المستشفي بالانجليزية",
-
+"SpecializationsNameAr" : "اسم التخصص",
+"SpecializationsNameEn" :"اسم التخصص بالانجليزية",
 "JobCatnav" : "الفئات الوظيفية",
 "AddJobCat" : "اضافة الفئة الوظيفية",
 "JobCat" : "اسم الفئة الوظيفية",
+"Doyouwanttodeletethishospital?":"هل تريد حذف المستشفي",
 "JobCatNameAr" : "اسم الفئة الوظيفية",
 "JobCatNameEn" :"اسم الفئة الوظيفية بالانجليزية",
-
+"Specializationsnav" : "التخصصات",
 "JobNamenav" : "الوظائف",
 "AddJobName" : "اضافة وظيفية",
 "JobName" : "اسم  الوظيفية",
@@ -97,6 +102,7 @@
 "Country" : "اسم الدولة",
 "Hospital" : "اسم المستشفي",
 "HospitalId" : "كود المستشفي",
+"SpecializationsId" : "كود التخصص",
 "JobCat" : "اسم الفئة الوظيفية",
 "JobCatId" : "كود الفئة الوظيفية",
 "BranchId" : "الفرع",

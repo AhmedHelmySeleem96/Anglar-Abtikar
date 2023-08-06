@@ -47,6 +47,7 @@ export { XtraAndPosReturnSaleInvoiceEpService } from './services/xtra-and-pos-re
 export { XtraAndPosSaleInvoiceEpService } from './services/xtra-and-pos-sale-invoice-ep.service';
 export { XtraAndPosSaleOfferPricesEpService } from './services/xtra-and-pos-sale-offer-prices-ep.service';
 export { XtraAndPosShiftEpService } from './services/xtra-and-pos-shift-ep.service';
+export { XtraAndPosSpecializationsService } from './services/xtra-and-pos-specializations.service';
 export { XtraAndPosStorageEpService } from './services/xtra-and-pos-storage-ep.service';
 export { XtraAndPosSupplierEpService } from './services/xtra-and-pos-supplier-ep.service';
 export { XtraAndPosTreasuriesEpService } from './services/xtra-and-pos-treasuries-ep.service';

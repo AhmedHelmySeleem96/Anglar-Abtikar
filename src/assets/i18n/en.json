@@ -25,6 +25,10 @@
   "SelectCountry" : "Select Country"
 
 },
+"AreYouSureToDelete" : "Are You Sure To Delete",
+"Confirmtoproceed": "Confirm to proceed",
+"EnterAllData":"Add All Data",
+
 "Hr":{
   "City" : " Cities",
 "Select" : "Select",
@@ -74,12 +78,14 @@
 "Hospital" :" Hospital Name",
 "HospitalNameAr" : "Hospital Name",
 "HospitalNameEn" :"Hospital Name By English",
+"SpecializationsNameAr" : "Specializations Name",
+"SpecializationsNameEn" :"Specializations Name By English",
 "JobCatnav" : "Job Categories",
 "AddJobCat" : "Add Job Category",
 "JobCat" : "Job Category Name",
 "JobCatNameAr" : "Job Category Name",
 "JobCatNameEn" :"Job Category Name English",
-
+"Specializationsnav" : "Specializations",
 "JobNamenav" : "Jobs",
 "AddJobName" : "Add Job",
 "JobName" : "Job Name",
@@ -106,6 +112,7 @@
 "CountryId" : "Country Id",
 "Hospital" : " Hospital Name",
 "HospitalId" :"Hospital Id",
+"SpecializationsId" :"Specializations Id",
 "JobCat" : "Job Category Name",
 "JobCatId" : "Job Category Id",
 "JobName" : "Job Name",

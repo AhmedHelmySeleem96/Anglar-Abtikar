@@ -69,43 +69,62 @@
         </div>
       </div>
 
-      <div class="nav-item dropdown m-0 p-0">
-        <a aria-label="Them"  href="#" class="nav-link p-0 " data-bs-toggle="dropdown">
-          <span class="d-block  text-nowrap p-0 ">
-            {{"navBar.Hr" | translate}}
-            <svg  width="15" fill="#ff8100"  class='mx-1' viewBox="0 0 16 16">
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-            </svg>
-        </span>
+
+      <div class="dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          {{"navBar.Hr" | translate}}
+          <svg width="15" fill="#ff8100" class='mx-1' viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+          </svg>
         </a>
-        <div class="dropdown-menu m-0">
-          <span class="d-block text-center pointer" [routerLink]="'/hr/city'">{{"Hr.City" | translate}}</span>
-          <span class="d-block text-center pointer" [routerLink]="'/hr/country'">{{"Hr.Countrynav" | translate}}</span>
-          <span class="d-block text-center pointer" [routerLink]="'/hr/nationality'">{{"Hr.Nationalitynav" | translate}}</span>
-          <span class="d-block text-center pointer" [routerLink]="'/hr/orgstructlevel'">{{"Hr.Orgstruct" | translate}}</span>
-          <span class="d-block text-center pointer" [routerLink]="'/hr/orgstructures'">{{"Hr.Orgstructures" | translate}}</span>
-          <span class="d-block text-center pointer" [routerLink]="'/hr/hospital'">{{"Hr.Hospitalnav" | translate}}</span>
-          <span class="d-block text-center pointer" [routerLink]="'/hr/allowence'">{{"Hr.Allowencenav" | translate}}</span>
-          <div class="dropdown">
-            <span class="d-block text-center pointer" data-toggle="dropdown">
-              {{ "Hr.JobNamenav" | translate }}
-              <span class="caret"></span>
-            </span>
-            <div class="submenu dropdown-menu">
-              <span class="d-block text-center pointer" [routerLink]="'/hr/jobs/createJobs'">
-                {{ "Hr.CreateJobs" | translate }}
-              </span>
-              <span class="d-block text-center pointer" [routerLink]="'/hr/jobs/jobsNames'">
-                {{ "Hr.JobsNames" | translate }}
-              </span>
-              <span class="d-block text-center pointer" [routerLink]="'/hr/jobs/jobsCategories'">
-                {{ "Hr.JobsCategories" | translate }}
-              </span>
+        <ul class=" dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li>
+            <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/city'">{{ "Hr.City" | translate }}</a>
+          </li>
+          <li>
+            <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/country'">{{ "Hr.Countrynav" | translate }}</a>
+          </li>
+          <li>
+            <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/nationality'">{{ "Hr.Nationalitynav" | translate }}</a>
+          </li>
+          <li>
+            <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/orgstructlevel'">{{ "Hr.Orgstruct" | translate }}</a>
+          </li>
+          <li>
+            <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/orgstructures'">{{ "Hr.Orgstructures" | translate }}</a>
+          </li>
+          <li>
+            <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/hospital'">{{ "Hr.Hospitalnav" | translate }}</a>
+          </li>
+          <li>
+            <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/allowence'">{{ "Hr.Allowencenav" | translate }}</a>
+          </li>
+          <li>
+            <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/specializations'">{{ "Hr.Specializationsnav" | translate }}</a>
+          </li>
+          <li class="dropdown-submenu" >
+            <div (mouseleave)="isOpened = false" [ngClass]="{isOpened:isOpened}" >
+              <a class="d-block text-center pointer dropdown-toggle " (mouseenter)="$event.preventDefault(); isOpened=true" id="jobDropdownToggles" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                {{ "Hr.JobNamenav" | translate }} &raquo;
+              </a>
+              <ul class=" pointer dropdown-menu" aria-labelledby="jobDropdownToggles">
+                <li>
+                  <a class="  pointer dropdown-item"  [routerLink]="'/hr/jobs/createJobs'">{{ "Hr.CreateJobs" | translate }}</a>
+                </li>
+                <li>
+                  <a class=" pointer dropdown-item"  [routerLink]="'/hr/jobs/jobsNames'">{{ "Hr.JobsNames" | translate }}</a>
+                </li>
+                <li>
+                  <a class=" pointer dropdown-item"  [routerLink]="'/hr/jobs/jobsCategories'">{{ "Hr.JobsCategories" | translate }}</a>
+                </li>
+              </ul>
+
             </div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
+
       </div>
     </div>
   </div>
