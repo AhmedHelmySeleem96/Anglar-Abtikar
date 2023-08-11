@@ -1,0 +1,1184 @@
+// Defualt Breakpoints
+$breakpoints: (xs:0px, sm:576px, md:768px, lg:992px, xl:1200px);
+
+// Defualt Container Width
+$big-container:1330px; //must be 1330px or 1170px
+
+// Defualt Font Sizes
+$font-size-base: 16px; // for smaller use 14px
+$font-size-base: 1rem; // for smaller use 0.875rem
+$line-height-base: 1.6;
+
+// Font Families
+$font-family-sans-serif: 'Mulish';
+
+$other-font: 'cairo'; // Other-language-font
+
+// Colors
+
+
+
+  
+ /*   $primary-color:#257a9f;
+$second-color: #f54d7e; */
+$tertiary-color: #6c757d;
+$blue-color:#55acee;
+$body-color: #111;
+$body-bg:#fff;
+// Radius & Spacer
+$border-radius: .25rem !default;
+$border-radius-lg: .3rem !default;
+$border-radius-sm: .2rem !default;
+$spacer: 1rem;
+
+// Footer Sizes
+$footer-height:80px;
+
+// Section padding Sizes
+$section-padding-lg:5rem;
+$section-padding-md:4rem;
+$section-padding-sm:3rem;
+$section-padding-xs:2rem;
+
+
+
+/* grediant Code
+-------------------------------------------------- */
+
+@mixin gradient($from, $to, $deg:270deg) {
+    background-color: $from;
+    background-image: -moz-linear-gradient($deg, $from, $to);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from), to($to));
+    background-image: -webkit-linear-gradient($deg, $from, $to);
+    background-image: -o-linear-gradient($deg, $from, $to);
+}
+
+
+/* Transition
+-------------------------------------------------- */
+@mixin transition($args...) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition: $args;
+    -o-transition: $args;
+    transition: $args;
+}
+
+/* shaded bg
+--*/
+
+
+//
+//  MEDIA QUERIES
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// A map of breakpoints.
+
+
+//
+//  RESPOND ABOVE
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// @include respond-above(sm) {}
+@mixin respond-above($breakpoint) {
+
+    // If the breakpoint exists in the map.
+    @if map-has-key($breakpoints, $breakpoint) {
+
+        // Get the breakpoint value.
+        $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+        // Write the media query.
+        @media (min-width: $breakpoint-value) {
+            @content;
+        }
+
+        // If the breakpoint doesn't exist in the map.
+    }
+
+    @else {
+
+        // Log a warning.
+        @warn 'Invalid breakpoint: #{$breakpoint}.';
+    }
+}
+
+
+
+//
+//  RESPOND BELOW
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// @include respond-below(sm) {}
+@mixin respond-below($breakpoint) {
+
+    // If the breakpoint exists in the map.
+    @if map-has-key($breakpoints, $breakpoint) {
+
+        // Get the breakpoint value.
+        $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+        // Write the media query.
+        @media (max-width: ($breakpoint-value - 1)) {
+            @content;
+        }
+
+        // If the breakpoint doesn't exist in the map.
+    }
+
+    @else {
+
+        // Log a warning.
+        @warn 'Invalid breakpoint: #{$breakpoint}.';
+    }
+}
+
+
+//
+//  RESPOND BETWEEN
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// @include respond-between(sm, md) {}
+@mixin respond-between($lower, $upper) {
+
+    // If both the lower and upper breakpoints exist in the map.
+    @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
+
+        // Get the lower and upper breakpoints.
+        $lower-breakpoint: map-get($breakpoints, $lower);
+        $upper-breakpoint: map-get($breakpoints, $upper);
+
+        // Write the media query.
+        @media (min-width: $lower-breakpoint) and (max-width: ($upper-breakpoint - 1)) {
+            @content;
+        }
+
+        // If one or both of the breakpoints don't exist.
+    }
+
+    @else {
+
+        // If lower breakpoint is invalid.
+        @if (map-has-key($breakpoints, $lower)==false) {
+
+            // Log a warning.
+            @warn 'Your lower breakpoint was invalid: #{$lower}.';
+        }
+
+        // If upper breakpoint is invalid.
+        @if (map-has-key($breakpoints, $upper)==false) {
+
+            // Log a warning.
+            @warn 'Your upper breakpoint was invalid: #{$upper}.';
+        }
+    }
+}
+
+
+// ******** default theme ********
+.default-color{
+    $main-color:#257a9f;
+    $second-color:#f54d7e;
+    $primary-color:#257a9f;
+    background: $main-color;
+        .top-header .links .main-notification-list .title::after{
+            border-bottom: 9px solid  $main-color;
+        }
+        .trigger-btnx:hover {
+            background-color:  $second-color !important;
+            color: #fff;
+        }
+        .bg-primary,.btn-primary{
+            background: $primary-color !important;
+        }
+        .text-primary{
+            color: $primary-color !important;
+        }
+        .MyTabx .nav-link.active{
+            background: $second-color;
+        }
+        .nav-tabs{
+            background: #e1e9f4;
+        }
+        .MyTabx .nav-item .nav-link {
+            color: $main-color;
+        }
+        .btn-secondary:hover ,.btn-secondary{
+            color: #fff;
+            background-color: $second-color;
+            border-color: $second-color;
+        }
+        .btn-secondary:focus, .btn-secondary.focus {
+            box-shadow: none;
+            background-color: $second-color;
+        }
+        .btn-secondary:focus,  .btn-secondary.focus {
+            box-shadow: none !important;
+            background: $second-color;
+        }
+        .modal-title:after{
+            background:$second-color !important ;
+        }
+        .btn-outline-secondary{
+            border-color:$second-color;
+        }
+        .tree{
+            .icon {
+            
+                border: 1px solid $main-color;
+           
+                i{
+                    color:$main-color;
+          
+            border: 1px solid $main-color;
+           
+            &:hover{
+                background-color: $main-color;
+               
+            }
+                }
+            }
+            
+        }
+        .text-secondary{
+            color: $second-color !important;
+        }
+        .text-primary{
+            color: $main-color;
+        }
+        .sidebar ,.main-notification-list,.sidebar .metismenu li a.link,.content-wrapper .sidebar-nav .my-second-level ,
+        .resp-vtabs li.resp-tab-active,.my-form .add,.active-link .b1::before , .active-link .b2::before,
+        .multiselect-container .multiselect-option:hover, .multiselect-container .multiselect-group:hover,
+         .multiselect-container .multiselect-all:hover, .multiselect-container .multiselect-option:focus,
+        .multiselect-container .multiselect-group:focus, .multiselect-container .multiselect-all:focus,
+        .ui-widget-header,.ui-datepicker-header select, .ui-datepicker .ui-datepicker-header{
+            background-color:  $main-color;
+           
+        }
+
+
+        
+        .curve-2{
+       
+        
+    &:after{
+       
+        background:$primary-color;
+       
+    }
+    }
+    .avatar-wrapper {
+    
+        border: 2px solid $primary-color;
+    }
+    .btn-secondary:hover {
+        color: #fff;
+        background-color: $second-color;
+        border-color: $second-color;
+    }
+    .inside-tab ,.inside-tab-2{
+        .tab {
+          
+          
+      @include respond-below(xl){
+        
+         
+        &::-webkit-scrollbar-thumb {
+          background-color: $primary-color;
+          
+        }
+      }
+          }
+          
+         
+          
+          
+    }
+        .avatar-wrapper{
+            border:2px solid  $main-color;
+        }
+        .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+     
+            border-top: 3px solid $primary-color;
+        }
+        .table thead th{
+            color: $main-color; 
+        }
+    
+    .internal-page .table-striped tbody tr:nth-of-type(odd) {
+        background-color:rgba($main-color,0.04) !important; 
+    }
+    .checkmark2{
+
+        box-shadow: inset 0px 0px 0px  $main-color;
+    }
+    .checkmark_circle {
+        stroke:  $main-color;
+    }
+    .swal-icon--warning {
+        border-color: $main-color;
+    }
+    .open-search{
+        color:  $main-color;
+    }
+    
+    .modal-header {
+       
+        border-bottom: 1px solid  $main-color;
+       
+    }
+    .login-page {
+        background: $main-color;
+       } 
+       @media (min-width: 992px){
+        .login-page {
+            background: linear-gradient(90deg, #FFf 50%, $main-color 50%) ;
+            height: 100vh;
+        } 
+       }
+       .content-card{
+        .card{
+            .card-header {
+                color: $main-color;
+            }
+        }
+    }
+   /*  secondary color */
+   .btn-11 {
+    
+    background:linear-gradient(0deg, #f589a9 0%, #f0b2bf 100%); 
+     
+ }
+ .title-box {
+    &::after{
+        background: $second-color; 
+    }
+}
+.button-34 {
+    background: $second-color; 
+}
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: $second-color !important;
+    border-color: $second-color !important;
+}
+.btn-3 {
+    background: $second-color;
+     background: linear-gradient(0deg, rgba($second-color,1) 0%, rgba($second-color,1) 100%);
+}
+.trash-btn{
+    background:rgba($second-color ,.5); 
+    color:$second-color; 
+}
+
+.btn-3 {
+  
+    min-width: 108px;
+    height: 34px;
+      line-height: 36px;
+      padding: 0;
+      border: none;
+      font-size: 14px;
+     /*  font-weight: bold; */
+      a{
+          color: #fff;
+      }
+    }
+    // button
+    .btn-3:before,
+    .btn-3:after {
+      
+        background: rgba($second-color,1); 
+     
+    }
+   
+    .btn-3:hover{
+     
+     
+      a{
+          color: $second-color !important; 
+      }
+    }
+    
+     .btn-3 span:hover{
+       color: rgba($second-color,1);
+    }
+    .btn-3 span:before,
+    .btn-3 span:after {
+     
+       background: rgba($second-color,1);
+  
+    }
+    .top-header .cont-link:hover {
+        background-color: $second-color;
+        border: 1px solid $second-color;
+        color: #fff;
+    }
+    .amsify-selection-area .amsify-selection-list ul.amsify-list li.amsify-list-item:active {
+        
+        -moz-box-shadow: inset 0 0 10px $second-color;
+        -webkit-box-shadow: inset 0 0 10px $second-color;
+        box-shadow: inset 0 0 10px $second-color;
+    }
+   
+   
+    .btn-3 {
+        background: $second-color;
+      background: linear-gradient(0deg, rgba($second-color,1) 0%, rgba($second-color,1) 100%);
+    }
+    
+  
+    .print-btn-outline {
+       
+        color: $second-color !important;
+        a{
+            color: $second-color !important;
+          
+    
+        }
+        &:hover{
+            background-color: $second-color !important;
+           
+        }
+    }
+    .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+        border: 1px solid $second-color;
+
+    }
+    
+    .btn-11 ,.button-29,.ui-state-highlight, 
+    .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight,
+    .gray-labels .btn-group .active,.modal-title:after ,.date,
+     .multi-select .dropdown-option.dropdown-chose:after{
+        background: $second-color;
+      }
+      .sidebar {
+        background-color: $main-color !important;
+      }
+      h2.resp-tab-active {
+        border-bottom: 0px solid $main-color !important;
+      
+        background:$main-color !important;
+        
+    }
+    @keyframes fill {
+        100% {
+            box-shadow: inset 0px 0px 0px 30px $primary-color;
+        }
+    }
+    .curve-one{
+        background: $primary-color;
+    }
+    .ui-state-default,.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus, .ui-button:hover, .ui-button:focus {
+        background: $second-color !important;
+    }
+   
+    
+
+}
+
+@media (min-width: 992px){
+    .dark .default-color .login-page {
+        background: linear-gradient(90deg, #161d30 50%, #257a9f 50%) ;
+        height: 100vh;
+    } 
+   
+   }
+/* blue */
+
+
+.dark-blue{
+    $main-color: #01009a;
+    $second-color:#dd2827;
+    $primary-color:#01009a;
+    background: $main-color;
+    .bg-primary,.btn-primary{
+        background: $primary-color !important;
+    }
+    .trigger-btnx:hover {
+        background-color:  $second-color !important;
+        color: #fff;
+    }
+    .text-primary{
+        color: $primary-color !important;
+    }
+        .top-header .links .main-notification-list .title::after{
+            border-bottom: 9px solid  $main-color;
+        }
+        .MyTabx .nav-link.active{
+            background: $second-color;
+        }
+        .nav-tabs{
+            background: #e1e9f4;
+        }
+        .MyTabx .nav-item .nav-link {
+            color: $main-color;
+        }
+        .btn-secondary:hover ,.btn-secondary{
+            color: #fff;
+            background-color: $second-color;
+            border-color: $second-color;
+        }
+        .btn-secondary:focus, .btn-secondary.focus {
+            box-shadow: none;
+            background-color: $second-color;
+        }
+        .btn-secondary:focus,  .btn-secondary.focus {
+            box-shadow: none !important;
+            background: $second-color;
+        }
+        .modal-title:after{
+            background:$second-color !important ;
+        }
+        .btn-outline-secondary{
+            border-color:$second-color;
+        }
+        .tree{
+            .icon {
+            
+                border: 1px solid $main-color;
+           
+                i{
+                    color:$main-color;
+          
+            border: 1px solid $main-color;
+           
+            &:hover{
+                background-color: $main-color;
+               
+            }
+                }
+            }
+            
+        }
+        .text-secondary{
+            color: $second-color !important;
+        }
+        .text-primary{
+            color: $main-color;
+        }
+        .sidebar ,.main-notification-list,.sidebar .metismenu li a.link,.content-wrapper .sidebar-nav .my-second-level ,
+        .resp-vtabs li.resp-tab-active,.my-form .add,.active-link .b1::before , .active-link .b2::before,
+        .multiselect-container .multiselect-option:hover, .multiselect-container .multiselect-group:hover,
+         .multiselect-container .multiselect-all:hover, .multiselect-container .multiselect-option:focus,
+        .multiselect-container .multiselect-group:focus, .multiselect-container .multiselect-all:focus,
+        .ui-widget-header,.ui-datepicker-header select
+        {
+            background-color:  $main-color;
+        }
+        .curve-2{
+       
+        
+    &:after{
+       
+        background:$primary-color;
+       
+    }
+    }
+    .avatar-wrapper {
+    
+        border: 2px solid $primary-color;
+    }
+    .btn-secondary:hover {
+        color: #fff;
+        background-color: $second-color;
+        border-color: $second-color;
+    }
+    .inside-tab ,.inside-tab-2{
+        .tab {
+          
+          
+      @include respond-below(xl){
+        
+         
+        &::-webkit-scrollbar-thumb {
+          background-color: $primary-color;
+          
+        }
+      }
+          }
+          
+         
+          
+          
+    }
+        .avatar-wrapper{
+            border:2px solid  $main-color;
+        }
+        .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+     
+            border-top: 3px solid $primary-color;
+        }
+        .table thead th{
+            color: $main-color; 
+        }
+    
+    .internal-page .table-striped tbody tr:nth-of-type(odd) {
+        background-color:rgba($main-color,0.04) !important; 
+    }
+    .checkmark2{
+
+        box-shadow: inset 0px 0px 0px  $main-color;
+    }
+    .checkmark_circle {
+        stroke:  $main-color;
+    }
+    .swal-icon--warning {
+        border-color: $main-color;
+    }
+    .open-search{
+        color:  $main-color;
+    }
+    
+    .modal-header {
+       
+        border-bottom: 1px solid  $main-color;
+       
+    }
+    .login-page {
+        background: $main-color;
+       } 
+       @media (min-width: 992px){
+        .login-page {
+            background: linear-gradient(90deg, #FFf 50%, $main-color 50%) ;
+            height: 100vh;
+        } 
+       }
+       .content-card{
+        .card{
+            .card-header {
+                color: $main-color;
+            }
+        }
+    }
+   /*  secondary color */
+   .btn-11 {
+    
+    background:linear-gradient(0deg, #f589a9 0%, #f0b2bf 100%); 
+     
+ }
+ .title-box {
+    &::after{
+        background: $second-color; 
+    }
+}
+.button-34 {
+    background: $second-color; 
+}
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: $second-color !important;
+    border-color: $second-color !important;
+}
+.btn-3 {
+    background: $second-color;
+     background: linear-gradient(0deg, rgba($second-color,1) 0%, rgba($second-color,1) 100%);
+}
+.trash-btn{
+    background:rgba($second-color ,.5); 
+    color:$second-color; 
+}
+
+.btn-3 {
+  
+    min-width: 108px;
+    height: 34px;
+      line-height: 36px;
+      padding: 0;
+      border: none;
+      font-size: 14px;
+     /*  font-weight: bold; */
+      a{
+          color: #fff;
+      }
+    }
+    // button
+    .btn-3:before,
+    .btn-3:after {
+      
+        background: rgba($second-color,1); 
+     
+    }
+   
+    .btn-3:hover{
+     
+     
+      a{
+          color: $second-color !important; 
+      }
+    }
+    
+     .btn-3 span:hover{
+       color: rgba($second-color,1);
+    }
+    .btn-3 span:before,
+    .btn-3 span:after {
+     
+       background: rgba($second-color,1);
+  
+    }
+    .top-header .cont-link:hover {
+        background-color: $second-color;
+        border: 1px solid $second-color;
+        color: #fff;
+    }
+    .amsify-selection-area .amsify-selection-list ul.amsify-list li.amsify-list-item:active {
+        
+        -moz-box-shadow: inset 0 0 10px $second-color;
+        -webkit-box-shadow: inset 0 0 10px $second-color;
+        box-shadow: inset 0 0 10px $second-color;
+    }
+   
+   
+    .btn-3 {
+        background: $second-color;
+      background: linear-gradient(0deg, rgba($second-color,1) 0%, rgba($second-color,1) 100%);
+    }
+    
+  
+    .print-btn-outline {
+       
+        color: $second-color !important;
+        a{
+            color: $second-color !important;
+          
+    
+        }
+        &:hover{
+            background-color: $second-color !important;
+           
+        }
+    }
+    .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+        border: 1px solid $second-color;
+
+    }
+    
+    .btn-11 ,.button-29,.ui-state-highlight, 
+    .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight,
+    .gray-labels .btn-group .active,.modal-title:after ,.date,
+     .multi-select .dropdown-option.dropdown-chose:after{
+        background: $second-color;
+      }
+      .sidebar {
+        background-color: $main-color;
+      }
+      h2.resp-tab-active {
+        border-bottom: 0px solid $main-color !important;
+      
+        background:$main-color !important;
+        
+    }
+    @keyframes fill {
+        100% {
+            box-shadow: inset 0px 0px 0px 30px $primary-color;
+        }
+    }
+    .curve-one{
+        background: $primary-color;
+    }
+    
+}
+
+@media (min-width: 992px){
+    .dark .dark-blue .login-page {
+        background: linear-gradient(90deg, #161d30 50%, #01009a 50%) ;
+        height: 100vh;
+    } 
+   }
+  
+
+   .Red-color{
+    $main-color:#dd2827;
+    $second-color:#1b7ad0;
+    $primary-color:#dd2827;
+    background: $main-color;
+    .bg-primary,.btn-primary{
+        background: $primary-color !important;
+    }
+    .trigger-btnx:hover {
+        background-color:  $second-color !important;
+        color: #fff;
+    }
+    .text-primary{
+        color: $primary-color  !important;
+    }
+        .top-header .links .main-notification-list .title::after{
+            border-bottom: 9px solid  $main-color;
+        }
+        .MyTabx .nav-link.active{
+            background: $second-color;
+        }
+        .nav-tabs{
+            background: #e1e9f4;
+        }
+        .MyTabx .nav-item .nav-link {
+            color: $main-color;
+        }
+        .btn-secondary:hover ,.btn-secondary{
+            color: #fff;
+            background-color: $second-color;
+            border-color: $second-color;
+        }
+        .btn-secondary:focus, .btn-secondary.focus {
+            box-shadow: none;
+            background-color: $second-color;
+        }
+        .btn-secondary:focus,  .btn-secondary.focus {
+            box-shadow: none !important;
+            background: $second-color;
+        }
+        .modal-title:after{
+            background:$second-color !important ;
+        }
+        .btn-outline-secondary{
+            border-color:$second-color;
+        }
+        .tree{
+            .icon {
+            
+                border: 1px solid $main-color;
+           
+                i{
+                    color:$main-color;
+          
+            border: 1px solid $main-color;
+           
+            &:hover{
+                background-color: $main-color;
+               
+            }
+                }
+            }
+            
+        }
+        .text-secondary{
+            color: $second-color  !important;
+        }
+        .text-primary{
+            color: $main-color !important;
+        }
+        .sidebar ,.main-notification-list,.sidebar .metismenu li a.link,.content-wrapper .sidebar-nav .my-second-level ,
+        .resp-vtabs li.resp-tab-active,.my-form .add,.active-link .b1::before , .active-link .b2::before,
+        .multiselect-container .multiselect-option:hover, .multiselect-container .multiselect-group:hover,
+         .multiselect-container .multiselect-all:hover, .multiselect-container .multiselect-option:focus,
+        .multiselect-container .multiselect-group:focus, .multiselect-container .multiselect-all:focus,
+        .ui-widget-header,.ui-datepicker-header select
+        {
+            background-color:  $main-color;
+        }
+        .curve-2{
+       
+        
+    &:after{
+       
+        background:$primary-color;
+       
+    }
+    }
+    .avatar-wrapper {
+    
+        border: 2px solid $primary-color;
+    }
+    .btn-secondary:hover {
+        color: #fff;
+        background-color: $second-color;
+        border-color: $second-color;
+    }
+    .inside-tab ,.inside-tab-2{
+        .tab {
+          
+          
+      @include respond-below(xl){
+        
+         
+        &::-webkit-scrollbar-thumb {
+          background-color: $primary-color;
+          
+        }
+      }
+          }
+          
+         
+          
+          
+    }
+        .avatar-wrapper{
+            border:2px solid  $main-color;
+        }
+        .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+     
+            border-top: 3px solid $primary-color;
+        }
+        .table thead th{
+            color: $main-color; 
+        }
+    
+    .internal-page .table-striped tbody tr:nth-of-type(odd) {
+        background-color:rgba($main-color,0.04) !important; 
+    }
+    .checkmark2{
+
+        box-shadow: inset 0px 0px 0px  $main-color;
+    }
+    .checkmark_circle {
+        stroke:  $main-color;
+    }
+    .swal-icon--warning {
+        border-color: $main-color;
+    }
+    .open-search{
+        color:  $main-color;
+    }
+    
+    .modal-header {
+       
+        border-bottom: 1px solid  $main-color;
+       
+    }
+    .login-page {
+        background: $main-color;
+       } 
+       @media (min-width: 992px){
+        .login-page {
+            background: linear-gradient(90deg, #FFf 50%, $main-color 50%) ;
+            height: 100vh;
+        } 
+       }
+       .content-card{
+        .card{
+            .card-header {
+                color: $main-color;
+            }
+        }
+    }
+   /*  secondary color */
+   .btn-11 {
+    
+    background:linear-gradient(0deg, #f589a9 0%, #f0b2bf 100%); 
+     
+ }
+ .title-box {
+    &::after{
+        background: $second-color; 
+    }
+}
+.button-34 {
+    background: $second-color; 
+}
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: $second-color !important;
+    border-color: $second-color !important;
+}
+.btn-3 {
+    background: $second-color;
+     background: linear-gradient(0deg, rgba($second-color,1) 0%, rgba($second-color,1) 100%);
+}
+.trash-btn{
+    background:rgba($second-color ,.5); 
+    color:$second-color; 
+}
+
+.btn-3 {
+  
+    min-width: 108px;
+    height: 34px;
+      line-height: 36px;
+      padding: 0;
+      border: none;
+      font-size: 14px;
+     /*  font-weight: bold; */
+      a{
+          color: #fff;
+      }
+    }
+    // button
+    .btn-3:before,
+    .btn-3:after {
+      
+        background: rgba($second-color,1); 
+     
+    }
+   
+    .btn-3:hover{
+     
+     
+      a{
+          color: $second-color !important; 
+      }
+    }
+    
+     .btn-3 span:hover{
+       color: rgba($second-color,1);
+    }
+    .btn-3 span:before,
+    .btn-3 span:after {
+     
+       background: rgba($second-color,1);
+  
+    }
+    .top-header .cont-link:hover {
+        background-color: $second-color;
+        border: 1px solid $second-color;
+        color: #fff;
+    }
+    .amsify-selection-area .amsify-selection-list ul.amsify-list li.amsify-list-item:active {
+        
+        -moz-box-shadow: inset 0 0 10px $second-color;
+        -webkit-box-shadow: inset 0 0 10px $second-color;
+        box-shadow: inset 0 0 10px $second-color;
+    }
+   
+   
+    .btn-3 {
+        background: $second-color;
+      background: linear-gradient(0deg, rgba($second-color,1) 0%, rgba($second-color,1) 100%);
+    }
+    
+  
+    .print-btn-outline {
+       
+        color: $second-color !important;
+        a{
+            color: $second-color !important;
+          
+    
+        }
+        &:hover{
+            background-color: $second-color !important;
+           
+        }
+    }
+    .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+        border: 1px solid $second-color;
+
+    }
+    
+    .btn-11 ,.button-29,.ui-state-highlight, 
+    .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight,
+    .gray-labels .btn-group .active,.modal-title:after ,.date,
+     .multi-select .dropdown-option.dropdown-chose:after{
+        background: $second-color;
+      }
+      .sidebar {
+        background-color: $main-color;
+      }
+      h2.resp-tab-active {
+        border-bottom: 0px solid $main-color !important;
+      
+        background:$main-color !important;
+        
+    }
+    @keyframes fill {
+        100% {
+            box-shadow: inset 0px 0px 0px 30px $primary-color;
+        }
+    }
+    .curve-one{
+        background: $primary-color;
+    }
+    
+}
+@media (min-width: 992px){
+    .dark .Red-color .login-page {
+        background: linear-gradient(90deg, #161d30 50%, #dd2827 50%) ;
+        height: 100vh;
+    } 
+   }
+/* style specific to all theme */
+
+.Edit-btn{
+ background: rgba(#55acee,.4);
+ color:#55acee;
+}
+.show-btn{
+ background: rgba(#0056b3 ,.3);
+ color:#0056b3;
+}
+
+
+
+.number-title{
+    
+        font-size: 14px;
+        color: #55acee;
+        display: inline-block;
+        margin-right: 3px;
+    
+}
+
+
+
+
+
+.table-bordered th, .table-bordered td {
+    border: 1px solid #e9f0f2;
+}
+
+.internal-page .table td {
+    border-top: 1px solid #257a9f45 !important;
+}
+
+
+  /* start progress */
+  .progress-tasks .all-tasks li:nth-child(1) .progress-bar {
+    background: #31aae2 !important;
+}
+.progress-tasks .all-tasks li:nth-child(2) .progress-bar {
+    background: #3cba9e !important;
+}
+.progress-tasks .all-tasks li:nth-child(3) .progress-bar {
+    background: #f48aa9 !important;
+}
+.progress-tasks .all-tasks li:nth-child(4) .progress-bar {
+    background: #ffc774 !important;
+}
+.progress-tasks .all-tasks li:nth-child(5) .progress-bar {
+    background: #57e295 !important;
+}
+.progress-tasks .all-tasks li:nth-child(6) .progress-bar {
+    background: #8fa9fa!important;
+}
+
+
+.button-29 {
+   
+   background:linear-gradient(0deg, #f589a9 0%, #cd8c9e 100%);
+   
+}
+
+
+/* .sidebar a.link:hover {
+    color: #baf1f3 !important;
+}
+.sidebar a.active-link:hover {
+    color: $primary-color !important;
+} */
+
+.btn-11 {
+    
+     background:linear-gradient(0deg, #f589a9 0%, #f0b2bf 100%); 
+      
+  }
+
+
+ /*  Top Statistic */
+ .Top-Statistic .item:nth-child(1) .icon, .Top-Statistic .item:nth-child(1) .progress-bar {
+    background: #f54d7e !important;
+}
+
+.Top-Statistic .item:nth-child(2) .icon, .Top-Statistic .item:nth-child(2) .progress-bar {
+    background: #6bc6b4 !important;
+}
+
+.Top-Statistic .item:nth-child(3) .icon, .Top-Statistic .item:nth-child(3) .progress-bar {
+    background: #bed267 !important;
+}
+
+.Top-Statistic .item:nth-child(4) .icon, .Top-Statistic .item:nth-child(4) .progress-bar {
+    background: #e27668 !important;
+}

@@ -1,0 +1,174 @@
+// Defualt Breakpoints
+$breakpoints: (xs:0px, sm:576px, md:768px, lg:992px, xl:1200px);
+
+// Defualt Container Width
+$big-container:1330px; //must be 1330px or 1170px
+
+// Defualt Font Sizes
+$font-size-base: 16px; // for smaller use 14px
+$font-size-base: 1rem; // for smaller use 0.875rem
+$line-height-base: 1.6;
+
+// Font Families
+$font-family-sans-serif: 'Mulish';
+
+$other-font: 'NeoSansArabic'; // Other-language-font
+
+// Colors
+/* $primary-color: #2f40a0; */
+/* $primary-color: #009999;
+$secondary-color: #00b3b3; */
+$primary-color: #23c2c8;
+$secondary-color: #92f8fa;
+$tertiary-color: #6c757d;
+$body-color: #111;
+$body-bg:#fff;
+
+// Radius & Spacer
+$border-radius: .25rem !default;
+$border-radius-lg: .3rem !default;
+$border-radius-sm: .2rem !default;
+$spacer: 1rem;
+
+// Footer Sizes
+$footer-height:80px;
+
+// Section padding Sizes
+$section-padding-lg:5rem;
+$section-padding-md:4rem;
+$section-padding-sm:3rem;
+$section-padding-xs:2rem;
+
+
+
+/* grediant Code
+-------------------------------------------------- */
+
+@mixin gradient($from, $to, $deg:270deg) {
+    background-color: $from;
+    background-image: -moz-linear-gradient($deg, $from, $to);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from), to($to));
+    background-image: -webkit-linear-gradient($deg, $from, $to);
+    background-image: -o-linear-gradient($deg, $from, $to);
+}
+
+
+/* Transition
+-------------------------------------------------- */
+@mixin transition($args...) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition: $args;
+    -o-transition: $args;
+    transition: $args;
+}
+
+/* shaded bg
+--*/
+
+
+//
+//  MEDIA QUERIES
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// A map of breakpoints.
+
+
+//
+//  RESPOND ABOVE
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// @include respond-above(sm) {}
+@mixin respond-above($breakpoint) {
+
+    // If the breakpoint exists in the map.
+    @if map-has-key($breakpoints, $breakpoint) {
+
+        // Get the breakpoint value.
+        $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+        // Write the media query.
+        @media (min-width: $breakpoint-value) {
+            @content;
+        }
+
+        // If the breakpoint doesn't exist in the map.
+    }
+
+    @else {
+
+        // Log a warning.
+        @warn 'Invalid breakpoint: #{$breakpoint}.';
+    }
+}
+
+
+
+//
+//  RESPOND BELOW
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// @include respond-below(sm) {}
+@mixin respond-below($breakpoint) {
+
+    // If the breakpoint exists in the map.
+    @if map-has-key($breakpoints, $breakpoint) {
+
+        // Get the breakpoint value.
+        $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+        // Write the media query.
+        @media (max-width: ($breakpoint-value - 1)) {
+            @content;
+        }
+
+        // If the breakpoint doesn't exist in the map.
+    }
+
+    @else {
+
+        // Log a warning.
+        @warn 'Invalid breakpoint: #{$breakpoint}.';
+    }
+}
+
+
+//
+//  RESPOND BETWEEN
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// @include respond-between(sm, md) {}
+@mixin respond-between($lower, $upper) {
+
+    // If both the lower and upper breakpoints exist in the map.
+    @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
+
+        // Get the lower and upper breakpoints.
+        $lower-breakpoint: map-get($breakpoints, $lower);
+        $upper-breakpoint: map-get($breakpoints, $upper);
+
+        // Write the media query.
+        @media (min-width: $lower-breakpoint) and (max-width: ($upper-breakpoint - 1)) {
+            @content;
+        }
+
+        // If one or both of the breakpoints don't exist.
+    }
+
+    @else {
+
+        // If lower breakpoint is invalid.
+        @if (map-has-key($breakpoints, $lower)==false) {
+
+            // Log a warning.
+            @warn 'Your lower breakpoint was invalid: #{$lower}.';
+        }
+
+        // If upper breakpoint is invalid.
+        @if (map-has-key($breakpoints, $upper)==false) {
+
+            // Log a warning.
+            @warn 'Your upper breakpoint was invalid: #{$upper}.';
+        }
+    }
+}

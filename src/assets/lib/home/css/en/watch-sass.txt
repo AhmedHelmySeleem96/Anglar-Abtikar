@@ -1,0 +1,3 @@
+sass --watch style.scss:style.min.css --style compressed
+
+sass --watch bootstrap-mod.scss:bootstrap-mod.min.css --style compressed

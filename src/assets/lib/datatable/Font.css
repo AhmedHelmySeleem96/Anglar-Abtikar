@@ -1,0 +1,31 @@
+﻿@font-face {
+    font-family: 'Droid Arabic Kufi';
+    font-style: normal;
+    font-weight: 700;
+    src: url(font/DroidKufi-Bold.eot);
+    src: url(font/DroidKufi-Bold.eot?#iefix) format('embedded-opentype'), url(font/DroidKufi-Bold.woff2) format('woff2'), url(font/DroidKufi-Bold.woff) format('woff'), url(font/DroidKufi-Bold.ttf) format('truetype')
+}
+
+h2, h3, p, input, span, button, a, h1,li {
+    font-family: 'Droid Arabic Kufi', Tahoma !important;
+    text-align: right;
+    direction: rtl;
+}
+
+body {
+    font-size: 14px;
+}
+.table-light-dark {
+    background-color: rgba(85, 85, 85, 0.52);
+    color: black;
+}
+.background-teal {
+    background-color:teal!important;
+    color: white;
+}
+table{
+    width:100%!important
+}
+.Dnone {
+    display: none   
+}

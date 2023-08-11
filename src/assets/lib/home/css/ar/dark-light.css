@@ -1,0 +1,17 @@
+body.light {
+    /* color: #333;
+background: white; */
+  }
+  body.dark {
+   /*  color: white;
+background: #000; */
+  }
+  #theme{
+	  display: none; 
+  }
+ button#theme-toggle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: red;
+}

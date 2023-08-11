@@ -27,6 +27,10 @@
 "Confirmtoproceed": "تاكيد ليتم المسح",
 "EnterAllData":"ادخل البيانات المطلوبه",
 "Hr":{
+  "EmployeeInformation" : "بيانات الموظف",
+"Information" :"معلومات",
+"Docs":"مستندات",
+"User"  :"المستخدم",
 "City" : " المدن",
 "Selectالادرات": "اختر الادارات",
 "Selectالاقسام": "اختر الاقسام",

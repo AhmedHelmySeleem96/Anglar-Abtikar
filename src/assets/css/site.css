@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Cairo-Bold';
-    src: url('/fonts/Cairo/static/Cairo-Bold.ttf') format('truetype');
+    src: url('assets/fonts/Cairo/static/Cairo-Bold.ttf') format('truetype');
 }
 
 
@@ -26,9 +26,9 @@ h1, h2 {
     display: none
 }
 
-select.form-control:not([size]):not([multiple]) {
+/* select.form-control:not([size]):not([multiple]) {
     height: calc(2.35rem + 2px) !important;
-}
+} */
 
 .min-width-3cm {
     min-width: 3cm !important
@@ -113,9 +113,9 @@ h2.welcom-msg-dashboard span {
     height: 100%;
     overflow: hidden;
 }
-html {
+/* html {
     font-size: 14px;
-}
+} */
 
 table {
     width: 100% !important
@@ -162,7 +162,7 @@ input{
     text-align:center
 }
 .font-weight-bold {
-     font-weight: 500!important; 
+     font-weight: 500!important;
 }
 .modal.show .modal-dialog {
     top: 50px;
@@ -251,8 +251,7 @@ a {
     right:0;
     bottom:0;
     background-color:rgba(255,255,255,1);
-    z-index:99999999999999999999999;*/
-   /* display:none;*/
+    z-index:99999999999999999999999;
 
 }
 

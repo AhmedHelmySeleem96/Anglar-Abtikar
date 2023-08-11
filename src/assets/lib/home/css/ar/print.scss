@@ -1,0 +1,321 @@
+@import './settings';
+@import './style.scss';
+
+
+html,body{
+    background: #f8f9fa;
+}
+html,body{
+    height: 100%;
+    margin: 0; 
+}
+.print-thead th{
+    background:#f8f9fa !important;
+   
+
+   } 
+  .wrapper th{
+    color: #757575 !important;
+   }
+.wrapper{
+    min-height: 100%;
+    margin-bottom: -70px;
+}
+.print-btn {
+    width: 40px;
+    height: 40px;
+    background: #757575;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 99;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    i{
+        line-height: 40px;
+    }
+    @media print {
+        &{
+            opacity: 0;
+        }
+    }
+}
+
+.print-table{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    padding: 0 15px;
+    width: 85%;
+    margin: 0px auto;
+    background: #fff;
+    table thead th {
+        vertical-align: middle;
+        font-weight: bold;
+       
+       
+
+    }
+ 
+ p{
+     margin-bottom: 6px;
+ }
+    .t-right{
+        text-align: right !important;
+    }
+    .table td ,.table th{
+        /* color: #333; */
+        font-size: 13px;
+        padding: 10px;
+        width: 1%;
+        vertical-align: top !important;
+
+   /* font-family: $normal-font; */
+/*  font-weight: 500;
+ */
+}
+    .f20{
+        font-size: 18px;
+    }
+    .right-side{
+        width: .2% !important;
+    } 
+    
+    body{
+        padding: 20px;
+    }
+    .info-table{
+   /*      
+        border-right-color: transparent !important;
+        border-left-color: transparent !important;
+        border-top-color: transparent !important; */
+        padding: 0px 0 20px !important;
+    
+    }
+    
+       
+   .wrapper .bg-light > th{
+       background:#f8f9fa !important;
+   }
+    
+    @media print {
+        .border-left-0 {
+            border-left: 0 !important;
+        }
+        .border-right-0 {
+            border-right: 0 !important;
+        }
+        .border-top-0 {
+            border-top: 0 !important;
+        }
+        .footer {
+            height: 50px;
+            margin-top: 20px;
+        
+        }
+        table thead,
+        table tfoot {
+           position: sticky; 
+        }
+
+        .border-0 {
+            border: 0 !important;
+        }
+        .print-btn{
+            opacity: 0;
+        }
+        .bg-light{
+            background-color: #f8f9fa !important;
+            -webkit-print-color-adjust: exact; 
+        }
+       &{
+           padding: 0;
+           box-shadow: none;
+           width: 100%;
+           margin: 0px auto;
+       }
+        
+             .bg-light{
+                 background-color: #f5f5f5;
+             }
+        /*         table thead {
+      inset-block-start: 0;
+    } */
+    table tfoot {
+      inset-block-end: 0; 
+    }
+    .border{
+        font-size: 30px;
+    }
+    .print-thead td ,.print-thead th{
+        background-color: #f8f9fa !important;
+        -webkit-print-color-adjust: exact; 
+    
+         outline: 1px solid #dee2e6 !important;
+      
+ 
+
+   }
+            }
+}
+.patient-card{
+/*     width: 302.36220472px;
+ */   
+ 
+ width: 8cm;
+  height: 5cm;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+background: #fff;
+margin: 30px auto;
+.name{
+    font-size: 15px;
+}
+td{
+    vertical-align:middle;
+    padding: 15px;
+    span.QU {
+        margin-left: 2px;
+    }
+    .cont-img{
+        width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #757575;
+    box-sizing: border-box;
+    img{
+        width: 100%;height: 100%;object-fit: cover !important;
+    }
+    }
+}
+.data-patient{
+    margin:0;padding: 0;
+    li{
+        font-size: 12px;
+    }
+}
+@media print {
+    &{
+        -webkit-print-color-adjust: exact; 
+            outline: 1px solid #dee2e6 !important;
+     }
+}
+}
+
+
+.print-table2{
+    
+direction: rtl;
+background: #fff;
+color: #333;
+font-size: 13px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+        padding: 0 15px !important;
+        width: 90%;
+        margin: 0px auto;
+        background: #fff;
+ tbody, thead , tr , tfoot{
+width: 100%;display: block;
+padding: 4px  15px;
+
+}
+tbody{
+    padding: 15px 15px;
+    }
+td.dot{
+ background: url(../../images/common/dot.png)repeat-x center center ; 
+}
+ .logo {
+display: block;
+margin: 0 auto;
+}
+ thead {
+border-bottom: 1px solid rgba(0,0,0,.125);
+padding: 10px 10px;
+}
+ tfoot {
+border-top: 1px solid rgba(0,0,0,.125);
+padding: 15px 10px 15PX;
+box-sizing: border-box;
+}
+ tbody {
+padding: 20px 0;
+}
+ .left{
+text-align: left;
+}
+ span.text {
+background: #fff;
+/* min-width: 58px; */
+display: inline-block;
+padding-left: 10px;
+}
+
+
+     .input{
+background: transparent;
+width: calc(100% - 150px );
+display: inline-block;
+border: 0;
+}
+ .input[type="text"]:focus{
+outline: none;
+border:none
+}
+tr>td>span{
+
+display: inline-block;
+/*  margin-right: 20px; */
+}
+ tbody td{
+padding-bottom: 3px;
+}
+.icon{
+width: 10px;display: inline-block;margin-left: 10px;
+}
+ label{
+vertical-align: middle;
+}
+ td{
+width: 1%;
+}
+
+}
+
+.content-logo{
+    width: 300px;
+    height: 120px;
+    img{
+        object-fit: contain;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+@page { /* To Remove Url LInk */
+    size: auto;
+    margin: 0 15px;  /* this affects the margin in the printer settings */
+}
+
+
+
+
+
+
+@media print {
+         /*  @page {
+            size: letter portrait ; 
+        }   */
+       
+        .print-table tr {
+            page-break-inside:unset
+        } 
+
+    }
+
+
+    .print-table > table > thead> tr > th.border-0.pt-2.pb-0.w-100 {
+        padding: 0;
+        padding-top: 0 ! important;
+    }

@@ -41,6 +41,7 @@ import { XtraAndPosEmployeeEpService } from './services/xtra-and-pos-employee-ep
 import { XtraAndPosFinanceEpService } from './services/xtra-and-pos-finance-ep.service';
 import { XtraAndPosGeneralLedgerEpService } from './services/xtra-and-pos-general-ledger-ep.service';
 import { XtraAndPosHospitalService } from './services/xtra-and-pos-hospital.service';
+import { XtraAndPosHrEmployeeService } from './services/xtra-and-pos-hr-employee.service';
 import { XtraAndPosItemEpService } from './services/xtra-and-pos-item-ep.service';
 import { XtraAndPosJobCategoryService } from './services/xtra-and-pos-job-category.service';
 import { XtraAndPosJobDifinitionService } from './services/xtra-and-pos-job-difinition.service';
@@ -104,6 +105,7 @@ import { XtraAndPosTreasuryEpService } from './services/xtra-and-pos-treasury-ep
     XtraAndPosFinanceEpService,
     XtraAndPosGeneralLedgerEpService,
     XtraAndPosHospitalService,
+    XtraAndPosHrEmployeeService,
     XtraAndPosItemEpService,
     XtraAndPosJobCategoryService,
     XtraAndPosJobDifinitionService,

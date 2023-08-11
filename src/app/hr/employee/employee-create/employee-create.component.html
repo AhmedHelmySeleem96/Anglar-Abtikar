@@ -1,0 +1,238 @@
+<div class="col-7 mx-auto py-4 py-md-5 px-lg-4">
+  <h3>{{ "Hr.EmployeeCreate" | translate }}</h3>
+  <form #formElement [formGroup]="formEmployee" (ngSubmit)="OnSubmit(formEmployee)" class="form">
+  <div class="row">
+    <!-- <div class="form-group col-md-4 mt-5">
+      <input id="id"  formControlName="id" [readOnly]="true" placeholder="{{ 'Hr.EmployeeId' | translate }}" class="form-control">
+    </div> -->
+    <div class="form-group col-md-4 mt-5">
+      <select #branchElement id="branchId" formControlName="branchId" class="form-control">
+      <option  value="" disabled selected>{{ 'Hr.SelectBranch' | translate }}</option>
+      <option *ngFor="let item of branchData " [value]="item.Id">{{ item.NameAr }}</option>
+    </select>
+  </div>
+  <div class="form-group col-md-4 mt-5">
+    <input id="sNO" type="number" formControlName="sNO" required placeholder="{{ 'Hr.SNO' | translate }}" class="form-control">
+  </div>
+    </div>
+    <div class="card">
+      <p-tabView>
+          <ng-template pTemplate="header">
+              <ul class="nav nav-tabs">
+                  <li class="nav-item">
+                      <a class="nav-link" pTabTitle="بيانات الموظف"></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" pTabTitle="معلومات"></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" pTabTitle="مستندات"></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" pTabTitle="مستخدم"></a>
+                  </li>
+              </ul>
+          </ng-template>
+          <p-tabPanel header="{{ 'Hr.EmployeeInformation' | translate }}">
+            <div class="row">
+              <div class="form-group col-md-4 mt-5">
+                <input id="nameAr" formControlName="nameAr"  placeholder="{{ 'Hr.FirstName' | translate }}" class="form-control">
+              </div>
+              <div class="form-group col-md-4 mt-5">
+                <input id="secondName" formControlName="secondName"  placeholder="{{ 'Hr.SecondName' | translate }}" class="form-control">
+              </div>
+              <div class="form-group col-md-4 mt-5">
+                <input id="lastName" formControlName="lastName"  placeholder="{{ 'Hr.LastName' | translate }}" class="form-control">
+              </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4 mt-5">
+                    <input id="nameEn" formControlName="nameEn"  placeholder="{{ 'Hr.FirstNameEn' | translate }}" class="form-control">
+                </div>
+                <div class="form-group col-md-4 mt-5">
+                  <input id="title" formControlName="title"  placeholder="{{ 'Hr.Title' | translate }}" class="form-control">
+                </div>
+                <!-- <div class="form-group col-md-4 mt-5">
+                  <input type="radio" id="gender" formControlName="gender"  placeholder="{{ 'Hr.Gender' | translate }}" class="form-control">
+                </div> -->
+            </div>
+            <div class="row">
+              <div class="form-group col-md-4 mt-5">
+                <select  id="nationalityId" formControlName="nationalityId" class="form-control">
+                <option  value="" disabled selected>{{ 'Hr.NationalityId' | translate }}</option>
+                <!-- <option *ngFor="let item of branchData " [value]="item.Id">{{ item.NameAr }}</option> -->
+              </select>
+              </div>
+              <div class="form-group col-md-4 mt-5">
+                <select  id="identityType" formControlName="identityType" class="form-control">
+                <option  value="" disabled selected>{{ 'Hr.IdentityType' | translate }}</option>
+                <!-- <option *ngFor="let item of branchData " [value]="item.Id">{{ item.NameAr }}</option> -->
+              </select>
+              </div>
+              <div class="form-group col-md-4 mt-5">
+                <input id="identityNumber" formControlName="identityNumber"  placeholder="{{ 'Hr.IdentityNumber' | translate }}" class="form-control">
+              </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-4 mt-5">
+                <input type="date" id="identityCreationDate" formControlName="identityCreationDate"  placeholder="{{ 'Hr.IdentityCreationDate' | translate }}" class="form-control">
+            </div>
+              <div class="form-group col-md-4 mt-5">
+                <input type="date" id="identityEndDate" formControlName="identityEndDate"  placeholder="{{ 'Hr.IdentityCreationDate' | translate }}" class="form-control">
+            </div>
+            <div class="form-group col-md-4 mt-5">
+              <select  id="maritalStatus" formControlName="maritalStatus" class="form-control">
+                <option  value="" disabled selected>{{ 'Hr.MaritalStatus' | translate }}</option>
+                <!-- <option *ngFor="let item of branchData " [value]="item.Id">{{ item.NameAr }}</option> -->
+              </select>
+            </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-4 mt-5">
+            <select  id="highestAcademicQualification" formControlName="highestAcademicQualification" class="form-control">
+            <option  value="" disabled selected>{{ 'Hr.HighestAcademicQualification' | translate }}</option>
+            <!-- <option *ngFor="let item of branchData " [value]="item.Id">{{ item.NameAr }}</option> -->
+          </select>
+          </div>
+          <div class="form-group col-md-4 mt-5">
+            <select  id="specializationId" formControlName="specializationId" class="form-control">
+            <option  value="" disabled selected>{{ 'Hr.SpecializationId' | translate }}</option>
+            <!-- <option *ngFor="let item of branchData " [value]="item.Id">{{ item.NameAr }}</option> -->
+          </select>
+          </div>
+          <div class="form-group col-md-4 mt-5">
+            <input id="mobile" formControlName="mobile"  placeholder="{{ 'Hr.Mobile' | translate }}" class="form-control">
+          </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-4 mt-5">
+          <input id="phone" formControlName="phone"  placeholder="{{ 'Hr.Phone' | translate }}" class="form-control">
+        </div>
+          <div class="form-group col-md-4 mt-5">
+            <input type="email" id="email" formControlName="email"  placeholder="{{ 'Hr.Email' | translate }}" class="form-control">
+          </div>
+        <div class="form-group col-md-4 mt-5">
+          <input type="date" id="birthDate" formControlName="birthDate"  placeholder="{{ 'Hr.BirthDate' | translate }}" class="form-control">
+      </div>
+      <div class="row">
+        <div class="form-group col-md-4 mt-5">
+          <input id="address" formControlName="address"  placeholder="{{ 'Hr.Address' | translate }}" class="form-control">
+        </div>
+          <div class="form-group col-md-4 mt-5">
+            <input type="checkbox" id="isSalesRepresentative" formControlName="isSalesRepresentative"  placeholder="{{ 'Hr.IsSalesRepresentative' | translate }}" class="form-control">
+          </div>
+        <div class="form-group col-md-4 mt-5">
+          <input type="radio"  id="statusId" formControlName="statusId"  placeholder="{{ 'Hr.Status' | translate }}" class="form-control">
+        </div>
+      </div>
+    </div>
+          </p-tabPanel>
+          <p-tabPanel header="{{ 'Hr.Information' | translate }}">
+              <p>
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+              </p>
+          </p-tabPanel>
+          <p-tabPanel header="{{ 'Hr.Docs' | translate }}">
+            <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" accept=".txt" >
+              <ng-template pTemplate="content">
+                  <ul *ngIf="uploadedFiles.length">
+                      <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                  </ul>
+              </ng-template>
+          </p-fileUpload>
+          </p-tabPanel>
+          <p-tabPanel header="{{ 'Hr.User' | translate }}">
+            <div class="row">
+              <div class="form-group col-md-5 mt-6">
+                <input id="accountId" formControlName="accountId"  placeholder="{{ 'Hr.AccountId' | translate }}" class="form-control">
+              </div>
+              <div class="form-group col-md-5 mt-6">
+                <input type="password" id="password" formControlName="password"  placeholder="{{ 'Hr.Password' | translate }}" class="form-control">
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-5 mt-6">
+                <input type="password" id=""   placeholder="{{ 'Hr.ConfirmPassword' | translate }}" class="form-control">
+              </div>
+              <div class="form-group col-md-5 mt-6">
+                <select  id="roleId" formControlName="roleId" class="form-control">
+                <option  value="" disabled selected>{{ 'Hr.RoleId' | translate }}</option>
+                <!-- <option *ngFor="let item of branchData " [value]="item.Id">{{ item.NameAr }}</option> -->
+              </select>
+              </div>
+            </div>
+          </p-tabPanel>
+      </p-tabView>
+  </div>
+  <div class="bottom-buttons">
+    <button type="submit"  class="d-block w-100 py-3"  >{{ 'Save' | translate }}</button>
+  </div>
+  </form>
+</div>
+
+
+<div class="container">
+
+  <div class="search-container">
+    <input (input)="onSearch($event)" class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
+  </div>
+  <p-table
+  [rowsPerPageOptions]="[5, 10, 15, 20]"
+  [paginator]="true"
+  [rows]="5"
+  [columns]="cols"
+  [value]="EmployeeData"
+  sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}"  #dt>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field" [style.text-align]="'right'" >
+          {{ col.header | translate }}
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
+        <th class="ui-sortable-column table-data" [style.text-align]="'right'">
+          {{ 'Actions' | translate }}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-Employee let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns" [style.text-align]="'right'">
+          <span class="table-data" *ngIf="col.field == 'CreatedDate'">
+            {{ Employee[col.field] | date:'shortDate' }}
+          </span>
+          <span class="table-data" *ngIf="col.field == 'StatusId'">
+            {{ getStatus(Employee[col.field])?.name }}
+          </span>
+          <span class="table-data" *ngIf="col.field.includes('Level')">
+            {{ Employee[col.field] && Employee[col.field] !== 0 ? getLevelName(Employee[col.field])?.NameAr : '' }}
+          </span>
+          <span class="table-data" *ngIf="col.field == 'BranchId'">
+            {{ getBranch(Employee[col.field])?.NameAr }}
+          </span>
+          <span class="table-data" *ngIf="col.field == 'EmployeeCategoryId'">
+            {{ getEmployeeCategory(Employee[col.field])?.NameAr }}
+          </span>
+          <span class="table-data" *ngIf="col.field != 'CreatedDate'&&col.field != 'EmployeeCategoryId' &&col.field != 'BranchId' && col.field != 'StatusId' && !col.field.includes('Level') ">
+            {{ Employee[col.field] }}
+          </span>
+        </td>
+        <td>
+          <div style="text-align: center">
+            <img src="assets/images/editIcon.png" class="mx-3" (click)=" setEdit(Employee)" />
+            <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteConfirm(Employee)" />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+
+</div>
+<div class="bottom-buttons">
+<button (click)="printPdf()" class="btn btn-primary add-data-button">{{"Hr.Print" | translate}}</button>
+<span class="button-space"></span>
+<button (click)="exportData()" class="btn btn-primary add-data-button">{{"Hr.Export" | translate}}</button>
+<span class="button-space"></span>
+<button (click)="goHome()" class="btn btn-primary add-data-button">{{"Cancel" | translate}}</button>
+</div>
+

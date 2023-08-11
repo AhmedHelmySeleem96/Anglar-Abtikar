@@ -30,7 +30,11 @@
 "EnterAllData":"Add All Data",
 
 "Hr":{
-  "City" : " Cities",
+  "EmployeeInformation" : "EmployeeInformation",
+  "Information" :"Information",
+"Docs":"Docs",
+"User"  :"User",
+"City" : " المدن",
 "Select" : "Select",
   "SelectBranch" :"SelectBranch",
   "Selectالادرات": "Select Divisions",

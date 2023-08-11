@@ -1,0 +1,17 @@
+sass --watch style.scss:style.min.css --style compressed
+
+sass --watch bootstrap-mod.scss:bootstrap-mod.min.css --style compressed
+sass --watch print.scss:print.css
+
+title-page
+
+                                                      <button type='button' class="custom-btn btn-3 search-btn" >      <span>اضافة</span>  </button>
+
+
+<td class="remove-item">
+                     <button class="trash-btn"  onclick="sweetlert()"><i class="fa-solid fa-trash-can"></i></button>
+                      <button class="Edit-btn" role="button" data-toggle="modal" data-target="#exampleModal"><i class="fa-solid fa-pen"></i></button>
+
+                    </td>
+my-form
+print-btn

@@ -15,6 +15,7 @@ import { JobsComponent } from './jobs/jobs.component';
 import { JobModule } from './jobs/jobs.module';
 import { SpecializationsComponent } from './specializations/specializations.component';
 import { SpecializationsCreateComponent } from './specializations/specializations-create/specializations-create.component';
+import { EmployeeComponent } from './employee/employee.component';
 @NgModule({
   declarations: [
   CityComponent,
@@ -27,6 +28,7 @@ import { SpecializationsCreateComponent } from './specializations/specialization
   HospitalComponent,
 JobsComponent,
 SpecializationsComponent,
+EmployeeComponent,
   ],
   imports: [
     CommonModule,
@@ -49,6 +51,8 @@ SpecializationsComponent,
         path : "jobs" , loadChildren: () => import('./jobs/jobs.module').then(m => m.JobModule)
       },{
         path : "specializations" , loadChildren: () => import('./specializations/specializations.module').then(m => m.SpecializationsModule)
+      },{
+        path : "employee" , loadChildren: () => import('./employee/employee.module').then(m => m.EmployeeModule)
       }]
     }]),
     TranslateModule,

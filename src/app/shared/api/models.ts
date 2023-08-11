@@ -37,6 +37,7 @@ export { EnvironmentMode } from './models/environment-mode';
 export { FinanceSettings } from './models/finance-settings';
 export { Gl } from './models/gl';
 export { GlDetail } from './models/gl-detail';
+export { HrEmployeeDto } from './models/hr-employee-dto';
 export { HrManagment } from './models/hr-managment';
 export { HrSection } from './models/hr-section';
 export { HospitalDto } from './models/hospital-dto';
