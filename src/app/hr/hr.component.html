@@ -1,135 +1,104 @@
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top  p-0 bg-body-tertiary flex-wrap">
-
-
-
-  <div class="container-lg p-3">
-
-    <a aria-label="Read More Home LOGO" [routerLink]="'/home' " class="navbar-brand px-0">
-      <span class="fs-3  p-2">Abtikar</span>
-    </a>
-
-    <button aria-labelledby="open" title="open" name="open" class="navbar-toggler p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-      <span class="icone-bar"></span>
-      <span class="icone-bar"></span>
-      <span class="icone-bar"></span>
-    </button>
-
-
-    <div class="collapse navbar-collapse " id="navbarCollapse">
-      <div class="navbar-nav mx-auto  py-0 align-items-lg-center">
-
-        <a aria-label="Read Home" routerLinkActive="activeroute" [routerLink]="'/home' " class="   my-lg-0">{{"navBar.Home" | translate}}</a>
-
-        <a aria-label="Read About" routerLinkActive="activeroute" [routerLink]="'/about'" class="    my-lg-0">{{"navBar.About" | translate}}</a>
-
-        <a aria-label="Read contact" routerLinkActive="activeroute" [routerLink]="'/contact' " class="   my-lg-0">{{"navBar.Contact" | translate}}</a>
-
-      <div class="nav-item dropdown m-0 p-0">
-          <a aria-label="Language"  href="#" class="nav-link p-0 " data-bs-toggle="dropdown">
-            <span class="d-block  text-nowrap p-0">
-              {{"navBar.Language" | translate}}
-              <svg  width="15" fill="#ff8100"  class='mx-1' viewBox="0 0 16 16">
-                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM2.04 4.326c.325 1.329 2.532 2.54 3.717 3.19.48.263.793.434.743.484-.08.08-.162.158-.242.234-.416.396-.787.749-.758 1.266.035.634.618.824 1.214 1.017.577.188 1.168.38 1.286.983.082.417-.075.988-.22 1.52-.215.782-.406 1.48.22 1.48 1.5-.5 3.798-3.186 4-5 .138-1.243-2-2-3.5-2.5-.478-.16-.755.081-.99.284-.172.15-.322.279-.51.216-.445-.148-2.5-2-1.5-2.5.78-.39.952-.171 1.227.182.078.099.163.208.273.318.609.304.662-.132.723-.633.039-.322.081-.671.277-.867.434-.434 1.265-.791 2.028-1.12.712-.306 1.365-.587 1.579-.88A7 7 0 1 1 2.04 4.327Z"/>
-              </svg>          </span>
-          </a>
-          <!-- <div class="dropdown-menu m-0">
-            <span class="d-block text-center pointer" (click)="changeLanguage('ar')">العربية</span>
-            <span class="d-block text-center pointer" (click)="changeLanguage('en')">English</span>
-          </div> -->
-      </div>
-
-      <div class="nav-item dropdown m-0 p-0">
-        <a aria-label="Them"  href="#" class="nav-link p-0 " data-bs-toggle="dropdown">
-          <span class="d-block  text-nowrap p-0">
-            {{"navBar.Color" | translate}}
-            <svg  width="15" fill="#ff8100"  class='mx-1' viewBox="0 0 16 16">
-              <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
-            </svg>
-          </span>
-        </a>
-        <!-- <div class="dropdown-menu m-0">
-          <span class="d-block text-center pointer" (click)="changeThems('Dark')">Dark</span>
-          <span class="d-block text-center pointer" (click)="changeThems('White')">Light</span>
-        </div> -->
-      </div>
-
-      <div class="nav-item dropdown m-0 p-0">
-        <a aria-label="Them"  href="#" class="nav-link p-0 " data-bs-toggle="dropdown">
-          <span class="d-block  text-nowrap p-0 ">
-            {{"navBar.Account" | translate}}
-            <svg  width="15" fill="#ff8100"  class='mx-1' viewBox="0 0 16 16">
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-            </svg>
-        </span>
-        </a>
-        <div class="dropdown-menu m-0">
-          <span class="d-block text-center pointer" [routerLink]="'/auth/login'">{{"navBar.Login" | translate}}</span>
-          <span class="d-block text-center pointer" [routerLink]="'/auth/register'">{{"navBar.Register" | translate}}</span>
+<div id="overlay">
+        <div class="cv-spinner">
+            <span class="spinner"></span>
         </div>
-      </div>
-
-
-      <div class="dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          {{"navBar.Hr" | translate}}
-          <svg width="15" fill="#ff8100" class='mx-1' viewBox="0 0 16 16">
-            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-          </svg>
-        </a>
-        <ul class=" dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <li>
-            <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/city'">{{ "Hr.City" | translate }}</a>
-          </li>
-          <li>
-            <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/country'">{{ "Hr.Countrynav" | translate }}</a>
-          </li>
-          <li>
-            <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/nationality'">{{ "Hr.Nationalitynav" | translate }}</a>
-          </li>
-          <li>
-            <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/orgstructlevel'">{{ "Hr.Orgstruct" | translate }}</a>
-          </li>
-          <li>
-            <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/orgstructures'">{{ "Hr.Orgstructures" | translate }}</a>
-          </li>
-          <li>
-            <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/hospital'">{{ "Hr.Hospitalnav" | translate }}</a>
-          </li>
-          <li>
-            <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/allowence'">{{ "Hr.Allowencenav" | translate }}</a>
-          </li>
-          <li>
-            <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/specializations'">{{ "Hr.Specializationsnav" | translate }}</a>
-          </li>
-          <li>
-            <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/employee'">{{ "Hr.Employeenav" | translate }}</a>
-          </li>
-          <li class="dropdown-submenu" >
-            <div (mouseleave)="isOpened = false" [ngClass]="{isOpened:isOpened}" >
-              <a class="d-block text-center pointer dropdown-toggle " (mouseenter)="$event.preventDefault(); isOpened=true" id="jobDropdownToggles" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
-                {{ "Hr.JobNamenav" | translate }} &raquo;
-              </a>
-              <ul class=" pointer dropdown-menu" aria-labelledby="jobDropdownToggles">
-                <li>
-                  <a class="  pointer dropdown-item"  [routerLink]="'/hr/jobs/createJobs'">{{ "Hr.CreateJobs" | translate }}</a>
-                </li>
-                <li>
-                  <a class=" pointer dropdown-item"  [routerLink]="'/hr/jobs/jobsNames'">{{ "Hr.JobsNames" | translate }}</a>
-                </li>
-                <li>
-                  <a class=" pointer dropdown-item"  [routerLink]="'/hr/jobs/jobsCategories'">{{ "Hr.JobsCategories" | translate }}</a>
-                </li>
-              </ul>
-
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      </div>
     </div>
-  </div>
-</nav>
-<router-outlet></router-outlet>
+    <div class="header-container fixed-top">
+        <header class="header navbar navbar-expand-sm">
+            <ul class="navbar-item flex-row ml-md-0 ml-auto pl-3">
+
+                <li class="nav-item dropdown megamenu-dropdown d-none d-lg-flex">
+                    <a href="javascript:void(0);" class="nav-link dropdown-toggle d-flex align-center text-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        الوصول السريع
+                        <i class="las la-angle-down font-11 ml-1"></i>
+                    </a>
+                    <div class="dropdown-menu megamenu">
+                      <li>
+                        <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/city'">{{ "Hr.City" | translate }}</a>
+                      </li>
+                      <li>
+                        <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/country'">{{ "Hr.Countrynav" | translate }}</a>
+                      </li>
+                      <li>
+                        <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/nationality'">{{ "Hr.Nationalitynav" | translate }}</a>
+                      </li>
+                      <li>
+                        <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/orgstructlevel'">{{ "Hr.Orgstruct" | translate }}</a>
+                      </li>
+                      <li>
+                        <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/orgstructures'">{{ "Hr.Orgstructures" | translate }}</a>
+                      </li>
+                      <li>
+                        <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/hospital'">{{ "Hr.Hospitalnav" | translate }}</a>
+                      </li>
+                      <li>
+                        <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/allowence'">{{ "Hr.Allowencenav" | translate }}</a>
+                      </li>
+                      <li>
+                        <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/specializations'">{{ "Hr.Specializationsnav" | translate }}</a>
+                      </li>
+                      <li>
+                        <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/employee'">{{ "Hr.Employeenav" | translate }}</a>
+                      </li>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown megamenu-dropdown d-none d-lg-flex">
+                    <a class="nav-link dropdown-toggle d-flex align-center text-primary" href="/Market/MarketItems">
+                        المتجر
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-item flex-row ml-md-auto">
+                <li class="nav-item dropdown fullscreen-dropdown d-none d-lg-flex">
+                    <a class="nav-link full-screen-mode" href="javascript:void(0);">
+                        <i class="las la-compress" id="fullScreenIcon"></i>
+                    </a>
+                </li>
+                <li class="nav-item dropdown language-dropdown">
+                    <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="language-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="las la-language"></i>
+                    </a>
+                    <div class="dropdown-menu position-absolute" aria-labelledby="language-dropdown">
+                        <a class="dropdown-item d-flex" href="javascript:void(0);">
+                            <img src="/lib/them/assets/img/flag/usa-flag.png" class="flag-width" alt="flag">
+                            <span class="align-self-center">&nbsp;English</span>
+                        </a>
+                        <a class="dropdown-item d-flex" href="javascript:void(0);">
+                            <img src="/lib/them/assets/img/flag/saudi-arabia-flag.png" class="flag-width" alt="flag">
+                            <span class="align-self-center">&nbsp;Arabic</span>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="nav-item   d-none d-lg-flex">
+                    <span id="mainSubj" class=" mr-5"></span>
+                </li>
+
+            </ul>
+            <span id="insertsTopPagePlace" class="float-left ml-5"></span>
+            <span id="currentDate" class="float-left">12 August 2023</span>
+            <span id="" class="float-left">/</span>
+            <span id="currentTime" class="float-left">1:49 am</span>
+            <ul class="navbar-item flex-row">
+                <li class="nav-item dropdown header-setting">
+                    <a href="javascript:void(0);" class="nav-link dropdown-toggle rightbarCollapse" data-placement="bottom">
+                        <i class="las la-sliders-h"></i>
+                    </a>
+                </li>
+            </ul>
+        </header>
+    </div>
+    <div class="main-container" id="container">
+      <div class="overlay"></div>
+      <div class="search-overlay"></div>
+      <div class="rightbar-overlay"></div>
+      <div id="content" class="main-content">
+        <div class="aa">
+            <main role="main" class="">
+               <router-outlet></router-outlet>
+                <div id="HereModel">
+                </div>
+            </main>
+        </div>
+    </div>

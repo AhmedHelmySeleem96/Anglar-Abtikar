@@ -130,6 +130,9 @@ body {
     direction: rtl;
     text-align: right
 }
+.aa{
+  text-align: right !important;
+}
 .table-dark th{
     color:white!important
 }
