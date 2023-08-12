@@ -1,46 +1,45 @@
-<div class="col-7 mx-auto py-4 py-md-5 px-lg-4">
-  <h3>{{ "Hr.Countrynav" | translate }}</h3>
+<div class="createDiv">
+
+  <div class="tab-pane fade show active" id="rounded-corner-pills-icon-home" role="tabpanel" aria-labelledby="rounded-corner-pills-icon-home-tab" style="min-height:300px">
+
+    <div class="card bg-light mb-3">
+        <div class="card-body">
+            <h3>{{ "Hr.Country" | translate }}</h3>
   <form #formElement [formGroup]="formCountry" (ngSubmit)="onSubmit(formCountry)" class="form">
 
     <div class="form-group mt-5">
-      <input  id="countryNameAr" type="countryNameAr" formControlName="countryNameAr" required placeholder="{{ 'Hr.CountryNameAr' | translate }}" class="form-control">
+      <label for="countryNameAr">{{ 'Hr.CountryNameAr' | translate }}</label>
+      <input  id="countryNameAr" type="countryNameAr" formControlName="countryNameAr" required class="form-control">
     </div>
 
     <div class="form-group mt-5">
-      <input   id="countryNameEn" type="countryNameEn" formControlName="countryNameEn" required placeholder="{{ 'Hr.CountryNameEn' | translate }}" class="form-control">
+      <label for="countryNameEn">{{ 'Hr.CountryNameEn' | translate }}</label>
+      <input   id="countryNameEn" type="countryNameEn" formControlName="countryNameEn" required  class="form-control">
     </div>
-
     <div class="form-group mt-5">
+      <label for="notes">{{ 'Hr.Notes' | translate }}</label>
       <input   id="notes" type="notes" formControlName="notes" placeholder="{{ 'Hr.Notes' | translate }}" class="form-control">
     </div>
-    <div class="bottom-buttons">
-      <button type="submit"  class="d-block w-100 py-3"  >{{ 'Save' | translate }}</button>
-    </div>
-
   </form>
 </div>
-
-<div class="container">
-
-  <div class="search-container">
-    <input (input)="onSearch($event)" class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
+<div class="table-responsive mt-1 ">
+  <div class="col-md-3 mb-2 mt-2">
+    <input (input)="onSearch($event)" class="form-control form-control-sm " type="search" placeholder="{{ 'navBar.Search' | translate }}">
   </div>
 
-  <!-- <div class="table-container" class="add-button">
-    <button (click)="addCountry()"  class="btn btn-primary add-data-button">{{"Hr.AddCountry"|translate}}</button>
-  </div> -->
-  <div class="table-container">
+  <div class="table-container" id="pdfContent">
 
     <p-table
+    #dt
     [rowsPerPageOptions]="[5, 10, 15, 20]"
     [paginator]="true"
     [rows]="5"
     [columns]="cols"
     [value]="countryData"
-    sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}"  #dt>
+    sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" >
       <ng-template pTemplate="header" let-columns>
         <tr>
-          <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field" [style.text-align]="'right'" >
+          <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field" [style.text-align]="'right'">
             {{ col.header | translate }}
             <p-sortIcon [field]="col.field"></p-sortIcon>
           </th>
@@ -52,10 +51,13 @@
       <ng-template pTemplate="body" let-country let-columns="columns">
         <tr>
           <td *ngFor="let col of columns" [style.text-align]="'right'">
+            <span class="table-data" *ngIf="col.field == 'CountryId'">
+              {{ getCountry(country[col.field])?.NameAr }}
+            </span>
             <span class="table-data" *ngIf="col.field == 'CreatedDate'">
               {{ country[col.field] | date:'shortDate' }}
             </span>
-            <span class="table-data" *ngIf="col.field != 'CreatedDate'">
+            <span class="table-data" *ngIf="col.field != 'CountryId' &&col.field != 'CreatedDate'">
               {{ country[col.field] }}
             </span>
           </td>
@@ -71,13 +73,15 @@
 
 
 </div>
-<div class="bottom-buttons">
-  <button (click)="printPdf()" class="btn btn-primary add-data-button">{{"Hr.Print" | translate}}</button>
-  <span class="button-space"></span>
-  <button (click)="exportData()" class="btn btn-primary add-data-button">{{"Hr.Export" | translate}}</button>
-  <span class="button-space"></span>
-  <button (click)="goHome()" class="btn btn-primary add-data-button">{{"Cancel" | translate}}</button>
 </div>
+</div>
+</div>
+</div>
+<div class="mt-2 text-center">
+  <button type="submit" (click)="onSubmit(formCountry)" class="btn btn-success" >{{ 'Save' | translate }}</button>
+  <button  (click)="printPdf()" class="btn btn-info" >{{"Hr.Print" | translate}}</button>
+  <button  (click)="exportData()" class="btn btn-info" id="viewBtn">{{"Hr.Export" | translate}}</button>
+  <button (click)="goHome()" class="btn btn-warning Dnone" id="editBtn">{{"Cancel" | translate}}</button>
 </div>
 <p-toast position="top-center"></p-toast>
 <<p-toast position="center" key="c" (onClose)="onDeleteReject()" [baseZIndex]="5000">

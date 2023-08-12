@@ -67,6 +67,7 @@ export class CityPreviewComponent implements OnInit {
     }
   }
   OnSubmit(Form: FormGroup) {
+    debugger
     if(!this.isEdit){
     if(this.formCity.valid)
     {

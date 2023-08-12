@@ -1,13 +1,20 @@
-<div class="col-7 mx-auto py-4 py-md-5 px-lg-4">
-  <h3>{{ "Hr.City" | translate }}</h3>
+<div class="createDiv">
+
+  <div class="tab-pane fade show active" id="rounded-corner-pills-icon-home" role="tabpanel" aria-labelledby="rounded-corner-pills-icon-home-tab" style="min-height:300px">
+
+    <div class="card bg-light mb-3">
+        <div class="card-body">
+            <h3>{{ "Hr.City" | translate }}</h3>
   <form #formElement [formGroup]="formCity" (ngSubmit)="OnSubmit(formCity)" class="form">
 
     <div class="form-group mt-5">
-      <input  id="cityNameAr" type="cityNameAr" formControlName="cityNameAr" required placeholder="{{ 'Hr.CityNameAr' | translate }}" class="form-control">
+      <label for="cityNameAr">{{ 'Hr.CityNameAr' | translate }}</label>
+      <input  id="cityNameAr" type="cityNameAr" formControlName="cityNameAr" required class="form-control">
     </div>
 
     <div class="form-group mt-5">
-      <input   id="cityNameEn" type="cityNameEn" formControlName="cityNameEn" required placeholder="{{ 'Hr.CityNameEn' | translate }}" class="form-control">
+      <label for="cityNameEn">{{ 'Hr.CityNameEn' | translate }}</label>
+      <input   id="cityNameEn" type="cityNameEn" formControlName="cityNameEn" required  class="form-control">
     </div>
     <div class="form-group mt-5">
       <label for="countryDropdown">{{ 'Hr.SelectCountry' | translate }}</label>
@@ -16,26 +23,16 @@
         <option *ngFor="let country of countryData " [value]="country.Id">{{ country.NameAr }}</option>
       </select>
     </div>
-     <!-- <div class="form-group mt-5">
-      <p-dropdown  *ngFor="let country of countryData" [style]="{'width':'100%'}" [(ngModel)]="selectedCountry" [options]="country" optionLabel="country.NameAr" [filter]="true" filterBy="country.NameAr" [showClear]="true" placeholder="{{ 'Hr.SelectCountry' | translate }}"></p-dropdown>
-    </div> -->
     <div class="form-group mt-5">
+      <label for="notes">{{ 'Hr.Notes' | translate }}</label>
       <input   id="notes" type="notes" formControlName="notes" placeholder="{{ 'Hr.Notes' | translate }}" class="form-control">
     </div>
-    <div class="bottom-buttons">
-      <button type="submit"  class="d-block w-100 py-3"  >{{ 'Save' | translate }}</button>
-    </div>
-
   </form>
 </div>
-
-<div class="container">
-  <div class="search-container">
-    <input (input)="onSearch($event)" class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
+<div class="table-responsive mt-1 ">
+  <div class="col-md-3 mb-2 mt-2">
+    <input (input)="onSearch($event)" class="form-control form-control-sm " type="search" placeholder="{{ 'navBar.Search' | translate }}">
   </div>
-  <!-- <div class="table-container" class="add-button">
-    <button (click)="AddCity()"  class="btn btn-primary add-data-button">{{"Hr.AddCity"|translate}}</button>
-  </div> -->
 
   <div class="table-container" id="pdfContent">
 
@@ -62,7 +59,7 @@
         <tr>
           <td *ngFor="let col of columns" [style.text-align]="'right'">
             <span class="table-data" *ngIf="col.field == 'CountryId'">
-              {{ getCountry(city[col.field]).NameAr }}
+              {{ getCountry(city[col.field])?.NameAr }}
             </span>
             <span class="table-data" *ngIf="col.field == 'CreatedDate'">
               {{ city[col.field] | date:'shortDate' }}
@@ -83,11 +80,14 @@
 
 
 </div>
-<div class="bottom-buttons">
-  <button  (click)="printPdf()" class="btn btn-primary add-data-button">{{"Hr.Print" | translate}}</button>
-  <span class="button-space"></span>
-  <button (click)="exportData()" class="btn btn-primary add-data-button">{{"Hr.Export" | translate}}</button>
-  <span class="button-space"></span>
-  <button (click)="goHome()" class="btn btn-primary add-data-button">{{"Cancel" | translate}}</button>
 </div>
 </div>
+</div>
+</div>
+<div class="mt-2 text-center">
+  <button type="submit" (click)="OnSubmit(formCity)" class="btn btn-success" >{{ 'Save' | translate }}</button>
+  <button  (click)="printPdf()" class="btn btn-info" >{{"Hr.Print" | translate}}</button>
+  <button  (click)="exportData()" class="btn btn-info" id="viewBtn">{{"Hr.Export" | translate}}</button>
+  <button (click)="goHome()" class="btn btn-warning Dnone" id="editBtn">{{"Cancel" | translate}}</button>
+</div>
+
