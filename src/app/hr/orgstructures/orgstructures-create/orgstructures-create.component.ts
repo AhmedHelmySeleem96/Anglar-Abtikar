@@ -58,7 +58,7 @@ ngOnInit(): void {
     { field: 'LevelId', header: 'Hr.SelectParent' },
   ];
 }
-OnSubmit(Form: FormGroup) {
+onSubmit(Form: FormGroup) {
   if(!this.isEdit){
   if(this.formorgStruct.valid)
   {
@@ -141,7 +141,8 @@ OnSubmit(Form: FormGroup) {
         NameAr: level.NameAr,
         NameEn: level.NameEn,
         ParentId: level.ParentId,
-        LevelId: level.LevelId
+        LevelId: level.LevelId,
+        branchId:level.BranchId
       });
       this.isEdit = true;
       this.currentLevelId = level.Id;

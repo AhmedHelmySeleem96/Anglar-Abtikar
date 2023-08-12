@@ -1,14 +1,22 @@
-<div class="col-7 mx-auto py-4 py-md-5 px-lg-4">
-  <h3>{{ "Hr.Hospitalnav" | translate }}</h3>
-  <form #formElement [formGroup]="formHospital" (ngSubmit)="OnSubmit(formHospital)" class="form">
+<div class="createDiv">
+
+  <div class="tab-pane fade show active" id="rounded-corner-pills-icon-home" role="tabpanel" aria-labelledby="rounded-corner-pills-icon-home-tab" style="min-height:300px">
+
+    <div class="card bg-light mb-3">
+        <div class="card-body">
+            <h3>{{ "Hr.Hospital" | translate }}</h3>
+  <form #formElement [formGroup]="formHospital" (ngSubmit)="onSubmit(formHospital)" class="form">
 
     <div class="form-group mt-5">
-      <input  id="NameAr" type="NameAr" formControlName="NameAr" required placeholder="{{ 'Hr.HospitalNameAr' | translate }}" class="form-control">
+      <label for="hospitalNameAr">{{ 'Hr.HospitalNameAr' | translate }}</label>
+      <input  id="hospitalNameAr" type="hospitalNameAr" formControlName="NameAr" required class="form-control">
     </div>
 
     <div class="form-group mt-5">
-      <input   id="NameEn" type="NameEn" formControlName="NameEn" required placeholder="{{ 'Hr.HospitalNameEn' | translate }}" class="form-control">
+      <label for="hospitalNameEn">{{ 'Hr.HospitalNameEn' | translate }}</label>
+      <input   id="hospitalNameEn" type="hospitalNameEn" formControlName="NameEn" required  class="form-control">
     </div>
+
     <div class="form-group mt-5" *ngIf="isEdit">
       <label for="StatusId">{{ 'Hr.SelectStatus' | translate }}</label>
       <select   id="StatusId" formControlName="StatusId"  class="form-control"  >
@@ -17,75 +25,73 @@
       </select>
     </div>
     <div class="form-group mt-5">
+      <label for="notes">{{ 'Hr.Notes' | translate }}</label>
       <input   id="notes" type="notes" formControlName="notes" placeholder="{{ 'Hr.Notes' | translate }}" class="form-control">
     </div>
-    <div class="bottom-buttons">
-      <button type="submit"  class="d-block w-100 py-3"  >{{ 'Save' | translate }}</button>
-    </div>
-
   </form>
 </div>
-
-<div class="container">
-
-  <div class="search-container">
-    <input (input)="onSearch($event)" class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
+<div class="table-responsive mt-1 ">
+  <div class="col-md-3 mb-2 mt-2">
+    <input (input)="onSearch($event)" class="form-control form-control-sm " type="search" placeholder="{{ 'navBar.Search' | translate }}">
   </div>
 
-  <!-- <div class="table-container" class="add-button">
-    <button (click)="addHospital()"  class="btn btn-primary add-data-button">{{"Hr.AddHospital"|translate}}</button>
-  </div> -->
-  <p-table
-  [rowsPerPageOptions]="[5, 10, 15, 20]"
-  [paginator]="true"
-  [rows]="5"
-  [columns]="cols"
-  [value]="hospitalData"
-  sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}"  #dt>
-    <ng-template pTemplate="header" let-columns>
-      <tr>
-        <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field" [style.text-align]="'right'" >
-          {{ col.header | translate }}
-          <p-sortIcon [field]="col.field"></p-sortIcon>
-        </th>
-        <th class="ui-sortable-column table-data" [style.text-align]="'right'">
-          {{ 'Actions' | translate }}
-        </th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-hospital let-columns="columns">
-      <tr>
-        <td *ngFor="let col of columns" [style.text-align]="'right'">
-          <span class="table-data" *ngIf="col.field == 'CreatedDate'">
-            {{ hospital[col.field] | date:'shortDate' }}
-          </span>
-          <span class="table-data" *ngIf="col.field == 'StatusId'">
-            {{ getStatus(hospital[col.field]).name }}
-          </span>
-          <span class="table-data" *ngIf="col.field != 'CreatedDate' && col.field != 'StatusId'">
-            {{ hospital[col.field] }}
-          </span>
-        </td>
-        <td>
-          <div style="text-align: center">
-            <img src="assets/images/editIcon.png" class="mx-3" (click)=" setEdit(hospital)" />
-            <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteConfirm(hospital)" />
-          </div>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
+  <div class="table-container" id="pdfContent">
+
+    <p-table
+    #dt
+    [rowsPerPageOptions]="[5, 10, 15, 20]"
+    [paginator]="true"
+    [rows]="5"
+    [columns]="cols"
+    [value]="hospitalData"
+    sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" >
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field" [style.text-align]="'right'">
+            {{ col.header | translate }}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+          <th class="ui-sortable-column table-data" [style.text-align]="'right'">
+            {{ 'Actions' | translate }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-hospital let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns" [style.text-align]="'right'">
+            <span class="table-data" *ngIf="col.field == 'HospitalId'">
+              {{ gethospital(hospital[col.field])?.NameAr }}
+            </span>
+            <span class="table-data" *ngIf="col.field == 'CreatedDate'">
+              {{ hospital[col.field] | date:'shortDate' }}
+            </span>
+            <span class="table-data" *ngIf="col.field != 'HospitalId' &&col.field != 'CreatedDate'">
+              {{ hospital[col.field] }}
+            </span>
+          </td>
+          <td>
+            <div style="text-align: center">
+              <img src="assets/images/editIcon.png" class="mx-3" (click)=" setEdit(hospital)" />
+              <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteConfirm(hospital)" />
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
 
 
 </div>
-<div class="bottom-buttons">
-<button (click)="printPdf()" class="btn btn-primary add-data-button">{{"Hr.Print" | translate}}</button>
-<span class="button-space"></span>
-<button (click)="exportData()" class="btn btn-primary add-data-button">{{"Hr.Export" | translate}}</button>
-<span class="button-space"></span>
-<button (click)="goHome()" class="btn btn-primary add-data-button">{{"Cancel" | translate}}</button>
 </div>
-<p-toast position="top-center"></p-toast>
+</div>
+</div>
+</div>
+<div class="mt-2 text-center">
+  <button type="submit" (click)="onSubmit(formHospital)" class="btn btn-success" >{{ 'Save' | translate }}</button>
+  <button  (click)="printPdf()" class="btn btn-info" >{{"Hr.Print" | translate}}</button>
+  <button  (click)="exportData()" class="btn btn-info" id="viewBtn">{{"Hr.Export" | translate}}</button>
+  <button (click)="goHome()" class="btn btn-warning Dnone" id="editBtn">{{"Cancel" | translate}}</button>
+</div>
+<p-toast position="center"></p-toast>
 <<p-toast position="center" key="c" (onClose)="onDeleteReject()" [baseZIndex]="5000">
   <ng-template let-message pTemplate="message">
     <div style="text-align: center">

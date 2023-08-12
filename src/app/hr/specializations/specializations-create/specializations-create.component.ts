@@ -101,7 +101,7 @@ export class SpecializationsCreateComponent  implements OnInit{
         this.toastr.error('Failed to delete specializations.');
       });
     }
-    OnSubmit(Form: FormGroup) {
+    onSubmit(Form: FormGroup) {
       if(!this.isEdit){
       if(this.formSpecializations.valid)
       {

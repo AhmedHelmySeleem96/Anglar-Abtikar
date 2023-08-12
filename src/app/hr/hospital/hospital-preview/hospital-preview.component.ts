@@ -135,7 +135,7 @@ export class HospitalPreviewComponent implements OnInit {
       onDeleteReject() {
         this.MessageService.clear('c');
       }
-      OnSubmit(Form: FormGroup) {
+      onSubmit(Form: FormGroup) {
         if(!this.isEdit){
         if(this.formHospital.valid)
         {

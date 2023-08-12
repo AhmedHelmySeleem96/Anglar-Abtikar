@@ -1,21 +1,26 @@
-<div class="container">
-  <span class="button-space"></span>
-<h3>{{ "Hr.Orgstructures" | translate }}</h3>
-<span class="button-space"></span>
-<div class="above-buttons">
-  <button (click)="expandAll()" class="btn btn-primary bottom-buttons-style ">{{ 'Hr.ExpandAll' | translate }}</button>
-  <span class="button-space"></span>
-  <button (click)="collapseAll()" class="btn btn-primary  bottom-buttons-style">{{ 'Hr.CollapseAll' | translate }}</button>
-</div>
-<span class="button-space"></span>
-<div class="container" *ngIf="branchData.length > 0">
-  <p-tree [filter]="true" (nodeSelect)="setEdit($event)" [value]="treeData" class="w-full md:w-30rem" selectionMode="single" [(selection)]="selectedNode"></p-tree>
-</div>
 
 
-<div class="col-5 mx-auto py-4 py-md-5 px-lg-4">
+<div class="createDiv">
 
-  <form #formElement  [formGroup]="formorgStruct" (ngSubmit)="OnSubmit(formorgStruct)" class="form">
+  <div class="tab-pane fade show active" id="rounded-corner-pills-icon-home" role="tabpanel" aria-labelledby="rounded-corner-pills-icon-home-tab" style="min-height:300px">
+
+    <div class="card bg-light mb-3">
+        <div class="card-body">
+          <h3>{{ "Hr.Orgstructures" | translate }}</h3>
+            <span class="button-space"></span>
+          <span class="button-space"></span>
+          <div class="above-buttons">
+            <button (click)="expandAll()" class="btn btn-primary bottom-buttons-style ">{{ 'Hr.ExpandAll' | translate }}</button>
+            <span class="button-space"></span>
+            <button (click)="collapseAll()" class="btn btn-primary  bottom-buttons-style">{{ 'Hr.CollapseAll' | translate }}</button>
+          </div>
+          <span class="button-space"></span>
+          <div class="container" *ngIf="branchData.length > 0">
+            <p-tree [filter]="true" (nodeSelect)="setEdit($event)" [value]="treeData" class="w-full md:w-30rem" selectionMode="single" [(selection)]="selectedNode"></p-tree>
+          </div>
+
+  <form #formElement [formGroup]="formorgStruct" (ngSubmit)="onSubmit(formorgStruct)" class="form">
+
     <div class="form-group mt-5">
       <label for="branchId">{{ 'Hr.BranchId' | translate }}</label>
       <select #branchElement (change)="onBranchChange($event)"   id="branchId" formControlName="branchId"  class="form-control"  >
@@ -38,39 +43,32 @@
       </select>
     </div>
     <div class="form-group mt-5">
-      <input  id="NameAr" type="NameAr" formControlName="NameAr" required placeholder="{{ 'Hr.OrgStructNameAr' | translate }}" class="form-control">
+      <label for="NameAr">{{ 'Hr.OrgStructNameAr' | translate }}</label>
+      <input  id="NameAr" type="NameAr" formControlName="NameAr" required  class="form-control">
     </div>
 
     <div class="form-group mt-5">
-      <input   id="NameEn" type="NameEn" formControlName="NameEn" required placeholder="{{ 'Hr.OrgStructNameEn' | translate }}" class="form-control">
+      <label for="NameEn">{{ 'Hr.OrgStructNameEn' | translate }}</label>
+      <input   id="NameEn" type="NameEn" formControlName="NameEn" required class="form-control">
     </div>
 
-
-
-    <div class="bottom-buttons">
-      <button type="submit"  class="d-block w-100 py-3"  >{{ 'Save' | translate }}</button>
-      <span class="button-space"></span>
-      <button (click)="goHome()" class="btn btn-primary add-data-button">{{"Cancel" | translate}}</button>
-    </div>
   </form>
 </div>
-<div class="container">
-  <div class="search-container">
-    <input (input)="onSearch($event)" class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
+<div class="table-responsive mt-1 ">
+  <div class="col-md-3 mb-2 mt-2">
+    <input (input)="onSearch($event)" class="form-control form-control-sm " type="search" placeholder="{{ 'navBar.Search' | translate }}">
   </div>
 
-  <div class="table-container">
+  <div class="table-container" id="pdfContent">
+
     <p-table
-      [rowsPerPageOptions]="[5, 10, 15, 20]"
-      [paginator]="true"
-      [rows]="5"
-      [columns]="cols"
-      [value]="orgStructuresData"
-      sortMode="multiple"
-      styleClass="p-datatable-striped"
-      [tableStyle]="{ 'min-width': '50rem' }"
-      #dt
-    >
+    #dt
+    [rowsPerPageOptions]="[5, 10, 15, 20]"
+    [paginator]="true"
+    [rows]="5"
+    [columns]="cols"
+    [value]="orgStructuresData"
+    sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" >
       <ng-template pTemplate="header" let-columns>
         <tr>
           <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field" [style.text-align]="'right'">
@@ -107,6 +105,14 @@
         </tr>
       </ng-template>
     </p-table>
-  </div>
 
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-2 text-center">
+  <button type="submit" (click)="onSubmit(formorgStruct)" class="btn btn-success" >{{ 'Save' | translate }}</button>
+  <button (click)="goHome()" class="btn btn-warning Dnone" id="editBtn">{{"Cancel" | translate}}</button>
 </div>

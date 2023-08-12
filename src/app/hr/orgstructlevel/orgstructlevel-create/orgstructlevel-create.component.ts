@@ -49,7 +49,7 @@ recursiveTemplate!: TemplateRef<any>;
       })
     }
 
-    OnSubmit(Form: FormGroup) {
+    onSubmit(Form: FormGroup) {
       if(!this.isEdit){
       if(this.formorgStruct.valid)
       {
@@ -97,7 +97,8 @@ recursiveTemplate!: TemplateRef<any>;
           this.formorgStruct.patchValue({
             levelNameAr: level.NameAr,
             levelNameEn: level.NameEn,
-            parentId: level.ParentId
+            parentId: level.ParentId,
+            branchId:level.BranchId
           });
           this.isEdit = true;
           this.currentLevelId = level.Id;

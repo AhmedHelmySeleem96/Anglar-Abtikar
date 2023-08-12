@@ -71,7 +71,7 @@ export class NationalityPreviewComponent implements OnInit  {
       const columns = ['ملاحظات',' الاسم بالانجليزية','الاسم ','تاريخ الانشاء','كود الجنسية'];
       this.ExportData.printPdf(tableData,columns,'nationality.pdf')
     }
-    OnSubmit(Form: FormGroup) {
+    onSubmit(Form: FormGroup) {
       if(!this.isEdit){
       if(this.formNationality.valid)
       {
@@ -155,7 +155,7 @@ export class NationalityPreviewComponent implements OnInit  {
         this.nationalityData = jsonnationalityData.Obj.nationality;
       });
     }
-    getnationality(id :any){
+    getNationality(id :any){
       return this.nationalityData.filter((r)=>r.Id===id)[0]
     }
     goHome(){

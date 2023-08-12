@@ -50,7 +50,7 @@ export class AllowencePreviewComponent implements OnInit {
       return this.statusData.filter(r=>r.id===Id)[0];
     }
 
-    OnSubmit(Form: FormGroup) {
+    onSubmit(Form: FormGroup) {
       if(!this.isEdit){
       if(this.formAllowence.valid)
       {
