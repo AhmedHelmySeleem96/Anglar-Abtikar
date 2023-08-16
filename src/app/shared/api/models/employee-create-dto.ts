@@ -8,4 +8,5 @@ export interface EmployeeCreateDto {
   employeeFiles?: EmployeeFiles;
   password?: null | string;
   user?: ApplicationUser;
+  uuserName?: null | string;
 }

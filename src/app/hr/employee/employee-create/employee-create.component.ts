@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ExportData } from 'src/app/services/Export-data.service';
-import { XtraAndPosLookUpsService,XtraAndPosBranchEpService, XtraAndPosOrgStructuresService, XtraAndPosHrEmployeeService, HrEmployeeDto, XtraAndPosNationalityService, XtraAndPosSpecializationsService, XtraAndPosJobDifinitionService, XtraAndPosJobNameService, CurrencyEpService } from 'src/app/shared/api';
+import { XtraAndPosLookUpsService,XtraAndPosBranchEpService, XtraAndPosHrEmployeeService, XtraAndPosNationalityService, XtraAndPosSpecializationsService, XtraAndPosJobDifinitionService, XtraAndPosJobNameService, CurrencyEpService, RoleGroupEpService } from 'src/app/shared/api';
 
 
 interface UploadEvent {
@@ -20,10 +20,19 @@ interface UploadEvent {
 export class EmployeeCreateComponent {
   constructor(
     private toastr:ToastrService,
-    private router: Router,private ExportData :ExportData
-    ,private  CurrencyEpService : CurrencyEpService , private XtraAndPosLookUpsService :XtraAndPosLookUpsService,private XtraAndPosBranchEpService : XtraAndPosBranchEpService
-    ,public translate : TranslateService,private XtraAndPosJobNameService : XtraAndPosJobNameService,private XtraAndPosJobDifinitionService :XtraAndPosJobDifinitionService,private XtraAndPosOrgStructuresService :XtraAndPosOrgStructuresService,private XtraAndPosSpecializationsService: XtraAndPosSpecializationsService,private XtraAndPosNationalityService : XtraAndPosNationalityService,
-    private fb:FormBuilder,private route: ActivatedRoute,private XtraAndPosHrEmployeeService: XtraAndPosHrEmployeeService){this.formEmployee = this.createForm();}
+    private router: Router
+    ,private ExportData :ExportData
+    ,private  CurrencyEpService : CurrencyEpService ,
+    private XtraAndPosLookUpsService :XtraAndPosLookUpsService
+    ,private XtraAndPosBranchEpService : XtraAndPosBranchEpService
+    ,public translate : TranslateService
+    ,private XtraAndPosJobNameService : XtraAndPosJobNameService
+    ,private XtraAndPosJobDifinitionService :XtraAndPosJobDifinitionService
+    ,private XtraAndPosSpecializationsService: XtraAndPosSpecializationsService,
+    private XtraAndPosNationalityService : XtraAndPosNationalityService,
+    private fb:FormBuilder,
+    private XtraAndPosHrEmployeeService: XtraAndPosHrEmployeeService,
+    private RoleGroupEpService  : RoleGroupEpService){this.formEmployee = this.createForm();}
     formEmployee : FormGroup;
     createForm(): FormGroup {
       return this.fb.group({
@@ -78,6 +87,7 @@ export class EmployeeCreateComponent {
       empDocs =true ;
       empUser =true ;
       EmployeeData :any[] = [] ;
+      roleGroup :any[] = [] ;
       statusData : any[] = [];
       genderData : any[] = [];
       martialStatusData : any[] = [];
@@ -97,7 +107,7 @@ export class EmployeeCreateComponent {
       currencyData :any [] = [] ;
       @ViewChild('password') password!: ElementRef;
       @ViewChild('confirmPassword') confirmPassword!: ElementRef;
-      highestDegree = 0 ;
+      highestDegree :boolean = false ;
       ngOnInit(): void {
         this.createForm();
         this.cols = [
@@ -160,6 +170,10 @@ export class EmployeeCreateComponent {
         this.CurrencyEpService.httpGetCurrencyGetAll().subscribe((value:any)=>{
           let jsonData = JSON.parse(value);
           this.currencyData = jsonData.Obj.Currencies;
+        });
+        this.RoleGroupEpService.httpGetRoleGroupGetAll().subscribe((value:any)=>{
+          let jsonData = JSON.parse(value);
+          this.roleGroup = jsonData.Obj.rolescreens;
         });
       }
       getStatus(Id :any){
@@ -263,7 +277,6 @@ export class EmployeeCreateComponent {
         if(!this.isEdit){
         if(this.formEmployee.valid)
         {
-          debugger
         let model = this.formEmployee.value;
         model.statusId = 1 ;
         model.fileName = this.uploadedFiles[0]?.name;
@@ -316,12 +329,7 @@ export class EmployeeCreateComponent {
       getBranch(id :any){
         return this.branchData.filter((r)=>r.Id===id)[0]
       }
-      getLevelName(id: any) {
-        if (Array.isArray(this.orgStructuresData)) {
-          return this.orgStructuresData.filter((r) => r.Id === id)[0];
-        }
-        return null;
-      }
+
       printPdf() {
         const tableData = this.EmployeeData.map((employee) => {
           return {
@@ -358,5 +366,14 @@ export class EmployeeCreateComponent {
         for(let file of event.files) {
             this.uploadedFiles.push(file);
         }
+}
+highestQualificationChange(event:Event){
+const target = event.target as HTMLSelectElement;
+const id = Number(target.value);
+if(id>2){
+this.highestDegree = true;
+}else{
+this.highestDegree = false;
+}
 }
 }

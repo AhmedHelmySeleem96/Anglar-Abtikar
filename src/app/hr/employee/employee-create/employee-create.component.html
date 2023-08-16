@@ -115,12 +115,12 @@
         <div class="row">
           <div class="form-group col-md-4 mt-5">
             <label for="highestAcademicQualification">{{ 'Hr.HighestAcademicQualification' | translate }}</label>
-            <select  id="highestAcademicQualification" formControlName="highestAcademicQualification" class="form-control">
+            <select (change)="highestQualificationChange($event)" id="highestAcademicQualification" formControlName="highestAcademicQualification" class="form-control">
             <option  value="" disabled selected>{{ 'Hr.HighestAcademicQualification' | translate }}</option>
             <option *ngFor="let item of highestQualificationData " [value]="item.id">{{ item.name }}</option>
           </select>
           </div>
-          <div class="form-group col-md-4 mt-5">
+          <div class="form-group col-md-4 mt-5" *ngIf="highestDegree">
             <label for="specializationId">{{ 'Hr.SpecializationId' | translate }}</label>
             <select  id="specializationId" formControlName="specializationId" class="form-control">
             <option  value="" disabled selected>{{ 'Hr.SpecializationId' | translate }}</option>
@@ -284,7 +284,7 @@
               <div class="form-group col-md-5 mt-6">
                 <select  id="roleId" formControlName="roleId" class="form-control">
                 <option  value="" disabled selected>{{ 'Hr.RoleId' | translate }}</option>
-                <!-- <option *ngFor="let item of branchData " [value]="item.Id">{{ item.NameAr }}</option> -->
+                <option *ngFor="let item of roleGroup " [value]="item.Id">{{ item.NameAr }}</option>
               </select>
               </div>
             </div>
@@ -328,13 +328,10 @@
           <span class="table-data" *ngIf="col.field == 'StatusId'">
             {{ getStatus(Employee[col.field])?.name }}
           </span>
-          <span class="table-data" *ngIf="col.field.includes('Level')">
-            {{ Employee[col.field] && Employee[col.field] !== 0 ? getLevelName(Employee[col.field])?.NameAr : '' }}
-          </span>
           <span class="table-data" *ngIf="col.field == 'BranchId'">
             {{ getBranch(Employee[col.field])?.NameAr }}
           </span>
-          <span class="table-data" *ngIf="col.field != 'CreatedDate'&&col.field != 'EmployeeCategoryId' &&col.field != 'BranchId' && col.field != 'StatusId' && !col.field.includes('Level') ">
+          <span class="table-data" *ngIf="col.field != 'CreatedDate'&&col.field != 'EmployeeCategoryId' &&col.field != 'BranchId' && col.field != 'StatusId'  ">
             {{ Employee[col.field] }}
           </span>
         </td>

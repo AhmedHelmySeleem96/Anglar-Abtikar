@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
+import { ApplicationUser } from './application-user';
 export interface HrEmployeeDto {
-  accountId?: null | string;
   address?: null | string;
   annualVacDays?: null | number;
   bankAccountId?: null | number;
@@ -37,11 +37,12 @@ export interface HrEmployeeDto {
   nationalityId?: null | number;
   password?: null | string;
   phone?: null | string;
-  roleId?: null | number;
   secondName?: null | string;
   sno?: null | number;
   specializationId?: null | number;
   startDate?: null | string;
   statusId?: null | number;
   title?: null | string;
+  user?: ApplicationUser;
+  userName?: null | string;
 }
