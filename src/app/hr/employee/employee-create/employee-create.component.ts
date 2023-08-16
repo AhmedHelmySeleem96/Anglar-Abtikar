@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ExportData } from 'src/app/services/Export-data.service';
-import { XtraAndPosLookUpsService,XtraAndPosBranchEpService, XtraAndPosOrgStructuresService, XtraAndPosHrEmployeeService, HrEmployeeDto } from 'src/app/shared/api';
+import { XtraAndPosLookUpsService,XtraAndPosBranchEpService, XtraAndPosOrgStructuresService, XtraAndPosHrEmployeeService, HrEmployeeDto, XtraAndPosNationalityService, XtraAndPosSpecializationsService, XtraAndPosJobDifinitionService, XtraAndPosJobNameService, CurrencyEpService } from 'src/app/shared/api';
 
 
 interface UploadEvent {
@@ -21,41 +21,57 @@ export class EmployeeCreateComponent {
   constructor(
     private toastr:ToastrService,
     private router: Router,private ExportData :ExportData
-    ,  private XtraAndPosLookUpsService :XtraAndPosLookUpsService,private XtraAndPosBranchEpService : XtraAndPosBranchEpService
-    ,public translate : TranslateService,private XtraAndPosOrgStructuresService :XtraAndPosOrgStructuresService,
+    ,private  CurrencyEpService : CurrencyEpService , private XtraAndPosLookUpsService :XtraAndPosLookUpsService,private XtraAndPosBranchEpService : XtraAndPosBranchEpService
+    ,public translate : TranslateService,private XtraAndPosJobNameService : XtraAndPosJobNameService,private XtraAndPosJobDifinitionService :XtraAndPosJobDifinitionService,private XtraAndPosOrgStructuresService :XtraAndPosOrgStructuresService,private XtraAndPosSpecializationsService: XtraAndPosSpecializationsService,private XtraAndPosNationalityService : XtraAndPosNationalityService,
     private fb:FormBuilder,private route: ActivatedRoute,private XtraAndPosHrEmployeeService: XtraAndPosHrEmployeeService){this.formEmployee = this.createForm();}
     formEmployee : FormGroup;
     createForm(): FormGroup {
       return this.fb.group({
-        nameAr: new FormControl('', [Validators.required]),
-        nameEn: new FormControl('', [Validators.required]),
-        sNO: new FormControl('', [Validators.required]),
-        branchId: new FormControl('', [Validators.required]),
+        nameAr: new FormControl(null, [Validators.required]),
+        nameEn: new FormControl(null, [Validators.required]),
+        sNO: new FormControl(null),
+        nationalityId: new FormControl(null),
+        secondName: new FormControl(null),
+        lastName: new FormControl(null),
+        title: new FormControl(null),
+        branchId: new FormControl(null),
         statusId: new FormControl('1'),
-        nationalityId: new FormControl(''),
-        secondName: new FormControl('', [Validators.required]),
-        lastName: new FormControl('', [Validators.required]),
-        title: new FormControl('', [Validators.required]),
-        gender: new FormControl(''),
-        maritalStatus: new FormControl(''),
-        highestAcademicQualification: new FormControl(''),
-        identityNumber: new FormControl(''),
-        specializationId: new FormControl(''),
-        identityCreationDate: new FormControl(''),
-        identityEndDate: new FormControl(''),
-        birthDate: new FormControl(''),
-        identityType: new FormControl(''),
-        type: new FormControl(''),
-        email: new FormControl('', [Validators.email]),
-        mobile: new FormControl('', [Validators.required]),
-        phone: new FormControl('', [Validators.required]),
-        address: new FormControl('', [Validators.required]),
-        accountId: new FormControl('', [Validators.required]),
-        password: new FormControl('', [Validators.required]),
-        roleId: new FormControl(''),
-        isSalesRepresentative: new FormControl(''),
+        gender: new FormControl(null),
+        maritalStatus: new FormControl(null, [Validators.required]),
+        highestAcademicQualification: new FormControl(null, [Validators.required]),
+        identityNumber: new FormControl(null, [Validators.required]),
+        specializationId: new FormControl(null),
+        identityCreationDate: new FormControl(null),
+        identityEndDate: new FormControl(null),
+        birthDate: new FormControl(null),
+        identityType: new FormControl(null, [Validators.required]),
+        email: new FormControl(null),
+        mobile: new FormControl(null, [Validators.required]),
+        phone: new FormControl(null),
+        address: new FormControl(null, [Validators.required]),
+        accountId: new FormControl(null, [Validators.required]),
+        password: new FormControl(null, [Validators.required]),
+        roleId: new FormControl(null),
+        isSalesRepresentative: new FormControl(false),
+        jobId: new FormControl(null, [Validators.required]),
+        jobNameId: new FormControl(null, [Validators.required]),
+        divisionId: new FormControl(null),
+        contractPeriod: new FormControl(null, [Validators.required]),
+        contractStartDate: new FormControl(null, [Validators.required]),
+        contractEndDate: new FormControl(null),
+        basicSalary: new FormControl(null, [Validators.required]),
+        currencyId: new FormControl(null, [Validators.required]),
+        annualVacDays: new FormControl(null),
+        bankAccountId: new FormControl(null),
+        iban: new FormControl(null),
+        barcode: new FormControl(null, [Validators.required]),
+        startDate: new FormControl(null, [Validators.required]),
+        date : new FormControl(null, [Validators.required]),
+        fileDescription : new FormControl(null),
+        file : new FormControl(null),
       });
     }
+
       isEdit:boolean= false ;
       empInformation =true ;
       info =true ;
@@ -63,48 +79,44 @@ export class EmployeeCreateComponent {
       empUser =true ;
       EmployeeData :any[] = [] ;
       statusData : any[] = [];
+      genderData : any[] = [];
+      martialStatusData : any[] = [];
+      nationalityData : any[] = [];
+      spelizationsData : any[] = [];
+      highestQualificationData : any[] = [];
+      identityTypeData : any[] = [];
       cols :any ;
       currentEmployeeId: any  ;
       @ViewChild('dt') dt: any;
       @ViewChild('formElement') formElement!: ElementRef;
       branchData : any[] = [] ;
-      jobCatData : any[] = [] ;
       jobDifServiceData :any []  = [] ;
-      jobDifNames :any [] = [] ;
+      jobNamesData :any [] = [] ;
+      jobDifData :any [] = [] ;
       orgStructuresData :any [] = [] ;
+      currencyData :any [] = [] ;
+      @ViewChild('password') password!: ElementRef;
+      @ViewChild('confirmPassword') confirmPassword!: ElementRef;
+      highestDegree = 0 ;
       ngOnInit(): void {
         this.createForm();
         this.cols = [
           { field: 'Id', header: 'EmployeeId' },
-          { field: 'SNO', header: 'SNO' },
-          { field: 'BranchId', header: 'BranchId' },
           { field: 'CreatedDate', header: 'CreatedDate' },
+          { field: 'BranchId', header: 'BranchId' },
           { field: 'NameAr', header: 'NameAr' },
           { field: 'NameEn', header: 'NameEn' },
-          { field: 'StatusId', header: 'StatusId' },
           { field: 'NationalityId', header: 'NationalityId' },
-          { field: 'SecoundName', header: 'SecoundName' },
-          { field: 'LastName', header: 'LastName' },
-          { field: 'Title', header: 'Title' },
-          { field: 'Gender', header: 'Gender' },
-          { field: 'MaritalStatus', header: 'MaritalStatus' },
-          { field: 'IdentityType', header: 'IdentityType' },
-          { field: 'HighestAcademicQualification', header: 'HighestAcademicQualification' },
-          { field: 'IdentityNumber', header: 'IdentityNumber' },
-          { field: 'SpecializationId', header: 'SpecializationId' },
-          { field: 'IdentityCreationDate', header: 'IdentityCreationDate' },
-          { field: 'IdentityEndDate', header: 'IdentityEndDate' },
-          { field: 'BirthDate', header: 'BirthDate' },
-          { field: 'Email', header: 'Email' },
-          { field: 'Mobile', header: 'Mobile' },
-          { field: 'Phone', header: 'Phone' },
-          { field: 'Address', header: 'Address' },
-          { field: 'AccountId', header: 'AccountId' },
-          { field: 'Password', header: 'Password' },
-          { field: 'RoleId', header: 'RoleId' },
-          { field: 'IsSalesRepresentative', header: 'IsSalesRepresentative' },
-          // ... Add other properties here ...
+          { field: 'JobId', header: 'JobId' },
+          { field: 'JobName', header: 'JobName' },
+          { field: 'StatusId', header: 'StatusId' },
         ];
+        this.getData();
+        this.refreshTable();
+        this.formEmployee.get('date')?.setValue(Date.now());
+      }
+
+      getData(){
         this.XtraAndPosBranchEpService.httpGetBranchGetAllForDropDown().subscribe((value:any)=>{
           let jsonData = JSON.parse(value);
           this.branchData = jsonData ;
@@ -113,26 +125,53 @@ export class EmployeeCreateComponent {
           let jsonData = JSON.parse(value);
           this.statusData = jsonData;
         });
-        this.XtraAndPosOrgStructuresService.httpGetXtraAndPosOrgStructuresGetOrgStructuresService().subscribe((value:any)=>{
+        this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetGender().subscribe((value:any)=>{
           let jsonData = JSON.parse(value);
-          this.orgStructuresData = jsonData.Obj.orgStructures;
+          this.genderData = jsonData;
         });
-        this.refreshTable();
-        const levelHeaders = this.jobDifNames.map((name, index) => {
-          return { field: 'Level' + (index + 1) + 'Id', header: name };
+        this.XtraAndPosNationalityService.httpGetXtraAndPosNationalityGetNationalityService().subscribe((value:any)=>{
+          let jsonData = JSON.parse(value);
+          this.nationalityData = jsonData.Obj.nationality;
         });
-
-        this.generateDynamicColumns();
-      }
-      generateDynamicColumns(): void {
-        for (let i = 0; i < this.jobDifNames.length; i++) {
-          const fieldName = 'Level' + (i + 1) + 'Id';
-          const headerName = this.jobDifNames[i];
-          this.cols.push({ field: fieldName, header: headerName });
-        }
+        this.XtraAndPosSpecializationsService.httpGetXtraAndPosSpecializationsGetSpecializationsService().subscribe((value:any)=>{
+          let jsonData = JSON.parse(value);
+          this.spelizationsData = jsonData.Obj.spec;
+        });
+        this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetHighestAcademicQualification().subscribe((value:any)=>{
+          let jsonData = JSON.parse(value);
+          this.highestQualificationData = jsonData;
+        });
+        this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetIdentityType().subscribe((value:any)=>{
+          let jsonData = JSON.parse(value);
+          this.identityTypeData = jsonData;
+        });
+        this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetMartialStatus().subscribe((value:any)=>{
+          let jsonData = JSON.parse(value);
+          this.martialStatusData = jsonData;
+        });
+        this.XtraAndPosJobDifinitionService.httpGetXtraAndPosJobDifinitionGetJobDifinitionService().subscribe((value:any)=>{
+          let jsonData = JSON.parse(value);
+          this.jobDifData = jsonData.Obj.jobDif;
+        });
+        this.XtraAndPosJobNameService.httpGetXtraAndPosJobNameGetJobNameService().subscribe((value:any)=>{
+          let jsonData = JSON.parse(value);
+          this.jobNamesData = jsonData.Obj.jobName;
+        });
+        this.CurrencyEpService.httpGetCurrencyGetAll().subscribe((value:any)=>{
+          let jsonData = JSON.parse(value);
+          this.currencyData = jsonData.Obj.Currencies;
+        });
       }
       getStatus(Id :any){
         return this.statusData.filter(r=>r.id===Id)[0];
+      }
+      passNotMatch : boolean = true ;
+      checkPass(){
+        if(this.password.nativeElement.value!=this.confirmPassword.nativeElement.value){
+          this.passNotMatch = false;
+        }else{
+          this.passNotMatch = true;
+        }
       }
       setEdit(employee: any) {
         this.formEmployee.patchValue({
@@ -162,6 +201,19 @@ export class EmployeeCreateComponent {
           password: employee.password,
           roleId: employee.roleId,
           isSalesRepresentative: employee.isSalesRepresentative,
+          jobId: employee.jobId,
+          jobNameId: employee.jobNameId,
+          divisionId: employee.divisionId,
+          contractPeriod: employee.contractPeriod,
+          contractStartDate: employee.contractStartDate,
+          contractEndDate: employee.contractEndDate,
+          basicSalary: employee.basicSalary,
+          currencyId: employee.currencyId,
+          annualVacDays: employee.annualVacDays,
+          bankAccountId: employee.bankAccountId,
+          iban: employee.iban,
+          barcode: employee.barcode,
+          startDate: employee.startDate
         });
         this.isEdit = true;
         this.currentEmployeeId = employee.Id;
@@ -177,6 +229,8 @@ export class EmployeeCreateComponent {
       onSearch(searchValue:Event): void {
         this.dt.filterGlobal((searchValue.target as HTMLInputElement).value, 'contains');
       }
+
+
       showDeleteConfirm(employee: any) {
         this.toastr
           .info('Do you want to delete this employee?', 'Confirmation', {
@@ -204,31 +258,17 @@ export class EmployeeCreateComponent {
           this.toastr.error('Failed to delete employee.');
         });
       }
-      OnSubmit(Form: FormGroup) {
-        debugger
-        const modelProperties = Object.keys(this.formEmployee.value);
-        const bodyProperties = Object.keys(this.formEmployee.getRawValue());
-
-        // Find the properties that are in model but not in body
-        const missingPropertiesInBody = modelProperties.filter(property => !bodyProperties.includes(property));
-
-        // Compare the properties to check if they match
-        const propertiesMatch = JSON.stringify(modelProperties) === JSON.stringify(bodyProperties);
-
-        if (!propertiesMatch) {
-          console.error("Model properties don't match body properties.");
-          console.error("Missing properties in body:", missingPropertiesInBody);
-          return;
-        }
-
+      onSubmit(Form: FormGroup) {
+        console.log(this.formEmployee.value);
         if(!this.isEdit){
         if(this.formEmployee.valid)
         {
+          debugger
         let model = this.formEmployee.value;
-
-
-        model.statusId= 1  ;
-
+        model.statusId = 1 ;
+        model.fileName = this.uploadedFiles[0]?.name;
+        model.fileSize = this.uploadedFiles[0]?.size;
+        model.fileType =this.uploadedFiles[0]?.type;
         this.XtraAndPosHrEmployeeService.httpPostXtraAndPosHrEmployeeCreateHrEmployeeService({
           body : model
         }).subscribe((value:any)=>{
@@ -236,11 +276,11 @@ export class EmployeeCreateComponent {
             this.toastr.success(jsonData.Message)
             this.formEmployee.reset();
           this.formEmployee.get('StatusId')?.setValue('1');
+          this.uploadedFiles = [];
             this.refreshTable();
         },
         (error: any) => {
           this.toastr.error('Failed to create employee.');
-          console.error(error); // Log the error for debugging
         })}else{
           this.toastr.success("ادخل البيانات المطلوبة")
         }
@@ -257,7 +297,7 @@ export class EmployeeCreateComponent {
           this.isEdit=false;
           this.formEmployee.reset();
           this.formEmployee.get('StatusId')?.setValue('1');
-
+          this.uploadedFiles = [];
         });
         }
           }
@@ -266,20 +306,6 @@ export class EmployeeCreateComponent {
           let jsonEmployeeData = JSON.parse(value);
           this.EmployeeData = jsonEmployeeData.Obj.emp;
         });
-      }
-      checkPropertyMatch(model: HrEmployeeDto): boolean {
-        const backendProps: string[] = [
-          'accountId', 'address', 'birthDate', 'email', 'gender', 'highestAcademicQualification',
-          'identityCreationDate', 'identityEndDate', 'identityNumber', 'identityType',
-          'isSalesRepresentative', 'lastName', 'maritalStatus', 'mobile', 'nameAr', 'nameEn',
-          'nationalityId', 'password', 'phone', 'roleId', 'secoundName', 'sno', 'specializationId',
-          'status', 'title'
-        ];
-
-        const frontendProps = Object.keys(model);
-
-        // Compare properties in lowercase
-        return backendProps.every(prop => frontendProps.includes(prop.toLowerCase()));
       }
       getEmployee(id :any){
         return this.EmployeeData.filter((r)=>r.Id===id)[0]
@@ -295,9 +321,6 @@ export class EmployeeCreateComponent {
           return this.orgStructuresData.filter((r) => r.Id === id)[0];
         }
         return null;
-      }
-      getEmployeeCategory(id : number ){
-        return this.jobCatData.filter((r)=>r.Id==id)[0];
       }
       printPdf() {
         const tableData = this.EmployeeData.map((employee) => {
@@ -330,7 +353,8 @@ export class EmployeeCreateComponent {
       }
 
       uploadedFiles : any[] = []
-      onUpload(event:UploadEvent) {
+      onUpload(event:any) {
+        console.log(event)
         for(let file of event.files) {
             this.uploadedFiles.push(file);
         }

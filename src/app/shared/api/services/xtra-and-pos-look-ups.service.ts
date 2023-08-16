@@ -61,4 +61,180 @@ export class XtraAndPosLookUpsService extends BaseService {
     );
   }
 
+  /** Path part for operation `httpGetXtraAndPosLookUpsGetGender()` */
+  static readonly HttpGetXtraAndPosLookUpsGetGenderPath = '/XtraAndPOS_LookUps/GetGender';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetXtraAndPosLookUpsGetGender()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosLookUpsGetGender$Response(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosLookUpsService.HttpGetXtraAndPosLookUpsGetGenderPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetXtraAndPosLookUpsGetGender$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosLookUpsGetGender(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetXtraAndPosLookUpsGetGender$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetXtraAndPosLookUpsGetMartialStatus()` */
+  static readonly HttpGetXtraAndPosLookUpsGetMartialStatusPath = '/XtraAndPOS_LookUps/GetMartialStatus';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetXtraAndPosLookUpsGetMartialStatus()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosLookUpsGetMartialStatus$Response(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosLookUpsService.HttpGetXtraAndPosLookUpsGetMartialStatusPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetXtraAndPosLookUpsGetMartialStatus$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosLookUpsGetMartialStatus(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetXtraAndPosLookUpsGetMartialStatus$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetXtraAndPosLookUpsGetIdentityType()` */
+  static readonly HttpGetXtraAndPosLookUpsGetIdentityTypePath = '/XtraAndPOS_LookUps/GetIdentityType';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetXtraAndPosLookUpsGetIdentityType()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosLookUpsGetIdentityType$Response(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosLookUpsService.HttpGetXtraAndPosLookUpsGetIdentityTypePath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetXtraAndPosLookUpsGetIdentityType$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosLookUpsGetIdentityType(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetXtraAndPosLookUpsGetIdentityType$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetXtraAndPosLookUpsGetHighestAcademicQualification()` */
+  static readonly HttpGetXtraAndPosLookUpsGetHighestAcademicQualificationPath = '/XtraAndPOS_LookUps/GetHighestAcademicQualification';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetXtraAndPosLookUpsGetHighestAcademicQualification()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosLookUpsGetHighestAcademicQualification$Response(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosLookUpsService.HttpGetXtraAndPosLookUpsGetHighestAcademicQualificationPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetXtraAndPosLookUpsGetHighestAcademicQualification$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosLookUpsGetHighestAcademicQualification(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetXtraAndPosLookUpsGetHighestAcademicQualification$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
 }

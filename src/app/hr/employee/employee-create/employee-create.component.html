@@ -1,18 +1,26 @@
-<div class="col-7 mx-auto py-4 py-md-5 px-lg-4">
-  <h3>{{ "Hr.EmployeeCreate" | translate }}</h3>
-  <form #formElement [formGroup]="formEmployee" (ngSubmit)="OnSubmit(formEmployee)" class="form">
+<div class="createDiv">
+
+  <div class="tab-pane fade show active" id="rounded-corner-pills-icon-home" role="tabpanel" aria-labelledby="rounded-corner-pills-icon-home-tab" style="min-height:300px">
+
+    <div class="card bg-light mb-3">
+        <div class="card-body">
+  <h3>{{ "Hr.EmployeeCard" | translate }}</h3>
+  <form #formElement [formGroup]="formEmployee" (ngSubmit)="onSubmit(formEmployee)" class="form">
   <div class="row">
-    <!-- <div class="form-group col-md-4 mt-5">
-      <input id="id"  formControlName="id" [readOnly]="true" placeholder="{{ 'Hr.EmployeeId' | translate }}" class="form-control">
-    </div> -->
     <div class="form-group col-md-4 mt-5">
+    <label for="branchId">{{ 'Hr.SelectBranch' | translate }}</label>
       <select #branchElement id="branchId" formControlName="branchId" class="form-control">
       <option  value="" disabled selected>{{ 'Hr.SelectBranch' | translate }}</option>
       <option *ngFor="let item of branchData " [value]="item.Id">{{ item.NameAr }}</option>
     </select>
   </div>
   <div class="form-group col-md-4 mt-5">
-    <input id="sNO" type="number" formControlName="sNO" required placeholder="{{ 'Hr.SNO' | translate }}" class="form-control">
+    <label for="sNO">{{ 'Hr.SNO' | translate }}</label>
+    <input id="sNO"  formControlName="sNO"  class="form-control">
+  </div>
+  <div class="form-group col-md-4 mt-5">
+    <label for="date">{{ 'Hr.Date' | translate }}</label>
+    <input type="date" id="date" formControlName="date"   class="form-control">
   </div>
     </div>
     <div class="card">
@@ -36,110 +44,226 @@
           <p-tabPanel header="{{ 'Hr.EmployeeInformation' | translate }}">
             <div class="row">
               <div class="form-group col-md-4 mt-5">
-                <input id="nameAr" formControlName="nameAr"  placeholder="{{ 'Hr.FirstName' | translate }}" class="form-control">
+                <label for="nameAr">{{ 'Hr.FirstName' | translate }}</label>
+                <input id="nameAr" formControlName="nameAr"  class="form-control">
               </div>
               <div class="form-group col-md-4 mt-5">
-                <input id="secondName" formControlName="secondName"  placeholder="{{ 'Hr.SecondName' | translate }}" class="form-control">
+                <label for="secondName">{{ 'Hr.SecondName' | translate }}</label>
+                <input id="secondName" formControlName="secondName" class="form-control">
               </div>
               <div class="form-group col-md-4 mt-5">
-                <input id="lastName" formControlName="lastName"  placeholder="{{ 'Hr.LastName' | translate }}" class="form-control">
+                <label for="lastName">{{ 'Hr.LastName' | translate }}</label>
+                <input id="lastName" formControlName="lastName"  class="form-control">
               </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-4 mt-5">
-                    <input id="nameEn" formControlName="nameEn"  placeholder="{{ 'Hr.FirstNameEn' | translate }}" class="form-control">
+                <label for="nameEn">{{ 'Hr.FirstNameEn' | translate }}</label>
+                    <input id="nameEn" formControlName="nameEn"  class="form-control">
                 </div>
                 <div class="form-group col-md-4 mt-5">
-                  <input id="title" formControlName="title"  placeholder="{{ 'Hr.Title' | translate }}" class="form-control">
+                <label for="title">{{ 'Hr.Title' | translate }}</label>
+                  <input id="title" formControlName="title"  class="form-control">
                 </div>
-                <!-- <div class="form-group col-md-4 mt-5">
-                  <input type="radio" id="gender" formControlName="gender"  placeholder="{{ 'Hr.Gender' | translate }}" class="form-control">
-                </div> -->
+                <div class="form-group col-md-4 mt-5" >
+                  <label for="gender">{{ 'Hr.Gender' | translate }}</label>
+                  <select  id="gender" formControlName="gender" class="form-control">
+                    <option  value="" disabled selected>{{ 'Hr.Gender' | translate }}</option>
+                    <option *ngFor="let item of genderData " [value]="item.id">{{ item.name }}</option>
+                  </select>
+              </div>
             </div>
+
             <div class="row">
               <div class="form-group col-md-4 mt-5">
+                <label for="nationalityId">{{ 'Hr.NationalityId' | translate }}</label>
                 <select  id="nationalityId" formControlName="nationalityId" class="form-control">
                 <option  value="" disabled selected>{{ 'Hr.NationalityId' | translate }}</option>
-                <!-- <option *ngFor="let item of branchData " [value]="item.Id">{{ item.NameAr }}</option> -->
+                <option *ngFor="let item of nationalityData " [value]="item.Id">{{ item.NameAr }}</option>
               </select>
               </div>
               <div class="form-group col-md-4 mt-5">
+                <label for="identityType">{{ 'Hr.IdentityType' | translate }}</label>
                 <select  id="identityType" formControlName="identityType" class="form-control">
                 <option  value="" disabled selected>{{ 'Hr.IdentityType' | translate }}</option>
-                <!-- <option *ngFor="let item of branchData " [value]="item.Id">{{ item.NameAr }}</option> -->
+                <option *ngFor="let item of identityTypeData " [value]="item.id">{{ item.name }}</option>
               </select>
               </div>
               <div class="form-group col-md-4 mt-5">
-                <input id="identityNumber" formControlName="identityNumber"  placeholder="{{ 'Hr.IdentityNumber' | translate }}" class="form-control">
+                <label for="identityNumber">{{ 'Hr.IdentityNumber' | translate }}</label>
+                <input id="identityNumber" formControlName="identityNumber"   class="form-control">
               </div>
           </div>
           <div class="row">
+
             <div class="form-group col-md-4 mt-5">
-                <input type="date" id="identityCreationDate" formControlName="identityCreationDate"  placeholder="{{ 'Hr.IdentityCreationDate' | translate }}" class="form-control">
-            </div>
+              <label for="identityCreationDate">{{ 'Hr.IdentityCreationDate' | translate }}</label>
+              <input type="date" id="identityCreationDate" formControlName="identityCreationDate"  class="form-control">
+          </div>
               <div class="form-group col-md-4 mt-5">
-                <input type="date" id="identityEndDate" formControlName="identityEndDate"  placeholder="{{ 'Hr.IdentityCreationDate' | translate }}" class="form-control">
+              <label for="identityEndDate">{{ 'Hr.IdentityEndDate' | translate }}</label>
+                <input type="date" id="identityEndDate" formControlName="identityEndDate"  class="form-control">
             </div>
             <div class="form-group col-md-4 mt-5">
+              <label for="maritalStatus">{{ 'Hr.MaritalStatus' | translate }}</label>
               <select  id="maritalStatus" formControlName="maritalStatus" class="form-control">
                 <option  value="" disabled selected>{{ 'Hr.MaritalStatus' | translate }}</option>
-                <!-- <option *ngFor="let item of branchData " [value]="item.Id">{{ item.NameAr }}</option> -->
+                <option *ngFor="let item of martialStatusData " [value]="item.id">{{ item.name }}</option>
               </select>
             </div>
         </div>
         <div class="row">
           <div class="form-group col-md-4 mt-5">
+            <label for="highestAcademicQualification">{{ 'Hr.HighestAcademicQualification' | translate }}</label>
             <select  id="highestAcademicQualification" formControlName="highestAcademicQualification" class="form-control">
             <option  value="" disabled selected>{{ 'Hr.HighestAcademicQualification' | translate }}</option>
-            <!-- <option *ngFor="let item of branchData " [value]="item.Id">{{ item.NameAr }}</option> -->
+            <option *ngFor="let item of highestQualificationData " [value]="item.id">{{ item.name }}</option>
           </select>
           </div>
           <div class="form-group col-md-4 mt-5">
+            <label for="specializationId">{{ 'Hr.SpecializationId' | translate }}</label>
             <select  id="specializationId" formControlName="specializationId" class="form-control">
             <option  value="" disabled selected>{{ 'Hr.SpecializationId' | translate }}</option>
-            <!-- <option *ngFor="let item of branchData " [value]="item.Id">{{ item.NameAr }}</option> -->
+            <option *ngFor="let item of spelizationsData " [value]="item.Id">{{ item.NameAr }}</option>
           </select>
           </div>
           <div class="form-group col-md-4 mt-5">
-            <input id="mobile" formControlName="mobile"  placeholder="{{ 'Hr.Mobile' | translate }}" class="form-control">
+            <label for="mobile">{{ 'Hr.Mobile' | translate }}</label>
+            <input  id="mobile" formControlName="mobile"   class="form-control">
           </div>
       </div>
       <div class="row">
         <div class="form-group col-md-4 mt-5">
-          <input id="phone" formControlName="phone"  placeholder="{{ 'Hr.Phone' | translate }}" class="form-control">
+          <label for="phone">{{ 'Hr.Phone' | translate }}</label>
+          <input  id="phone" formControlName="phone"   class="form-control">
         </div>
           <div class="form-group col-md-4 mt-5">
+          <label for="email">{{ 'Hr.Email' | translate }}</label>
             <input type="email" id="email" formControlName="email"  placeholder="{{ 'Hr.Email' | translate }}" class="form-control">
           </div>
         <div class="form-group col-md-4 mt-5">
+          <label for="birthDate">{{ 'Hr.BirthDate' | translate }}</label>
           <input type="date" id="birthDate" formControlName="birthDate"  placeholder="{{ 'Hr.BirthDate' | translate }}" class="form-control">
       </div>
       <div class="row">
         <div class="form-group col-md-4 mt-5">
+          <label for="address">{{ 'Hr.Address' | translate }}</label>
           <input id="address" formControlName="address"  placeholder="{{ 'Hr.Address' | translate }}" class="form-control">
         </div>
-          <div class="form-group col-md-4 mt-5">
-            <input type="checkbox" id="isSalesRepresentative" formControlName="isSalesRepresentative"  placeholder="{{ 'Hr.IsSalesRepresentative' | translate }}" class="form-control">
-          </div>
-        <div class="form-group col-md-4 mt-5">
-          <input type="radio"  id="statusId" formControlName="statusId"  placeholder="{{ 'Hr.Status' | translate }}" class="form-control">
-        </div>
+
+        <div class="form-group col-md-4 mt-5" >
+          <label for="StatusId">{{ 'Hr.SelectStatus' | translate }}</label>
+          <select   id="StatusId" formControlName="StatusId"  class="form-control"  >
+            <option  value="" disabled selected>{{ 'Hr.SelectStatus' | translate }}</option>
+            <option *ngFor="let status of statusData " [value]="status.id">{{ status.name }}</option>
+          </select>
+      </div>
+      <div class="checkbox-list form-group col-md-4 mt-5">
+        <label class="checkbox">
+            <input class="m-2" type="checkbox" formControlName="isSalesRepresentative" id="isSalesRepresentative" >
+            <span class="m-2"></span>{{ 'Hr.IsSalesRepresentative' | translate }}
+        </label>
+      </div>
       </div>
     </div>
           </p-tabPanel>
           <p-tabPanel header="{{ 'Hr.Information' | translate }}">
-              <p>
-                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
-              </p>
+           <div class="row">
+  <div class="form-group col-md-4 mt-5">
+    <label for="jobId">{{ 'Hr.JobId' | translate }}</label>
+    <select  id="jobId" formControlName="jobId" class="form-control">
+    <option  value="" disabled selected>{{ 'Hr.JobId' | translate }}</option>
+    <option *ngFor="let item of jobDifData " [value]="item.Id">{{ item.NameAr }}</option>
+  </select>
+  </div>
+  <div class="form-group col-md-4 mt-5">
+    <label for="jobNameId">{{ 'Hr.JobNameId' | translate }}</label>
+    <select  id="jobNameId" formControlName="jobNameId" class="form-control">
+    <option  value="" disabled selected>{{ 'Hr.JobNameId' | translate }}</option>
+    <option *ngFor="let item of jobNamesData " [value]="item.Id">{{ item.NameAr }}</option>
+  </select>
+  </div>
+  <div class="form-group col-md-4 mt-5">
+    <label for="divisionId">{{ 'Hr.DivisionId' | translate }}</label>
+    <select  id="divisionId" formControlName="divisionId" class="form-control">
+    <option  value="" disabled selected>{{ 'Hr.DivisionId' | translate }}</option>
+    <!-- <option *ngFor="let item of spelizationsData " [value]="item.Id">{{ item.NameAr }}</option> -->
+  </select>
+  </div>
+           </div>
+           <div class="row">
+            <div class="form-group col-md-4 mt-5">
+              <label for="contractPeriod">{{ 'Hr.ContractPeriod' | translate }}</label>
+              <input  id="contractPeriod" formControlName="contractPeriod"   class="form-control">
+            </div>
+            <div class="form-group col-md-4 mt-5">
+              <label for="contractStartDate">{{ 'Hr.ContractStartDate' | translate }}</label>
+              <input type="date" id="contractStartDate" formControlName="contractStartDate"  class="form-control">
+            </div>
+            <div class="form-group col-md-4 mt-5">
+              <label for="contractEndDate">{{ 'Hr.ContractEndDate' | translate }}</label>
+              <input type="date" id="contractEndDate" formControlName="contractEndDate"  class="form-control">
+            </div>
+           </div>
+           <div class="row">
+            <div class="form-group col-md-4 mt-5">
+              <label for="basicSalary">{{ 'Hr.BasicSalary' | translate }}</label>
+              <input  id="basicSalary" formControlName="basicSalary"  class="form-control">
+            </div>
+            <div class="form-group col-md-4 mt-5">
+              <label for="currencyId">{{ 'Hr.CurrencyId' | translate }}</label>
+              <select  id="currencyId" formControlName="currencyId" class="form-control">
+              <option  value="" disabled selected>{{ 'Hr.CurrencyId' | translate }}</option>
+              <option *ngFor="let item of currencyData " [value]="item.Id">{{ item.NameAr }}</option>
+            </select>
+            </div>
+            <div class="form-group col-md-4 mt-5">
+              <label for="annualVacDays">{{ 'Hr.AnnualVacDays' | translate }}</label>
+              <input  id="annualVacDays" formControlName="annualVacDays"  class="form-control">
+            </div>
+           </div>
+           <div class="row">
+            <div class="form-group col-md-4 mt-5">
+              <label for="bankAccountId">{{ 'Hr.BankAccountId' | translate }}</label>
+              <select  id="bankAccountId" formControlName="bankAccountId" class="form-control">
+              <option  value="" disabled selected>{{ 'Hr.BankAccountId' | translate }}</option>
+              <!-- <option *ngFor="let item of currencyData " [value]="item.Id">{{ item.NameAr }}</option> -->
+            </select>
+            </div>
+            <div class="form-group col-md-4 mt-5">
+              <label for="iban">{{ 'Hr.Iban' | translate }}</label>
+              <input  id="iban" formControlName="iban"  class="form-control">
+            </div>
+            <div class="form-group col-md-4 mt-5">
+              <label for="barcode">{{ 'Hr.Barcode' | translate }}</label>
+              <input  id="barcode" formControlName="barcode"  class="form-control">
+            </div>
+           </div>
+           <div class="row">
+            <div class="form-group col-md-4 mt-5">
+              <label for="startDate">{{ 'Hr.StartDate' | translate }}</label>
+              <input type="date" id="startDate" formControlName="startDate"  class="form-control">
+            </div>
+           </div>
           </p-tabPanel>
           <p-tabPanel header="{{ 'Hr.Docs' | translate }}">
-            <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" accept=".txt" >
-              <ng-template pTemplate="content">
-                  <ul *ngIf="uploadedFiles.length">
-                      <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
-                  </ul>
-              </ng-template>
-          </p-fileUpload>
+            <div class="row">
+              <div class="form-group ">
+                <p-fileUpload formControlName="file"  url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" accept=".txt" >
+                  <ng-template pTemplate="content" >
+                      <ul *ngIf="uploadedFiles.length">
+                          <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                      </ul>
+                  </ng-template>
+              </p-fileUpload>
+              </div>
+            </div>
+              <div class="row">
+                <div class="form-group ">
+                  <label for="fileDescription">{{ 'Hr.FileDescription' | translate }}</label>
+                  <input  id="fileDescriptiony" formControlName="fileDescription"  class="form-control">
+                </div>
+              </div>
           </p-tabPanel>
           <p-tabPanel header="{{ 'Hr.User' | translate }}">
             <div class="row">
@@ -147,13 +271,16 @@
                 <input id="accountId" formControlName="accountId"  placeholder="{{ 'Hr.AccountId' | translate }}" class="form-control">
               </div>
               <div class="form-group col-md-5 mt-6">
-                <input type="password" id="password" formControlName="password"  placeholder="{{ 'Hr.Password' | translate }}" class="form-control">
+                <input type="password" id="password"  #password formControlName="password"  placeholder="{{ 'Hr.Password' | translate }}" class="form-control">
               </div>
             </div>
             <div class="row">
               <div class="form-group col-md-5 mt-6">
-                <input type="password" id=""   placeholder="{{ 'Hr.ConfirmPassword' | translate }}" class="form-control">
+                <input (mouseleave)="checkPass()" #confirmPassword type="password" id="confirmPassword"   placeholder="{{ 'Hr.ConfirmPassword' | translate }}" class="form-control">
               </div>
+              <div *ngIf="!passNotMatch" class="alert alert-danger mt-3">
+                {{ 'Passwords do not match.' | translate }}
+            </div>
               <div class="form-group col-md-5 mt-6">
                 <select  id="roleId" formControlName="roleId" class="form-control">
                 <option  value="" disabled selected>{{ 'Hr.RoleId' | translate }}</option>
@@ -164,17 +291,15 @@
           </p-tabPanel>
       </p-tabView>
   </div>
-  <div class="bottom-buttons">
-    <button type="submit"  class="d-block w-100 py-3"  >{{ 'Save' | translate }}</button>
-  </div>
+
   </form>
 </div>
 
 
 <div class="container">
 
-  <div class="search-container">
-    <input (input)="onSearch($event)" class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
+  <div class="col-md-3 mb-2 mt-2">
+    <input (input)="onSearch($event)" class="form-control form-control-sm " type="search" placeholder="{{ 'navBar.Search' | translate }}">
   </div>
   <p-table
   [rowsPerPageOptions]="[5, 10, 15, 20]"
@@ -209,9 +334,6 @@
           <span class="table-data" *ngIf="col.field == 'BranchId'">
             {{ getBranch(Employee[col.field])?.NameAr }}
           </span>
-          <span class="table-data" *ngIf="col.field == 'EmployeeCategoryId'">
-            {{ getEmployeeCategory(Employee[col.field])?.NameAr }}
-          </span>
           <span class="table-data" *ngIf="col.field != 'CreatedDate'&&col.field != 'EmployeeCategoryId' &&col.field != 'BranchId' && col.field != 'StatusId' && !col.field.includes('Level') ">
             {{ Employee[col.field] }}
           </span>
@@ -226,13 +348,14 @@
     </ng-template>
   </p-table>
 
-
 </div>
-<div class="bottom-buttons">
-<button (click)="printPdf()" class="btn btn-primary add-data-button">{{"Hr.Print" | translate}}</button>
-<span class="button-space"></span>
-<button (click)="exportData()" class="btn btn-primary add-data-button">{{"Hr.Export" | translate}}</button>
-<span class="button-space"></span>
-<button (click)="goHome()" class="btn btn-primary add-data-button">{{"Cancel" | translate}}</button>
+    </div>
+  </div>
 </div>
 
+<div class="mt-2 text-center">
+  <button type="submit" (click)="onSubmit(formEmployee)" class="btn btn-success" >{{ 'Save' | translate }}</button>
+  <button  (click)="printPdf()" class="btn btn-info" >{{"Hr.Print" | translate}}</button>
+  <button  (click)="exportData()" class="btn btn-info" id="viewBtn">{{"Hr.Export" | translate}}</button>
+  <button (click)="goHome()" class="btn btn-warning Dnone" id="editBtn">{{"Cancel" | translate}}</button>
+</div>

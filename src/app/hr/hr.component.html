@@ -38,7 +38,26 @@
                         <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/specializations'">{{ "Hr.Specializationsnav" | translate }}</a>
                       </li>
                       <li>
-                        <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/employee'">{{ "Hr.Employeenav" | translate }}</a>
+                        <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/employee'">{{ "Hr.EmployeeCard" | translate }}</a>
+                      </li>
+                      <li class="dropdown-submenu" >
+                        <div (mouseleave)="isOpened = false" [ngClass]="{isOpened:isOpened}" >
+                          <a class="d-block text-center pointer dropdown-toggle " (mouseenter)="$event.preventDefault(); isOpened=true" id="jobDropdownToggles" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                            {{ "Hr.CreateJobs" | translate }} &raquo;
+                          </a>
+                          <ul class=" pointer dropdown-menu" aria-labelledby="jobDropdownToggles">
+                            <li>
+                              <a class="  pointer dropdown-item"  [routerLink]="'/hr/jobs/createJobs'">{{ "Hr.CreateJobs" | translate }}</a>
+                            </li>
+                            <li>
+                              <a class=" pointer dropdown-item"  [routerLink]="'/hr/jobs/jobsNames'">{{ "Hr.JobsNames" | translate }}</a>
+                            </li>
+                            <li>
+                              <a class=" pointer dropdown-item"  [routerLink]="'/hr/jobs/jobsCategories'">{{ "Hr.JobsCategories" | translate }}</a>
+                            </li>
+                          </ul>
+
+                        </div>
                       </li>
                     </div>
                 </li>
