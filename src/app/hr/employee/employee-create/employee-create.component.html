@@ -171,10 +171,14 @@
            <div class="row">
   <div class="form-group col-md-4 mt-5">
     <label for="jobId">{{ 'Hr.JobId' | translate }}</label>
-    <select  id="jobId" formControlName="jobId" class="form-control">
+    <select (change)="jobChanged($event)"  id="jobId" formControlName="jobId" class="form-control">
     <option  value="" disabled selected>{{ 'Hr.JobId' | translate }}</option>
     <option *ngFor="let item of jobDifData " [value]="item.Id">{{ item.NameAr }}</option>
   </select>
+  </div>
+  <div class="form-group col-md-4 mt-5">
+    <label for="divisionId">{{ 'Hr.DivisionId' | translate }}</label>
+    <input  id="divisionId" formControlName="divisionId" readonly   class="form-control">
   </div>
   <div class="form-group col-md-4 mt-5">
     <label for="jobNameId">{{ 'Hr.JobNameId' | translate }}</label>
@@ -183,26 +187,20 @@
     <option *ngFor="let item of jobNamesData " [value]="item.Id">{{ item.NameAr }}</option>
   </select>
   </div>
-  <div class="form-group col-md-4 mt-5">
-    <label for="divisionId">{{ 'Hr.DivisionId' | translate }}</label>
-    <select  id="divisionId" formControlName="divisionId" class="form-control">
-    <option  value="" disabled selected>{{ 'Hr.DivisionId' | translate }}</option>
-    <!-- <option *ngFor="let item of spelizationsData " [value]="item.Id">{{ item.NameAr }}</option> -->
-  </select>
-  </div>
            </div>
            <div class="row">
-            <div class="form-group col-md-4 mt-5">
-              <label for="contractPeriod">{{ 'Hr.ContractPeriod' | translate }}</label>
-              <input  id="contractPeriod" formControlName="contractPeriod"   class="form-control">
-            </div>
+
             <div class="form-group col-md-4 mt-5">
               <label for="contractStartDate">{{ 'Hr.ContractStartDate' | translate }}</label>
-              <input type="date" id="contractStartDate" formControlName="contractStartDate"  class="form-control">
+              <input  type="date" id="contractStartDate" formControlName="contractStartDate"  class="form-control">
+            </div>
+            <div class="form-group col-md-4 mt-5">
+              <label for="contractPeriod">{{ 'Hr.ContractPeriod' | translate }}</label>
+              <input  (change)="contractStartDateChange($event)"  id="contractPeriod" formControlName="contractPeriod"   class="form-control">
             </div>
             <div class="form-group col-md-4 mt-5">
               <label for="contractEndDate">{{ 'Hr.ContractEndDate' | translate }}</label>
-              <input type="date" id="contractEndDate" formControlName="contractEndDate"  class="form-control">
+              <input type="date" readonly id="contractEndDate" formControlName="contractEndDate"  class="form-control">
             </div>
            </div>
            <div class="row">
@@ -227,7 +225,7 @@
               <label for="bankAccountId">{{ 'Hr.BankAccountId' | translate }}</label>
               <select  id="bankAccountId" formControlName="bankAccountId" class="form-control">
               <option  value="" disabled selected>{{ 'Hr.BankAccountId' | translate }}</option>
-              <!-- <option *ngFor="let item of currencyData " [value]="item.Id">{{ item.NameAr }}</option> -->
+              <option *ngFor="let item of banksData " [value]="item.Id">{{ item.NameAr }}</option>
             </select>
             </div>
             <div class="form-group col-md-4 mt-5">
@@ -268,7 +266,7 @@
           <p-tabPanel header="{{ 'Hr.User' | translate }}">
             <div class="row">
               <div class="form-group col-md-5 mt-6">
-                <input id="accountId" formControlName="accountId"  placeholder="{{ 'Hr.AccountId' | translate }}" class="form-control">
+                <input id="userName" formControlName="userName"  placeholder="{{ 'Hr.AccountId' | translate }}" class="form-control">
               </div>
               <div class="form-group col-md-5 mt-6">
                 <input type="password" id="password"  #password formControlName="password"  placeholder="{{ 'Hr.Password' | translate }}" class="form-control">

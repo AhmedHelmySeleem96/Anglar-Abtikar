@@ -8,6 +8,7 @@ export interface HrEmployeeDto {
   barcode?: null | string;
   basicSalary?: null | number;
   birthDate?: null | string;
+  branchId?: number;
   contractEndDate?: null | string;
   contractPeriod?: null | number;
   contractStartDate?: null | string;
@@ -44,5 +45,4 @@ export interface HrEmployeeDto {
   statusId?: null | number;
   title?: null | string;
   user?: ApplicationUser;
-  userName?: null | string;
 }

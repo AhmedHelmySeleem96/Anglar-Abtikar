@@ -4,20 +4,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ExportData } from 'src/app/services/Export-data.service';
-import { XtraAndPosLookUpsService,XtraAndPosBranchEpService, XtraAndPosHrEmployeeService, XtraAndPosNationalityService, XtraAndPosSpecializationsService, XtraAndPosJobDifinitionService, XtraAndPosJobNameService, CurrencyEpService, RoleGroupEpService } from 'src/app/shared/api';
+import { XtraAndPosLookUpsService,XtraAndPosBranchEpService, XtraAndPosHrEmployeeService, XtraAndPosNationalityService, XtraAndPosSpecializationsService, XtraAndPosJobDifinitionService, XtraAndPosJobNameService, CurrencyEpService, RoleGroupEpService, ApplicationUser, HrEmployeeDto, XtraAndPosOrgStructuresService, ExtraAndPosBankEpService } from 'src/app/shared/api';
 
 
-interface UploadEvent {
-  originalEvent: Event;
-  files: File[];
-}
+
 @Component({
   selector: 'app-employee-create',
   templateUrl: './employee-create.component.html',
   styleUrls: ['./employee-create.component.css'],
   providers: [ExportData]
 })
-export class EmployeeCreateComponent {
+export class EmployeeCreateComponent implements OnInit {
   constructor(
     private toastr:ToastrService,
     private router: Router
@@ -32,7 +29,9 @@ export class EmployeeCreateComponent {
     private XtraAndPosNationalityService : XtraAndPosNationalityService,
     private fb:FormBuilder,
     private XtraAndPosHrEmployeeService: XtraAndPosHrEmployeeService,
-    private RoleGroupEpService  : RoleGroupEpService){this.formEmployee = this.createForm();}
+    private RoleGroupEpService  : RoleGroupEpService
+    ,private XtraAndPosOrgStructuresService :XtraAndPosOrgStructuresService,
+    private ExtraAndPosBankEpService :ExtraAndPosBankEpService){this.formEmployee = this.createForm();}
     formEmployee : FormGroup;
     createForm(): FormGroup {
       return this.fb.group({
@@ -58,7 +57,7 @@ export class EmployeeCreateComponent {
         mobile: new FormControl(null, [Validators.required]),
         phone: new FormControl(null),
         address: new FormControl(null, [Validators.required]),
-        accountId: new FormControl(null, [Validators.required]),
+        userName: new FormControl(null, [Validators.required]),
         password: new FormControl(null, [Validators.required]),
         roleId: new FormControl(null),
         isSalesRepresentative: new FormControl(false),
@@ -95,12 +94,12 @@ export class EmployeeCreateComponent {
       spelizationsData : any[] = [];
       highestQualificationData : any[] = [];
       identityTypeData : any[] = [];
+      banksData : any[] = [];
       cols :any ;
       currentEmployeeId: any  ;
       @ViewChild('dt') dt: any;
       @ViewChild('formElement') formElement!: ElementRef;
       branchData : any[] = [] ;
-      jobDifServiceData :any []  = [] ;
       jobNamesData :any [] = [] ;
       jobDifData :any [] = [] ;
       orgStructuresData :any [] = [] ;
@@ -123,14 +122,25 @@ export class EmployeeCreateComponent {
         ];
         this.getData();
         this.refreshTable();
-        this.formEmployee.get('date')?.setValue(Date.now());
-      }
+        this.formEmployee.get('date')?.setValue(this.getFormattedDate());
 
+      }
+      getFormattedDate(): string {
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+        const day = currentDate.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      }
       getData(){
         this.XtraAndPosBranchEpService.httpGetBranchGetAllForDropDown().subscribe((value:any)=>{
           let jsonData = JSON.parse(value);
           this.branchData = jsonData ;
         });
+        // this.ExtraAndPosBankEpService.httpGetExtraAndPosBankManagementInfo().subscribe((value:any)=>{
+        //   let jsonData = JSON.parse(value);
+        //   this.banksData = jsonData.Obj.list ;
+        // });
         this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetStatus().subscribe((value:any)=>{
           let jsonData = JSON.parse(value);
           this.statusData = jsonData;
@@ -163,6 +173,10 @@ export class EmployeeCreateComponent {
           let jsonData = JSON.parse(value);
           this.jobDifData = jsonData.Obj.jobDif;
         });
+        this.XtraAndPosOrgStructuresService.httpGetXtraAndPosOrgStructuresGetOrgStructuresService().subscribe((value:any)=>{
+          let jsonData = JSON.parse(value);
+          this.orgStructuresData = jsonData.Obj.orgStructures;
+        });
         this.XtraAndPosJobNameService.httpGetXtraAndPosJobNameGetJobNameService().subscribe((value:any)=>{
           let jsonData = JSON.parse(value);
           this.jobNamesData = jsonData.Obj.jobName;
@@ -173,7 +187,7 @@ export class EmployeeCreateComponent {
         });
         this.RoleGroupEpService.httpGetRoleGroupGetAll().subscribe((value:any)=>{
           let jsonData = JSON.parse(value);
-          this.roleGroup = jsonData.Obj.rolescreens;
+          this.roleGroup = jsonData.Obj.roleGroups;
         });
       }
       getStatus(Id :any){
@@ -189,45 +203,47 @@ export class EmployeeCreateComponent {
       }
       setEdit(employee: any) {
         this.formEmployee.patchValue({
-          nameAr: employee.nameAr,
-          nameEn: employee.nameEn,
-          statusId: employee.statusId,
-          branchId: employee.branchId,
-          sno: employee.sNO,
-          nationalityId: employee.nationalityId,
-          secoundName: employee.secoundName,
-          lastName: employee.lastName,
-          title: employee.title,
-          gender: employee.gender,
-          maritalStatus: employee.maritalStatus,
-          identityType: employee.identityType,
-          highestAcademicQualification: employee.highestAcademicQualification,
-          identityNumber: employee.identityNumber,
-          specializationId: employee.specializationId,
-          identityCreationDate: employee.identityCreationDate,
-          identityEndDate: employee.identityEndDate,
-          birthDate: employee.birthDate,
-          email: employee.email,
-          mobile: employee.mobile,
-          phone: employee.phone,
-          address: employee.address,
-          accountId: employee.accountId,
-          password: employee.password,
-          roleId: employee.roleId,
-          isSalesRepresentative: employee.isSalesRepresentative,
-          jobId: employee.jobId,
-          jobNameId: employee.jobNameId,
-          divisionId: employee.divisionId,
-          contractPeriod: employee.contractPeriod,
-          contractStartDate: employee.contractStartDate,
-          contractEndDate: employee.contractEndDate,
-          basicSalary: employee.basicSalary,
-          currencyId: employee.currencyId,
-          annualVacDays: employee.annualVacDays,
-          bankAccountId: employee.bankAccountId,
-          iban: employee.iban,
-          barcode: employee.barcode,
-          startDate: employee.startDate
+          nameAr: employee.NameAr,
+          nameEn: employee.NameEn,
+          statusId: employee.StatusId,
+          branchId: employee.BranchId,
+          sno: employee.SNO,
+          nationalityId: employee.NationalityId,
+          secondName: employee.SecondName,
+          lastName: employee.LastName,
+          title: employee.Title,
+          gender: employee.Gender,
+          maritalStatus: employee.MaritalStatus,
+          highestAcademicQualification: employee.HighestAcademicQualification,
+          identityNumber: employee.IdentityNumber,
+          specializationId: employee.SpecializationId,
+          identityCreationDate: employee.IdentityCreationDate,
+          identityEndDate: employee.IdentityEndDate,
+          birthDate: employee.BirthDate,
+          identityType: employee.IdentityType,
+          email: employee.Email,
+          mobile: employee.Mobile,
+          phone: employee.Phone,
+          address: employee.Address,
+          userName: employee.UserName,
+          password: employee.Password,
+          roleId: employee.RoleId,
+          isSalesRepresentative: employee.IsSalesRepresentative,
+          jobId: employee.JobId,
+          jobNameId: employee.JobNameId,
+          divisionId: employee.DivisionId,
+          contractPeriod: employee.ContractPeriod,
+          contractStartDate: employee.ContractStartDate,
+          contractEndDate: employee.ContractEndDate,
+          basicSalary: employee.BasicSalary,
+          currencyId: employee.CurrencyId,
+          annualVacDays: employee.AnnualVacDays,
+          bankAccountId: employee.BankAccountId,
+          iban: employee.Iban,
+          barcode: employee.Barcode,
+          startDate: employee.StartDate,
+          date: employee.Date,
+          fileDescription: employee.FileDescription,
         });
         this.isEdit = true;
         this.currentEmployeeId = employee.Id;
@@ -273,15 +289,22 @@ export class EmployeeCreateComponent {
         });
       }
       onSubmit(Form: FormGroup) {
-        console.log(this.formEmployee.value);
         if(!this.isEdit){
         if(this.formEmployee.valid)
         {
-        let model = this.formEmployee.value;
-        model.statusId = 1 ;
-        model.fileName = this.uploadedFiles[0]?.name;
-        model.fileSize = this.uploadedFiles[0]?.size;
-        model.fileType =this.uploadedFiles[0]?.type;
+        const model: HrEmployeeDto = {
+          ...this.formEmployee.value,
+          statusId: 1,
+          fileName: this.uploadedFiles[0]?.name,
+          fileSize: this.uploadedFiles[0]?.size,
+          fileType: this.uploadedFiles[0]?.type,
+          user: {
+            userName: this.formEmployee.get('userName')?.value,
+            roleId: this.formEmployee.get('roleId')?.value,
+          branchId : this.formEmployee.get('branchId')?.value,
+
+          },
+        };
         this.XtraAndPosHrEmployeeService.httpPostXtraAndPosHrEmployeeCreateHrEmployeeService({
           body : model
         }).subscribe((value:any)=>{
@@ -290,6 +313,7 @@ export class EmployeeCreateComponent {
             this.formEmployee.reset();
           this.formEmployee.get('StatusId')?.setValue('1');
           this.uploadedFiles = [];
+          this.confirmPassword.nativeElement.value = ''
             this.refreshTable();
         },
         (error: any) => {
@@ -311,6 +335,8 @@ export class EmployeeCreateComponent {
           this.formEmployee.reset();
           this.formEmployee.get('StatusId')?.setValue('1');
           this.uploadedFiles = [];
+          this.confirmPassword.nativeElement.value = ''
+
         });
         }
           }
@@ -341,8 +367,8 @@ export class EmployeeCreateComponent {
           };
         });
 
-       const columns = ['ملاحظات',' الاسم بالانجليزية','الاسم ','تاريخ الانشاء','كود المستشفي'];
-        this.ExportData.printPdf(tableData,columns,'jobCategories.pdf')
+       const columns = ['ملاحظات',' الاسم بالانجليزية','الاسم ','تاريخ الانشاء','كود الموظف'];
+        this.ExportData.printPdf(tableData,columns,'Employee.pdf')
       }
 
 
@@ -362,7 +388,6 @@ export class EmployeeCreateComponent {
 
       uploadedFiles : any[] = []
       onUpload(event:any) {
-        console.log(event)
         for(let file of event.files) {
             this.uploadedFiles.push(file);
         }
@@ -374,6 +399,24 @@ if(id>2){
 this.highestDegree = true;
 }else{
 this.highestDegree = false;
+}
+}
+jobChanged(event : Event){
+  const target = event.target as HTMLSelectElement ;
+  const id = Number(target.value);
+  const  job =  this.jobDifData.filter((r)=>r.Id == id )[0]
+   const levelName =  this.orgStructuresData.filter((r) => r.Id === job.Level1Id)[0]
+   this.formEmployee.get('divisionId')?.setValue(levelName.NameAr);
+}
+contractStartDateChange(event :Event){
+const target = event.target as HTMLInputElement;
+  const addedYears = Number(target.value);  const startDate = this.formEmployee.get('contractStartDate')?.value;
+  if (startDate && addedYears) {
+    const date = new Date(startDate);
+    const endDate = new Date(date);
+    endDate.setFullYear(date.getFullYear() + addedYears);
+    const formattedEndDate = endDate.toISOString().slice(0, 10);
+    this.formEmployee.get('contractEndDate')?.setValue(formattedEndDate);
 }
 }
 }
