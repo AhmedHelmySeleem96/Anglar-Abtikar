@@ -1,13 +1,20 @@
-<div class="col-7 mx-auto py-4 py-md-5 px-lg-4">
+<div class="createDiv">
+
+  <div class="tab-pane fade show active" id="rounded-corner-pills-icon-home" role="tabpanel" aria-labelledby="rounded-corner-pills-icon-home-tab" style="min-height:300px">
+
+    <div class="card bg-light mb-3">
+        <div class="card-body">
   <h3>{{ "Hr.JobsNames" | translate }}</h3>
   <form #formElement [formGroup]="formJob" (ngSubmit)="OnSubmit(formJob)" class="form">
 
     <div class="form-group mt-5">
-      <input  id="NameAr" type="NameAr" formControlName="NameAr" required placeholder="{{ 'Hr.JobNameNameAr' | translate }}" class="form-control">
+      <label for="NameAr">{{ 'Hr.JobNameNameAr' | translate }}</label>
+      <input  id="NameAr" type="NameAr" formControlName="NameAr" required  class="form-control">
     </div>
 
     <div class="form-group mt-5">
-      <input   id="NameEn" type="NameEn" formControlName="NameEn" required placeholder="{{ 'Hr.JobNameNameEn' | translate }}" class="form-control">
+      <label for="NameEn">{{ 'Hr.JobNameNameEn' | translate }}</label>
+      <input   id="NameEn" type="NameEn" formControlName="NameEn" required  class="form-control">
     </div>
     <div class="form-group mt-5" *ngIf="isEdit">
       <label for="StatusId">{{ 'Hr.SelectStatus' | translate }}</label>
@@ -17,21 +24,18 @@
       </select>
     </div>
     <div class="form-group mt-5">
-      <input   id="notes" type="notes" formControlName="notes" placeholder="{{ 'Hr.Notes' | translate }}" class="form-control">
+      <label for="Notes">{{ 'Hr.Notes' | translate }}</label>
+      <input   id="notes" type="notes" formControlName="notes"  class="form-control">
     </div>
-    <div class="bottom-buttons">
-      <button type="submit"  class="d-block w-100 py-3"  >{{ 'Save' | translate }}</button>
-    </div>
-
   </form>
 </div>
 
 <div class="container">
 
-  <div class="search-container">
-    <input (input)="onSearch($event)" class="form-control form-control-sm custom-textbox" type="search" placeholder="{{ 'navBar.Search' | translate }}">
-  </div>
 
+  <div class="col-md-3 mb-2 mt-2">
+    <input (input)="onSearch($event)" class="form-control form-control-sm " type="search" placeholder="{{ 'navBar.Search' | translate }}">
+  </div>
   <!-- <div class="table-container" class="add-button">
     <button (click)="addJob()"  class="btn btn-primary add-data-button">{{"Hr.AddJob"|translate}}</button>
   </div> -->
@@ -78,10 +82,12 @@
 
 
 </div>
-<div class="bottom-buttons">
-<button (click)="printPdf()" class="btn btn-primary add-data-button">{{"Hr.Print" | translate}}</button>
-<span class="button-space"></span>
-<button (click)="exportData()" class="btn btn-primary add-data-button">{{"Hr.Export" | translate}}</button>
-<span class="button-space"></span>
-<button (click)="goHome()" class="btn btn-primary add-data-button">{{"Cancel" | translate}}</button>
+</div>
+</div>
+</div>
+<div class="mt-2 text-center">
+  <button type="submit" (click)="OnSubmit(formJob)" class="btn btn-success" >{{ 'Save' | translate }}</button>
+  <button  (click)="printPdf()" class="btn btn-info" >{{"Hr.Print" | translate}}</button>
+  <button  (click)="exportData()" class="btn btn-info" id="viewBtn">{{"Hr.Export" | translate}}</button>
+  <button (click)="goHome()" class="btn btn-warning Dnone" id="editBtn">{{"Cancel" | translate}}</button>
 </div>
