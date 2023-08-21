@@ -12,9 +12,7 @@ import { OrgstructuresComponent } from './orgstructures/orgstructures.component'
 import { AllowenceComponent } from './allowence/allowence.component';
 import { HospitalComponent } from './hospital/hospital.component';
 import { JobsComponent } from './jobs/jobs.component';
-import { JobModule } from './jobs/jobs.module';
 import { SpecializationsComponent } from './specializations/specializations.component';
-import { SpecializationsCreateComponent } from './specializations/specializations-create/specializations-create.component';
 import { EmployeeComponent } from './employee/employee.component';
 @NgModule({
   declarations: [
@@ -53,6 +51,8 @@ EmployeeComponent,
         path : "specializations" , loadChildren: () => import('./specializations/specializations.module').then(m => m.SpecializationsModule)
       },{
         path : "employee" , loadChildren: () => import('./employee/employee.module').then(m => m.EmployeeModule)
+      },{
+        path : "docTypes" , loadChildren: () => import('./doc-types/doc-types.module').then(m => m.DocTypesModule)
       }]
     }]),
     TranslateModule,
