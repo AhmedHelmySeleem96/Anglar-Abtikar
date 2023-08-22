@@ -7,13 +7,21 @@ export interface SaleInvoiceDetails {
   cancelBy?: null | string;
   cancelById?: number;
   cancelDate?: string;
+  clientDesc?: number;
   companyId?: number;
   companyName?: null | string;
+  correctQty?: number;
+  correctWA?: number;
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
   discount?: number;
+  discountPercent?: number;
+  docClassificationId?: number;
+  docClassificationName?: null | string;
   docDate?: string;
+  docProjectsId?: number;
+  docProjectsName?: null | string;
   docRefGuid?: string;
   extraDiscountAmount?: number;
   extraDiscountPer?: number;
@@ -22,6 +30,7 @@ export interface SaleInvoiceDetails {
   isActive?: boolean;
   isCanceled?: boolean;
   isUpdated?: boolean;
+  itemID?: number;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;
   lastUpdatedDate?: string;
@@ -46,6 +55,7 @@ export interface SaleInvoiceDetails {
   totalPriceAfterDiscount?: number;
   totalPriceAfterVat?: number;
   unitDiscount?: number;
+  uniteId?: number;
   updateFlag?: null | string;
   updatedCount?: number;
   vat?: number;

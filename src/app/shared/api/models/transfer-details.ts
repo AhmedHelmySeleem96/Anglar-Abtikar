@@ -8,12 +8,16 @@ export interface TransferDetails {
   cancelBy?: null | string;
   cancelById?: number;
   cancelDate?: string;
+  clientDesc?: number;
   companyId?: number;
   companyName?: null | string;
+  correctQty?: number;
+  correctWA?: number;
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
   discount?: number;
+  discountPercent?: number;
   docRefGuid?: string;
   extraDiscountAmount?: number;
   extraDiscountPer?: number;
@@ -23,6 +27,7 @@ export interface TransferDetails {
   isCanceled?: boolean;
   isUpdated?: boolean;
   itemBalance?: number;
+  itemID?: number;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;
   lastUpdatedDate?: string;
@@ -49,6 +54,7 @@ export interface TransferDetails {
   transferId?: number;
   transferStatus?: TransferStatus;
   unitDiscount?: number;
+  uniteId?: number;
   updateFlag?: null | string;
   updatedCount?: number;
   vat?: number;

@@ -53,6 +53,8 @@ EmployeeComponent,
         path : "employee" , loadChildren: () => import('./employee/employee.module').then(m => m.EmployeeModule)
       },{
         path : "docTypes" , loadChildren: () => import('./doc-types/doc-types.module').then(m => m.DocTypesModule)
+      },{
+        path : "workCard" , loadChildren: () => import('./work-card/work-card.module').then(m => m.WorkCardModule)
       }]
     }]),
     TranslateModule,

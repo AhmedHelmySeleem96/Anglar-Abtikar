@@ -1,12 +1,13 @@
 /* tslint:disable */
 /* eslint-disable */
 import { RoleGroup } from './role-group';
+import { UserBranch } from './user-branch';
 export interface ApplicationUser {
   accessFailedCount?: number;
   accessToken?: null | string;
   allowToChangePrice?: boolean;
   allowToGiveDiscount?: boolean;
-  branchId?: number;
+  branches?: null | Array<UserBranch>;
   companyId?: number;
   concurrencyStamp?: null | string;
   email?: null | string;
@@ -15,7 +16,6 @@ export interface ApplicationUser {
   id?: null | string;
   lockoutEnabled?: boolean;
   lockoutEnd?: null | string;
-  nameAr?: null | string;
   normalizedEmail?: null | string;
   normalizedUserName?: null | string;
   passwordHash?: null | string;

@@ -13,11 +13,13 @@ export interface ItemGroup {
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
+  discRate?: number;
   docRefGuid?: string;
   guid?: string;
   id?: number;
   isActive?: boolean;
   isCanceled?: boolean;
+  isNegativeSelling?: boolean;
   isParent?: boolean;
   isUpdated?: boolean;
   item?: null | Array<Item>;
@@ -34,6 +36,7 @@ export interface ItemGroup {
   no?: number;
   notes?: null | string;
   parentCode?: null | string;
+  parentId?: number;
   tbl006ID?: number;
   updateFlag?: null | string;
   updatedCount?: number;

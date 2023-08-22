@@ -23,12 +23,18 @@ export interface TreasuryTransactionDetail {
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
+  docClassificationId?: number;
+  docClassificationName?: null | string;
+  docProjectsId?: number;
+  docProjectsName?: null | string;
   docRefGuid?: string;
   guid?: string;
   id?: number;
   isActive?: boolean;
   isCanceled?: boolean;
   isUpdated?: boolean;
+  isVatchecked?: boolean;
+  isVatcheckedNotes?: null | string;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;
   lastUpdatedDate?: string;
@@ -46,4 +52,5 @@ export interface TreasuryTransactionDetail {
   treasuryName?: null | string;
   updateFlag?: null | string;
   updatedCount?: number;
+  vatVal?: number;
 }

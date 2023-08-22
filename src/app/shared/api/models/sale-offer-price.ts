@@ -30,6 +30,8 @@ export interface SaleOfferPrice {
   docDate?: string;
   docGuid?: string;
   docNo?: number;
+  docProjectId?: number;
+  docProjectName?: null | string;
   docRefGuid?: string;
   docType?: DocType;
   extraDisc?: number;

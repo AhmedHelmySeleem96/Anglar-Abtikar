@@ -13,6 +13,8 @@ export interface TreasuryTransactionOut {
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
+  curencyId?: number;
+  curencyName?: null | string;
   docDate?: string;
   docGuid?: string;
   docNo?: number;
@@ -35,7 +37,9 @@ export interface TreasuryTransactionOut {
   nameEn?: null | string;
   no?: number;
   notes?: null | string;
+  totalAfterVat?: number;
   totalAmount?: number;
+  totalVat?: number;
   treasuryId?: number;
   treasuryName?: null | string;
   treasuryTransactionOutDetails?: null | Array<TreasuryTransactionOutDetail>;

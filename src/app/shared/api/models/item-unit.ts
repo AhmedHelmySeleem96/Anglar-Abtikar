@@ -55,6 +55,7 @@ export interface ItemUnit {
   specifications?: null | string;
   standerCost?: number;
   standerCostTax?: number;
+  supplierId?: number;
   taxRatio?: number;
   unitCode?: null | string;
   unitId?: number;

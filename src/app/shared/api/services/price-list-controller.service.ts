@@ -11,6 +11,7 @@ import { StrictHttpResponse } from '../strict-http-response';
 import { RequestBuilder } from '../request-builder';
 
 import { PriceList } from '../models/price-list';
+import { PriceListDto } from '../models/price-list-dto';
 
 @Injectable({ providedIn: 'root' })
 export class PriceListControllerService extends BaseService {
@@ -199,6 +200,53 @@ export class PriceListControllerService extends BaseService {
     context?: HttpContext
   ): Observable<void> {
     return this.httpDeletePriceListDelete$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPostPriceListGetItemUnit()` */
+  static readonly HttpPostPriceListGetItemUnitPath = '/PriceList/GetItemUnit';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostPriceListGetItemUnit()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostPriceListGetItemUnit$Response(
+    params?: {
+      body?: PriceListDto
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, PriceListControllerService.HttpPostPriceListGetItemUnitPath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostPriceListGetItemUnit$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostPriceListGetItemUnit(
+    params?: {
+      body?: PriceListDto
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostPriceListGetItemUnit$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

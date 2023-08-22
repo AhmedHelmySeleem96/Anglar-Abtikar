@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { BuyInvoiceCosts } from './buy-invoice-costs';
+import { BuyInvoiceDepts } from './buy-invoice-depts';
 import { BuyInvoiceDetails } from './buy-invoice-details';
 import { ClientType } from './client-type';
 import { DocType } from './doc-type';
@@ -12,6 +13,7 @@ export interface BuyInvoice {
   branchId?: number;
   branchName?: null | string;
   buyInvoiceCosts?: null | Array<BuyInvoiceCosts>;
+  buyInvoiceDepts?: null | Array<BuyInvoiceDepts>;
   buyInvoiceDetails?: null | Array<BuyInvoiceDetails>;
   buyOfferId?: number;
   cancelBy?: null | string;
@@ -34,6 +36,8 @@ export interface BuyInvoice {
   docDate?: string;
   docGuid?: string;
   docNo?: number;
+  docProjectId?: number;
+  docProjectName?: null | string;
   docRefGuid?: string;
   docType?: DocType;
   extraDisc?: number;
@@ -60,6 +64,9 @@ export interface BuyInvoice {
   storeGuid?: string;
   storeId?: number;
   storeName?: null | string;
+  supplierGuid?: string;
+  supplierId?: number;
+  supplierName?: null | string;
   tbL022ID?: number;
   totalBuyCost?: number;
   totalDisc?: number;

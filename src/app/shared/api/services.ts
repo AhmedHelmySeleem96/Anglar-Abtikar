@@ -3,6 +3,9 @@ export { BuyInvoiceCostsControllerService } from './services/buy-invoice-costs-c
 export { CartEpService } from './services/cart-ep.service';
 export { CollectionInvoiceControllerService } from './services/collection-invoice-controller.service';
 export { CurrencyEpService } from './services/currency-ep.service';
+export { DashboardEpService } from './services/dashboard-ep.service';
+export { DocClassificationEpService } from './services/doc-classification-ep.service';
+export { DocProjectsEpService } from './services/doc-projects-ep.service';
 export { ExtraAndPosBankAccountEpService } from './services/extra-and-pos-bank-account-ep.service';
 export { ExtraAndPosBankEpService } from './services/extra-and-pos-bank-ep.service';
 export { ExtraAndPosBuyInvoiceEpService } from './services/extra-and-pos-buy-invoice-ep.service';
@@ -12,6 +15,7 @@ export { InitGlReceptEpService } from './services/init-gl-recept-ep.service';
 export { ItemUnitEpService } from './services/item-unit-ep.service';
 export { LdgerEpService } from './services/ldger-ep.service';
 export { ManageUserEpService } from './services/manage-user-ep.service';
+export { NotesInvoiceEpService } from './services/notes-invoice-ep.service';
 export { PriceListControllerService } from './services/price-list-controller.service';
 export { PricingMangementControlerService } from './services/pricing-mangement-controler.service';
 export { ReportEpService } from './services/report-ep.service';
@@ -30,12 +34,15 @@ export { XtraAndPosClientEpService } from './services/xtra-and-pos-client-ep.ser
 export { XtraAndPosCompanySettingEpService } from './services/xtra-and-pos-company-setting-ep.service';
 export { XtraAndPosCostCenterEpService } from './services/xtra-and-pos-cost-center-ep.service';
 export { XtraAndPosCountryService } from './services/xtra-and-pos-country.service';
+export { XtraAndPosDailyMovmentEpService } from './services/xtra-and-pos-daily-movment-ep.service';
 export { XtraAndPosDefaultOptionsEpService } from './services/xtra-and-pos-default-options-ep.service';
+export { XtraAndPosDocTypesService } from './services/xtra-and-pos-doc-types.service';
 export { XtraAndPosEmployeeEpService } from './services/xtra-and-pos-employee-ep.service';
 export { XtraAndPosFinanceEpService } from './services/xtra-and-pos-finance-ep.service';
 export { XtraAndPosGeneralLedgerEpService } from './services/xtra-and-pos-general-ledger-ep.service';
 export { XtraAndPosHospitalService } from './services/xtra-and-pos-hospital.service';
 export { XtraAndPosHrEmployeeService } from './services/xtra-and-pos-hr-employee.service';
+export { XtraAndPosIncomeStatementEpService } from './services/xtra-and-pos-income-statement-ep.service';
 export { XtraAndPosItemEpService } from './services/xtra-and-pos-item-ep.service';
 export { XtraAndPosJobCategoryService } from './services/xtra-and-pos-job-category.service';
 export { XtraAndPosJobDifinitionService } from './services/xtra-and-pos-job-difinition.service';
@@ -53,3 +60,4 @@ export { XtraAndPosStorageEpService } from './services/xtra-and-pos-storage-ep.s
 export { XtraAndPosSupplierEpService } from './services/xtra-and-pos-supplier-ep.service';
 export { XtraAndPosTreasuriesEpService } from './services/xtra-and-pos-treasuries-ep.service';
 export { XtraAndPosTreasuryEpService } from './services/xtra-and-pos-treasury-ep.service';
+export { XtraAndPosWorkCardService } from './services/xtra-and-pos-work-card.service';

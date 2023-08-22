@@ -33,6 +33,8 @@ export interface Transfer {
   docGuid?: string;
   docManualNo?: number;
   docNo?: number;
+  docProjectId?: number;
+  docProjectName?: null | string;
   docRefGuid?: string;
   docType?: DocType;
   employeeId?: number;

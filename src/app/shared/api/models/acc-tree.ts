@@ -23,6 +23,7 @@ export interface AccTree {
   guid?: string;
   id?: number;
   isActive?: boolean;
+  isCanNotUse?: boolean;
   isCanceled?: boolean;
   isCostCenter?: boolean;
   isUpdated?: boolean;

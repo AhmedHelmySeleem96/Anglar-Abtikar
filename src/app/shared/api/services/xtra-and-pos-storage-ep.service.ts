@@ -906,6 +906,53 @@ export class XtraAndPosStorageEpService extends BaseService {
     );
   }
 
+  /** Path part for operation `httpPostExtraAndPosTransferStoreAdjusmentByArrow()` */
+  static readonly HttpPostExtraAndPosTransferStoreAdjusmentByArrowPath = '/ExtraAndPOS_Transfer/StoreAdjusmentByArrow';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostExtraAndPosTransferStoreAdjusmentByArrow()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosTransferStoreAdjusmentByArrow$Response(
+    params?: {
+      body?: RequestResult
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosStorageEpService.HttpPostExtraAndPosTransferStoreAdjusmentByArrowPath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostExtraAndPosTransferStoreAdjusmentByArrow$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosTransferStoreAdjusmentByArrow(
+    params?: {
+      body?: RequestResult
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostExtraAndPosTransferStoreAdjusmentByArrow$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
   /** Path part for operation `httpPostExtraAndPosCreateOpenStorageCreate()` */
   static readonly HttpPostExtraAndPosCreateOpenStorageCreatePath = '/ExtraAndPOS_CreateOpenStorage/Create';
 
@@ -1087,6 +1134,53 @@ export class XtraAndPosStorageEpService extends BaseService {
     context?: HttpContext
   ): Observable<void> {
     return this.httpPostUpdateStoreAdjustmentGetStoreAdjustmentUploaded$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetExtraAndPosStorageGetItemBalanceAllStore()` */
+  static readonly HttpGetExtraAndPosStorageGetItemBalanceAllStorePath = '/ExtraAndPOS_Storage/GetItemBalanceAllStore';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetExtraAndPosStorageGetItemBalanceAllStore()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetExtraAndPosStorageGetItemBalanceAllStore$Response(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosStorageEpService.HttpGetExtraAndPosStorageGetItemBalanceAllStorePath, 'get');
+    if (params) {
+      rb.query('id', params.id, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetExtraAndPosStorageGetItemBalanceAllStore$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetExtraAndPosStorageGetItemBalanceAllStore(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetExtraAndPosStorageGetItemBalanceAllStore$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

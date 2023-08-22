@@ -29,6 +29,8 @@ export interface ClientGroupManagment {
   notes?: null | string;
   parentId?: number;
   parentName?: null | string;
+  pricePolicyId?: number;
+  pricePolicyName?: null | string;
   updateFlag?: null | string;
   updatedCount?: number;
 }

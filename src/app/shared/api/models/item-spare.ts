@@ -17,11 +17,14 @@ export interface ItemSpare {
   isActive?: boolean;
   isCanceled?: boolean;
   isUpdated?: boolean;
+  itemSpareId?: number;
+  itemSpareName?: null | string;
   itemUnitSpareId?: number;
   itemUnitSpareName?: null | string;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;
   lastUpdatedDate?: string;
+  manualItem?: null | string;
   modifyById?: null | string;
   modifyByName?: null | string;
   modifyCount?: number;

@@ -27,10 +27,13 @@ export interface BuyOfferPrice {
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
+  dateArrival?: string;
   debt?: number;
   docDate?: string;
   docGuid?: string;
   docNo?: number;
+  docProjectId?: number;
+  docProjectName?: null | string;
   docRefGuid?: string;
   docType?: DocType;
   extraDisc?: number;

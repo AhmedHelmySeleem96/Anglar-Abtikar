@@ -6,12 +6,14 @@ export interface Currency {
   cancelBy?: null | string;
   cancelById?: number;
   cancelDate?: string;
+  code?: null | string;
   companyId?: number;
   companyName?: null | string;
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
   docRefGuid?: string;
+  faka?: number;
   guid?: string;
   id?: number;
   isActive?: boolean;

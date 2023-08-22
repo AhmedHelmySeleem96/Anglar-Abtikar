@@ -9,6 +9,9 @@ import { BuyInvoiceCostsControllerService } from './services/buy-invoice-costs-c
 import { CartEpService } from './services/cart-ep.service';
 import { CollectionInvoiceControllerService } from './services/collection-invoice-controller.service';
 import { CurrencyEpService } from './services/currency-ep.service';
+import { DashboardEpService } from './services/dashboard-ep.service';
+import { DocClassificationEpService } from './services/doc-classification-ep.service';
+import { DocProjectsEpService } from './services/doc-projects-ep.service';
 import { ExtraAndPosBankAccountEpService } from './services/extra-and-pos-bank-account-ep.service';
 import { ExtraAndPosBankEpService } from './services/extra-and-pos-bank-ep.service';
 import { ExtraAndPosBuyInvoiceEpService } from './services/extra-and-pos-buy-invoice-ep.service';
@@ -18,6 +21,7 @@ import { InitGlReceptEpService } from './services/init-gl-recept-ep.service';
 import { ItemUnitEpService } from './services/item-unit-ep.service';
 import { LdgerEpService } from './services/ldger-ep.service';
 import { ManageUserEpService } from './services/manage-user-ep.service';
+import { NotesInvoiceEpService } from './services/notes-invoice-ep.service';
 import { PriceListControllerService } from './services/price-list-controller.service';
 import { PricingMangementControlerService } from './services/pricing-mangement-controler.service';
 import { ReportEpService } from './services/report-ep.service';
@@ -36,12 +40,15 @@ import { XtraAndPosClientEpService } from './services/xtra-and-pos-client-ep.ser
 import { XtraAndPosCompanySettingEpService } from './services/xtra-and-pos-company-setting-ep.service';
 import { XtraAndPosCostCenterEpService } from './services/xtra-and-pos-cost-center-ep.service';
 import { XtraAndPosCountryService } from './services/xtra-and-pos-country.service';
+import { XtraAndPosDailyMovmentEpService } from './services/xtra-and-pos-daily-movment-ep.service';
 import { XtraAndPosDefaultOptionsEpService } from './services/xtra-and-pos-default-options-ep.service';
+import { XtraAndPosDocTypesService } from './services/xtra-and-pos-doc-types.service';
 import { XtraAndPosEmployeeEpService } from './services/xtra-and-pos-employee-ep.service';
 import { XtraAndPosFinanceEpService } from './services/xtra-and-pos-finance-ep.service';
 import { XtraAndPosGeneralLedgerEpService } from './services/xtra-and-pos-general-ledger-ep.service';
 import { XtraAndPosHospitalService } from './services/xtra-and-pos-hospital.service';
 import { XtraAndPosHrEmployeeService } from './services/xtra-and-pos-hr-employee.service';
+import { XtraAndPosIncomeStatementEpService } from './services/xtra-and-pos-income-statement-ep.service';
 import { XtraAndPosItemEpService } from './services/xtra-and-pos-item-ep.service';
 import { XtraAndPosJobCategoryService } from './services/xtra-and-pos-job-category.service';
 import { XtraAndPosJobDifinitionService } from './services/xtra-and-pos-job-difinition.service';
@@ -59,6 +66,7 @@ import { XtraAndPosStorageEpService } from './services/xtra-and-pos-storage-ep.s
 import { XtraAndPosSupplierEpService } from './services/xtra-and-pos-supplier-ep.service';
 import { XtraAndPosTreasuriesEpService } from './services/xtra-and-pos-treasuries-ep.service';
 import { XtraAndPosTreasuryEpService } from './services/xtra-and-pos-treasury-ep.service';
+import { XtraAndPosWorkCardService } from './services/xtra-and-pos-work-card.service';
 
 /**
  * Module that provides all services and configuration.
@@ -73,6 +81,9 @@ import { XtraAndPosTreasuryEpService } from './services/xtra-and-pos-treasury-ep
     CartEpService,
     CollectionInvoiceControllerService,
     CurrencyEpService,
+    DashboardEpService,
+    DocClassificationEpService,
+    DocProjectsEpService,
     ExtraAndPosBankAccountEpService,
     ExtraAndPosBankEpService,
     ExtraAndPosBuyInvoiceEpService,
@@ -82,6 +93,7 @@ import { XtraAndPosTreasuryEpService } from './services/xtra-and-pos-treasury-ep
     ItemUnitEpService,
     LdgerEpService,
     ManageUserEpService,
+    NotesInvoiceEpService,
     PriceListControllerService,
     PricingMangementControlerService,
     ReportEpService,
@@ -100,12 +112,15 @@ import { XtraAndPosTreasuryEpService } from './services/xtra-and-pos-treasury-ep
     XtraAndPosCompanySettingEpService,
     XtraAndPosCostCenterEpService,
     XtraAndPosCountryService,
+    XtraAndPosDailyMovmentEpService,
     XtraAndPosDefaultOptionsEpService,
+    XtraAndPosDocTypesService,
     XtraAndPosEmployeeEpService,
     XtraAndPosFinanceEpService,
     XtraAndPosGeneralLedgerEpService,
     XtraAndPosHospitalService,
     XtraAndPosHrEmployeeService,
+    XtraAndPosIncomeStatementEpService,
     XtraAndPosItemEpService,
     XtraAndPosJobCategoryService,
     XtraAndPosJobDifinitionService,
@@ -123,6 +138,7 @@ import { XtraAndPosTreasuryEpService } from './services/xtra-and-pos-treasury-ep
     XtraAndPosSupplierEpService,
     XtraAndPosTreasuriesEpService,
     XtraAndPosTreasuryEpService,
+    XtraAndPosWorkCardService,
     ApiConfiguration
   ],
 })

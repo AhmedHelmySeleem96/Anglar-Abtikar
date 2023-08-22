@@ -12,6 +12,7 @@ export interface PriceList {
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
+  discount?: number;
   docRefGuid?: string;
   groupId?: number;
   groupName?: null | string;
@@ -23,6 +24,8 @@ export interface PriceList {
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;
   lastUpdatedDate?: string;
+  listType?: null | string;
+  listTypeId?: number;
   modifyById?: null | string;
   modifyByName?: null | string;
   modifyCount?: number;

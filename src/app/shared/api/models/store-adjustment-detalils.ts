@@ -8,6 +8,7 @@ export interface StoreAdjustmentDetalils {
   cancelBy?: null | string;
   cancelById?: number;
   cancelDate?: string;
+  clientDesc?: number;
   companyId?: number;
   companyName?: null | string;
   correctQty?: number;
@@ -16,6 +17,7 @@ export interface StoreAdjustmentDetalils {
   createByName?: null | string;
   createdDate?: string;
   discount?: number;
+  discountPercent?: number;
   docNo?: number;
   docRefGuid?: string;
   extraDiscountAmount?: number;
@@ -25,6 +27,7 @@ export interface StoreAdjustmentDetalils {
   isActive?: boolean;
   isCanceled?: boolean;
   isUpdated?: boolean;
+  itemID?: number;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;
   lastUpdatedDate?: string;
@@ -50,6 +53,7 @@ export interface StoreAdjustmentDetalils {
   totalPriceAfterDiscount?: number;
   totalPriceAfterVat?: number;
   unitDiscount?: number;
+  uniteId?: number;
   updateFlag?: null | string;
   updatedCount?: number;
   vat?: number;

@@ -3,7 +3,10 @@
 import { ClientType } from './client-type';
 import { DocType } from './doc-type';
 import { PaymentType } from './payment-type';
+import { SaleInvNotes } from './sale-inv-notes';
+import { SaleInvoiceDepts } from './sale-invoice-depts';
 import { SaleInvoiceDetails } from './sale-invoice-details';
+import { SaleRatingNotes } from './sale-rating-notes';
 export interface SaleInvoice {
   bankGuid?: string;
   bankId?: number;
@@ -30,6 +33,8 @@ export interface SaleInvoice {
   docDate?: string;
   docGuid?: string;
   docNo?: number;
+  docProjectId?: number;
+  docProjectName?: null | string;
   docRefGuid?: string;
   docType?: DocType;
   extraDisc?: number;
@@ -52,8 +57,12 @@ export interface SaleInvoice {
   pricePolicyId?: number;
   pricePolicyName?: null | string;
   qrCode?: null | string;
+  report?: null | string;
+  saleInvNotes?: null | Array<SaleInvNotes>;
+  saleInvoiceDepts?: null | Array<SaleInvoiceDepts>;
   saleInvoiceDetails?: null | Array<SaleInvoiceDetails>;
   saleOfferId?: number;
+  saleRatingNotes?: null | Array<SaleRatingNotes>;
   salesManId?: number;
   salesManName?: null | string;
   shiftId?: number;
@@ -70,10 +79,12 @@ export interface SaleInvoice {
   totalInvoiceDu?: number;
   totalInvoiceGross?: number;
   totalInvoiceVatAmount?: number;
+  totalSaleDepts?: number;
   totalVatRate?: number;
   treasuryId?: number;
   updateFlag?: null | string;
   updatedCount?: number;
   userId?: string;
+  uuid?: null | string;
   visa?: number;
 }

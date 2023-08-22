@@ -12,6 +12,7 @@ import { RequestBuilder } from '../request-builder';
 
 import { Item } from '../models/item';
 import { ItemGroup } from '../models/item-group';
+import { ItemListDto } from '../models/item-list-dto';
 import { SearchModel } from '../models/search-model';
 
 @Injectable({ providedIn: 'root' })
@@ -662,6 +663,188 @@ export class XtraAndPosItemEpService extends BaseService {
     context?: HttpContext
   ): Observable<void> {
     return this.httpGetExtraAndPosItemItemWa$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetItemItemExcelInfo()` */
+  static readonly HttpGetItemItemExcelInfoPath = '/Item/ItemExcelInfo';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetItemItemExcelInfo()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetItemItemExcelInfo$Response(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosItemEpService.HttpGetItemItemExcelInfoPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetItemItemExcelInfo$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetItemItemExcelInfo(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetItemItemExcelInfo$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPostItemSendItemList()` */
+  static readonly HttpPostItemSendItemListPath = '/Item/SendItemList';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostItemSendItemList()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostItemSendItemList$Response(
+    params?: {
+      body?: ItemListDto
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosItemEpService.HttpPostItemSendItemListPath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostItemSendItemList$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostItemSendItemList(
+    params?: {
+      body?: ItemListDto
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostItemSendItemList$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPostItemSearchItem()` */
+  static readonly HttpPostItemSearchItemPath = '/Item/SearchItem';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostItemSearchItem()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostItemSearchItem$Response(
+    params?: {
+      body?: SearchModel
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosItemEpService.HttpPostItemSearchItemPath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostItemSearchItem$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostItemSearchItem(
+    params?: {
+      body?: SearchModel
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostItemSearchItem$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetItemGroupGetAllGroup()` */
+  static readonly HttpGetItemGroupGetAllGroupPath = '/ItemGroup/GetAllGroup';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetItemGroupGetAllGroup()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetItemGroupGetAllGroup$Response(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosItemEpService.HttpGetItemGroupGetAllGroupPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetItemGroupGetAllGroup$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetItemGroupGetAllGroup(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetItemGroupGetAllGroup$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

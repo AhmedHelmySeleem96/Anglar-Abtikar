@@ -31,6 +31,9 @@ export interface CompanySetting {
   nameEn?: null | string;
   no?: number;
   notes?: null | string;
+  returnSaleNo?: number;
+  settingBuyNo?: number;
+  settingSaleNo?: number;
   taxNo?: null | string;
   updateFlag?: null | string;
   updatedCount?: number;

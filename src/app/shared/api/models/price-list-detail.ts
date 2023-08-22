@@ -11,6 +11,7 @@ export interface PriceListDetail {
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
+  discount?: number;
   docRefGuid?: string;
   guid?: string;
   id?: number;
@@ -31,6 +32,8 @@ export interface PriceListDetail {
   notes?: null | string;
   parCode?: null | string;
   price?: number;
+  priceMax?: number;
+  priceMin?: number;
   uniteOnePrice?: number;
   uniteThreePrice?: number;
   uniteTwoPrice?: number;

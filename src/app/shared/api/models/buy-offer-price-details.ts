@@ -7,12 +7,16 @@ export interface BuyOfferPriceDetails {
   cancelBy?: null | string;
   cancelById?: number;
   cancelDate?: string;
+  clientDesc?: number;
   companyId?: number;
   companyName?: null | string;
+  correctQty?: number;
+  correctWA?: number;
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
   discount?: number;
+  discountPercent?: number;
   docDate?: string;
   docRefGuid?: string;
   extraDiscountAmount?: number;
@@ -22,6 +26,7 @@ export interface BuyOfferPriceDetails {
   isActive?: boolean;
   isCanceled?: boolean;
   isUpdated?: boolean;
+  itemID?: number;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;
   lastUpdatedDate?: string;
@@ -45,6 +50,7 @@ export interface BuyOfferPriceDetails {
   totalPriceAfterDiscount?: number;
   totalPriceAfterVat?: number;
   unitDiscount?: number;
+  uniteId?: number;
   updateFlag?: null | string;
   updatedCount?: number;
   vat?: number;

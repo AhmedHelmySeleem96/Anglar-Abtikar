@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { XtraAndPosCountryService } from 'src/app/shared/api';
+import { XtraAndPosCountryService, XtraAndPosDocTypesService } from 'src/app/shared/api';
 import { ExportData } from 'src/app/services/Export-data.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
@@ -14,7 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class DocTypesComponent implements OnInit  {
   constructor(private router: Router,private toastr:ToastrService,private fb:FormBuilder
-    ,private XtraAndPos_Country :  XtraAndPosCountryService,private ExportData :ExportData,
+    ,private XtraAndPosDocTypesService :  XtraAndPosDocTypesService,private ExportData :ExportData,
     private MessageService : MessageService,public translate :TranslateService){};
     docData :any[] = [] ;
 cols :any ;
@@ -27,7 +27,7 @@ isEdit:boolean= false ;
 @ViewChild('formElement') formElement!: ElementRef;
 currentdocId :any ;
 ngOnInit(): void {
-  this.XtraAndPos_Country.httpGetXtraAndPosCountryGetCountryService().subscribe((value:any)=>{
+  this.XtraAndPosDocTypesService.httpGetXtraAndPosDocTypesGetDocTypesService().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
     this.docData = jsonData.Obj.doc;
   });
@@ -72,7 +72,7 @@ showDeleteConfirm(doc: any) {
   });
 }
 onDeleteConfirm() {
-  this.XtraAndPos_Country.httpDeleteXtraAndPosCountryDeleteCountryService({
+  this.XtraAndPosDocTypesService.httpDeleteXtraAndPosDocTypesDeleteDocTypesService({
     id: this.deleteId,
   }).subscribe((value: any) => {
     let jsonData = JSON.parse(value);
@@ -91,7 +91,7 @@ onDeleteReject() {
   this.MessageService.clear('c');
 }
 refreshTable() {
-  this.XtraAndPos_Country.httpGetXtraAndPosCountryGetCountryService().subscribe((value: any) => {
+  this.XtraAndPosDocTypesService.httpGetXtraAndPosDocTypesGetDocTypesService().subscribe((value: any) => {
     let jsondocData = JSON.parse(value);
     this.docData = jsondocData.Obj.doc;
   });
@@ -107,7 +107,7 @@ onSubmit(Form: FormGroup) {
   if(this.formDoc.valid)
   {
   let model = this.formDoc.value;
-  this.XtraAndPos_Country.httpPostXtraAndPosCountryCreateCountryService({
+  this.XtraAndPosDocTypesService.httpPostXtraAndPosDocTypesCreateDocTypesService({
     body : model
   }).subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
@@ -124,7 +124,7 @@ onSubmit(Form: FormGroup) {
 }else{
   let model = this.formDoc.value;
   model.Id = this.currentdocId;
-  this.XtraAndPos_Country.httpPutXtraAndPosCountryUpdateCountryService({
+  this.XtraAndPosDocTypesService.httpPutXtraAndPosDocTypesUpdateDocTypesService({
     id: this.currentdocId,
     body: model
   }).subscribe((value: any) => {

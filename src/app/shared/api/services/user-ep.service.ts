@@ -67,6 +67,50 @@ export class UserEpService extends BaseService {
     );
   }
 
+  /** Path part for operation `httpGetLoginData()` */
+  static readonly HttpGetLoginDataPath = '/LoginData';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetLoginData()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetLoginData$Response(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, UserEpService.HttpGetLoginDataPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetLoginData$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetLoginData(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetLoginData$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
   /** Path part for operation `httpPostRegister()` */
   static readonly HttpPostRegisterPath = '/Register';
 

@@ -65,6 +65,8 @@ export interface Item {
   serialNo?: number;
   smallestUnit?: number;
   specifications?: null | string;
+  supplierId?: number;
+  supplierName?: null | string;
   tbL007ID?: number;
   totalInQty?: number;
   totalOutQty?: number;

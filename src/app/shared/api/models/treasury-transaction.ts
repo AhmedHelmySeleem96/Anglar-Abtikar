@@ -13,6 +13,8 @@ export interface TreasuryTransaction {
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
+  curencyId?: number;
+  curencyName?: null | string;
   docDate?: string;
   docGuid?: string;
   docNo?: number;
@@ -27,6 +29,7 @@ export interface TreasuryTransaction {
   lastUpdatedBy?: null | string;
   lastUpdatedDate?: string;
   mainBank?: number;
+  mainCostCenter?: number;
   modifyById?: null | string;
   modifyByName?: null | string;
   modifyCount?: number;
@@ -34,7 +37,9 @@ export interface TreasuryTransaction {
   nameEn?: null | string;
   no?: number;
   notes?: null | string;
+  totalAfterVat?: number;
   totalAmount?: number;
+  totalVat?: number;
   treasuryId?: number;
   treasuryName?: null | string;
   treasuryTransactionsDetails?: null | Array<TreasuryTransactionDetail>;
