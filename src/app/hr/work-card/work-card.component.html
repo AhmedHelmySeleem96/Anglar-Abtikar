@@ -8,12 +8,12 @@
   <form #formElement [formGroup]="formWorkCard" (ngSubmit)="onSubmit(formWorkCard)" class="form">
     <div class="row">
       <div class="form-group col-md-4 mt-5">
-        <label for="workCardNameAr">{{ 'Hr.WorkCardNameAr' | translate }}</label>
-      <input  id="workCardNameAr" type="workCardNameAr" formControlName="workCardNameAr" required class="form-control">
+        <label for="CardNameAr">{{ 'Hr.WorkCardNameAr' | translate }}</label>
+      <input  id="CardNameAr" formControlName="CardNameAr" required class="form-control">
       </div>
       <div class="form-group col-md-4 mt-5">
-        <label for="workCardNameEn">{{ 'Hr.WorkCardNameEn' | translate }}</label>
-        <input   id="workCardNameEn" type="workCardNameEn" formControlName="workCardNameEn" required  class="form-control">
+        <label for="CardNameEn">{{ 'Hr.WorkCardNameEn' | translate }}</label>
+        <input   id="CardNameEn"  formControlName="CardNameEn" required  class="form-control">
       </div>
       <div class="form-group col-md-4 mt-5">
         <label for="StatusId">{{ 'Hr.SelectStatus' | translate }}</label>

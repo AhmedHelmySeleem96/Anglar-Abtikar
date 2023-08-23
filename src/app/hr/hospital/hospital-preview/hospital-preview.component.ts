@@ -126,7 +126,6 @@ export class HospitalPreviewComponent implements OnInit {
             detail: jsonData.Message});
           this.refreshTable();
           this.formHospital.reset();
-          this.formHospital.get('StatusId')?.setValue('1');
           this.MessageService.clear('c')
         }, (error: any) => {
           this.toastr.error('Failed to delete hospital.');
@@ -170,7 +169,6 @@ export class HospitalPreviewComponent implements OnInit {
           this.refreshTable();
           this.isEdit=false;
           this.formHospital.reset();
-          this.formHospital.get('StatusId')?.setValue('1');
 
         });
         }

@@ -153,7 +153,6 @@ export class JobsCreateComponent  {
           this.toastr.success(jsonData.Message);
           this.refreshTable();
           this.formJob.reset();
-          this.formJob.get('StatusId')?.setValue('1');
         }, (error: any) => {
           this.toastr.error('Failed to delete job.');
         });
@@ -187,7 +186,6 @@ export class JobsCreateComponent  {
           this.refreshTable();
           this.isEdit=false;
           this.formJob.reset();
-          this.formJob.get('StatusId')?.setValue('1');
 
         });
         }

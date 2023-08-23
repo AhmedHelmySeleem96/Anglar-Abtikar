@@ -96,7 +96,6 @@ export class SpecializationsCreateComponent  implements OnInit{
         this.toastr.success(jsonData.Message);
         this.refreshTable();
         this.formSpecializations.reset();
-        this.formSpecializations.get('StatusId')?.setValue('1');
       }, (error: any) => {
         this.toastr.error('Failed to delete specializations.');
       });
@@ -130,7 +129,6 @@ export class SpecializationsCreateComponent  implements OnInit{
         this.refreshTable();
         this.isEdit=false;
         this.formSpecializations.reset();
-        this.formSpecializations.get('StatusId')?.setValue('1');
 
       });
       }

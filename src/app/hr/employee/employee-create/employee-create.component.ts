@@ -283,7 +283,6 @@ export class EmployeeCreateComponent implements OnInit {
           this.toastr.success(jsonData.Message);
           this.refreshTable();
           this.formEmployee.reset();
-          this.formEmployee.get('StatusId')?.setValue('1');
         }, (error: any) => {
           this.toastr.error('Failed to delete employee.');
         });
@@ -333,7 +332,6 @@ export class EmployeeCreateComponent implements OnInit {
           this.refreshTable();
           this.isEdit=false;
           this.formEmployee.reset();
-          this.formEmployee.get('StatusId')?.setValue('1');
           this.uploadedFiles = [];
           this.confirmPassword.nativeElement.value = ''
 

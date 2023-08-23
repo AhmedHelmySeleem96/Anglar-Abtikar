@@ -558,7 +558,7 @@ window.getItemUniteBalance = (storeselector = null, stockSlector = null, storeId
                 if (callbackFun != null) {
                     if (response != null) { callbackFun() };
                 }
-                
+
             }
             else {
                 window.error(value.Message);
@@ -632,6 +632,7 @@ window.setdefaultOptions = (defaultOptions) => {
 }
 
 $(function () {
+  debugger
     window.DivSpinner.style.display = "none"
 
     $("input").attr('autocomplete', 'off');

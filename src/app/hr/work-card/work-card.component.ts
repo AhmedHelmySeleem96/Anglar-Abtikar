@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { XtraAndPosCountryService,XtraAndPosLookUpsService } from 'src/app/shared/api';
+import { XtraAndPosCountryService,XtraAndPosLookUpsService, XtraAndPosWorkCardService } from 'src/app/shared/api';
 import { ExportData } from 'src/app/services/Export-data.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
@@ -15,7 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class WorkCardComponent implements OnInit  {
   constructor(private router: Router,private toastr:ToastrService,private fb:FormBuilder
-    ,private XtraAndPos_Country :  XtraAndPosCountryService,private ExportData :ExportData,
+    ,private XtraAndPosWorkCardService :  XtraAndPosWorkCardService,private ExportData :ExportData,
     private MessageService : MessageService,public translate :TranslateService,
     private XtraAndPosLookUpsService :XtraAndPosLookUpsService
     ){};
@@ -24,16 +24,27 @@ export class WorkCardComponent implements OnInit  {
 cols :any ;
 deleteId : any ;
 @ViewChild('dt') dt: any;
-formWorkCard :FormGroup= this.fb.group({workCardNameAr: new FormControl('', [Validators.required]),
-workCardNameEn: new FormControl('', [Validators.required]),
-notes: new FormControl(null),})
+formWorkCard :FormGroup= this.fb.group({CardNameAr: new FormControl('', [Validators.required]),
+CardNameEn: new FormControl('', [Validators.required]),
+notes: new FormControl(null),
+unspecifiedHours: new FormControl(false),
+startWorkTime: new FormControl(null),
+statusId: new FormControl('1'),
+endWorkTime: new FormControl(null),
+latenessAllowed: new FormControl(null),
+latenessAllowedPeriod: new FormControl(null),
+latenessAllowedPercent: new FormControl(null),
+overTimeAllowed: new FormControl(null),
+overTimeAllowedPeriod: new FormControl(null),
+overTimeAllowedPercent: new FormControl(null),
+})
 isEdit:boolean= false ;
 @ViewChild('formElement') formElement!: ElementRef;
 currentworkCardId :any ;
 ngOnInit(): void {
-  this.XtraAndPos_Country.httpGetXtraAndPosCountryGetCountryService().subscribe((value:any)=>{
+  this.XtraAndPosWorkCardService.httpGetXtraAndPosWorkCardGetWorkCardService().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
-    this.workCardData = jsonData.Obj.workCard;
+    this.workCardData = jsonData.Obj.card;
   });
   this.cols = [
     { field: 'Id', header: 'WorkCardId' },
@@ -51,9 +62,19 @@ ngOnInit(): void {
 
 setEdit(workCard: any) {
   this.formWorkCard.patchValue({
-    workCardNameAr: workCard.NameAr,
-    workCardNameEn: workCard.NameEn,
-    notes: workCard.Notes
+    CardNameAr: workCard.NameAr,
+    CardNameEn: workCard.NameEn,
+    notes: workCard.Notes,
+    statusId: workCard.StatusId,
+    unspecifiedHours: workCard.unspecifiedHours,
+    startWorkTime: workCard.startWorkTime,
+    endWorkTime: workCard.endWorkTime,
+    latenessAllowed: workCard.latenessAllowed,
+    latenessAllowedPeriod: workCard.latenessAllowedPeriod,
+    latenessAllowedPercent: workCard.latenessAllowedPercent,
+    overTimeAllowed: workCard.overTimeAllowed,
+    overTimeAllowedPeriod: workCard.overTimeAllowedPeriod,
+    overTimeAllowedPercent: workCard.overTimeAllowedPercent,
   });
   this.isEdit = true;
   this.currentworkCardId = workCard.Id;
@@ -80,7 +101,7 @@ showDeleteConfirm(workCard: any) {
   });
 }
 onDeleteConfirm() {
-  this.XtraAndPos_Country.httpDeleteXtraAndPosCountryDeleteCountryService({
+  this.XtraAndPosWorkCardService.httpDeleteXtraAndPosWorkCardDeleteWorkCardService({
     id: this.deleteId,
   }).subscribe((value: any) => {
     let jsonData = JSON.parse(value);
@@ -99,9 +120,10 @@ onDeleteReject() {
   this.MessageService.clear('c');
 }
 refreshTable() {
-  this.XtraAndPos_Country.httpGetXtraAndPosCountryGetCountryService().subscribe((value: any) => {
+  this.XtraAndPosWorkCardService.httpGetXtraAndPosWorkCardGetWorkCardService().subscribe((value: any) => {
     let jsonworkCardData = JSON.parse(value);
-    this.workCardData = jsonworkCardData.Obj.workCard;
+    this.workCardData = jsonworkCardData.Obj.card;
+    console.log(this.workCardData)
   });
 }
 getWorkCard(id :any){
@@ -115,7 +137,8 @@ onSubmit(Form: FormGroup) {
   if(this.formWorkCard.valid)
   {
   let model = this.formWorkCard.value;
-  this.XtraAndPos_Country.httpPostXtraAndPosCountryCreateCountryService({
+  model.statusId= 1  ;
+  this.XtraAndPosWorkCardService.httpPostXtraAndPosWorkCardCreateWorkCardService({
     body : model
   }).subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
@@ -123,6 +146,7 @@ onSubmit(Form: FormGroup) {
       severity: 'success',
       detail: jsonData.Message});
       this.formWorkCard.reset();
+      this.formWorkCard.get('StatusId')?.setValue('1');
       this.refreshTable();
   })}else{
     this.MessageService.add({
@@ -132,7 +156,7 @@ onSubmit(Form: FormGroup) {
 }else{
   let model = this.formWorkCard.value;
   model.Id = this.currentworkCardId;
-  this.XtraAndPos_Country.httpPutXtraAndPosCountryUpdateCountryService({
+  this.XtraAndPosWorkCardService.httpPutXtraAndPosWorkCardUpdateWorkCardService({
     id: this.currentworkCardId,
     body: model
   }).subscribe((value: any) => {

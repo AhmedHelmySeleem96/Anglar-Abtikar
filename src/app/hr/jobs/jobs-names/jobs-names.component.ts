@@ -129,7 +129,6 @@ export class JobsNamesComponent implements OnInit {
           this.refreshTable();
           this.isEdit=false;
           this.formJob.reset();
-          this.formJob.get('StatusId')?.setValue('1');
 
         });
         }
