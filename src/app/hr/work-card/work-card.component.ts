@@ -3,7 +3,7 @@ import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { XtraAndPosCountryService,XtraAndPosLookUpsService, XtraAndPosWorkCardService } from 'src/app/shared/api';
 import { ExportData } from 'src/app/services/Export-data.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -21,11 +21,13 @@ export class WorkCardComponent implements OnInit  {
     ){};
     workCardData :any[] = [] ;
     statusData :any[] = [] ;
+    allowenceData :any[] = [] ;
 cols :any ;
+unspecifiedHours  =false;
 deleteId : any ;
 @ViewChild('dt') dt: any;
-formWorkCard :FormGroup= this.fb.group({CardNameAr: new FormControl('', [Validators.required]),
-CardNameEn: new FormControl('', [Validators.required]),
+formWorkCard :FormGroup= this.fb.group({cardNameAr: new FormControl('', [Validators.required]),
+cardNameEn: new FormControl('', [Validators.required]),
 notes: new FormControl(null),
 unspecifiedHours: new FormControl(false),
 startWorkTime: new FormControl(null),
@@ -37,49 +39,81 @@ latenessAllowedPercent: new FormControl(null),
 overTimeAllowed: new FormControl(null),
 overTimeAllowedPeriod: new FormControl(null),
 overTimeAllowedPercent: new FormControl(null),
+holidaysDayIds: this.fb.array([])
 })
 isEdit:boolean= false ;
 @ViewChild('formElement') formElement!: ElementRef;
 currentworkCardId :any ;
+daysOfWeek : any =[
+  { id: 1, NameAr: "السبت", NameEn: "Saturday" },
+  { id: 2, NameAr: "الأحد", NameEn: "Sunday" },
+  { id: 3, NameAr: "الاثنين", NameEn: "Monday" },
+  { id: 4, NameAr: "الثلاثاء", NameEn: "Tuesday" },
+  { id: 5, NameAr: "الأربعاء", NameEn: "Wednesday" },
+  { id: 6, NameAr: "الخميس", NameEn: "Thursday" },
+  { id: 7, NameAr: "الجمعة", NameEn: "Friday" }
+];
 ngOnInit(): void {
   this.XtraAndPosWorkCardService.httpGetXtraAndPosWorkCardGetWorkCardService().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
     this.workCardData = jsonData.Obj.card;
   });
   this.cols = [
-    { field: 'Id', header: 'WorkCardId' },
+    { field: 'Id', header: 'Id' },
     { field: 'CreatedDate', header: 'CreatedDate' },
     { field: 'NameAr', header: 'NameAr' },
     { field: 'NameEn', header: 'NameEn' },
     { field: 'Notes', header: 'Notes' },
   ];
+
   this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetStatus().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
     this.statusData = jsonData;
   });
+  this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetLatestAllowence().subscribe((value:any)=>{
+    let jsonData = JSON.parse(value);
+    this.allowenceData = jsonData;
+  });
+}
+get holidaysDayIds() {
+  return this.formWorkCard.get('holidaysDayIds') as FormArray;
+}
+onCheckboxChange(event: any, id: number) {
+  const formArray: FormArray = this.holidaysDayIds;
+
+  if (event.target.checked) {
+      formArray.push(this.fb.control(id));
+  } else {
+      const index = formArray.controls.findIndex(x => x.value === id);
+      formArray.removeAt(index);
+  }
 }
 
-
 setEdit(workCard: any) {
+  console.log(workCard);
   this.formWorkCard.patchValue({
-    CardNameAr: workCard.NameAr,
-    CardNameEn: workCard.NameEn,
+    cardNameAr: workCard.NameAr,
+    cardNameEn: workCard.NameEn,
     notes: workCard.Notes,
     statusId: workCard.StatusId,
-    unspecifiedHours: workCard.unspecifiedHours,
-    startWorkTime: workCard.startWorkTime,
-    endWorkTime: workCard.endWorkTime,
-    latenessAllowed: workCard.latenessAllowed,
-    latenessAllowedPeriod: workCard.latenessAllowedPeriod,
-    latenessAllowedPercent: workCard.latenessAllowedPercent,
-    overTimeAllowed: workCard.overTimeAllowed,
-    overTimeAllowedPeriod: workCard.overTimeAllowedPeriod,
-    overTimeAllowedPercent: workCard.overTimeAllowedPercent,
+    unspecifiedHours: workCard.UnspecifiedHours,
+    startWorkTime: workCard.StartWorkTime,
+    endWorkTime: workCard.EndWorkTime,
+    latenessAllowed: workCard.LatenessAllowed,
+    latenessAllowedPeriod: workCard.LatenessAllowedPeriod,
+    latenessAllowedPercent: workCard.LatenessAllowedPercent,
+    overTimeAllowed: workCard.OverTimeAllowed,
+    overTimeAllowedPeriod: workCard.OverTimeAllowedPeriod,
+    overTimeAllowedPercent: workCard.OverTimeAllowedPercent,
+    holidaysDayIds: workCard.HolidaysDayIds,
   });
   this.isEdit = true;
   this.currentworkCardId = workCard.Id;
 
   this.focusOnForm();
+}
+unspecifiedHoursChange(){
+  this.unspecifiedHours = !this.unspecifiedHours
 }
 focusOnForm() {
   if (this.formElement && this.formElement.nativeElement) {
@@ -123,7 +157,6 @@ refreshTable() {
   this.XtraAndPosWorkCardService.httpGetXtraAndPosWorkCardGetWorkCardService().subscribe((value: any) => {
     let jsonworkCardData = JSON.parse(value);
     this.workCardData = jsonworkCardData.Obj.card;
-    console.log(this.workCardData)
   });
 }
 getWorkCard(id :any){
@@ -136,6 +169,7 @@ onSubmit(Form: FormGroup) {
   if(!this.isEdit){
   if(this.formWorkCard.valid)
   {
+    const selectedDayIds = this.formWorkCard.value.holidaysDayIds;
   let model = this.formWorkCard.value;
   model.statusId= 1  ;
   this.XtraAndPosWorkCardService.httpPostXtraAndPosWorkCardCreateWorkCardService({

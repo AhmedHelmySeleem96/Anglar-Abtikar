@@ -4,15 +4,15 @@ export interface WorkCardDto {
   cardNameAr?: null | string;
   cardNameEn?: null | string;
   endWorkTime?: null | string;
-  holidayDays?: null | Array<string>;
+  holidaysDayIds?: null | Array<number>;
   latenessAllowed?: null | number;
-  latenessAllowedPercent?: null | number;
-  latenessAllowedPeriod?: null | number;
+  latenessAllowedPercent?: null | string;
+  latenessAllowedPeriod?: null | string;
   notes?: null | string;
-  ovevrTimeAllowed?: null | number;
-  ovevrTimeAllowedPercent?: null | number;
-  ovevrTimeAllowedPeriod?: null | number;
+  overTimeAllowed?: null | number;
+  overTimeAllowedPercent?: null | string;
+  overTimeAllowedPeriod?: null | string;
   startWorkTime?: null | string;
   statusId?: null | number;
-  unSpecificHours?: null | boolean;
+  unspecifiedHours?: null | boolean;
 }

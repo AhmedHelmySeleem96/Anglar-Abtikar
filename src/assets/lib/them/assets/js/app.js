@@ -1,7 +1,71 @@
+var ToggleClasses = {
+  headerhamburger: '.toggle-sidebar',
+  inputFocused: 'input-focused',
+};
+var Selector = {
+  mainHeader: '.header.navbar',
+  headerhamburger: '.toggle-sidebar',
+  fixed: '.fixed-top',
+  mainContainer: '.main-container',
+  sidebar: '#sidebar',
+  sidebarContent: '#sidebar-content',
+  sidebarStickyContent: '.sticky-sidebar-content',
+  ariaExpandedTrue: '#sidebar [aria-expanded="true"]',
+  ariaExpandedFalse: '#sidebar [aria-expanded="false"]',
+  contentWrapper: '#content',
+  contentWrapperContent: '.container',
+  mainContentArea: '.main-content',
+  searchFull: '.toggle-search',
+  rightBar:'.right-bar',
+  overlay: {
+      sidebar: '.overlay',
+      cs: '.cs-overlay',
+      search: '.search-overlay'
+  }
+};
 if(window.innerWidth <= 1068){
     $('.responsive-msg-component').hide();
 }
 $(document).ready(function(){
+  $('.sidebarCollapse').on('click', function (sidebar) {
+    debugger
+      sidebar.preventDefault();
+      $(Selector.mainHeader).toggleClass('expand-header');
+      $('.overlay').toggleClass('show');
+      if($(Selector.mainContainer).hasClass("sidebar-closed")){
+          setTimeout(function(){
+              $(Selector.mainContainer).removeClass("sidebar-closed");
+          }, 400);
+      } else {
+          $(Selector.mainContainer).addClass("sidebar-closed");
+      }
+      if($(Selector.mainContainer).hasClass("sbar-open")){
+          setTimeout(function(){
+              $(Selector.mainContainer).removeClass("sbar-open");
+          }, 400);
+      } else {
+          $(Selector.mainContainer).addClass("sbar-open");
+      }
+
+      if($('html,body').hasClass('sidebar-noneoverflow')){
+          setTimeout(function(){
+              $('html,body').removeClass('sidebar-noneoverflow');
+          }, 400);
+      } else {
+          $('html,body').toggleClass('sidebar-noneoverflow');
+      }
+
+      // $('html,body').toggleClass('t-sidebar-collapse');
+
+      // Uncomment below line and comment above line to reduce the waiting time
+      if($('html,body').hasClass('t-sidebar-collapse')){
+          $('html,body').removeClass('t-sidebar-collapse');
+      } else {
+          setTimeout(function(){
+              $('html,body').addClass('t-sidebar-collapse');
+          }, 600);
+      }
+  });
     $('.bs-tooltip').click(function () {
        $('.bs-tooltip').tooltip("hide");
     });
@@ -21,71 +85,10 @@ var App = function() {
         md: 991,
         sm: 576
     };
-    var ToggleClasses = {
-        headerhamburger: '.toggle-sidebar',
-        inputFocused: 'input-focused',
-    };
-    var Selector = {
-        mainHeader: '.header.navbar',
-        headerhamburger: '.toggle-sidebar',
-        fixed: '.fixed-top',
-        mainContainer: '.main-container',
-        sidebar: '#sidebar',
-        sidebarContent: '#sidebar-content',
-        sidebarStickyContent: '.sticky-sidebar-content',
-        ariaExpandedTrue: '#sidebar [aria-expanded="true"]',
-        ariaExpandedFalse: '#sidebar [aria-expanded="false"]',
-        contentWrapper: '#content',
-        contentWrapperContent: '.container',
-        mainContentArea: '.main-content',
-        searchFull: '.toggle-search',
-        rightBar:'.right-bar',
-        overlay: {
-            sidebar: '.overlay',
-            cs: '.cs-overlay',
-            search: '.search-overlay'
-        }
-    };
+
     var toggleFunction = {
         sidebar: function($recentSubmenu) {
-            $('.sidebarCollapse').on('click', function (sidebar) {
-                sidebar.preventDefault();
-                $(Selector.mainHeader).toggleClass('expand-header');
-                $('.overlay').toggleClass('show');
-                if($(Selector.mainContainer).hasClass("sidebar-closed")){
-                    setTimeout(function(){ 
-                        $(Selector.mainContainer).removeClass("sidebar-closed");
-                    }, 400);
-                } else {
-                    $(Selector.mainContainer).addClass("sidebar-closed");
-                }
-                if($(Selector.mainContainer).hasClass("sbar-open")){
-                    setTimeout(function(){ 
-                        $(Selector.mainContainer).removeClass("sbar-open");
-                    }, 400);
-                } else {
-                    $(Selector.mainContainer).addClass("sbar-open");
-                }
-                
-                if($('html,body').hasClass('sidebar-noneoverflow')){
-                    setTimeout(function(){ 
-                        $('html,body').removeClass('sidebar-noneoverflow'); 
-                    }, 400);
-                } else {
-                    $('html,body').toggleClass('sidebar-noneoverflow'); 
-                }
-                
-                // $('html,body').toggleClass('t-sidebar-collapse');
 
-                // Uncomment below line and comment above line to reduce the waiting time
-                if($('html,body').hasClass('t-sidebar-collapse')){
-                    $('html,body').removeClass('t-sidebar-collapse');
-                } else {
-                    setTimeout(function(){ 
-                        $('html,body').addClass('t-sidebar-collapse');
-                    }, 600);
-                }
-            });
         },
         overlay: function() {
             $('#dismiss, cs-overlay').on('click', function () {
@@ -113,13 +116,13 @@ var App = function() {
         },
         rightbar: function() {
             $('.rightbarCollapse').on('click', function () {
-                $('.rightbar-overlay').toggleClass('show');               
+                $('.rightbar-overlay').toggleClass('show');
                 $('body').toggleClass('right-bar-enabled');
             });
         },
         rightbarClose: function() {
             $('.rightbar-overlay').on('click', function () {
-                $('.rightbar-overlay').removeClass('show');               
+                $('.rightbar-overlay').removeClass('show');
                 $('body').removeClass('right-bar-enabled');
                 // Open first tab in right bar everytime
                 $('.right-bar .simplebar-content .nav-tabs .nav-item:nth-child(3) a.nav-link').removeClass('active');
@@ -150,7 +153,7 @@ var App = function() {
                 suppressScrollX : true
             });
             vs.isRtl = false;
-            
+
         },
         preventScrollBody: function() {
             $('#sidebar').bind('mousewheel DOMMouseScroll', function(e) {
@@ -197,14 +200,14 @@ var App = function() {
 
     var fullScreenMode = {
         fullscreen: function() {
-            var toggle; 
+            var toggle;
             $('.full-screen-mode').on('click', function () {
                 toggle = !toggle;
                 var myId = document.getElementById('fullScreenIcon');
                 if(toggle){
                     myId.classList.remove("la-compress");
                     myId.classList.add("la-compress-arrows-alt");
-  
+
                     var elem = document.documentElement;
                     if (elem.requestFullscreen) {
                         elem.requestFullscreen();
@@ -227,11 +230,11 @@ var App = function() {
                         document.webkitExitFullscreen();
                     } else if (document.msExitFullscreen) {
                         document.msExitFullscreen();
-                    } 
+                    }
                 }
             })
         },
-        
+
     }
 
 
@@ -255,7 +258,7 @@ var App = function() {
             }
         },
 
-        
+
     }
 
     function formatAMPM(date) {
@@ -268,7 +271,7 @@ var App = function() {
         var strTime = hours + ':' + minutes + ' ' + ampm;
         document.getElementById('currentTime').innerHTML = strTime;
         return strTime;
-        
+
     }
 
     function formatDate() {
@@ -341,31 +344,31 @@ var App = function() {
         (function($, window, document, undefined) {
 
             'use strict';
-          
+
             var $ripple = $('.js-ripple');
-          
+
             $ripple.on('click.ui.ripple', function(e) {
-          
+
               var $this = $(this);
               var $offset = $this.parent().offset();
               var $circle = $this.find('.ripple-ripple__circle');
-          
+
               var x = e.pageX - $offset.left;
               var y = e.pageY - $offset.top;
-          
+
               $circle.css({
                 top: y + 'px',
                 left: x + 'px'
               });
-          
+
               $this.addClass('is-active');
-          
+
             });
-          
+
             $ripple.on('animationend webkitAnimationEnd oanimationend MSAnimationEnd', function(e) {
                 $(this).removeClass('is-active');
             });
-          
+
         })(jQuery, window, document);
 
     }
@@ -395,7 +398,7 @@ var App = function() {
             _mobileResolution.onRefresh();
 
             // Note : -  _mobileResolution -> onResize | Uncomment it if need for onresize functions for DESKTOP RESOLUTION i.e. below or equal to 991px |
-            
+
             // _mobileResolution.onResize();
             formatAMPM(new Date);
             formatDate();

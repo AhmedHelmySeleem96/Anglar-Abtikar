@@ -2,8 +2,8 @@
 // ahmed 3/11/2022
 window.urlDrive = "https://script.google.com/macros/s/AKfycbwi1PvjQzdOsP3KvFtCDI-I-A6W-0Qk-9QkjSV2hvt9JlZA9iCbau5g80Iqs6Wa3Rnp/exec";
 
+//window.DivSpinner = document.getElementById("DivSpinner")
 
-window.DivSpinner = document.getElementById("DivSpinner")
 
 //sendToServer
 //getPageInfo
@@ -40,16 +40,12 @@ window.shortDate = (date) => {
 
 window.getPageInfo = (url, prams = null, callbackFun) => {
 
-    window.DivSpinner.style.display = "block"
-
     var obj = {
         type: "Get",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         url: url,
         success: function (res) {
-
-            window.DivSpinner.style.display = "none"
 
             console.log(res);
             if (res.IsSuccess) {
@@ -66,7 +62,7 @@ window.getPageInfo = (url, prams = null, callbackFun) => {
             //alert("wait");
 
         }, error: function (resError) {
-            window.DivSpinner.style.display = "none"
+            /*window.DivSpinner.style.display = "none"*/
 
             window.dataInfo = resError;
             callbackFun(resError);
@@ -278,9 +274,9 @@ window.warning = (massage, autoClose = 'cancelAction|3000') => {
 window.success = (massage, autoClose = 'cancelAction|3000') => {
 
     $.alert({
-        title: 'انتبه!',
+        title: 'Done!',
         content: '<p class="text-center">' + massage + ' ! </p>',
-        type: 'red',
+        type: 'green',
         typeAnimated: true,
         rtl: true,
         autoClose: autoClose,
@@ -289,7 +285,7 @@ window.success = (massage, autoClose = 'cancelAction|3000') => {
         buttons: {
             cancelAction: {
                 text: 'اغلاق',
-                btnClass: 'btn-red',
+                btnClass: 'btn-success',
                 action: function () {
                 }
             },
@@ -371,8 +367,9 @@ window.ajaxPostCallback = (url, callbackFun) => {
     });
 }
 window.openReportWindow = (html) => {
-    var win = window.open("", "_blank", "resizable = no, toolbar= no, scrollbars = no, top = 20,status = no, directories = no, menubar = no,  width = 900 , height = 1200")
-    win.document.open()
+    var win = window.open("", "_blank",
+        "resizable = no, toolbar= no, scrollbars = no, top = 20,status = no, directories = no, menubar = no,  width = 900 , height = 1200");
+
     win.document.write(html)
 }
 
@@ -380,7 +377,7 @@ window.sendToServer = (url, model, callbackFun, selector = $("#saveBtn")) => {
     if (selector != null)
         $(selector).prop("disabled", true);
 
-    window.DivSpinner.style.display = "block"
+    /*window.DivSpinner.style.display = "block"*/
 
     //console.log(model)
     console.log(url)
@@ -392,7 +389,7 @@ window.sendToServer = (url, model, callbackFun, selector = $("#saveBtn")) => {
         success: function (value) {
 
 
-            window.DivSpinner.style.display = "none"
+            /*window.DivSpinner.style.display = "none"*/
 
 
             console.log("sendToServer =>", value);
@@ -419,7 +416,7 @@ window.sendToServer = (url, model, callbackFun, selector = $("#saveBtn")) => {
                 $(selector).prop("disabled", false);
         },
         error: function (request, status, error) {
-            window.DivSpinner.style.display = "none"
+          /*  window.DivSpinner.style.display = "none"*/
 
         }
     }
@@ -558,7 +555,7 @@ window.getItemUniteBalance = (storeselector = null, stockSlector = null, storeId
                 if (callbackFun != null) {
                     if (response != null) { callbackFun() };
                 }
-
+                
             }
             else {
                 window.error(value.Message);
@@ -632,7 +629,7 @@ window.setdefaultOptions = (defaultOptions) => {
 }
 
 $(function () {
-    window.DivSpinner.style.display = "none"
+    /*window.DivSpinner.style.display = "none"*/
 
     $("input").attr('autocomplete', 'off');
     $(".sidebarCollapse").click();
@@ -733,42 +730,58 @@ $(function () {
 
 
     // التاريخ
-    $('input[name="datetimes"]').daterangepicker({
-        singleDatePicker: true,
-        //timePicker: true,
-        "autoApply": true,
-        showDropdowns: true,
-        minYear: 1901,
-        //maxYear: parseInt(moment().format('YYYY'), 10),
-        locale: {
-            format: 'YYYY-MM-DD'
-        }
-    }, function (start, end, label) {
-        var years = moment().diff(start, 'years');
-    });
+    //$('input[name="datetimes"]').daterangepicker({
+    //    singleDatePicker: true,
+    //    //timePicker: true,
+    //    "autoApply": true,
+    //    showDropdowns: true,
+    //    minYear: 1901,
+    //    //maxYear: parseInt(moment().format('YYYY'), 10),
+    //    locale: {
+    //        format: 'YYYY-MM-DD'
+    //    }
+    //}, function (start, end, label) {
+    //    var years = moment().diff(start, 'years');
+    //});
 
 
-    $('#export-dt').DataTable({
-        dom: '<"row"<"col-md-6"B><"col-md-6"f> ><""rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>>',
-        buttons: {
-            buttons: [
-                { extend: 'copy', className: 'btn btn-primary' },
-                { extend: 'csv', className: 'btn btn-primary' },
-                { extend: 'excel', className: 'btn btn-primary' },
-                { extend: 'pdf', className: 'btn btn-primary' },
-                { extend: 'print', className: 'btn btn-primary' }
-            ]
-        },
-        "language": {
-            "paginate": {
-                "previous": "<i class='las la-angle-left'></i>",
-                "next": "<i class='las la-angle-right'></i>"
+    //$('#export-dt').DataTable({
+    //    dom: '<"row"<"col-md-6"B><"col-md-6"f> ><""rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>>',
+    //    buttons: {
+    //        buttons: [
+    //            { extend: 'copy', className: 'btn btn-primary' },
+    //            { extend: 'csv', className: 'btn btn-primary' },
+    //            { extend: 'excel', className: 'btn btn-primary' },
+    //            { extend: 'pdf', className: 'btn btn-primary' },
+    //            { extend: 'print', className: 'btn btn-primary' }
+    //        ]
+    //    },
+    //    "language": {
+    //        "paginate": {
+    //            "previous": "<i class='las la-angle-left'></i>",
+    //            "next": "<i class='las la-angle-right'></i>"
+    //        }
+    //    },
+    //    "lengthMenu": [7, 10, 20, 50],
+    //    "pageLength": 7
+    //});
+
+    String.prototype.toEnDigit = function () {
+        return this.replace(/[\u06F0-\u06F9]+/g, function (digit) {
+            var ret = '';
+            for (var i = 0, len = digit.length; i < len; i++) {
+                ret += String.fromCharCode(digit.charCodeAt(i) - 1728);
             }
-        },
-        "lengthMenu": [7, 10, 20, 50],
-        "pageLength": 7
-    });
 
+            return ret;
+        });
+    };
+
+
+    jQuery('input[type="number"]').on('input', function () {
+        var value = jQuery(this).val();
+        console.log(value.toEnDigit());
+    });
     //====================================================================
 
     // $(document).on("change", "[type='number']", function () {

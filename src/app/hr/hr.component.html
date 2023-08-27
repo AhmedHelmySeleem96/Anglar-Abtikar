@@ -389,13 +389,58 @@
                       </div>
                   </a>
                   <ul class="collapse submenu list-unstyled" id="HR" data-parent="#accordionExample">
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/city'">{{ "Hr.City" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/country'">{{ "Hr.Countrynav" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/nationality'">{{ "Hr.Nationalitynav" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/orgstructlevel'">{{ "Hr.Orgstruct" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/orgstructures'">{{ "Hr.Orgstructures" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/hospital'">{{ "Hr.Hospitalnav" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/allowence'">{{ "Hr.Allowencenav" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/specializations'">{{ "Hr.Specializationsnav" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/employee'">{{ "Hr.EmployeeCard" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/docTypes'">{{ "Hr.Doc" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/workCard'">{{ "Hr.WorkCard" | translate }}</a>
+                    </li>
+                    <li class="dropdown-submenu" >
+                      <div (mouseleave)="isOpened = false" [ngClass]="{isOpened:isOpened}" >
+                        <a class="d-block text-center pointer dropdown-toggle " (mouseenter)="$event.preventDefault(); isOpened=true" id="jobDropdownToggles" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                          {{ "Hr.CreateJobs" | translate }} &raquo;
+                        </a>
+                        <ul class=" pointer dropdown-menu" aria-labelledby="jobDropdownToggles">
                           <li>
-                              <a href="/HR/Employee/EmployeeManagement">  الموطفين </a>
+                            <a class="  pointer dropdown-item"  [routerLink]="'/hr/jobs/createJobs'">{{ "Hr.CreateJobs" | translate }}</a>
                           </li>
+                          <li>
+                            <a class=" pointer dropdown-item"  [routerLink]="'/hr/jobs/jobsNames'">{{ "Hr.JobsNames" | translate }}</a>
+                          </li>
+                          <li>
+                            <a class=" pointer dropdown-item"  [routerLink]="'/hr/jobs/jobsCategories'">{{ "Hr.JobsCategories" | translate }}</a>
+                          </li>
+                        </ul>
 
-                          <li>
-                              <a href="/HR/Employee/EmployeeSettingManagement"> البياانات الاساسية </a>
-                          </li>
+                      </div>
+                    </li>
                   </ul>
               </li>
 

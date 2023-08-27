@@ -1,0 +1,16 @@
+#accordionExample {
+  overflow-y: auto !important;
+}
+
+.checkboxgroup {
+  display: flex;
+  flex-wrap: wrap;
+  width: 120em;
+  overflow: auto;
+}
+
+.checkboxgroup label {
+  width: 7em;
+  text-align: right;
+  margin-right: 10px;
+}

@@ -32,7 +32,7 @@ ngOnInit(): void {
     this.docData = jsonData.Obj.doc;
   });
   this.cols = [
-    { field: 'Id', header: 'DocId' },
+    { field: 'Id', header: 'Id' },
     { field: 'CreatedDate', header: 'CreatedDate' },
     { field: 'NameAr', header: 'NameAr' },
     { field: 'NameEn', header: 'NameEn' },
