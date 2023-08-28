@@ -38,6 +38,7 @@ export { DocType } from './models/doc-type';
 export { DocTypesDto } from './models/doc-types-dto';
 export { DocsStatus } from './models/docs-status';
 export { Employee } from './models/employee';
+export { EmployeeContractDto } from './models/employee-contract-dto';
 export { EmployeeCreateDto } from './models/employee-create-dto';
 export { EmployeeFiles } from './models/employee-files';
 export { EnvironmentMode } from './models/environment-mode';

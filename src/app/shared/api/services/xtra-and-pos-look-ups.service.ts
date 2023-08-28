@@ -281,4 +281,92 @@ export class XtraAndPosLookUpsService extends BaseService {
     );
   }
 
+  /** Path part for operation `httpGetXtraAndPosLookUpsGetAllowenceTypes()` */
+  static readonly HttpGetXtraAndPosLookUpsGetAllowenceTypesPath = '/XtraAndPOS_LookUps/GetAllowenceTypes';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetXtraAndPosLookUpsGetAllowenceTypes()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosLookUpsGetAllowenceTypes$Response(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosLookUpsService.HttpGetXtraAndPosLookUpsGetAllowenceTypesPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetXtraAndPosLookUpsGetAllowenceTypes$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosLookUpsGetAllowenceTypes(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetXtraAndPosLookUpsGetAllowenceTypes$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetXtraAndPosLookUpsGetAllowenceValueTypes()` */
+  static readonly HttpGetXtraAndPosLookUpsGetAllowenceValueTypesPath = '/XtraAndPOS_LookUps/GetAllowenceValueTypes';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetXtraAndPosLookUpsGetAllowenceValueTypes()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosLookUpsGetAllowenceValueTypes$Response(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosLookUpsService.HttpGetXtraAndPosLookUpsGetAllowenceValueTypesPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetXtraAndPosLookUpsGetAllowenceValueTypes$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosLookUpsGetAllowenceValueTypes(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetXtraAndPosLookUpsGetAllowenceValueTypes$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
 }

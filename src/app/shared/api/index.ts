@@ -41,6 +41,7 @@ export { DocType } from './models/doc-type';
 export { DocTypesDto } from './models/doc-types-dto';
 export { DocsStatus } from './models/docs-status';
 export { Employee } from './models/employee';
+export { EmployeeContractDto } from './models/employee-contract-dto';
 export { EmployeeCreateDto } from './models/employee-create-dto';
 export { EmployeeFiles } from './models/employee-files';
 export { EnvironmentMode } from './models/environment-mode';
@@ -180,6 +181,7 @@ export { XtraAndPosCountryService } from './services/xtra-and-pos-country.servic
 export { XtraAndPosDailyMovmentEpService } from './services/xtra-and-pos-daily-movment-ep.service';
 export { XtraAndPosDefaultOptionsEpService } from './services/xtra-and-pos-default-options-ep.service';
 export { XtraAndPosDocTypesService } from './services/xtra-and-pos-doc-types.service';
+export { XtraAndPosEmployeeContractService } from './services/xtra-and-pos-employee-contract.service';
 export { XtraAndPosEmployeeEpService } from './services/xtra-and-pos-employee-ep.service';
 export { XtraAndPosFinanceEpService } from './services/xtra-and-pos-finance-ep.service';
 export { XtraAndPosGeneralLedgerEpService } from './services/xtra-and-pos-general-ledger-ep.service';

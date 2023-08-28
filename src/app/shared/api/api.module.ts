@@ -43,6 +43,7 @@ import { XtraAndPosCountryService } from './services/xtra-and-pos-country.servic
 import { XtraAndPosDailyMovmentEpService } from './services/xtra-and-pos-daily-movment-ep.service';
 import { XtraAndPosDefaultOptionsEpService } from './services/xtra-and-pos-default-options-ep.service';
 import { XtraAndPosDocTypesService } from './services/xtra-and-pos-doc-types.service';
+import { XtraAndPosEmployeeContractService } from './services/xtra-and-pos-employee-contract.service';
 import { XtraAndPosEmployeeEpService } from './services/xtra-and-pos-employee-ep.service';
 import { XtraAndPosFinanceEpService } from './services/xtra-and-pos-finance-ep.service';
 import { XtraAndPosGeneralLedgerEpService } from './services/xtra-and-pos-general-ledger-ep.service';
@@ -115,6 +116,7 @@ import { XtraAndPosWorkCardService } from './services/xtra-and-pos-work-card.ser
     XtraAndPosDailyMovmentEpService,
     XtraAndPosDefaultOptionsEpService,
     XtraAndPosDocTypesService,
+    XtraAndPosEmployeeContractService,
     XtraAndPosEmployeeEpService,
     XtraAndPosFinanceEpService,
     XtraAndPosGeneralLedgerEpService,

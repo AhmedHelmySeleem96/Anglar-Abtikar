@@ -1,216 +1,780 @@
-
-
-
-<!-- start header -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top  p-0 bg-body-tertiary flex-wrap">
-
-  <!-- <div class="Header-Top col-12 d-none d-lg-block">
-
-    <div class="d-flex justify-content-center align-items-center flex-wrap">
-
-    <div class="col-12 col-md-6 p-2">
-    {{"navBar.Phone" | translate}} :  01032882094
-    </div>
-
-    <div class="col-12 col-md-6 p-2">
-
-    <div class="d-flex justify-content-start">
-
-    <div class=" d-flex align-items-center">
-    <span>{{"navBar.Language" | translate}} : </span>
-    <div class="nav-item dropdown mx-4">
-
-        <a aria-label="Language"  href="#" class="nav-link p-0 d-flex align-items-center justify-content-between" data-bs-toggle="dropdown">
-
-          <span class="col-11 col-lg-8  text-nowrap p-0">
-
-          <svg  width="30" height="30" fill="currentColor" class="bi bi-globe-americas" viewBox="0 0 16 16">
-            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM2.04 4.326c.325 1.329 2.532 2.54 3.717 3.19.48.263.793.434.743.484-.08.08-.162.158-.242.234-.416.396-.787.749-.758 1.266.035.634.618.824 1.214 1.017.577.188 1.168.38 1.286.983.082.417-.075.988-.22 1.52-.215.782-.406 1.48.22 1.48 1.5-.5 3.798-3.186 4-5 .138-1.243-2-2-3.5-2.5-.478-.16-.755.081-.99.284-.172.15-.322.279-.51.216-.445-.148-2.5-2-1.5-2.5.78-.39.952-.171 1.227.182.078.099.163.208.273.318.609.304.662-.132.723-.633.039-.322.081-.671.277-.867.434-.434 1.265-.791 2.028-1.12.712-.306 1.365-.587 1.579-.88A7 7 0 1 1 2.04 4.327Z"/>
-          </svg>
-
-        </span>
-
-        </a>
-
-        <div class="dropdown-menu m-0">
-          <span class="d-block text-center pointer" (click)="changeLanguage('ar')">العربية</span>
-          <span class="d-block text-center pointer" (click)="changeLanguage('en')">English</span>
-        </div>
-
-    </div>
-
-    </div>
-
-    <div class=" d-flex align-items-center">
-      <span>{{"navBar.Color" | translate}}  : </span>
-      <div class="nav-item dropdown mx-4">
-
-        <a aria-label="Them"  href="#" class="nav-link p-0 d-flex align-items-center justify-content-between" data-bs-toggle="dropdown">
-
-          <span class="col-11 col-lg-8  text-nowrap p-0">
-
-            <svg  width="30" height="30" fill="currentColor" class="bi bi-brightness-high" viewBox="0 0 16 16">
-              <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
-            </svg>
-
-        </span>
-
-        </a>
-
-        <div class="dropdown-menu m-0">
-          <span class="d-block text-center pointer" (click)="changeThems('Dark')">Dark</span>
-          <span class="d-block text-center pointer" (click)="changeThems('White')">Light</span>
-        </div>
-
-      </div>
-    </div>
-
-    <div class=" d-flex align-items-center">
-      <span>{{"navBar.Account" | translate}}  : </span>
-      <div class="nav-item dropdown mx-4">
-
-        <a aria-label="Them"  href="#" class="nav-link p-0 d-flex align-items-center justify-content-between" data-bs-toggle="dropdown">
-
-          <span class="col-11 col-lg-8  text-nowrap p-0">
-
-            <svg  width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-            </svg>
-
-        </span>
-
-        </a>
-
-        <div class="dropdown-menu m-0">
-          <span class="d-block text-center pointer" [routerLink]="'/auth/login'">{{"navBar.Login" | translate}}</span>
-          <span class="d-block text-center pointer" [routerLink]="'/auth/register'">{{"navBar.Register" | translate}}</span>
-        </div>
-
-      </div>
-    </div>
-
-     <div>
-
-    </div>
-
-    </div>
-
-    </div>
-
-    </div>
-
-    </div> -->
-
-  <div class="container-lg p-3">
-
-    <a aria-label="Read More Home LOGO" [routerLink]="'/home' " class="navbar-brand px-0">
-      <span class="fs-3  p-2">Abtikar</span>
-    </a>
-
-    <button aria-labelledby="open" title="open" name="open" class="navbar-toggler p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-      <span class="icone-bar"></span>
-      <span class="icone-bar"></span>
-      <span class="icone-bar"></span>
-    </button>
-
-
-    <div class="collapse navbar-collapse " id="navbarCollapse">
-      <div class="navbar-nav mx-auto  py-0 align-items-lg-center">
-
-        <a aria-label="Read Home" routerLinkActive="activeroute" [routerLink]="'/home' " class="   my-lg-0">{{"navBar.Home" | translate}}</a>
-
-        <a aria-label="Read About" routerLinkActive="activeroute" [routerLink]="'/about'" class="    my-lg-0">{{"navBar.About" | translate}}</a>
-
-        <a aria-label="Read contact" routerLinkActive="activeroute" [routerLink]="'/contact' " class="   my-lg-0">{{"navBar.Contact" | translate}}</a>
-
-      <div class="nav-item dropdown m-0 p-0">
-          <a aria-label="Language"  href="#" class="nav-link p-0 " data-bs-toggle="dropdown">
-            <span class="d-block  text-nowrap p-0">
-              {{"navBar.Language" | translate}}
-              <svg  width="15" fill="#ff8100"  class='mx-1' viewBox="0 0 16 16">
-                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM2.04 4.326c.325 1.329 2.532 2.54 3.717 3.19.48.263.793.434.743.484-.08.08-.162.158-.242.234-.416.396-.787.749-.758 1.266.035.634.618.824 1.214 1.017.577.188 1.168.38 1.286.983.082.417-.075.988-.22 1.52-.215.782-.406 1.48.22 1.48 1.5-.5 3.798-3.186 4-5 .138-1.243-2-2-3.5-2.5-.478-.16-.755.081-.99.284-.172.15-.322.279-.51.216-.445-.148-2.5-2-1.5-2.5.78-.39.952-.171 1.227.182.078.099.163.208.273.318.609.304.662-.132.723-.633.039-.322.081-.671.277-.867.434-.434 1.265-.791 2.028-1.12.712-.306 1.365-.587 1.579-.88A7 7 0 1 1 2.04 4.327Z"/>
-              </svg>          </span>
-          </a>
-          <div class="dropdown-menu m-0">
-            <span class="d-block text-center pointer" (click)="changeLanguage('ar')">العربية</span>
-            <span class="d-block text-center pointer" (click)="changeLanguage('en')">English</span>
-          </div>
-      </div>
-
-      <div class="nav-item dropdown m-0 p-0">
-        <a aria-label="Them"  href="#" class="nav-link p-0 " data-bs-toggle="dropdown">
-          <span class="d-block  text-nowrap p-0">
-            {{"navBar.Color" | translate}}
-            <svg  width="15" fill="#ff8100"  class='mx-1' viewBox="0 0 16 16">
-              <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
-            </svg>
-          </span>
-        </a>
-        <div class="dropdown-menu m-0">
-          <span class="d-block text-center pointer" (click)="changeThems('Dark')">Dark</span>
-          <span class="d-block text-center pointer" (click)="changeThems('White')">Light</span>
-        </div>
-      </div>
-
-      <div class="nav-item dropdown m-0 p-0">
-        <a aria-label="Them"  href="#" class="nav-link p-0 " data-bs-toggle="dropdown">
-          <span class="d-block  text-nowrap p-0 ">
-            {{"navBar.Account" | translate}}
-            <svg  width="15" fill="#ff8100"  class='mx-1' viewBox="0 0 16 16">
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-            </svg>
-        </span>
-        </a>
-        <div class="dropdown-menu m-0">
-          <span class="d-block text-center pointer" [routerLink]="'/auth/login'">{{"navBar.Login" | translate}}</span>
-          <span class="d-block text-center pointer" [routerLink]="'/auth/register'">{{"navBar.Register" | translate}}</span>
-        </div>
-      </div>
-
-      <div class="nav-item dropdown m-0 p-0">
-        <a aria-label="Them"  href="#" class="nav-link p-0 " data-bs-toggle="dropdown">
-          <span class="d-block  text-nowrap p-0 ">
-            {{"navBar.Hr" | translate}}
-            <svg  width="15" fill="#ff8100"  class='mx-1' viewBox="0 0 16 16">
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-            </svg>
-        </span>
-        </a>
-        <div class="dropdown-menu m-0">
-          <span class="d-block text-center pointer" [routerLink]="'/hr/city'">{{"Hr.City" | translate}}</span>
-          <span class="d-block text-center pointer" [routerLink]="'/hr/country'">{{"Hr.Countrynav" | translate}}</span>
-          <span class="d-block text-center pointer" [routerLink]="'/hr/nationality'">{{"Hr.Nationalitynav" | translate}}</span>
-          <span class="d-block text-center pointer" [routerLink]="'/hr/orgstructlevel'">{{"Hr.Orgstruct" | translate}}</span>
-          <span class="d-block text-center pointer" [routerLink]="'/hr/orgstructures'">{{"Hr.Orgstructures" | translate}}</span>
-          <span class="d-block text-center pointer" [routerLink]="'/hr/hospital'">{{"Hr.Hospitalnav" | translate}}</span>
-          <span class="d-block text-center pointer" [routerLink]="'/hr/allowence'">{{"Hr.Allowencenav" | translate}}</span>
-        </div>
-      </div>
-      <a aria-label="Read contact" (click)="logout()" *ngIf="userLogin" [routerLink]="'/' " class="   my-3 my-lg-0">{{"navBar.logout" | translate}}</a>
-
-      </div>
-
-      <div class="form-inline my-2 my-lg-0 d-flex col-lg-3">
-        <input [(ngModel)]="searching" class="form-control mr-sm-2" type="search" placeholder="{{'navBar.Search' | translate}}">
-        <button (click)="search()" class="btn   search    mx-2">
-          <svg width="20" height="20" fill="#fff" class="bi bi-search fw-bold" viewBox="0 0 16 16">
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-          </svg>
-        </button>
-      </div>
-
-    </div>
-
-
-
+<div id="overlay">
+  <div class="cv-spinner">
+      <span class="spinner"></span>
   </div>
+</div>
+<div class="header-container fixed-top">
+  <header class="header navbar navbar-expand-sm">
+      <ul class="navbar-item flex-row ml-md-0 ml-auto pl-3">
 
-</nav>
-<!-- end header -->
+          <li class="nav-item dropdown megamenu-dropdown d-none d-lg-flex">
+              <a href="javascript:void(0);" class="nav-link dropdown-toggle d-flex align-center text-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  الوصول السريع
+                  <i class="las la-angle-down font-11 ml-1"></i>
+              </a>
+              <div class="dropdown-menu megamenu">
+                <li>
+                  <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/city'">{{ "Hr.City" | translate }}</a>
+                </li>
+                <li>
+                  <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/country'">{{ "Hr.Countrynav" | translate }}</a>
+                </li>
+                <li>
+                  <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/nationality'">{{ "Hr.Nationalitynav" | translate }}</a>
+                </li>
+                <li>
+                  <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/orgstructlevel'">{{ "Hr.Orgstruct" | translate }}</a>
+                </li>
+                <li>
+                  <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/orgstructures'">{{ "Hr.Orgstructures" | translate }}</a>
+                </li>
+                <li>
+                  <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/hospital'">{{ "Hr.Hospitalnav" | translate }}</a>
+                </li>
+                <li>
+                  <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/allowence'">{{ "Hr.Allowencenav" | translate }}</a>
+                </li>
+                <li>
+                  <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/specializations'">{{ "Hr.Specializationsnav" | translate }}</a>
+                </li>
+                <li>
+                  <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/employee'">{{ "Hr.EmployeeCard" | translate }}</a>
+                </li>
+                <li class="dropdown-submenu" >
+                  <div (mouseleave)="isOpened = false" [ngClass]="{isOpened:isOpened}" >
+                    <a class="d-block text-center pointer dropdown-toggle " (mouseenter)="$event.preventDefault(); isOpened=true" id="jobDropdownToggles" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                      {{ "Hr.CreateJobs" | translate }} &raquo;
+                    </a>
+                    <ul class=" pointer dropdown-menu" aria-labelledby="jobDropdownToggles">
+                      <li>
+                        <a class="  pointer dropdown-item"  [routerLink]="'/hr/jobs/createJobs'">{{ "Hr.CreateJobs" | translate }}</a>
+                      </li>
+                      <li>
+                        <a class=" pointer dropdown-item"  [routerLink]="'/hr/jobs/jobsNames'">{{ "Hr.JobsNames" | translate }}</a>
+                      </li>
+                      <li>
+                        <a class=" pointer dropdown-item"  [routerLink]="'/hr/jobs/jobsCategories'">{{ "Hr.JobsCategories" | translate }}</a>
+                      </li>
+                    </ul>
 
-<main>
-    <router-outlet></router-outlet>
-</main>
+                  </div>
+                </li>
+              </div>
+          </li>
+
+          <li class="nav-item dropdown megamenu-dropdown d-none d-lg-flex">
+              <a class="nav-link dropdown-toggle d-flex align-center text-primary" href="/Market/MarketItems">
+                  المتجر
+              </a>
+          </li>
+      </ul>
+      <ul class="navbar-item flex-row ml-md-auto">
+          <li class="nav-item dropdown fullscreen-dropdown d-none d-lg-flex">
+              <a class="nav-link full-screen-mode" href="javascript:void(0);">
+                  <i class="las la-compress" id="fullScreenIcon"></i>
+              </a>
+          </li>
+          <li class="nav-item dropdown language-dropdown">
+              <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="language-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="las la-language"></i>
+              </a>
+              <div class="dropdown-menu position-absolute" aria-labelledby="language-dropdown">
+                  <a class="dropdown-item d-flex" href="javascript:void(0);">
+                      <img src="/lib/them/assets/img/flag/usa-flag.png" class="flag-width" alt="flag">
+                      <span class="align-self-center">&nbsp;English</span>
+                  </a>
+                  <a class="dropdown-item d-flex" href="javascript:void(0);">
+                      <img src="/lib/them/assets/img/flag/saudi-arabia-flag.png" class="flag-width" alt="flag">
+                      <span class="align-self-center">&nbsp;Arabic</span>
+                  </a>
+              </div>
+          </li>
+
+          <li class="nav-item   d-none d-lg-flex">
+              <span id="mainSubj" class=" mr-5"></span>
+          </li>
+
+      </ul>
+      <span id="insertsTopPagePlace" class="float-left ml-5"></span>
+      <span id="currentDate" class="float-left">12 August 2023</span>
+      <span id="" class="float-left">/</span>
+      <span id="currentTime" class="float-left">1:49 am</span>
+      <ul class="navbar-item flex-row">
+          <li class="nav-item dropdown header-setting">
+              <a href="javascript:void(0);" class="nav-link dropdown-toggle rightbarCollapse" data-placement="bottom">
+                  <i class="las la-sliders-h"></i>
+              </a>
+          </li>
+      </ul>
+  </header>
+</div>
+<div class="main-container" id="container">
+<div class="overlay"></div>
+<div class="search-overlay"></div>
+<div class="rightbar-overlay"></div>
+<div class="sidebar-wrapper sidebar-theme">
+  <div>
+      <div class="sc-container">
+      </div>
+      <a href="javascript:void(0);" class="sidebarCollapse" data-placement="bottom">
+          <i class="las la-angle-left"></i>
+      </a>
+  </div>
+  <nav id="sidebar">
+      <ul class="navbar-item theme-brand flex-row  text-center">
+          <li class="nav-item theme-logo">
+              <a href="/">
+                  <img src="/lib/them/assets/img/logo.jfif" class="navbar-logo" alt="logo">
+              </a>
+          </li>
+          <li class="nav-item theme-text">
+              <a class="nav-link" href="/">الابتكار</a>
+          </li>
+      </ul>
+
+      <ul class="list-unstyled menu-categories ps ps--active-y" id="accordionExample">
+
+          <li class="menu">
+              <a data-active="true" aria-expanded="false" class="dropdown-toggle" href="/">
+                  <div class="">
+                      <i class="las la-file-code"></i>
+                      <span>لوحة التحكم</span>
+                  </div>
+              </a>
+
+          </li>
+              <li class="menu">
+                  <a href="#gl" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                      <div class="">
+                          <i class="las la-sitemap"></i>
+                          <span>الحسابات العامة</span>
+                      </div>
+                      <div>
+                          <i class="las la-angle-right sidemenu-right-icon"></i>
+                      </div>
+                  </a>
+                  <ul class="collapse submenu list-unstyled" id="gl" data-parent="#accordionExample">
+                          <li>
+                              <a href="/GeneralLedger/GeneralLedger">قيود اليومية </a>
+                          </li>
+                          <li>
+                              <a href="/GeneralLedger/GeneralLedger/ExtraIndex"> قيود اكسترا             </a>
+                          </li>
+                          <li>
+                              <a href="/GeneralLedger/GeneralLedger/GlManagement"> قيود اليدوية </a>
+                          </li>
+                          <li>
+
+                              <a href="/Settings/AccTree/AccTreeManagement">
+                                   دليل الحسابات
+                              </a>
+                          </li>
+                          <li>
+                              <a href="/TrailBalance/TrailBalance/TrailBalanceView">    ميزان         المراجعه </a>
+                          </li>
+                          <li>
+                              <a href="/Ldger/Ldger/LdgerView">  دفتر الاستاذ  </a>
+                          </li>
+
+
+
+                      <li>
+
+                          <a href="/Settings/DailyMovements/DailyMovements">
+                              دفتر الحركات اليوميه
+                          </a>
+
+                      </li>
+                  </ul>
+              </li>
+                 <li class="menu">
+
+                  <a href="#pages-auth-one" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> المقبوضات و المدفوعات <i class="las la-angle-right sidemenu-right-icon"></i> </a>
+              <ul class="collapse submenu list-unstyled" id="pages-auth-one" data-parent="#accordionExample">
+                  <li>
+                          <a href="/TreasuryManagementOut">  سندات الصرف ( نقدي ) </a>
+                  </li>
+                  <li>
+                          <a href="/TreasuryManagement">   سندات  القبض  ( نقدي ) </a>
+                  </li>
+
+              </ul>
+          </li>
+
+
+              <li class="menu">
+                  <a href="#banks" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                      <div class="">
+                          <i class="lab la-medapps"></i>
+                          <span> البنوك</span>
+                      </div>
+                      <div>
+                          <i class="las la-angle-right sidemenu-right-icon"></i>
+                      </div>
+                  </a>
+                  <ul class="collapse submenu list-unstyled" id="banks" data-parent="#accordionExample">
+                          <li>
+                              <a href="/Banks/Bank/Management"> البنوك </a>
+                          </li>
+                          <li>
+                              <a href="/Banks/BankAccount/Management"> الحسابات البنكية </a>
+                          </li>
+                  </ul>
+              </li>
+
+
+              <li class="menu">
+                  <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+
+                      <div class="">
+                          <i class="las la-home"></i>
+                          <span>المبيعات</span>
+                      </div>
+                      <div>
+                          <i class="las la-angle-right sidemenu-right-icon"></i>
+                      </div>
+                  </a>
+                  <ul class="collapse submenu list-unstyled collapse " id="dashboard" data-parent="#accordionExample">
+                          <li>
+                              <a href="/SaleOfferPrices/SaleOfferPrice/SaleOfferPrice"> عرض سعر </a>
+                          </li>
+
+                          <li>
+                              <a href="/SaleInvoice">  فاتورة مبيعات </a>
+                          </li>
+
+                          <li>
+                              <a href="/SaleInvoices/ReturnSaleInvoice/ReturnSale"> ارجاع قاتورة </a>
+                          </li>
+
+                          <li>
+                              <a href="/SaleInvoices/SaleInvoice/SaleInvoicesSearch"> تقارير المبيعات </a>
+                          </li>
+                          <li>
+                              <a href="/PriceList/PriceList/PriceListView"> قوائم سياسة الاسعار  </a>
+                          </li>
+                          <li>
+                              <a href="/PricingManagement/PricingManagements/PricingManagementView"> تعريف  سياسة الاسعار </a>
+                          </li>
+                          <li>
+                              <a href="/SaleInvoices/Shift/ShiftSearch">  بحث الورديات </a>
+                          </li>
+                          <li>
+                              <a href="/NotesInvoice/NotesInvoice/NotesInvoice">   اسماء الملاحظات </a>
+                          </li>
+                  </ul>
+              </li>
+              <li class="menu">
+                  <a href="#BuyInvoice" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+
+                      <div class="">
+                          <i class="las la-home"></i>
+                          <span>المشنريات</span>
+                      </div>
+                      <div>
+                          <i class="las la-angle-right sidemenu-right-icon"></i>
+                      </div>
+                  </a>
+                  <ul class="collapse submenu list-unstyled collapse " id="BuyInvoice" data-parent="#accordionExample">
+                          <li>
+                              <a href="/BuyInvoices/BuyInvoice/BuyInvoice"> فاتورة المشنريات </a>
+                          </li>
+                          <li>
+                              <a href="/BuyInvoices/ReturnBuyInvoice/ReturnBuy"> ارجاع قاتورة </a>
+                          </li>
+                              <li>
+                                  <a href="/BuyOfferPrices/BuyOfferPrice/BuyOfferPrice"> امر شراء </a>
+                              </li>
+                          <li>
+                              <a href="/BuyInvoices/BuyInvoice/BuyInvoicesSearch"> تقارير المشنريات </a>
+                          </li>
+                  </ul>
+              </li>
+              <li class="menu">
+                  <a href="#multi-level" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                      <div class="">
+                          <i class="las la-sitemap"></i>
+                          <span>  المخازن</span>
+                      </div>
+                      <div>
+                          <i class="las la-angle-right sidemenu-right-icon"></i>
+                      </div>
+                  </a>
+                  <ul class="collapse submenu list-unstyled" id="multi-level" data-parent="#accordionExample">
+
+                          <li>
+                              <a href="/Storage/Storage/TransferManagement"> اوامر الصرف و الاضافة</a>
+                          </li>
+                          <li>
+                              <a href="/Storage/Storage/StorageManagement">  المخازن </a>
+                          </li>
+                          <li>
+                              <a href="/Storage/Storage/StoreAdjustment">   التسويات المخزنية </a>
+                          </li>
+
+                              <li>
+                                  <a href="/ItemManagement"> تعريف الاصناف </a>
+                              </li>
+                      <li>
+
+
+                              <a href="/Items/ItemGroup/Management">  مجموعات الاصناف </a>
+
+
+                              <a href="/Items/Item/ItemTransaction">  حركات الاصناف </a>
+                              <a href="/Items/Item/ItemStockInStorage">   تقرير مخزون الصنف   </a>
+
+                      </li>
+
+                          <li>
+                              <a href="/storage/storage/storagebalance"> جرد المخزن </a>
+                          </li>
+                  </ul>
+              </li>
+
+
+              <li class="menu">
+                  <a href="#Clients" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+
+                      <div class="">
+                          <i class="lab la-medapps"></i>
+                          <span> العملاء</span>
+                      </div>
+                      <div>
+                          <i class="las la-angle-right sidemenu-right-icon"></i>
+                      </div>
+                  </a>
+                  <ul class="collapse submenu list-unstyled" id="Clients" data-parent="#accordionExample">
+                          <li>
+                              <a href="/Clients/Client/ClientManagement"> العملاء </a>
+
+                          </li>
+                          <li>
+                              <a href="/Clients/Client/CustomerAccountStatement"> كشف حساب عميل </a>
+                          </li>
+                          <li>
+                              <a href="/Clients/ClientGroupManagment/ClienManagmenttview">   اداره مجموعات العملاء  </a>
+                          </li>
+
+                  </ul>
+              </li>
+              <li class="menu">
+                  <a href="#Suppliers" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                      <div class="">
+                          <i class="lab la-medapps"></i>
+                          <span> الموردين</span>
+                      </div>
+                      <div>
+                          <i class="las la-angle-right sidemenu-right-icon"></i>
+                      </div>
+                  </a>
+                  <ul class="collapse submenu list-unstyled" id="Suppliers" data-parent="#accordionExample">
+                          <li>
+                              <a href="/SupplierManagement"> الموردين </a>
+                          </li>
+                          <li>
+                              <a href="/Suppliers/SupplierGroupManagment/SupplierManagmentView"> اداره محموعات الموردين </a>
+                          </li>
+                  </ul>
+              </li>
+              <li class="menu">
+                  <a href="#HR" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+
+                      <div class="">
+                          <i class="lab la-medapps"></i>
+                          <span> شئون الموظفين</span>
+                      </div>
+                      <div>
+                          <i class="las la-angle-right sidemenu-right-icon"></i>
+                      </div>
+                  </a>
+                  <ul class="collapse submenu list-unstyled" id="HR" data-parent="#accordionExample">
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/city'">{{ "Hr.City" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/country'">{{ "Hr.Countrynav" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/nationality'">{{ "Hr.Nationalitynav" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/orgstructlevel'">{{ "Hr.Orgstruct" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/orgstructures'">{{ "Hr.Orgstructures" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/hospital'">{{ "Hr.Hospitalnav" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/allowence'">{{ "Hr.Allowencenav" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/specializations'">{{ "Hr.Specializationsnav" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/employee'">{{ "Hr.EmployeeCard" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/docTypes'">{{ "Hr.Doc" | translate }}</a>
+                    </li>
+                    <li>
+                      <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/workCard'">{{ "Hr.WorkCard" | translate }}</a>
+                    </li>
+                    <li class="dropdown-submenu" >
+                      <div (mouseleave)="isOpened = false" [ngClass]="{isOpened:isOpened}" >
+                        <a class="d-block text-center pointer dropdown-toggle " (mouseenter)="$event.preventDefault(); isOpened=true" id="jobDropdownToggles" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                          {{ "Hr.CreateJobs" | translate }} &raquo;
+                        </a>
+                        <ul class=" pointer dropdown-menu" aria-labelledby="jobDropdownToggles">
+                          <li>
+                            <a class="  pointer dropdown-item"  [routerLink]="'/hr/jobs/createJobs'">{{ "Hr.CreateJobs" | translate }}</a>
+                          </li>
+                          <li>
+                            <a class=" pointer dropdown-item"  [routerLink]="'/hr/jobs/jobsNames'">{{ "Hr.JobsNames" | translate }}</a>
+                          </li>
+                          <li>
+                            <a class=" pointer dropdown-item"  [routerLink]="'/hr/jobs/jobsCategories'">{{ "Hr.JobsCategories" | translate }}</a>
+                          </li>
+                        </ul>
+
+                      </div>
+                    </li>
+                  </ul>
+              </li>
+
+              <li class="menu">
+                  <a href="#basic-level" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+
+                      <div class="">
+                          <i class="las la-sitemap"></i>
+                          <span>البيانات الاساسية</span>
+                      </div>
+                      <div>
+                          <i class="las la-angle-right sidemenu-right-icon"></i>
+                      </div>
+
+
+                  </a>
+                  <ul class="collapse submenu list-unstyled" id="basic-level" data-parent="#accordionExample">
+                          <li>
+
+                              <a href="/Settings/Branch/Management">
+                                   الفروع
+                              </a>
+                          </li>
+                        <li>
+
+                          <a href="/Settings/CompanyManagment/CompanyManagment">
+                              اداره الشركات
+                          </a>
+
+                      </li>
+
+
+                          <li>
+
+                              <a href="/Settings/Treasury/Management">
+                                   الخزن
+                              </a>
+                          </li>
+                          <li>
+                              <a href="/Settings/CostCenter/Management">
+                                   مراكز التكلفة
+                              </a>
+                          </li>
+                          <li>
+                              <a href="/Auth/RoleGroup">
+                                   الصلاحيات
+                              </a>
+                          </li>
+                          <li>
+                              <a href="/Auth/ManageUser/ManageUser">
+                                   المستخدمين
+                              </a>
+                          </li>
+                          <li>
+                              <a href="/Settings/DefaultOptions/Management">
+                                  الاختيارات الاافتراضية
+                              </a>
+                          </li>
+                          <li>
+                              <a href="/Settings/Finance/FinanceSettings">
+                                  الاعدادات المالية
+                              </a>
+                          </li>
+                          <li>
+                              <a href="/AccountingPeriod/AccountingPeriod/AccountingPeriod">
+                                   الفترات المحاسبية
+                              </a>
+                          </li>
+                          <li>
+
+                              <a href="/GeneralLedger/Currency/CurrencyManagement">
+                                  العملات
+                              </a>
+                          </li>
+
+                     <li>
+
+                              <a href="/TreasuiesDocuments/DocClassification/DocClassification">   تصنيف المستندات  </a>
+                  </li>
+                     <li>
+                              <a href="/TreasuiesDocuments/DocProjects/DocProjects">     مشاريع المستندات  </a>
+                  </li>
+
+
+                          <li>
+
+                              <a href="/Portal/Portal">
+                                  تقارير هيئة الزكاه والدخل
+                              </a>
+                          </li>
+
+
+                  </ul>
+              </li>
+              <li class="menu">
+
+                  <a href="#openingBalance" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+
+                      <div class="">
+                          <i class="las la-lock"></i>
+                          <span>ارصدة اول المدة </span>
+                      </div>
+                      <div>
+                          <i class="las la-angle-right sidemenu-right-icon"></i>
+                      </div>
+
+
+                  </a>
+                  <ul class="collapse submenu list-unstyled" id="openingBalance" data-parent="#accordionExample">
+
+                          <li>
+                              <a href="/StorageOpenBalance">   ارصدة افتتاحيه للاصناف </a>
+                          </li>
+
+                          <li>
+
+                              <a href="/GeneralLedger/InitGlRecepts/InitGlReceptsManagement">
+                                  ارصدة الحسابات
+                              </a>
+
+                          </li>
+                          <li>
+                              <a href="/GeneralLedger/InitGlCreate">اتشاء القيد الافتتاحي</a>
+                          </li>
+                  </ul>
+              </li>
+
+              <li class="menu">
+                  <a href="#market-level" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+
+                      <div class="">
+                          <i class="las la-sitemap"></i>
+                          <span> المتجر </span>
+                      </div>
+                      <div>
+                          <i class="las la-angle-right sidemenu-right-icon"></i>
+                      </div>
+
+
+                  </a>
+                  <ul class="collapse submenu list-unstyled" id="market-level" data-parent="#accordionExample">
+                          <li>
+
+                              <a href="/Market/WebsiteEP/Management">
+                                   المحتوي والصور
+                              </a>
+                          </li>
+                  </ul>
+              </li>
+
+
+
+          <li class="menu-title"></li>
+              <li class="menu">
+                  <a href="#pages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+
+                      <div class="">
+                          <i class="las la-file"></i>
+                          <span>التقارير و الاحصاءات</span>
+                      </div>
+                      <div>
+                          <i class="las la-angle-right sidemenu-right-icon"></i>
+                      </div>
+                  </a>
+                  <ul class="collapse submenu list-unstyled" id="pages" data-parent="#accordionExample">
+                  </ul>
+              </li>
+
+
+
+          <li class="menu-title"></li>
+          <li class="menu">
+              <a aria-expanded="false" class="dropdown-toggle">
+                  <div class="">
+                      <i class="las la-file-code"></i>
+                      <span>الدعم الفني (تواصل معنا)</span>
+                  </div>
+              </a>
+          </li>
+
+      <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 109px; right: 222px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 40px;"></div></div></ul>
+      <ul class="sidebar-bottom-options">
+          <li class="nav-item dropdown user-profile-dropdown">
+              <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img src="/lib/them/assets/img/profile-16.jpg" alt="avatar">
+              </a>
+              <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
+                  <div class="nav-drop is-account-dropdown">
+                      <div class="inner">
+                          <div class="nav-drop-header mb-2 px-2">
+                              <span class="text-primary font-13">أهلاً بك يا اسم المستخدم</span>
+                          </div>
+                          <div class="nav-drop-body account-items pb-0">
+                              <a id="profile-link" class="account-item" href="javascript:void(0);">
+                                  <div class="media align-center">
+                                      <div class="media-left">
+                                          <div class="image">
+                                              <img class="rounded-circle avatar-xs" src="/lib/them/assets/img/profile-16.jpg" alt="">
+                                          </div>
+                                      </div>
+                                      <div class="media-content ml-2">
+                                          <h6 class="font-12 mb-0 strong">اسم المستخدم</h6>
+                                      </div>
+                                      <div class="media-right">
+                                          <i data-feather="check"></i>
+                                      </div>
+                                  </div>
+                              </a>
+                              <a class="account-item" href="/">
+                                  <div class="media align-center">
+                                      <i class="las la-user font-20"></i>
+                                      <div class="media-content ml-3">
+                                          <h6 class="font-13 mb-0 strong">حسابي</h6>
+                                      </div>
+                                  </div>
+                              </a>
+                              <a class="account-item" href="javascript:void(0);">
+                                  <div class="media align-center">
+                                      <i class="las la-briefcase font-20"></i>
+                                      <div class="media-content ml-3">
+                                          <h6 class="font-13 mb-0 strong"> نشاطي </h6>
+                                      </div>
+                                  </div>
+                              </a>
+                              <a class="account-item" href="javascript:void(0);">
+                                  <div class="media align-center">
+                                      <i class="las la-lock font-20"></i>
+                                      <div class="media-content ml-3">
+                                          <h6 class="font-13 mb-0 strong"> قفل الشاشة</h6>
+                                      </div>
+                                  </div>
+                              </a>
+                              <a class="account-item" href="/Logout">
+                                  <div class="media align-center">
+                                      <i class="las la-sign-out-alt font-20"></i>
+                                      <div class="media-content ml-3">
+                                          <h6 class="font-13 mb-0 strong ">تسجيل خروج</h6>
+                                      </div>
+                                  </div>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </li>
+          <li class="nav-item dropdown notification-dropdown">
+              <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="las la-bell"></i>
+                  <div class="notification-circle">0</div>
+              </a>
+              <div class="dropdown-menu position-absolute" aria-labelledby="notificationDropdown">
+                  <div class="nav-drop is-notification-dropdown">
+                      <div class="inner">
+                          <div class="nav-drop-header mb-2 px-2">
+                              <span class="text-black font-12 strong">4 إشعارات</span>
+                              <a class="text-muted font-11" href="javascript:void(0)">
+                                  تحديد كمقروء
+                              </a>
+                          </div>
+                          <div class="nav-drop-body account-items pb-0">
+                              <a class="account-item" href="javascript:void(0)">
+                                  <div class="media align-center">
+                                      <i class="las la-box font-20"></i>
+                                      <div class="media-content ml-3">
+                                          <h6 class="font-12 mb-0 strong">14 طلبات جديدة</h6>
+                                      </div>
+                                  </div>
+                              </a>
+                              <a class="account-item" href="javascript:void(0)">
+                                  <div class="media align-center">
+                                      <i class="las la-user-plus font-20"></i>
+                                      <div class="media-content ml-3">
+                                          <h6 class="font-12 mb-0 strong">1 مستخدمين جدد</h6>
+                                      </div>
+                                  </div>
+                              </a>
+                              <div class="text-center p-2 mt-2">
+                                  <a class="text-primary strong font-13" href="javascript:void(0)">عرض الكل</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </li>
+          <li class="nav-item dropdown logout -dropdown">
+              <a href="/Logout" class="nav-link">
+                  <i class="las la-sign-out-alt"></i>
+              </a>
+          </li>
+      </ul>
+  </nav>
+</div>
+<div id="content" class="main-content">
+  <div class="aa">
+      <main role="main" class="">
+         <router-outlet></router-outlet>
+          <div id="HereModel">
+          </div>
+      </main>
+  </div>
+</div>
+<div class="pos" id="DivSpinner" style="display: none;">
+<div class="loading-container">
+    <div class="loading">
+        <div class="l1">
+            <div></div>
+        </div>
+        <div class="l2">
+            <div></div>
+        </div>
+        <div class="l3">
+            <div></div>
+        </div>
+        <div class="l4">
+            <div></div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="responsive-msg-component">
+<p>
+  <a class="close-msg-component"><i class="las la-times"></i></a>
+  Please reload the page when you change the viewport size to view the responsive functionalities correctly
+</p>
+</div>
+<div class="footer-wrapper">
+<div class="footer-section f-section-1">
+<p class="">
+    Copyright © 2021 <a target="_blank" href="http://neptuneweb.xyz">جميع الحقوق محفوظة</a>,
+
+    شركة الابتكار.
+</p>
+</div>
+</div>
+<div class="scroll-top-arrow" style="">
+<i class="las la-angle-up"></i>
+</div>

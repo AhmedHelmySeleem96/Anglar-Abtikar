@@ -21,6 +21,7 @@ export class VisitorLayoutComponent implements OnInit,OnDestroy {
   userLogin:boolean = false
   roles:string = ''
   searching:string = ''
+  isOpened = false ;
 
   constructor(
     private translate:TranslateService,

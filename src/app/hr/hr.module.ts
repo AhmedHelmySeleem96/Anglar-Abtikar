@@ -14,6 +14,7 @@ import { HospitalComponent } from './hospital/hospital.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { SpecializationsComponent } from './specializations/specializations.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { EmpContractsComponent } from './emp-contracts/emp-contracts.component';
 @NgModule({
   declarations: [
   CityComponent,
@@ -27,6 +28,8 @@ import { EmployeeComponent } from './employee/employee.component';
 JobsComponent,
 SpecializationsComponent,
 EmployeeComponent,
+EmpContractsComponent,
+
   ],
   imports: [
     CommonModule,
@@ -55,6 +58,8 @@ EmployeeComponent,
         path : "docTypes" , loadChildren: () => import('./doc-types/doc-types.module').then(m => m.DocTypesModule)
       },{
         path : "workCard" , loadChildren: () => import('./work-card/work-card.module').then(m => m.WorkCardModule)
+      },{
+        path : "empContract" , loadChildren: () => import('./emp-contracts/emp-contracts.module').then(m => m.EmpContractModule)
       }]
     }]),
     TranslateModule,
