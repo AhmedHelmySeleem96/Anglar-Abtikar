@@ -155,6 +155,7 @@
   "OverTimeAllowed": "Overtime Allowed",
   "OverTimeAllowedPeriod": "Overtime Allowed Period",
   "OverTimeAllowedPercent": "Overtime Allowed Percent",
+
   "Doc": "Doc Types",
   "DocNameAr": "Document Name ",
   "DocNameEn": "Document Name English",
@@ -169,7 +170,11 @@
   "AllowenceName": "Allowance Name",
   "AllowenceType": "Allowance Type",
   "AllowenceValueType": "Allowance Value Type",
-  "AllowenceValue": "Allowance Value"
+  "AllowenceValue": "Allowance Value",
+  "NumberOfDays" : "Number Of Days",
+  "EndDateError":"End Date < Start Date",
+  "EndContractError":"End Date < Start Date"
+
 },
 "Id":"Id",
 "CityId":"City Id",

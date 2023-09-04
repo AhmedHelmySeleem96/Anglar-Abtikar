@@ -18,7 +18,7 @@ export class CountryCreateComponent implements OnInit {
 
     isEdit:boolean= false ;
     formCountry :FormGroup= this.fb.group({countryNameAr: new FormControl('', [Validators.required]),
-    countryNameEn: new FormControl('', [Validators.required]),
+    countryNameEn: new FormControl(''),
     notes: new FormControl(null),})
     currentcountry :any ;
     ngOnInit(): void {

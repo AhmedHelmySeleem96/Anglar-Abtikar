@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Apiservice } from './shared/services/crud/apiservice.service';
 import {ApiConfiguration} from './shared/api'
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit {
     register:SwRegistrationOptions,
     private apiConfiguration :ApiConfiguration,
     updates: SwUpdate,
+    public _Router: Router,
     private translate:TranslateService,
     @Inject(DOCUMENT) private document: Document) {
       apiConfiguration.rootUrl=environment.url;
@@ -32,6 +34,11 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // let token = localStorage.getItem("Token")!
+    // let data = JSON.parse(token)
+    // if(data == null || data.AccessToken == null){
+    //   this._Router.navigate(['/auth/login'])}
+
     const headTag = this.document.getElementsByTagName('head')[0] as HTMLHeadElement;
     //
     const bundleName =  'bootstrap.min.css';

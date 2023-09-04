@@ -3,11 +3,11 @@
   <form [formGroup]="formHospital" (ngSubmit)="OnSubmit(formHospital)" class="form">
 
     <div class="form-group mt-5">
-      <input  id="NameAr" type="NameAr" formControlName="NameAr" required placeholder="{{ 'Hr.HospitalNameAr' | translate }}" class="form-control">
+      <input  id="NameAr" type="NameAr" formControlName="NameAr" maxlength="100" required placeholder="{{ 'Hr.HospitalNameAr' | translate }}" class="form-control">
     </div>
 
     <div class="form-group mt-5">
-      <input   id="NameEn" type="NameEn" formControlName="NameEn" required placeholder="{{ 'Hr.HospitalNameEn' | translate }}" class="form-control">
+      <input   id="NameEn" type="NameEn" formControlName="NameEn" maxlength="100"  placeholder="{{ 'Hr.HospitalNameEn' | translate }}" class="form-control">
     </div>
     <div class="form-group mt-5" *ngIf="isEdit">
       <label for="StatusId">{{ 'Hr.SelectStatus' | translate }}</label>

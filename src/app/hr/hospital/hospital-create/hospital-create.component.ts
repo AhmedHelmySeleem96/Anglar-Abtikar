@@ -16,7 +16,7 @@ export class HospitalCreateComponent implements OnInit{
     private XtraAndPosHospitalService :  XtraAndPosHospitalService,private fb:FormBuilder,private route: ActivatedRoute){}
     isEdit:boolean= false ;
     formHospital :FormGroup= this.fb.group({NameAr: new FormControl('', [Validators.required]),
-    NameEn: new FormControl('', [Validators.required]),
+    NameEn: new FormControl(''),
     StatusId:new FormControl('1'),
     notes: new FormControl(null),})
     currenthospital :any ;

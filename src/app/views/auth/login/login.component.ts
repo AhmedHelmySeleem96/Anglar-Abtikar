@@ -5,6 +5,7 @@ import jwtDecode from 'jwt-decode';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { Apiservice } from 'src/app/shared/services/crud/apiservice.service';
+import { LoginVm, UserEpService, UserRequest } from 'src/app/shared/api';
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,8 @@ export class LoginComponent implements OnInit , OnDestroy {
   constructor(
     private toastr:ToastrService,
     private _Apiservice:Apiservice ,
+    private UserEpService  : UserEpService
+,
     public _Router: Router) {
       this.isLogin()
     }
@@ -49,7 +52,7 @@ isLogin(){
   let token = localStorage.getItem("Token")!
   let data = JSON.parse(token)
   if(data != null && data.AccessToken != null){
-    this._Router.navigate(['/user/home'])
+    this._Router.navigate(['/home'])
   }
  // let decode = jwtDecode(data.AccessToken)
   //console.log(decode)
@@ -58,25 +61,19 @@ isLogin(){
 
   login(Form: FormGroup) {
 
-    let model = {
-      Email:this.UserName?.value,
-      Password:this.Password?.value,
-      rememberMe: true
+    let model :LoginVm = {
+      userName:this.UserName?.value,
+      password:this.Password?.value,
+      rememberMe: true,
+      branchId :1
+
     }
-console.log(model)
 
-    let CallApi:Subscription = this._Apiservice.post("User/Login",model).subscribe({
-      next:(res:any)=>{
-        console.log(res)
-        if(res.IsSuccess == true ){
-          localStorage.setItem("Token",JSON.stringify(res.Obj))
-          this._Router.navigate([`/user/home`])
-        }
-
-      }
+    this.UserEpService.httpPostLogin({ body : model}).subscribe((value:any)=>{
+      let jsonData = JSON.parse(value);
+        this.toastr.success(jsonData.Message)
+        this._Router.navigate(['/home'])
     })
-
-    this.SubscriptionArr.push(CallApi)
 
   }
 

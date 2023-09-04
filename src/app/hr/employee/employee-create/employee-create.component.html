@@ -45,7 +45,7 @@
             <div class="row">
               <div class="form-group col-md-4 mt-5">
                 <label for="nameAr">{{ 'Hr.FirstName' | translate }}</label>
-                <input id="nameAr" formControlName="nameAr"  class="form-control">
+                <input id="nameAr" formControlName="nameAr" maxlength="100"  class="form-control">
               </div>
               <div class="form-group col-md-4 mt-5">
                 <label for="secondName">{{ 'Hr.SecondName' | translate }}</label>
@@ -59,7 +59,7 @@
             <div class="row">
                 <div class="form-group col-md-4 mt-5">
                 <label for="nameEn">{{ 'Hr.FirstNameEn' | translate }}</label>
-                    <input id="nameEn" formControlName="nameEn"  class="form-control">
+                    <input id="nameEn" formControlName="nameEn" maxlength="100"  class="form-control">
                 </div>
                 <div class="form-group col-md-4 mt-5">
                 <label for="title">{{ 'Hr.Title' | translate }}</label>
@@ -102,8 +102,11 @@
           </div>
               <div class="form-group col-md-4 mt-5">
               <label for="identityEndDate">{{ 'Hr.IdentityEndDate' | translate }}</label>
-                <input type="date" id="identityEndDate" formControlName="identityEndDate"  class="form-control">
-            </div>
+                <input (change)="identityEndDateChange($event)" type="date" id="identityEndDate" formControlName="identityEndDate"  class="form-control">
+                <div *ngIf="endDateAlert" class="alert-danger">
+                  <p class="alert-message"><strong>{{'Hr.EndDateError' | translate }}</strong> </p>
+                </div>
+                          </div>
             <div class="form-group col-md-4 mt-5">
               <label for="maritalStatus">{{ 'Hr.MaritalStatus' | translate }}</label>
               <select  id="maritalStatus" formControlName="maritalStatus" class="form-control">
@@ -129,13 +132,13 @@
           </div>
           <div class="form-group col-md-4 mt-5">
             <label for="mobile">{{ 'Hr.Mobile' | translate }}</label>
-            <input  id="mobile" formControlName="mobile"   class="form-control">
+            <input   id="mobile" formControlName="mobile" maxlength="15"   class="form-control">
           </div>
       </div>
       <div class="row">
         <div class="form-group col-md-4 mt-5">
           <label for="phone">{{ 'Hr.Phone' | translate }}</label>
-          <input  id="phone" formControlName="phone"   class="form-control">
+          <input  id="phone" formControlName="phone" maxlength="15"   class="form-control">
         </div>
           <div class="form-group col-md-4 mt-5">
           <label for="email">{{ 'Hr.Email' | translate }}</label>
@@ -148,12 +151,12 @@
       <div class="row">
         <div class="form-group col-md-4 mt-5">
           <label for="address">{{ 'Hr.Address' | translate }}</label>
-          <input id="address" formControlName="address"  placeholder="{{ 'Hr.Address' | translate }}" class="form-control">
+          <input maxlength="150" id="address" formControlName="address"  placeholder="{{ 'Hr.Address' | translate }}" class="form-control">
         </div>
 
         <div class="form-group col-md-4 mt-5" >
           <label for="StatusId">{{ 'Hr.SelectStatus' | translate }}</label>
-          <select   id="StatusId" formControlName="StatusId"  class="form-control"  >
+          <select   id="StatusId" formControlName="statusId"  class="form-control"  >
             <option  value="" disabled selected>{{ 'Hr.SelectStatus' | translate }}</option>
             <option *ngFor="let status of statusData " [value]="status.id">{{ status.name }}</option>
           </select>
@@ -196,11 +199,14 @@
             </div>
             <div class="form-group col-md-4 mt-5">
               <label for="contractPeriod">{{ 'Hr.ContractPeriod' | translate }}</label>
-              <input  (change)="contractStartDateChange($event)"  id="contractPeriod" formControlName="contractPeriod"   class="form-control">
+              <input type="number"  (change)="contractStartDateChange($event)"  id="contractPeriod" formControlName="contractPeriod"   class="form-control">
             </div>
             <div class="form-group col-md-4 mt-5">
               <label for="contractEndDate">{{ 'Hr.ContractEndDate' | translate }}</label>
-              <input type="date" readonly id="contractEndDate" formControlName="contractEndDate"  class="form-control">
+              <input (change)="contractEndDateChange($event)" type="date" readonly id="contractEndDate" formControlName="contractEndDate"  class="form-control">
+              <div *ngIf="endContractAlert" class="alert-danger">
+                <p class="alert-message"><strong>{{'Hr.EndContractError' | translate }}</strong> </p>
+              </div>
             </div>
            </div>
            <div class="row">
@@ -230,11 +236,11 @@
             </div>
             <div class="form-group col-md-4 mt-5">
               <label for="iban">{{ 'Hr.Iban' | translate }}</label>
-              <input  id="iban" formControlName="iban"  class="form-control">
+              <input maxlength="30"  id="iban" formControlName="iban"  class="form-control">
             </div>
             <div class="form-group col-md-4 mt-5">
               <label for="barcode">{{ 'Hr.Barcode' | translate }}</label>
-              <input  id="barcode" formControlName="barcode"  class="form-control">
+              <input maxlength="20" id="barcode" formControlName="barcode"  class="form-control">
             </div>
            </div>
            <div class="row">
@@ -247,7 +253,7 @@
           <p-tabPanel header="{{ 'Hr.Docs' | translate }}">
             <div class="row">
               <div class="form-group ">
-                <p-fileUpload formControlName="file"  url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" accept=".txt" >
+                <p-fileUpload   url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true"  >
                   <ng-template pTemplate="content" >
                       <ul *ngIf="uploadedFiles.length">
                           <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
@@ -259,22 +265,22 @@
               <div class="row">
                 <div class="form-group ">
                   <label for="fileDescription">{{ 'Hr.FileDescription' | translate }}</label>
-                  <input  id="fileDescriptiony" formControlName="fileDescription"  class="form-control">
+                  <input  id="fileDescription" formControlName="fileDescription" maxlength="150"  class="form-control">
                 </div>
               </div>
           </p-tabPanel>
           <p-tabPanel header="{{ 'Hr.User' | translate }}">
             <div class="row">
               <div class="form-group col-md-5 mt-6">
-                <input id="userName" formControlName="userName"  placeholder="{{ 'Hr.AccountId' | translate }}" class="form-control">
+                <input maxlength="15" id="userName" formControlName="userName"  placeholder="{{ 'Hr.AccountId' | translate }}" class="form-control">
               </div>
               <div class="form-group col-md-5 mt-6">
-                <input type="password" id="password"  #password formControlName="password"  placeholder="{{ 'Hr.Password' | translate }}" class="form-control">
+                <input type="password" maxlength="15" id="password"  #password formControlName="password"  placeholder="{{ 'Hr.Password' | translate }}" class="form-control">
               </div>
             </div>
             <div class="row">
               <div class="form-group col-md-5 mt-6">
-                <input (mouseleave)="checkPass()" #confirmPassword type="password" id="confirmPassword"   placeholder="{{ 'Hr.ConfirmPassword' | translate }}" class="form-control">
+                <input maxlength="15" (mouseleave)="checkPass()" #confirmPassword type="password" id="confirmPassword"   placeholder="{{ 'Hr.ConfirmPassword' | translate }}" class="form-control">
               </div>
               <div *ngIf="!passNotMatch" class="alert alert-danger mt-3">
                 {{ 'Passwords do not match.' | translate }}
@@ -354,3 +360,6 @@
   <button  (click)="exportData()" class="btn btn-info" id="viewBtn">{{"Hr.Export" | translate}}</button>
   <button (click)="goHome()" class="btn btn-warning Dnone" id="editBtn">{{"Cancel" | translate}}</button>
 </div>
+
+
+

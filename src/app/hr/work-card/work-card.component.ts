@@ -27,7 +27,7 @@ unspecifiedHours  =false;
 deleteId : any ;
 @ViewChild('dt') dt: any;
 formWorkCard :FormGroup= this.fb.group({cardNameAr: new FormControl('', [Validators.required]),
-cardNameEn: new FormControl('', [Validators.required]),
+cardNameEn: new FormControl(''),
 notes: new FormControl(null),
 unspecifiedHours: new FormControl(false),
 startWorkTime: new FormControl(null),

@@ -11,8 +11,8 @@ import { UserGuard } from './shared/services/guard/user.guard';
 const routes: Routes = [
 {path:'',redirectTo:'home',pathMatch:'full'},
 
-{path:'home' ,component:VisitorLayoutComponent,
-  children:[{path:"",loadChildren: () => import('./views/visitor/home/home.module').then(m => m.HomeModule)}]
+{path:'home' ,
+loadChildren: () => import('./hr/hr.module').then(m => m.HrModule)
 },
 {path:'contact' ,component:VisitorLayoutComponent,
   children:[{path:"",loadChildren: () => import('./views/visitor/contact/contact.module').then(m => m.ContactModule)}]

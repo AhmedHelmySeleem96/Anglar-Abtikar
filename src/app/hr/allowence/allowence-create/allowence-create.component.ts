@@ -17,7 +17,7 @@ export class AllowenceCreateComponent implements OnInit {
     private XtraAndPosAllowenceService :  XtraAndPosAllowenceService,private fb:FormBuilder,private route: ActivatedRoute){}
     isEdit:boolean= false ;
     formAllowence :FormGroup= this.fb.group({NameAr: new FormControl('', [Validators.required]),
-    NameEn: new FormControl('', [Validators.required]),
+    NameEn: new FormControl(''),
     StatusId:new FormControl('1'),
     notes: new FormControl(null),})
     currentallowence :any ;

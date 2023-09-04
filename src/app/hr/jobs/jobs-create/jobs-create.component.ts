@@ -23,7 +23,7 @@ export class JobsCreateComponent  {
     formJob : FormGroup;
       createForm() : FormGroup{
         return this.fb.group({NameAr: new FormControl('', [Validators.required]),
-        NameEn: new FormControl('', [Validators.required]),
+        NameEn: new FormControl(''),
         SNO: new FormControl(null),
         JobCategoryId: new FormControl('', [Validators.required]),
         MaxJobsNo: new FormControl('', [Validators.required]),

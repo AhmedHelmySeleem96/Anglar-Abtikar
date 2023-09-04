@@ -7,14 +7,14 @@
             <h3>{{ "Hr.Allowence" | translate }}</h3>
   <form #formElement [formGroup]="formAllowence" (ngSubmit)="onSubmit(formAllowence)" class="form">
 
-    <div class="form-group mt-5">
+    <div class="form-group mt-5" [ngClass]="{'invalid-control': formAllowence.get('NameAr')?.invalid && formAllowence.get('NameAr')?.touched}">
       <label for="allowenceNameAr">{{ 'Hr.AllowenceNameAr' | translate }}</label>
-      <input  id="allowenceNameAr" type="allowenceNameAr" formControlName="NameAr" required class="form-control">
+      <input  id="allowenceNameAr" type="allowenceNameAr" formControlName="NameAr" maxlength="100" required class="form-control">
     </div>
 
     <div class="form-group mt-5">
       <label for="allowenceNameEn">{{ 'Hr.AllowenceNameEn' | translate }}</label>
-      <input   id="allowenceNameEn" type="allowenceNameEn" formControlName="NameEn" required  class="form-control">
+      <input   id="allowenceNameEn" type="allowenceNameEn" formControlName="NameEn" maxlength="100"   class="form-control">
     </div>
 
     <div class="form-group mt-5" *ngIf="isEdit">

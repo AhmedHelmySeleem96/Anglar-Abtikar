@@ -9,12 +9,12 @@
 
     <div class="form-group mt-5">
       <label for="NameAr">{{ 'Hr.JobNameNameAr' | translate }}</label>
-      <input  id="NameAr" type="NameAr" formControlName="NameAr" required  class="form-control">
+      <input  id="NameAr" type="NameAr" formControlName="NameAr" maxlength="100" required  class="form-control">
     </div>
 
     <div class="form-group mt-5">
       <label for="NameEn">{{ 'Hr.JobNameNameEn' | translate }}</label>
-      <input   id="NameEn" type="NameEn" formControlName="NameEn" required  class="form-control">
+      <input   id="NameEn" type="NameEn" formControlName="NameEn" maxlength="100"   class="form-control">
     </div>
     <div class="form-group mt-5" *ngIf="isEdit">
       <label for="StatusId">{{ 'Hr.SelectStatus' | translate }}</label>

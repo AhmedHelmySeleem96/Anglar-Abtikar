@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
+import { UserEpService, UserRequest } from 'src/app/shared/api';
 import { Apiservice } from 'src/app/shared/services/crud/apiservice.service';
 
 @Component({
@@ -28,6 +29,7 @@ export class RegisterComponent implements OnInit,OnDestroy {
     private toastr:ToastrService,
     private _Router: Router,
     private _Apiservice:Apiservice,
+    private UserEpService  : UserEpService
     ) {
       this.isLogin()
   }
@@ -67,27 +69,32 @@ get PhoneNumber() {
 
   Submit(Form:FormGroup) {
 
-    let model = {
-      UserName:this.UserName?.value,
-      Password:this.Password?.value,
-      Email:this.Email?.value,
-      NameAr: this.NameAr?.value,
-      PhoneNumber:this.PhoneNumber?.value,
+    let model :UserRequest = {
+      userName:this.UserName?.value,
+      password:this.Password?.value,
+      email:this.Email?.value,
+      nameAr: this.NameAr?.value,
+      phoneNumber:this.PhoneNumber?.value,
     }
 
 
     console.log(model)
+    this.UserEpService.httpPostRegister({ body : model}).subscribe((value:any)=>{
+      let jsonData = JSON.parse(value);
+        this.toastr.success(jsonData.Message)
+    })
 
-let CallApi:Subscription = this._Apiservice.post("User/Register",model).subscribe({
-  next:(res:any)=>{
 
-    if(res.IsSuccess == true && res.Message == "Success"){
-      this._Router.navigate([`/auth/login`])
+// let CallApi:Subscription = this._Apiservice.post("User/Register",model).subscribe({
+//   next:(res:any)=>{
 
-    }
-  }
-})
-this.SubscriptionArr.push(CallApi)
+//     if(res.IsSuccess == true && res.Message == "Success"){
+//       this._Router.navigate([`/auth/login`])
+
+//     }
+//   }
+// })
+// this.SubscriptionArr.push(CallApi)
 
   }
 

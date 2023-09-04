@@ -21,7 +21,7 @@ export class AllowencePreviewComponent implements OnInit {
     }
     isEdit:boolean= false ;
     formAllowence :FormGroup= this.fb.group({NameAr: new FormControl('', [Validators.required]),
-    NameEn: new FormControl('', [Validators.required]),
+    NameEn: new FormControl(''),
     StatusId:new FormControl('1'),
     notes: new FormControl(null),})
     allowenceData :any[] = [] ;

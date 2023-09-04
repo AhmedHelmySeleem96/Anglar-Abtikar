@@ -3,11 +3,11 @@
   <form [formGroup]="formAllowence" (ngSubmit)="OnSubmit(formAllowence)" class="form">
 
     <div class="form-group mt-5">
-      <input  id="NameAr" type="NameAr" formControlName="NameAr" required placeholder="{{ 'Hr.AllowenceNameAr' | translate }}" class="form-control">
+      <input  id="NameAr" type="NameAr" formControlName="NameAr" maxlength="100" required placeholder="{{ 'Hr.AllowenceNameAr' | translate }}" class="form-control">
     </div>
 
     <div class="form-group mt-5">
-      <input   id="NameEn" type="NameEn" formControlName="NameEn" required placeholder="{{ 'Hr.AllowenceNameEn' | translate }}" class="form-control">
+      <input   id="NameEn" type="NameEn" formControlName="NameEn" maxlength="100"  placeholder="{{ 'Hr.AllowenceNameEn' | translate }}" class="form-control">
     </div>
     <div class="form-group mt-5" *ngIf="isEdit">
       <label for="StatusId">{{ 'Hr.SelectStatus' | translate }}</label>

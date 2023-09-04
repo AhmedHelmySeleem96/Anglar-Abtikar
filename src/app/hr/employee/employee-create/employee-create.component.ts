@@ -36,7 +36,7 @@ export class EmployeeCreateComponent implements OnInit {
     createForm(): FormGroup {
       return this.fb.group({
         nameAr: new FormControl(null, [Validators.required]),
-        nameEn: new FormControl(null, [Validators.required]),
+        nameEn: new FormControl(null),
         sNO: new FormControl(null),
         nationalityId: new FormControl(null),
         secondName: new FormControl(null),
@@ -107,7 +107,9 @@ export class EmployeeCreateComponent implements OnInit {
       @ViewChild('password') password!: ElementRef;
       @ViewChild('confirmPassword') confirmPassword!: ElementRef;
       highestDegree :boolean = false ;
+      endDateAlert :boolean = false ;
       ngOnInit(): void {
+        this.formEmployee.get('statusId')?.setValue('1');
         this.createForm();
         this.cols = [
           { field: 'Id', header: 'EmployeeId' },
@@ -185,6 +187,15 @@ export class EmployeeCreateComponent implements OnInit {
           let jsonData = JSON.parse(value);
           this.currencyData = jsonData.Obj.Currencies;
         });
+        setTimeout(()=>{
+          if (this.currencyData){
+            let defaultCur =  this.currencyData.filter(r=>r.IsDefault ==true );
+            if(defaultCur){
+              this.formEmployee.get('currencyId')?.setValue(defaultCur.map(r=>r.Id))
+            }
+          };
+          },500)
+
         this.RoleGroupEpService.httpGetRoleGroupGetAll().subscribe((value:any)=>{
           let jsonData = JSON.parse(value);
           this.roleGroup = jsonData.Obj.roleGroups;
@@ -415,6 +426,31 @@ const target = event.target as HTMLInputElement;
     endDate.setFullYear(date.getFullYear() + addedYears);
     const formattedEndDate = endDate.toISOString().slice(0, 10);
     this.formEmployee.get('contractEndDate')?.setValue(formattedEndDate);
+}
+}
+identityEndDateChange(event:Event){
+  let target = event.target as HTMLSelectElement;
+  let endDataValue =target.value
+  let startIdentityDate = this.formEmployee.get('identityCreationDate')?.value ;
+  let endDate = new Date(endDataValue);
+  let startDate = new Date(startIdentityDate);
+if(endDate<startDate ||startIdentityDate==null){
+  this.endDateAlert = true;
+}else{
+  this.endDateAlert = false;
+}
+}
+endContractAlert: boolean  =false;
+contractEndDateChange(event :Event){
+  let target = event.target as HTMLSelectElement;
+  let endDataValue =target.value
+  let startContractDate = this.formEmployee.get('contractStartDate')?.value ;
+  let endDate = new Date(endDataValue);
+  let startDate = new Date(startContractDate);
+if(endDate<startDate ||startContractDate==null){
+  this.endContractAlert = true;
+}else{
+  this.endContractAlert = false;
 }
 }
 }

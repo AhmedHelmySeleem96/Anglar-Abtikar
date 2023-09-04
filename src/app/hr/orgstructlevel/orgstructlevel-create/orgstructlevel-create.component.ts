@@ -16,7 +16,7 @@ export class OrgstructlevelCreateComponent  implements OnInit {
     private orgStructLevelsService: XtraAndPosOrgStructLevelsService,private XtraAndPosBranchEpService : XtraAndPosBranchEpService,
     private fb:FormBuilder,private router: Router,private route: ActivatedRoute){}
     formorgStruct :FormGroup= this.fb.group({levelNameAr: new FormControl('', [Validators.required]),
-    levelNameEn: new FormControl('', [Validators.required]),
+    levelNameEn: new FormControl(''),
     parentId :new FormControl(0),
     branchId :new FormControl('', [Validators.required]),
   })

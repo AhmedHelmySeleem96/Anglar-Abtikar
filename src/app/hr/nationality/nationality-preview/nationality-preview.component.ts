@@ -24,7 +24,7 @@ export class NationalityPreviewComponent implements OnInit  {
     isEdit:boolean= false ;
     currentnationalityId : any ;
     formNationality :FormGroup= this.fb.group({nationalityNameAr: new FormControl('', [Validators.required]),
-    nationalityNameEn: new FormControl('', [Validators.required]),
+    nationalityNameEn: new FormControl(''),
     notes: new FormControl(null),})
 @ViewChild('formElement') formElement!: ElementRef;
 

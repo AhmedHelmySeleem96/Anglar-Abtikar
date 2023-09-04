@@ -20,7 +20,7 @@ export class JobsNamesComponent implements OnInit {
     formJob : FormGroup;
       createForm() : FormGroup{
         return this.fb.group({NameAr: new FormControl('', [Validators.required]),
-        NameEn: new FormControl('', [Validators.required]),
+        NameEn: new FormControl(''),
         StatusId:new FormControl('1'),
         notes: new FormControl(null),})
       }

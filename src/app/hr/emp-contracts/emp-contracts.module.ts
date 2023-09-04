@@ -13,6 +13,7 @@ import { EmpContractOldComponent } from './emp-contract-old/emp-contract-old.com
 import { EmpContractsComponent } from './emp-contracts.component';
 import { TabViewModule } from 'primeng/tabview';
 import { FileUploadModule } from 'primeng/fileupload';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -34,8 +35,8 @@ import { FileUploadModule } from 'primeng/fileupload';
     ConfirmDialogModule,
     MessagesModule,
     TabViewModule,
-    FileUploadModule
-
+    FileUploadModule,
+    DialogModule
   ]
 })
 export class EmpContractModule {

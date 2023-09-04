@@ -20,7 +20,7 @@ export class CityPreviewComponent implements OnInit {
   }
   isEdit:boolean= false ;
      formCity :FormGroup= this.fb.group({cityNameAr: new FormControl('', [Validators.required]),
-     cityNameEn: new FormControl('', [Validators.required]),
+     cityNameEn: new FormControl(''),
      countryId :new FormControl('', [Validators.required]),
      notes: new FormControl(null),})
   cityData :any[] = [] ;

@@ -21,7 +21,7 @@ cols :any ;
 deleteId : any ;
 @ViewChild('dt') dt: any;
 formDoc :FormGroup= this.fb.group({docNameAr: new FormControl('', [Validators.required]),
-docNameEn: new FormControl('', [Validators.required]),
+docNameEn: new FormControl(''),
 notes: new FormControl(null),})
 isEdit:boolean= false ;
 @ViewChild('formElement') formElement!: ElementRef;

@@ -32,7 +32,7 @@ orgStructuresData:any[] = [] ;
  createForm(): FormGroup {
   return this.fb.group({
     NameAr: new FormControl('', [Validators.required]),
-    NameEn: new FormControl('', [Validators.required]),
+    NameEn: new FormControl(''),
     ParentId: new FormControl(0),
     LevelId: new FormControl('', [Validators.required]),
     branchId :new FormControl('', [Validators.required]),

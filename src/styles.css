@@ -14,3 +14,14 @@
   text-align: right;
   margin-right: 10px;
 }
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+select.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+.invalid-alert {
+  border: 1px solid red;
+}

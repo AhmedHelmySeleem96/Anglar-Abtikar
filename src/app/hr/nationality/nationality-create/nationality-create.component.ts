@@ -18,7 +18,7 @@ export class NationalityCreateComponent implements OnInit  {
     private XtraAndPosNationalityService :  XtraAndPosNationalityService,private fb:FormBuilder,private route: ActivatedRoute){}
     isEdit:boolean= false ;
     formNationality :FormGroup= this.fb.group({nationalityNameAr: new FormControl('', [Validators.required]),
-    nationalityNameEn: new FormControl('', [Validators.required]),
+    nationalityNameEn: new FormControl(''),
     notes: new FormControl(null),})
     currentNationality :any ;
     ngOnInit(): void {

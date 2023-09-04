@@ -19,7 +19,7 @@ export class CreateCityComponent implements OnInit {
     private fb:FormBuilder,private route: ActivatedRoute){}
     isEdit:boolean= false ;
      formCity :FormGroup= this.fb.group({cityNameAr: new FormControl('', [Validators.required]),
-     cityNameEn: new FormControl('', [Validators.required]),
+     cityNameEn: new FormControl(''),
      countryId :new FormControl('', [Validators.required]),
      notes: new FormControl(null),})
     countryData :any[]= [] ;
