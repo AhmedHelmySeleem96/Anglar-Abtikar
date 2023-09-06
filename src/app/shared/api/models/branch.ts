@@ -6,6 +6,8 @@ export interface Branch {
   activityType?: number;
   additionalStreetName?: null | string;
   address?: null | string;
+  alMhannaItemCode?: boolean;
+  approvalOrdersDrainageTransferred?: boolean;
   barCodeLength?: number;
   barCodeStart?: number;
   branchId?: number;
@@ -14,6 +16,7 @@ export interface Branch {
   branchSignature?: null | string;
   buildingNumber?: null | string;
   buyNumber?: number;
+  buyOfferInBuysinRow?: boolean;
   buySymbole?: null | string;
   cancelBy?: null | string;
   cancelById?: number;
@@ -39,6 +42,7 @@ export interface Branch {
   hideBuyTall?: boolean;
   hideBuyWeight?: boolean;
   hideBuyWide?: boolean;
+  hideColorBuyOffer?: boolean;
   hideDateArrivalBuyOffer?: boolean;
   hideDiscount?: boolean;
   hideDiscountClient?: boolean;
@@ -56,6 +60,7 @@ export interface Branch {
   invoiceThem?: InvoiceThem;
   isActive?: boolean;
   isCanceled?: boolean;
+  isDirectSale?: boolean;
   isMustOpenShift?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;
@@ -91,6 +96,11 @@ export interface Branch {
   schemeId?: null | string;
   sellingWithPricePolicy?: boolean;
   separateUnit?: boolean;
+  separateUnitBuyOffer?: boolean;
+  separateUnitBuyOfferPrice?: boolean;
+  separateUnitBuys?: boolean;
+  separateUnitTransferred?: boolean;
+  seperateSaleOffer?: boolean;
   streetName?: null | string;
   taxNo?: null | string;
   tbL005ID?: number;

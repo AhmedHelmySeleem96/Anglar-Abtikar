@@ -1,33 +1,36 @@
 /* tslint:disable */
 /* eslint-disable */
-import { InitGlType } from './init-gl-type';
-export interface InitGlReceptDetail {
+export interface BuyOfferPriceBalanceDetails {
+  bonus?: boolean;
   branchId?: number;
   branchName?: null | string;
   cancelBy?: null | string;
   cancelById?: number;
   cancelDate?: string;
+  clientDesc?: number;
+  color?: null | string;
+  colorId?: number;
   companyId?: number;
   companyName?: null | string;
-  costCenterCode?: number;
-  costCenterId?: number;
-  costCenterName?: null | string;
+  correctQty?: number;
+  correctWA?: number;
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
-  credit?: number;
-  debit?: number;
+  dateFrom?: string;
+  dateTo?: string;
+  discount?: number;
+  discountPercent?: number;
   docDate?: string;
-  docNo?: number;
   docRefGuid?: string;
-  excelFlag?: number;
+  extraDiscountAmount?: number;
+  extraDiscountPer?: number;
   guid?: string;
   id?: number;
-  initGlReceptId?: number;
-  initGlType?: InitGlType;
   isActive?: boolean;
   isCanceled?: boolean;
   isUpdated?: boolean;
+  itemID?: number;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;
   lastUpdatedDate?: string;
@@ -38,11 +41,22 @@ export interface InitGlReceptDetail {
   nameEn?: null | string;
   no?: number;
   notes?: null | string;
-  objectCode?: null | string;
-  objectGuid?: string;
-  objectId?: number;
-  objectName?: null | string;
-  parentNo?: number;
+  price?: number;
+  productBarcode?: null | string;
+  productCode?: null | string;
+  productGroupGuid?: string;
+  productGuide?: string;
+  productId?: number;
+  quantity?: number;
+  returnedQty?: number;
+  totalDisc?: number;
+  totalPrice?: number;
+  totalPriceAfterDiscount?: number;
+  totalPriceAfterVat?: number;
+  unitDiscount?: number;
+  uniteId?: number;
   updateFlag?: null | string;
   updatedCount?: number;
+  vat?: number;
+  vatAmount?: number;
 }

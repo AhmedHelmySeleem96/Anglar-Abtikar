@@ -250,6 +250,53 @@ export class XtraAndPosItemEpService extends BaseService {
     );
   }
 
+  /** Path part for operation `httpPostExtraAndPosItemItemInfo()` */
+  static readonly HttpPostExtraAndPosItemItemInfoPath = '/ExtraAndPOS_Item/ItemInfo';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostExtraAndPosItemItemInfo()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpPostExtraAndPosItemItemInfo$Response(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosItemEpService.HttpPostExtraAndPosItemItemInfoPath, 'post');
+    if (params) {
+      rb.query('id', params.id, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostExtraAndPosItemItemInfo$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpPostExtraAndPosItemItemInfo(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostExtraAndPosItemItemInfo$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
   /** Path part for operation `httpGetExtraAndPosItemManagementInfo()` */
   static readonly HttpGetExtraAndPosItemManagementInfoPath = '/ExtraAndPOS_Item/ManagementInfo';
 
@@ -754,6 +801,53 @@ export class XtraAndPosItemEpService extends BaseService {
     context?: HttpContext
   ): Observable<void> {
     return this.httpPostItemSendItemList$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetItemSendItemListString()` */
+  static readonly HttpGetItemSendItemListStringPath = '/Item/SendItemListString';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetItemSendItemListString()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpGetItemSendItemListString$Response(
+    params?: {
+      body?: string
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosItemEpService.HttpGetItemSendItemListStringPath, 'get');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetItemSendItemListString$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpGetItemSendItemListString(
+    params?: {
+      body?: string
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetItemSendItemListString$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

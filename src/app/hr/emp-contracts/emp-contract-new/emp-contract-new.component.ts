@@ -56,6 +56,7 @@ periodReadOnly =false ;
 ContractData :any[] = [] ;
 EmployeeData :any[] = [] ;
 allowenceData  :any[] = [] ;
+allowencePaidTimes  :any[] = [] ;
 JobData  :any[] = [] ;
 displayPrivew : boolean = false;
 numberColumns : EmployeeContractDto [] = [] ;
@@ -84,9 +85,8 @@ ngOnInit(): void {
     { field: 'Id', header: 'ContractId' },
     { field: 'CreatedDate', header: 'CreatedDate' },
     { field: 'BranchId', header: 'BranchId' },
-    { field: 'NameAr', header: 'NameAr' },
-    { field: 'NameEn', header: 'NameEn' },
-    { field: 'JobName', header: 'JobName' },
+    { field: 'EmployeeId', header: 'NameAr' },
+    { field: 'JobId', header: 'JobName' },
   ];
   this.searchCols = [
     { field: 'Id', header: 'EmployeeId' },
@@ -158,6 +158,10 @@ getData(){
   this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetStatus().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
     this.statusData = jsonData;
+  });
+  this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetAllowencePaidTimes().subscribe((value:any)=>{
+    let jsonData = JSON.parse(value);
+    this.allowencePaidTimes = jsonData;
   });
   this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetAllowenceTypes().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
@@ -259,6 +263,7 @@ refreshTable() {
   this.XtraAndPosEmployeeContractService.httpGetXtraAndPosEmployeeContractGetEmployeeContractService().subscribe((value: any) => {
     let jsonContractData = JSON.parse(value);
     this.ContractData = jsonContractData.Obj.empContract;
+    console.log(this.ContractData)
   });
 }
 getContract(id :any){
@@ -271,6 +276,9 @@ getBranch(id :any){
   return this.branchData.filter((r)=>r.Id===id)[0]
 }
 
+getEmployee(id :any){
+  return this.EmployeeData.filter((r)=>r.Id===id)[0]
+}
 printPdf() {
   const tableData = this.ContractData.map((contract) => {
     return {
@@ -349,6 +357,7 @@ contractStartDateChange(event :Event){
     return null;
   }
   getJob(id :any){
+    debugger
     return this.JobData.filter((r)=>r.Id===id)[0]
   }
   allowenceValueTypeChange(event:Event){
@@ -402,5 +411,33 @@ if(value==3){
     let columnNames =  this.operationColumns.map(r=>r.id)
     this.inputOperation.nativeElement.value = columnNames.join(opr)
     this.operationColumns = [];
+  }
+
+  onFileSelected(event: any): void {
+    const fileInput = event.target;
+    if (fileInput.files.length > 0) {
+      const selectedFile = fileInput.files[0];
+      if (selectedFile.name.endsWith('.xlsx')) {
+        this.processExcelFile(selectedFile);
+      } else {
+        this.toastr.error('Please select a valid Excel file with .xlsx extension.');
+      }
+    }
+  }
+
+  processExcelFile(file: File): void {
+    const blob = new Blob([file], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+    const requestBody = {
+      body: {
+        file: blob
+      }
+    };
+
+    this.XtraAndPosEmployeeContractService.httpPostXtraAndPosEmployeeContractImportExcel(requestBody).subscribe((value: any) => {
+      let jsonData = JSON.parse(value);
+      this.toastr.success(jsonData);
+      this.refreshTable();
+    });
   }
 }

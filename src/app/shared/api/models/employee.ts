@@ -57,4 +57,5 @@ export interface Employee {
   treasuryId?: number;
   updateFlag?: null | string;
   updatedCount?: number;
+  userName?: null | string;
 }

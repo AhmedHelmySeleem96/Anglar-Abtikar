@@ -1,5 +1,7 @@
 export { AccountingPeriodEpService } from './services/accounting-period-ep.service';
+export { BudgetReportEpService } from './services/budget-report-ep.service';
 export { BuyInvoiceCostsControllerService } from './services/buy-invoice-costs-controller.service';
+export { BuyOfferTransactionEpService } from './services/buy-offer-transaction-ep.service';
 export { CartEpService } from './services/cart-ep.service';
 export { CollectionInvoiceControllerService } from './services/collection-invoice-controller.service';
 export { CurrencyEpService } from './services/currency-ep.service';
@@ -16,6 +18,7 @@ export { ItemUnitEpService } from './services/item-unit-ep.service';
 export { LdgerEpService } from './services/ldger-ep.service';
 export { ManageUserEpService } from './services/manage-user-ep.service';
 export { NotesInvoiceEpService } from './services/notes-invoice-ep.service';
+export { PortalEpService } from './services/portal-ep.service';
 export { PriceListControllerService } from './services/price-list-controller.service';
 export { PricingMangementControlerService } from './services/pricing-mangement-controler.service';
 export { ReportEpService } from './services/report-ep.service';
@@ -39,6 +42,7 @@ export { XtraAndPosDefaultOptionsEpService } from './services/xtra-and-pos-defau
 export { XtraAndPosDocTypesService } from './services/xtra-and-pos-doc-types.service';
 export { XtraAndPosEmployeeContractService } from './services/xtra-and-pos-employee-contract.service';
 export { XtraAndPosEmployeeEpService } from './services/xtra-and-pos-employee-ep.service';
+export { XtraAndPosExchangeRateEpService } from './services/xtra-and-pos-exchange-rate-ep.service';
 export { XtraAndPosFinanceEpService } from './services/xtra-and-pos-finance-ep.service';
 export { XtraAndPosGeneralLedgerEpService } from './services/xtra-and-pos-general-ledger-ep.service';
 export { XtraAndPosHospitalService } from './services/xtra-and-pos-hospital.service';
@@ -52,6 +56,7 @@ export { XtraAndPosLookUpsService } from './services/xtra-and-pos-look-ups.servi
 export { XtraAndPosNationalityService } from './services/xtra-and-pos-nationality.service';
 export { XtraAndPosOrgStructLevelsService } from './services/xtra-and-pos-org-struct-levels.service';
 export { XtraAndPosOrgStructuresService } from './services/xtra-and-pos-org-structures.service';
+export { XtraAndPosResetGlepService } from './services/xtra-and-pos-reset-glep.service';
 export { XtraAndPosReturnSaleInvoiceEpService } from './services/xtra-and-pos-return-sale-invoice-ep.service';
 export { XtraAndPosSaleInvoiceEpService } from './services/xtra-and-pos-sale-invoice-ep.service';
 export { XtraAndPosSaleOfferPricesEpService } from './services/xtra-and-pos-sale-offer-prices-ep.service';

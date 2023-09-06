@@ -21,6 +21,7 @@ export interface Client {
   debt?: number;
   defaultDiscPer?: number;
   delegate?: number;
+  docNo?: null | string;
   docRefGuid?: string;
   firstDate?: string;
   guid?: string;
@@ -28,10 +29,13 @@ export interface Client {
   id?: number;
   isActive?: boolean;
   isCanceled?: boolean;
+  isSubClient?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;
   lastUpdatedDate?: string;
+  mainClientId?: number;
+  mainClientName?: null | string;
   modifyById?: null | string;
   modifyByName?: null | string;
   modifyCount?: number;

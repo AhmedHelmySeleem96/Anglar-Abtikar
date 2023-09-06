@@ -13,6 +13,8 @@ export interface Storage {
   createByName?: null | string;
   createdDate?: string;
   docRefGuid?: string;
+  employeeName?: null | string;
+  employeeUserName?: null | string;
   guid?: string;
   id?: number;
   isActive?: boolean;

@@ -7,8 +7,14 @@
   <h3>{{ "Hr.NewEmpContract" | translate }}</h3>
   <form #formElement [formGroup]="formContract" (ngSubmit)="onSubmit(formContract)" class="form">
     <div class="container">
-      <div class="col-md-3 mb-2 mt-2">
-        <input #inputSearch (input)="onSearchLookup($event)" class="form-control form-control-sm" type="search" placeholder="{{ 'navBar.Search' | translate }}">
+      <div class="row">
+        <div class="col-md-3 mb-2 search">
+          <input #inputSearch (input)="onSearchLookup($event)" class="form-control form-control-sm" type="search" placeholder="{{ 'navBar.Search' | translate }}">
+        </div>
+        <div class="col-md-3 mb-2 mt-2">
+          <label for="fileUpload"><strong >{{ 'Hr.Import' | translate }}</strong></label>
+           <input type="file" id="fileUpload" (change)="onFileSelected($event)" class="form-control-file" >
+         </div>
       </div>
       <p-table *ngIf="searchTableVisible"
       [rowsPerPageOptions]="[5, 10, 15, 20]"
@@ -124,28 +130,34 @@
     </p-tabPanel>
     <p-tabPanel header="{{ 'Hr.Allowencenav' | translate }}">
       <div class="row">
-        <div class="form-group col-md-4 mt-5">
-          <label for="allowenceId">{{ 'Hr.AllowenceId' | translate }}</label>
+        <div class="form-group col-md-3 mt-5">
+          <label for="allowenceId">{{ 'Hr.Allowencenav' | translate }}</label>
           <select  id="allowenceId" formControlName="allowenceId" class="form-control">
           <option  value="" disabled selected>{{ 'Hr.Allowencenav' | translate }}</option>
           <option *ngFor="let item of allowenceData " [value]="item.Id">{{ item.NameAr }}</option>
         </select>
         </div>
-        <div class="form-group col-md-4 mt-5">
+        <div class="form-group col-md-3 mt-5">
           <label for="allowenceType">{{ 'Hr.AllowenceType' | translate }}</label>
           <select  id="allowenceType" formControlName="allowenceType" class="form-control">
           <option  value="" disabled selected>{{ 'Hr.AllowenceType' | translate }}</option>
           <option *ngFor="let item of allowenceTypeData " [value]="item.id">{{ item.name }}</option>
         </select>
         </div>
-        <div class="form-group col-md-4 mt-5">
+        <div class="form-group col-md-3 mt-5">
           <label for="allowenceValueType">{{ 'Hr.AllowenceValueType' | translate }}</label>
               <select (change)="allowenceValueTypeChange($event)" id="allowenceValueType" formControlName="allowenceValueType" class="form-control">
               <option  value="" disabled selected>{{ 'Hr.AllowenceValueType' | translate }}</option>
               <option  *ngFor="let item of allowenceValueTypeData " [value]="item.id">{{ item.name }}</option>
             </select>
         </div>
-
+        <div class="form-group col-md-3 mt-5">
+          <label for="allowencePaidTimeId">{{ 'Hr.AllowencePaidTimeId' | translate }}</label>
+          <select  id="allowencePaidTimeId" formControlName="allowencePaidTimeId" class="form-control">
+          <option  value="" disabled selected>{{ 'Hr.AllowencePaidTimeId' | translate }}</option>
+          <option *ngFor="let item of allowencePaidTimes " [value]="item.Id">{{ item.name }}</option>
+        </select>
+        </div>
       </div>
       <div class="row">
         <div *ngIf="displayOperation" class="mt-2 text-center col-md-4 mt-5">
@@ -205,7 +217,14 @@
           <span class="table-data" *ngIf="col.field == 'BranchId'">
             {{ getBranch(Contract[col.field])?.NameAr }}
           </span>
-          <span class="table-data" *ngIf="col.field != 'CreatedDate'&&col.field != 'ContractCategoryId' &&col.field != 'BranchId' && col.field != 'StatusId'  ">
+          <span class="table-data" *ngIf="col.field == 'EmployeeId'">
+            {{ getEmployee(Contract[col.field])?.NameAr }}
+          </span>
+          <span class="table-data" *ngIf="col.field == 'JobId'">
+            {{ getJob(Contract[col.field])?.NameAr }}
+          </span>
+          <span class="table-data" *ngIf="col.field != 'CreatedDate'&&col.field != 'ContractCategoryId' &&col.field != 'BranchId' && col.field != 'StatusId'
+          && col.field != 'EmployeeId'&& col.field != 'JobId'    ">
             {{ Contract[col.field] }}
           </span>
         </td>
@@ -225,10 +244,10 @@
 </div>
 </div>
 <div class="mt-2 text-center">
-  <button type="submit" (click)="onSubmit(formContract)" class="btn btn-success" >{{ 'Save' | translate }}</button>
-  <button  (click)="printPdf()" class="btn btn-info" >{{"Hr.Print" | translate}}</button>
-  <button  (click)="exportData()" class="btn btn-info" id="viewBtn">{{"Hr.Export" | translate}}</button>
-  <button (click)="goHome()" class="btn btn-warning Dnone" id="editBtn">{{"Cancel" | translate}}</button>
+  <button type="submit" (click)="onSubmit(formContract)" class="btn btn-success ms-2" >{{ 'Save' | translate }}</button>
+  <button  (click)="printPdf()" class="btn btn-info ms-2" >{{"Hr.Print" | translate}}</button>
+  <button  (click)="exportData()" class="btn btn-info ms-2" id="viewBtn">{{"Hr.Export" | translate}}</button>
+  <button (click)="goHome()" class="btn btn-warning Dnone ms-2" id="editBtn">{{"Cancel" | translate}}</button>
 </div>
 
 
@@ -278,3 +297,4 @@
         <button  type="button" (click)="confirmOperation()" class="btn-ok">OK</button>
       </p-footer>
     </p-dialog>
+

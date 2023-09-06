@@ -10,29 +10,123 @@ import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 import { RequestBuilder } from '../request-builder';
 
-import { LdgerDto } from '../models/ldger-dto';
+import { LoginVm } from '../models/login-vm';
 
 @Injectable({ providedIn: 'root' })
-export class LdgerEpService extends BaseService {
+export class PortalEpService extends BaseService {
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
   }
 
-  /** Path part for operation `httpGetLdgerLdgerInfo()` */
-  static readonly HttpGetLdgerLdgerInfoPath = '/Ldger/LdgerInfo';
+  /** Path part for operation `httpGetPortalExport()` */
+  static readonly HttpGetPortalExportPath = '/Portal/Export';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `httpGetLdgerLdgerInfo()` instead.
+   * To access only the response body, use `httpGetPortalExport()` instead.
    *
    * This method doesn't expect any request body.
    */
-  httpGetLdgerLdgerInfo$Response(
+  httpGetPortalExport$Response(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, PortalEpService.HttpGetPortalExportPath, 'get');
+    if (params) {
+      rb.query('id', params.id, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetPortalExport$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetPortalExport(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetPortalExport$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetPortalSend()` */
+  static readonly HttpGetPortalSendPath = '/Portal/Send';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetPortalSend()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetPortalSend$Response(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, PortalEpService.HttpGetPortalSendPath, 'get');
+    if (params) {
+      rb.query('id', params.id, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetPortalSend$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetPortalSend(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetPortalSend$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetPortalIsLoggedIn()` */
+  static readonly HttpGetPortalIsLoggedInPath = '/Portal/IsLoggedIn';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetPortalIsLoggedIn()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetPortalIsLoggedIn$Response(
     params?: {
     },
     context?: HttpContext
   ): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(this.rootUrl, LdgerEpService.HttpGetLdgerLdgerInfoPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, PortalEpService.HttpGetPortalIsLoggedInPath, 'get');
     if (params) {
     }
 
@@ -48,36 +142,36 @@ export class LdgerEpService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `httpGetLdgerLdgerInfo$Response()` instead.
+   * To access the full response (for headers, for example), `httpGetPortalIsLoggedIn$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  httpGetLdgerLdgerInfo(
+  httpGetPortalIsLoggedIn(
     params?: {
     },
     context?: HttpContext
   ): Observable<void> {
-    return this.httpGetLdgerLdgerInfo$Response(params, context).pipe(
+    return this.httpGetPortalIsLoggedIn$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
 
-  /** Path part for operation `httpPostLdgerAccBalance()` */
-  static readonly HttpPostLdgerAccBalancePath = '/Ldger/AccBalance';
+  /** Path part for operation `httpPostPortalLogin()` */
+  static readonly HttpPostPortalLoginPath = '/Portal/Login';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `httpPostLdgerAccBalance()` instead.
+   * To access only the response body, use `httpPostPortalLogin()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  httpPostLdgerAccBalance$Response(
+  httpPostPortalLogin$Response(
     params?: {
-      body?: LdgerDto
+      body?: LoginVm
     },
     context?: HttpContext
   ): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(this.rootUrl, LdgerEpService.HttpPostLdgerAccBalancePath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, PortalEpService.HttpPostPortalLoginPath, 'post');
     if (params) {
       rb.body(params.body, 'application/json');
     }
@@ -94,37 +188,81 @@ export class LdgerEpService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `httpPostLdgerAccBalance$Response()` instead.
+   * To access the full response (for headers, for example), `httpPostPortalLogin$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  httpPostLdgerAccBalance(
+  httpPostPortalLogin(
     params?: {
-      body?: LdgerDto
+      body?: LoginVm
     },
     context?: HttpContext
   ): Observable<void> {
-    return this.httpPostLdgerAccBalance$Response(params, context).pipe(
+    return this.httpPostPortalLogin$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
 
-  /** Path part for operation `httpPostLdgerAccTransaction()` */
-  static readonly HttpPostLdgerAccTransactionPath = '/Ldger/AccTransaction';
+  /** Path part for operation `httpGetPortalLogout()` */
+  static readonly HttpGetPortalLogoutPath = '/Portal/Logout';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `httpPostLdgerAccTransaction()` instead.
+   * To access only the response body, use `httpGetPortalLogout()` instead.
    *
-   * This method sends `application/json` and handles request body of type `application/json`.
+   * This method doesn't expect any request body.
    */
-  httpPostLdgerAccTransaction$Response(
+  httpGetPortalLogout$Response(
     params?: {
-      body?: LdgerDto
     },
     context?: HttpContext
   ): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(this.rootUrl, LdgerEpService.HttpPostLdgerAccTransactionPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, PortalEpService.HttpGetPortalLogoutPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetPortalLogout$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetPortalLogout(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetPortalLogout$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPostPortalSendList()` */
+  static readonly HttpPostPortalSendListPath = '/Portal/SendList';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostPortalSendList()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostPortalSendList$Response(
+    params?: {
+      body?: Array<number>
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, PortalEpService.HttpPostPortalSendListPath, 'post');
     if (params) {
       rb.body(params.body, 'application/json');
     }
@@ -141,36 +279,36 @@ export class LdgerEpService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `httpPostLdgerAccTransaction$Response()` instead.
+   * To access the full response (for headers, for example), `httpPostPortalSendList$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  httpPostLdgerAccTransaction(
+  httpPostPortalSendList(
     params?: {
-      body?: LdgerDto
+      body?: Array<number>
     },
     context?: HttpContext
   ): Observable<void> {
-    return this.httpPostLdgerAccTransaction$Response(params, context).pipe(
+    return this.httpPostPortalSendList$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
 
-  /** Path part for operation `httpGetLdgerResetReturnBuys()` */
-  static readonly HttpGetLdgerResetReturnBuysPath = '/Ldger/ResetReturnBuys';
+  /** Path part for operation `httpPostPortalNotSentList()` */
+  static readonly HttpPostPortalNotSentListPath = '/Portal/NotSentList';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `httpGetLdgerResetReturnBuys()` instead.
+   * To access only the response body, use `httpPostPortalNotSentList()` instead.
    *
    * This method doesn't expect any request body.
    */
-  httpGetLdgerResetReturnBuys$Response(
+  httpPostPortalNotSentList$Response(
     params?: {
     },
     context?: HttpContext
   ): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(this.rootUrl, LdgerEpService.HttpGetLdgerResetReturnBuysPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, PortalEpService.HttpPostPortalNotSentListPath, 'post');
     if (params) {
     }
 
@@ -186,35 +324,35 @@ export class LdgerEpService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `httpGetLdgerResetReturnBuys$Response()` instead.
+   * To access the full response (for headers, for example), `httpPostPortalNotSentList$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  httpGetLdgerResetReturnBuys(
+  httpPostPortalNotSentList(
     params?: {
     },
     context?: HttpContext
   ): Observable<void> {
-    return this.httpGetLdgerResetReturnBuys$Response(params, context).pipe(
+    return this.httpPostPortalNotSentList$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
 
-  /** Path part for operation `httpGetLdgerResetReturnSales()` */
-  static readonly HttpGetLdgerResetReturnSalesPath = '/Ldger/ResetReturnSales';
+  /** Path part for operation `httpGetPortalManagementInfo()` */
+  static readonly HttpGetPortalManagementInfoPath = '/Portal/ManagementInfo';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `httpGetLdgerResetReturnSales()` instead.
+   * To access only the response body, use `httpGetPortalManagementInfo()` instead.
    *
    * This method doesn't expect any request body.
    */
-  httpGetLdgerResetReturnSales$Response(
+  httpGetPortalManagementInfo$Response(
     params?: {
     },
     context?: HttpContext
   ): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(this.rootUrl, LdgerEpService.HttpGetLdgerResetReturnSalesPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, PortalEpService.HttpGetPortalManagementInfoPath, 'get');
     if (params) {
     }
 
@@ -230,148 +368,16 @@ export class LdgerEpService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `httpGetLdgerResetReturnSales$Response()` instead.
+   * To access the full response (for headers, for example), `httpGetPortalManagementInfo$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  httpGetLdgerResetReturnSales(
+  httpGetPortalManagementInfo(
     params?: {
     },
     context?: HttpContext
   ): Observable<void> {
-    return this.httpGetLdgerResetReturnSales$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
-    );
-  }
-
-  /** Path part for operation `httpGetLdgerResetBuys()` */
-  static readonly HttpGetLdgerResetBuysPath = '/Ldger/ResetBuys';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `httpGetLdgerResetBuys()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  httpGetLdgerResetBuys$Response(
-    params?: {
-    },
-    context?: HttpContext
-  ): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(this.rootUrl, LdgerEpService.HttpGetLdgerResetBuysPath, 'get');
-    if (params) {
-    }
-
-    return this.http.request(
-      rb.build({ responseType: 'text', accept: '*/*', context })
-    ).pipe(
-      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `httpGetLdgerResetBuys$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  httpGetLdgerResetBuys(
-    params?: {
-    },
-    context?: HttpContext
-  ): Observable<void> {
-    return this.httpGetLdgerResetBuys$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
-    );
-  }
-
-  /** Path part for operation `httpGetLdgerResetSales()` */
-  static readonly HttpGetLdgerResetSalesPath = '/Ldger/ResetSales';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `httpGetLdgerResetSales()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  httpGetLdgerResetSales$Response(
-    params?: {
-    },
-    context?: HttpContext
-  ): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(this.rootUrl, LdgerEpService.HttpGetLdgerResetSalesPath, 'get');
-    if (params) {
-    }
-
-    return this.http.request(
-      rb.build({ responseType: 'text', accept: '*/*', context })
-    ).pipe(
-      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `httpGetLdgerResetSales$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  httpGetLdgerResetSales(
-    params?: {
-    },
-    context?: HttpContext
-  ): Observable<void> {
-    return this.httpGetLdgerResetSales$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
-    );
-  }
-
-  /** Path part for operation `httpGetLdgerResetGl()` */
-  static readonly HttpGetLdgerResetGlPath = '/Ldger/ResetGl';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `httpGetLdgerResetGl()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  httpGetLdgerResetGl$Response(
-    params?: {
-    },
-    context?: HttpContext
-  ): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(this.rootUrl, LdgerEpService.HttpGetLdgerResetGlPath, 'get');
-    if (params) {
-    }
-
-    return this.http.request(
-      rb.build({ responseType: 'text', accept: '*/*', context })
-    ).pipe(
-      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `httpGetLdgerResetGl$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  httpGetLdgerResetGl(
-    params?: {
-    },
-    context?: HttpContext
-  ): Observable<void> {
-    return this.httpGetLdgerResetGl$Response(params, context).pipe(
+    return this.httpGetPortalManagementInfo$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

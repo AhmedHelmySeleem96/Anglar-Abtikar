@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { ItemImage } from './item-image';
+import { ItemInStorageDetails } from './item-in-storage-details';
 import { ItemPlace } from './item-place';
 import { ItemSpare } from './item-spare';
 export interface ItemUnit {
@@ -11,6 +12,8 @@ export interface ItemUnit {
   cancelById?: number;
   cancelDate?: string;
   code?: null | string;
+  color?: null | string;
+  colorId?: number;
   companyId?: number;
   companyName?: null | string;
   createById?: null | string;
@@ -31,6 +34,7 @@ export interface ItemUnit {
   itemGroupId?: number;
   itemId?: number;
   itemImages?: null | Array<ItemImage>;
+  itemInStorageDetails?: null | Array<ItemInStorageDetails>;
   itemPlace?: ItemPlace;
   itemsSpare?: null | Array<ItemSpare>;
   lastModifiedDate?: string;

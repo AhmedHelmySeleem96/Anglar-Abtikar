@@ -1,6 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface IncomeListDetails {
+  accTreeExpensesId?: number;
+  accTreeIncomeId?: number;
   branchId?: number;
   branchName?: null | string;
   cancelBy?: null | string;

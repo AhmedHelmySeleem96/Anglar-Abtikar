@@ -18,6 +18,7 @@ export interface StorageOpenDetailsDto {
   discount?: number;
   discountPercent?: number;
   docRefGuid?: string;
+  excelflag?: number;
   extraDiscountAmount?: number;
   extraDiscountPer?: number;
   guid?: string;

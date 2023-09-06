@@ -11,6 +11,7 @@ import { StrictHttpResponse } from '../strict-http-response';
 import { RequestBuilder } from '../request-builder';
 
 import { ItemBalanceStorageDto } from '../models/item-balance-storage-dto';
+import { ItemColor } from '../models/item-color';
 import { RequestResult } from '../models/request-result';
 import { SearchStorage } from '../models/search-storage';
 import { Storage } from '../models/storage';
@@ -18,6 +19,7 @@ import { StorageOpenDto } from '../models/storage-open-dto';
 import { StoreAdjustment } from '../models/store-adjustment';
 import { StoreAdjustmentUploadedFile } from '../models/store-adjustment-uploaded-file';
 import { Transfer } from '../models/transfer';
+import { TransferBuilding } from '../models/transfer-building';
 
 @Injectable({ providedIn: 'root' })
 export class XtraAndPosStorageEpService extends BaseService {
@@ -674,6 +676,53 @@ export class XtraAndPosStorageEpService extends BaseService {
     );
   }
 
+  /** Path part for operation `httpPutExtraAndPosStorageTransferApprovalTransferBuilding()` */
+  static readonly HttpPutExtraAndPosStorageTransferApprovalTransferBuildingPath = '/ExtraAndPOS_StorageTransfer/ApprovalTransferBuilding';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPutExtraAndPosStorageTransferApprovalTransferBuilding()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPutExtraAndPosStorageTransferApprovalTransferBuilding$Response(
+    params?: {
+      body?: TransferBuilding
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosStorageEpService.HttpPutExtraAndPosStorageTransferApprovalTransferBuildingPath, 'put');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPutExtraAndPosStorageTransferApprovalTransferBuilding$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPutExtraAndPosStorageTransferApprovalTransferBuilding(
+    params?: {
+      body?: TransferBuilding
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPutExtraAndPosStorageTransferApprovalTransferBuilding$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
   /** Path part for operation `httpDeleteExtraAndPosDeleteOpenStorageDelete()` */
   static readonly HttpDeleteExtraAndPosDeleteOpenStorageDeletePath = '/ExtraAndPOS_DeleteOpenStorage/Delete';
 
@@ -1181,6 +1230,191 @@ export class XtraAndPosStorageEpService extends BaseService {
     context?: HttpContext
   ): Observable<void> {
     return this.httpGetExtraAndPosStorageGetItemBalanceAllStore$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetExtraAndPosStorageItemColorAll()` */
+  static readonly HttpGetExtraAndPosStorageItemColorAllPath = '/ExtraAndPOS_Storage/ItemColorAll';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetExtraAndPosStorageItemColorAll()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetExtraAndPosStorageItemColorAll$Response(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosStorageEpService.HttpGetExtraAndPosStorageItemColorAllPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetExtraAndPosStorageItemColorAll$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetExtraAndPosStorageItemColorAll(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetExtraAndPosStorageItemColorAll$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPostExtraAndPosStorageItemColorCreate()` */
+  static readonly HttpPostExtraAndPosStorageItemColorCreatePath = '/ExtraAndPOS_Storage/ItemColorCreate';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostExtraAndPosStorageItemColorCreate()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosStorageItemColorCreate$Response(
+    params?: {
+      body?: ItemColor
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosStorageEpService.HttpPostExtraAndPosStorageItemColorCreatePath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostExtraAndPosStorageItemColorCreate$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosStorageItemColorCreate(
+    params?: {
+      body?: ItemColor
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostExtraAndPosStorageItemColorCreate$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPostExtraAndPosStorageItemColorUpdate()` */
+  static readonly HttpPostExtraAndPosStorageItemColorUpdatePath = '/ExtraAndPOS_Storage/ItemColorUpdate';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostExtraAndPosStorageItemColorUpdate()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosStorageItemColorUpdate$Response(
+    params?: {
+      body?: ItemColor
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosStorageEpService.HttpPostExtraAndPosStorageItemColorUpdatePath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostExtraAndPosStorageItemColorUpdate$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosStorageItemColorUpdate(
+    params?: {
+      body?: ItemColor
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostExtraAndPosStorageItemColorUpdate$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpDeleteExtraAndPosStorageItemColorDelete()` */
+  static readonly HttpDeleteExtraAndPosStorageItemColorDeletePath = '/ExtraAndPOS_Storage/ItemColorDelete';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpDeleteExtraAndPosStorageItemColorDelete()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpDeleteExtraAndPosStorageItemColorDelete$Response(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosStorageEpService.HttpDeleteExtraAndPosStorageItemColorDeletePath, 'delete');
+    if (params) {
+      rb.query('id', params.id, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpDeleteExtraAndPosStorageItemColorDelete$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpDeleteExtraAndPosStorageItemColorDelete(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpDeleteExtraAndPosStorageItemColorDelete$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

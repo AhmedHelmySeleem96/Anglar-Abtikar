@@ -5,11 +5,13 @@ export interface BuyInvoiceDetails {
   branchId?: number;
   branchName?: null | string;
   buyInvoiceId?: number;
+  buyOfferOfferRow?: number;
   cancelBy?: null | string;
   cancelById?: number;
   cancelDate?: string;
   clientDesc?: number;
   color?: null | string;
+  colorId?: number;
   companyId?: number;
   companyName?: null | string;
   correctQty?: number;

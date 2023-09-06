@@ -5,7 +5,9 @@ import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { AccountingPeriodEpService } from './services/accounting-period-ep.service';
+import { BudgetReportEpService } from './services/budget-report-ep.service';
 import { BuyInvoiceCostsControllerService } from './services/buy-invoice-costs-controller.service';
+import { BuyOfferTransactionEpService } from './services/buy-offer-transaction-ep.service';
 import { CartEpService } from './services/cart-ep.service';
 import { CollectionInvoiceControllerService } from './services/collection-invoice-controller.service';
 import { CurrencyEpService } from './services/currency-ep.service';
@@ -22,6 +24,7 @@ import { ItemUnitEpService } from './services/item-unit-ep.service';
 import { LdgerEpService } from './services/ldger-ep.service';
 import { ManageUserEpService } from './services/manage-user-ep.service';
 import { NotesInvoiceEpService } from './services/notes-invoice-ep.service';
+import { PortalEpService } from './services/portal-ep.service';
 import { PriceListControllerService } from './services/price-list-controller.service';
 import { PricingMangementControlerService } from './services/pricing-mangement-controler.service';
 import { ReportEpService } from './services/report-ep.service';
@@ -45,6 +48,7 @@ import { XtraAndPosDefaultOptionsEpService } from './services/xtra-and-pos-defau
 import { XtraAndPosDocTypesService } from './services/xtra-and-pos-doc-types.service';
 import { XtraAndPosEmployeeContractService } from './services/xtra-and-pos-employee-contract.service';
 import { XtraAndPosEmployeeEpService } from './services/xtra-and-pos-employee-ep.service';
+import { XtraAndPosExchangeRateEpService } from './services/xtra-and-pos-exchange-rate-ep.service';
 import { XtraAndPosFinanceEpService } from './services/xtra-and-pos-finance-ep.service';
 import { XtraAndPosGeneralLedgerEpService } from './services/xtra-and-pos-general-ledger-ep.service';
 import { XtraAndPosHospitalService } from './services/xtra-and-pos-hospital.service';
@@ -58,6 +62,7 @@ import { XtraAndPosLookUpsService } from './services/xtra-and-pos-look-ups.servi
 import { XtraAndPosNationalityService } from './services/xtra-and-pos-nationality.service';
 import { XtraAndPosOrgStructLevelsService } from './services/xtra-and-pos-org-struct-levels.service';
 import { XtraAndPosOrgStructuresService } from './services/xtra-and-pos-org-structures.service';
+import { XtraAndPosResetGlepService } from './services/xtra-and-pos-reset-glep.service';
 import { XtraAndPosReturnSaleInvoiceEpService } from './services/xtra-and-pos-return-sale-invoice-ep.service';
 import { XtraAndPosSaleInvoiceEpService } from './services/xtra-and-pos-sale-invoice-ep.service';
 import { XtraAndPosSaleOfferPricesEpService } from './services/xtra-and-pos-sale-offer-prices-ep.service';
@@ -78,7 +83,9 @@ import { XtraAndPosWorkCardService } from './services/xtra-and-pos-work-card.ser
   declarations: [],
   providers: [
     AccountingPeriodEpService,
+    BudgetReportEpService,
     BuyInvoiceCostsControllerService,
+    BuyOfferTransactionEpService,
     CartEpService,
     CollectionInvoiceControllerService,
     CurrencyEpService,
@@ -95,6 +102,7 @@ import { XtraAndPosWorkCardService } from './services/xtra-and-pos-work-card.ser
     LdgerEpService,
     ManageUserEpService,
     NotesInvoiceEpService,
+    PortalEpService,
     PriceListControllerService,
     PricingMangementControlerService,
     ReportEpService,
@@ -118,6 +126,7 @@ import { XtraAndPosWorkCardService } from './services/xtra-and-pos-work-card.ser
     XtraAndPosDocTypesService,
     XtraAndPosEmployeeContractService,
     XtraAndPosEmployeeEpService,
+    XtraAndPosExchangeRateEpService,
     XtraAndPosFinanceEpService,
     XtraAndPosGeneralLedgerEpService,
     XtraAndPosHospitalService,
@@ -131,6 +140,7 @@ import { XtraAndPosWorkCardService } from './services/xtra-and-pos-work-card.ser
     XtraAndPosNationalityService,
     XtraAndPosOrgStructLevelsService,
     XtraAndPosOrgStructuresService,
+    XtraAndPosResetGlepService,
     XtraAndPosReturnSaleInvoiceEpService,
     XtraAndPosSaleInvoiceEpService,
     XtraAndPosSaleOfferPricesEpService,

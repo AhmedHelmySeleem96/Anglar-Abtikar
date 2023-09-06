@@ -1,16 +1,14 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface BuyOfferPriceDetails {
+import { TransferStatus } from './transfer-status';
+export interface TransferDetailsBuilding {
   bonus?: boolean;
   branchId?: number;
   branchName?: null | string;
-  buyOfferPriceId?: number;
   cancelBy?: null | string;
   cancelById?: number;
   cancelDate?: string;
   clientDesc?: number;
-  color?: null | string;
-  colorId?: number;
   companyId?: number;
   companyName?: null | string;
   correctQty?: number;
@@ -20,7 +18,6 @@ export interface BuyOfferPriceDetails {
   createdDate?: string;
   discount?: number;
   discountPercent?: number;
-  docDate?: string;
   docRefGuid?: string;
   extraDiscountAmount?: number;
   extraDiscountPer?: number;
@@ -29,6 +26,7 @@ export interface BuyOfferPriceDetails {
   isActive?: boolean;
   isCanceled?: boolean;
   isUpdated?: boolean;
+  itemBalance?: number;
   itemID?: number;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;
@@ -47,11 +45,14 @@ export interface BuyOfferPriceDetails {
   productGuide?: string;
   productId?: number;
   quantity?: number;
+  receivedQty?: number;
   returnedQty?: number;
   totalDisc?: number;
   totalPrice?: number;
   totalPriceAfterDiscount?: number;
   totalPriceAfterVat?: number;
+  transferId?: number;
+  transferStatus?: TransferStatus;
   unitDiscount?: number;
   uniteId?: number;
   updateFlag?: null | string;

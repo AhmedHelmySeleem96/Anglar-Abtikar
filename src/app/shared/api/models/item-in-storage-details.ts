@@ -1,7 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-import { InitGlType } from './init-gl-type';
-export interface InitGlReceptDetail {
+export interface ItemInStorageDetails {
   branchId?: number;
   branchName?: null | string;
   cancelBy?: null | string;
@@ -9,28 +8,22 @@ export interface InitGlReceptDetail {
   cancelDate?: string;
   companyId?: number;
   companyName?: null | string;
-  costCenterCode?: number;
-  costCenterId?: number;
-  costCenterName?: null | string;
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
-  credit?: number;
-  debit?: number;
-  docDate?: string;
-  docNo?: number;
   docRefGuid?: string;
-  excelFlag?: number;
   guid?: string;
   id?: number;
-  initGlReceptId?: number;
-  initGlType?: InitGlType;
   isActive?: boolean;
   isCanceled?: boolean;
   isUpdated?: boolean;
+  itemId?: number;
+  itemUnitId?: number;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;
   lastUpdatedDate?: string;
+  maxQuantity?: number;
+  minQuantity?: number;
   modifyById?: null | string;
   modifyByName?: null | string;
   modifyCount?: number;
@@ -38,11 +31,7 @@ export interface InitGlReceptDetail {
   nameEn?: null | string;
   no?: number;
   notes?: null | string;
-  objectCode?: null | string;
-  objectGuid?: string;
-  objectId?: number;
-  objectName?: null | string;
-  parentNo?: number;
+  storeId?: number;
   updateFlag?: null | string;
   updatedCount?: number;
 }

@@ -11,6 +11,7 @@ import { StrictHttpResponse } from '../strict-http-response';
 import { RequestBuilder } from '../request-builder';
 
 import { ReportLayout } from '../models/report-layout';
+import { SearchBase } from '../models/search-base';
 import { SearchModel } from '../models/search-model';
 
 @Injectable({ providedIn: 'root' })
@@ -912,24 +913,26 @@ export class ReportEpService extends BaseService {
     );
   }
 
-  /** Path part for operation `httpGetIncomeStatementIncomeStatement()` */
-  static readonly HttpGetIncomeStatementIncomeStatementPath = '/IncomeStatement/IncomeStatement';
+  /** Path part for operation `httpGetIncomeStatementIncomeStatementPrint()` */
+  static readonly HttpGetIncomeStatementIncomeStatementPrintPath = '/IncomeStatement/IncomeStatementPrint';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `httpGetIncomeStatementIncomeStatement()` instead.
+   * To access only the response body, use `httpGetIncomeStatementIncomeStatementPrint()` instead.
    *
    * This method doesn't expect any request body.
    */
-  httpGetIncomeStatementIncomeStatement$Response(
-    params: {
-      id: number;
+  httpGetIncomeStatementIncomeStatementPrint$Response(
+    params?: {
+      FromDate?: string;
+      ToDate?: string;
     },
     context?: HttpContext
   ): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(this.rootUrl, ReportEpService.HttpGetIncomeStatementIncomeStatementPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, ReportEpService.HttpGetIncomeStatementIncomeStatementPrintPath, 'get');
     if (params) {
-      rb.query('id', params.id, {"style":"form"});
+      rb.query('FromDate', params.FromDate, {"style":"form"});
+      rb.query('ToDate', params.ToDate, {"style":"form"});
     }
 
     return this.http.request(
@@ -944,17 +947,112 @@ export class ReportEpService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `httpGetIncomeStatementIncomeStatement$Response()` instead.
+   * To access the full response (for headers, for example), `httpGetIncomeStatementIncomeStatementPrint$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  httpGetIncomeStatementIncomeStatement(
-    params: {
-      id: number;
+  httpGetIncomeStatementIncomeStatementPrint(
+    params?: {
+      FromDate?: string;
+      ToDate?: string;
     },
     context?: HttpContext
   ): Observable<void> {
-    return this.httpGetIncomeStatementIncomeStatement$Response(params, context).pipe(
+    return this.httpGetIncomeStatementIncomeStatementPrint$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPostBudgetReportPrint()` */
+  static readonly HttpPostBudgetReportPrintPath = '/BudgetReport/Print';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostBudgetReportPrint()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostBudgetReportPrint$Response(
+    params?: {
+      body?: SearchBase
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, ReportEpService.HttpPostBudgetReportPrintPath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostBudgetReportPrint$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostBudgetReportPrint(
+    params?: {
+      body?: SearchBase
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostBudgetReportPrint$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPostBudgetBalanceReportPrint()` */
+  static readonly HttpPostBudgetBalanceReportPrintPath = '/BudgetBalanceReport/Print';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostBudgetBalanceReportPrint()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostBudgetBalanceReportPrint$Response(
+    params?: {
+      body?: SearchBase
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, ReportEpService.HttpPostBudgetBalanceReportPrintPath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostBudgetBalanceReportPrint$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostBudgetBalanceReportPrint(
+    params?: {
+      body?: SearchBase
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostBudgetBalanceReportPrint$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

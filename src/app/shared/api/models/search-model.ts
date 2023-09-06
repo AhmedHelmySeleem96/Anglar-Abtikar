@@ -24,4 +24,5 @@ export interface SearchModel {
   storeID?: number;
   toDate?: string;
   userId?: string;
+  weight?: number;
 }

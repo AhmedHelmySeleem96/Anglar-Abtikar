@@ -9,4 +9,5 @@ export interface SearchStorage {
   pricingID?: number;
   storeId?: number;
   toDate?: string;
+  weight?: number;
 }

@@ -12,6 +12,7 @@ import { RequestBuilder } from '../request-builder';
 
 import { Client } from '../models/client';
 import { ClientGroupManagment } from '../models/client-group-managment';
+import { ClientItems } from '../models/client-items';
 
 @Injectable({ providedIn: 'root' })
 export class XtraAndPosClientEpService extends BaseService {
@@ -248,6 +249,53 @@ export class XtraAndPosClientEpService extends BaseService {
     );
   }
 
+  /** Path part for operation `httpGetExtraAndPosClientGetByDocNo()` */
+  static readonly HttpGetExtraAndPosClientGetByDocNoPath = '/ExtraAndPOS_Client/GetByDocNo';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetExtraAndPosClientGetByDocNo()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetExtraAndPosClientGetByDocNo$Response(
+    params?: {
+      DocNo?: string;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosClientEpService.HttpGetExtraAndPosClientGetByDocNoPath, 'get');
+    if (params) {
+      rb.query('DocNo', params.DocNo, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetExtraAndPosClientGetByDocNo$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetExtraAndPosClientGetByDocNo(
+    params?: {
+      DocNo?: string;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetExtraAndPosClientGetByDocNo$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
   /** Path part for operation `httpGetExtraAndPosClientGetExtraById()` */
   static readonly HttpGetExtraAndPosClientGetExtraByIdPath = '/ExtraAndPOS_Client/GetExtraById';
 
@@ -479,6 +527,191 @@ export class XtraAndPosClientEpService extends BaseService {
     context?: HttpContext
   ): Observable<void> {
     return this.httpDeleteExtraAndPosClientDeleteClientGroupManagment$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetExtraAndPosClientClienItemsInfo()` */
+  static readonly HttpGetExtraAndPosClientClienItemsInfoPath = '/ExtraAndPOS_Client/ClienItemsInfo';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetExtraAndPosClientClienItemsInfo()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetExtraAndPosClientClienItemsInfo$Response(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosClientEpService.HttpGetExtraAndPosClientClienItemsInfoPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetExtraAndPosClientClienItemsInfo$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetExtraAndPosClientClienItemsInfo(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetExtraAndPosClientClienItemsInfo$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPostExtraAndPosClientCreateClienItems()` */
+  static readonly HttpPostExtraAndPosClientCreateClienItemsPath = '/ExtraAndPOS_Client/CreateClienItems';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostExtraAndPosClientCreateClienItems()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosClientCreateClienItems$Response(
+    params?: {
+      body?: ClientItems
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosClientEpService.HttpPostExtraAndPosClientCreateClienItemsPath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostExtraAndPosClientCreateClienItems$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosClientCreateClienItems(
+    params?: {
+      body?: ClientItems
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostExtraAndPosClientCreateClienItems$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPutExtraAndPosClientUpdateClienItems()` */
+  static readonly HttpPutExtraAndPosClientUpdateClienItemsPath = '/ExtraAndPOS_Client/UpdateClienItems';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPutExtraAndPosClientUpdateClienItems()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPutExtraAndPosClientUpdateClienItems$Response(
+    params?: {
+      body?: ClientItems
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosClientEpService.HttpPutExtraAndPosClientUpdateClienItemsPath, 'put');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPutExtraAndPosClientUpdateClienItems$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPutExtraAndPosClientUpdateClienItems(
+    params?: {
+      body?: ClientItems
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPutExtraAndPosClientUpdateClienItems$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpDeleteExtraAndPosClientDeleteClienItems()` */
+  static readonly HttpDeleteExtraAndPosClientDeleteClienItemsPath = '/ExtraAndPOS_Client/DeleteClienItems';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpDeleteExtraAndPosClientDeleteClienItems()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpDeleteExtraAndPosClientDeleteClienItems$Response(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosClientEpService.HttpDeleteExtraAndPosClientDeleteClienItemsPath, 'delete');
+    if (params) {
+      rb.query('id', params.id, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpDeleteExtraAndPosClientDeleteClienItems$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpDeleteExtraAndPosClientDeleteClienItems(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpDeleteExtraAndPosClientDeleteClienItems$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

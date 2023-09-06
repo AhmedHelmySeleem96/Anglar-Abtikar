@@ -19,6 +19,7 @@ export interface Supplier {
   debt?: number;
   defaultDiscPer?: number;
   discountPercentage?: number;
+  docNo?: null | string;
   docRefGuid?: string;
   email?: null | string;
   faceBook?: null | string;
@@ -31,10 +32,13 @@ export interface Supplier {
   id?: number;
   isActive?: boolean;
   isCanceled?: boolean;
+  isSubSupplier?: boolean;
   isUpdated?: boolean;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;
   lastUpdatedDate?: string;
+  mainSupplier?: null | string;
+  mainSupplierId?: number;
   mobile1?: null | string;
   mobile2?: null | string;
   mobile3?: null | string;

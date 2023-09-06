@@ -110,53 +110,6 @@ export class XtraAndPosIncomeStatementEpService extends BaseService {
     );
   }
 
-  /** Path part for operation `httpPutIncomeStatementUpdate()` */
-  static readonly HttpPutIncomeStatementUpdatePath = '/IncomeStatement/Update';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `httpPutIncomeStatementUpdate()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  httpPutIncomeStatementUpdate$Response(
-    params?: {
-      body?: IncomeStatements
-    },
-    context?: HttpContext
-  ): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(this.rootUrl, XtraAndPosIncomeStatementEpService.HttpPutIncomeStatementUpdatePath, 'put');
-    if (params) {
-      rb.body(params.body, 'application/json');
-    }
-
-    return this.http.request(
-      rb.build({ responseType: 'text', accept: '*/*', context })
-    ).pipe(
-      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `httpPutIncomeStatementUpdate$Response()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  httpPutIncomeStatementUpdate(
-    params?: {
-      body?: IncomeStatements
-    },
-    context?: HttpContext
-  ): Observable<void> {
-    return this.httpPutIncomeStatementUpdate$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
-    );
-  }
-
   /** Path part for operation `httpGetIncomeSettingIncomeSettingInfo()` */
   static readonly HttpGetIncomeSettingIncomeSettingInfoPath = '/IncomeSetting/IncomeSettingInfo';
 
