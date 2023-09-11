@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ExportData } from 'src/app/services/Export-data.service';
@@ -106,6 +106,7 @@ export class EmployeeCreateComponent implements OnInit {
       currencyData :any [] = [] ;
       @ViewChild('password') password!: ElementRef;
       @ViewChild('confirmPassword') confirmPassword!: ElementRef;
+      @ViewChild('fileUpload') fileUpload!: ElementRef;
       highestDegree :boolean = false ;
       endDateAlert :boolean = false ;
       ngOnInit(): void {
@@ -118,8 +119,7 @@ export class EmployeeCreateComponent implements OnInit {
           { field: 'NameAr', header: 'NameAr' },
           { field: 'NameEn', header: 'NameEn' },
           { field: 'NationalityId', header: 'NationalityId' },
-          { field: 'JobId', header: 'JobId' },
-          { field: 'JobName', header: 'JobName' },
+          { field: 'JobId', header: 'JobName' },
           { field: 'StatusId', header: 'StatusId' },
         ];
         this.getData();
@@ -298,6 +298,9 @@ export class EmployeeCreateComponent implements OnInit {
           this.toastr.error('Failed to delete employee.');
         });
       }
+      getJob(id :any){
+        return this.jobDifData.filter((r)=>r.Id===id)[0]
+      }
       onSubmit(Form: FormGroup) {
         if(!this.isEdit){
         if(this.formEmployee.valid)
@@ -401,6 +404,10 @@ export class EmployeeCreateComponent implements OnInit {
             this.uploadedFiles.push(file);
         }
 }
+getNationality(id :any){
+  debugger
+  return this.nationalityData.filter((r)=>r.Id===id)[0]
+}
 highestQualificationChange(event:Event){
 const target = event.target as HTMLSelectElement;
 const id = Number(target.value);
@@ -452,5 +459,37 @@ if(endDate<startDate ||startContractDate==null){
 }else{
   this.endContractAlert = false;
 }
+}
+onFileSelected(event: any): void {
+  const fileInput = event.target;
+  if (fileInput.files.length > 0) {
+    const selectedFile = fileInput.files[0];
+    if (selectedFile.name.endsWith('.xlsx')) {
+      this.processExcelFile(selectedFile);
+    } else {
+      this.toastr.error('Please select a valid Excel file with .xlsx extension.');
+    }
+  }
+}
+
+processExcelFile(file: File): void {
+  const blob = new Blob([file], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+  const requestBody = {
+    body: {
+      file: blob
+    }
+  };
+
+  this.XtraAndPosHrEmployeeService.httpPostXtraAndPosHrEmployeeImportExcel(requestBody).subscribe((value: any) => {
+    let jsonData = JSON.parse(value);
+    this.toastr.success(jsonData);
+    this.refreshTable();
+    this.fileUpload.nativeElement.value = '';
+
+  },(error)=>{
+    this.fileUpload.nativeElement.value = '';
+
+  });
 }
 }

@@ -51,6 +51,7 @@ periodReadOnly =false ;
 @ViewChild('empName') empName: any;
 @ViewChild('job') job: any;
 @ViewChild('division') division: any;
+@ViewChild('fileUpload') fileUpload: any;
 @ViewChild('inputOperation') inputOperation: any;
 @ViewChild('formElement') formElement!: ElementRef;
 ContractData :any[] = [] ;
@@ -357,7 +358,6 @@ contractStartDateChange(event :Event){
     return null;
   }
   getJob(id :any){
-    debugger
     return this.JobData.filter((r)=>r.Id===id)[0]
   }
   allowenceValueTypeChange(event:Event){
@@ -438,6 +438,10 @@ if(value==3){
       let jsonData = JSON.parse(value);
       this.toastr.success(jsonData);
       this.refreshTable();
+      this.fileUpload.nativeElement.value = '';
+    },(error)=>{
+      this.fileUpload.nativeElement.value = '';
+
     });
   }
 }

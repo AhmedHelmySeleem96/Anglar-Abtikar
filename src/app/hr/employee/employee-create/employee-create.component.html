@@ -5,6 +5,10 @@
     <div class="card bg-light mb-3">
         <div class="card-body">
   <h3>{{ "Hr.EmployeeCard" | translate }}</h3>
+  <div class="col-md-3 mb-2 mt-2">
+    <label for="fileUpload"><strong >{{ 'Hr.Import' | translate }}</strong></label>
+     <input #fileUpload type="file" id="fileUpload" (change)="onFileSelected($event)" class="form-control-file" >
+   </div>
   <form #formElement [formGroup]="formEmployee" (ngSubmit)="onSubmit(formEmployee)" class="form">
   <div class="row">
     <div class="form-group col-md-4 mt-5">
@@ -335,7 +339,13 @@
           <span class="table-data" *ngIf="col.field == 'BranchId'">
             {{ getBranch(Employee[col.field])?.NameAr }}
           </span>
-          <span class="table-data" *ngIf="col.field != 'CreatedDate'&&col.field != 'EmployeeCategoryId' &&col.field != 'BranchId' && col.field != 'StatusId'  ">
+          <span class="table-data" *ngIf="col.field == 'JobId'">
+            {{ getJob(Employee[col.field])?.NameAr }}
+          </span>
+          <span class="table-data" *ngIf="col.field == 'nationalityId'">
+            {{ getNationality(Employee[col.field])?.NameAr }}
+          </span>
+          <span class="table-data" *ngIf="col.field != 'CreatedDate'&& col.field != 'JobId' &&col.field != 'EmployeeCategoryId' &&col.field != 'BranchId' && col.field != 'StatusId'  ">
             {{ Employee[col.field] }}
           </span>
         </td>

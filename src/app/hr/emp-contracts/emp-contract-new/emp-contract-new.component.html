@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-3 mb-2 mt-2">
           <label for="fileUpload"><strong >{{ 'Hr.Import' | translate }}</strong></label>
-           <input type="file" id="fileUpload" (change)="onFileSelected($event)" class="form-control-file" >
+           <input #fileUpload type="file" id="fileUpload" (change)="onFileSelected($event)" class="form-control-file" >
          </div>
       </div>
       <p-table *ngIf="searchTableVisible"
