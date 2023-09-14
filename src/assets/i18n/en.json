@@ -186,7 +186,12 @@
   "VacRejectPeriod": "Vacation Rejection Period",
   "SelectIsMustAlternative": " Is Must Alternative",
   "SelectIsExtendOrCut": " Is Extend or Cut",
-  "SelectIsDeportation": " Is Deportation"
+  "SelectIsDeportation": " Is Deportation",
+  "WorkDays":"Workd Days",
+"WorkHours":"Work Hours",
+"SalaryForDay":"Salary For Day",
+"Percentage":"Percentage",
+"Operation":"Operation"
 },
 "Id":"Id",
 "CityId":"City Id",

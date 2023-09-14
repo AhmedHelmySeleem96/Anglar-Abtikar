@@ -264,17 +264,20 @@
     >
       <div class="container" *ngIf="displayPrivew">
         <div class="row">
-          <div class="mt-2 text-center col-md-3 mt-5">
+          <div class="mt-2 text-center col-md-2 mt-5">
             <button (click)="operationColumnClick(1)"  class="btn btn-info" >{{ 'Hr.BasicSalary' | translate }}</button>
           </div>
-          <div class="mt-2 text-center col-md-3 mt-5">
+          <div class="mt-2 text-center col-md-2 mt-5">
             <button  (click)="operationColumnClick(2)"  class="btn btn-info" >{{'Hr.WorkDays'|translate}}</button>
           </div>
-          <div class="mt-2 text-center col-md-3 mt-5">
+          <div class="mt-2 text-center col-md-2 mt-5">
             <button  (click)="operationColumnClick(3)"  class="btn btn-info" >{{'Hr.WorkHours'|translate}}</button>
           </div>
-          <div class="mt-2 text-center col-md-3 mt-5">
+          <div class="mt-2 text-center col-md-2 mt-5">
             <button  (click)="operationColumnClick(4)"  class="btn btn-info" >{{'Hr.SalaryForDay'|translate}}</button>
+          </div>
+          <div class="mt-2 text-center col-md-4 mt-5">
+            <input type="number" #percentage placeholder="{{ 'Percentage' | translate }}" >%
           </div>
         </div>
         <div class="row">

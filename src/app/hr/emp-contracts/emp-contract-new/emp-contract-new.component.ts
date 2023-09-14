@@ -53,6 +53,7 @@ periodReadOnly =false ;
 @ViewChild('division') division: any;
 @ViewChild('fileUpload') fileUpload: any;
 @ViewChild('inputOperation') inputOperation: any;
+@ViewChild('percentage') percentage: any;
 @ViewChild('formElement') formElement!: ElementRef;
 ContractData :any[] = [] ;
 EmployeeData :any[] = [] ;
@@ -84,7 +85,7 @@ createForm(): FormGroup {
 ngOnInit(): void {
   this.createForm();
   this.cols = [
-    { field: 'Id', header: 'ContractId' },
+    { field: 'Id', header: 'Id' },
     { field: 'CreatedDate', header: 'CreatedDate' },
     { field: 'BranchId', header: 'BranchId' },
     { field: 'EmployeeId', header: 'NameAr' },
@@ -393,9 +394,11 @@ if(value==3){
   }
   confirmOperation(){
     this.displayPrivew = false ;
-    debugger
     let opr : string='' ;
     let columnValues =  this.operationColumns.map(r=>r.value)
+    if(this.operationColumns.length==1&&this.percentage.nativeElement.value!=null){
+      columnValues.push((Number(this.percentage.nativeElement.value)/100));
+    }
     if(this.operation==1){
       opr = "X"
       this.formContract.get('allowenceValue')?.setValue(Number( columnValues[0])*Number( columnValues[1]))
@@ -411,7 +414,11 @@ if(value==3){
       this.formContract.get('allowenceValue')?.setValue(Number( columnValues[0])-Number( columnValues[1]))
     }
     let columnNames =  this.operationColumns.map(r=>r.id)
-    this.inputOperation.nativeElement.value = columnNames.join(opr)
+    if(this.percentage.nativeElement.value!=null){
+      this.inputOperation.nativeElement.value = 'نسبه'
+    }else{
+      this.inputOperation.nativeElement.value = columnNames.join(opr)
+    }
     this.operationColumns = [];
   }
 
