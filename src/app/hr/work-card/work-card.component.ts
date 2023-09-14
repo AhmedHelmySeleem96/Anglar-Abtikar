@@ -90,7 +90,6 @@ onCheckboxChange(event: any, id: number) {
 }
 
 setEdit(workCard: any) {
-  console.log(workCard);
   this.formWorkCard.patchValue({
     cardNameAr: workCard.NameAr,
     cardNameEn: workCard.NameEn,

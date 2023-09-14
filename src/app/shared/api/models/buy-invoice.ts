@@ -15,6 +15,7 @@ export interface BuyInvoice {
   buyInvoiceCosts?: null | Array<BuyInvoiceCosts>;
   buyInvoiceDepts?: null | Array<BuyInvoiceDepts>;
   buyInvoiceDetails?: null | Array<BuyInvoiceDetails>;
+  buyInvoiceURLFile?: null | string;
   buyOfferId?: number;
   cancelBy?: null | string;
   cancelById?: number;

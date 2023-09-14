@@ -3,6 +3,7 @@
 export interface StoreAdjustmentDetalils {
   aw?: number;
   bonus?: boolean;
+  bookQty?: number;
   branchId?: number;
   branchName?: null | string;
   cancelBy?: null | string;
@@ -11,6 +12,7 @@ export interface StoreAdjustmentDetalils {
   clientDesc?: number;
   companyId?: number;
   companyName?: null | string;
+  correctAmount?: number;
   correctQty?: number;
   correctWA?: number;
   createById?: null | string;
@@ -48,6 +50,7 @@ export interface StoreAdjustmentDetalils {
   returnedQty?: number;
   stock?: number;
   storeAdjustmentId?: number;
+  subtractionQty?: number;
   totalDisc?: number;
   totalPrice?: number;
   totalPriceAfterDiscount?: number;

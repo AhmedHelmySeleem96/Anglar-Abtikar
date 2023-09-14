@@ -533,4 +533,51 @@ export class XtraAndPosBuyOfferPricesEpService extends BaseService {
     );
   }
 
+  /** Path part for operation `httpGetBuyOfferPricesBuyOfferBalanceGetById()` */
+  static readonly HttpGetBuyOfferPricesBuyOfferBalanceGetByIdPath = '/BuyOfferPrices/BuyOfferBalanceGetById';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetBuyOfferPricesBuyOfferBalanceGetById()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetBuyOfferPricesBuyOfferBalanceGetById$Response(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosBuyOfferPricesEpService.HttpGetBuyOfferPricesBuyOfferBalanceGetByIdPath, 'get');
+    if (params) {
+      rb.query('id', params.id, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetBuyOfferPricesBuyOfferBalanceGetById$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetBuyOfferPricesBuyOfferBalanceGetById(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetBuyOfferPricesBuyOfferBalanceGetById$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
 }

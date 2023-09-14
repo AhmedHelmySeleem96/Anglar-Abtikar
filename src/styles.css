@@ -30,3 +30,13 @@ select.ng-invalid.ng-touched {
   color: white !important;
 background:#172d50 !important ;
 }
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  background: #172d50 !important;
+  color: #ffffff !important;
+}
+.p-tabview .p-tabview-nav{
+  background: #172d50 !important;
+}
+select.form-control:not([size]):not([multiple]) {
+  height: calc(2.35rem + 2px) !important;
+}

@@ -12,6 +12,7 @@ export { ExtraAndPosBankAccountEpService } from './services/extra-and-pos-bank-a
 export { ExtraAndPosBankEpService } from './services/extra-and-pos-bank-ep.service';
 export { ExtraAndPosBuyInvoiceEpService } from './services/extra-and-pos-buy-invoice-ep.service';
 export { ExtraAndPosReturnBuyInvoiceEpService } from './services/extra-and-pos-return-buy-invoice-ep.service';
+export { FinancialYearEpService } from './services/financial-year-ep.service';
 export { InitGlCreateEpService } from './services/init-gl-create-ep.service';
 export { InitGlReceptEpService } from './services/init-gl-recept-ep.service';
 export { ItemUnitEpService } from './services/item-unit-ep.service';
@@ -45,6 +46,7 @@ export { XtraAndPosEmployeeEpService } from './services/xtra-and-pos-employee-ep
 export { XtraAndPosExchangeRateEpService } from './services/xtra-and-pos-exchange-rate-ep.service';
 export { XtraAndPosFinanceEpService } from './services/xtra-and-pos-finance-ep.service';
 export { XtraAndPosGeneralLedgerEpService } from './services/xtra-and-pos-general-ledger-ep.service';
+export { XtraAndPosGlobalService } from './services/xtra-and-pos-global.service';
 export { XtraAndPosHospitalService } from './services/xtra-and-pos-hospital.service';
 export { XtraAndPosHrEmployeeService } from './services/xtra-and-pos-hr-employee.service';
 export { XtraAndPosIncomeStatementEpService } from './services/xtra-and-pos-income-statement-ep.service';
@@ -66,4 +68,6 @@ export { XtraAndPosStorageEpService } from './services/xtra-and-pos-storage-ep.s
 export { XtraAndPosSupplierEpService } from './services/xtra-and-pos-supplier-ep.service';
 export { XtraAndPosTreasuriesEpService } from './services/xtra-and-pos-treasuries-ep.service';
 export { XtraAndPosTreasuryEpService } from './services/xtra-and-pos-treasury-ep.service';
+export { XtraAndPosVacationTypesService } from './services/xtra-and-pos-vacation-types.service';
 export { XtraAndPosWorkCardService } from './services/xtra-and-pos-work-card.service';
+export { XtraAndPosZktFingerPrintService } from './services/xtra-and-pos-zkt-finger-print.service';

@@ -53,6 +53,7 @@ export interface Branch {
   hideItemData?: boolean;
   hideItemSpare?: boolean;
   hideNotesSale?: boolean;
+  hideSupplierVatNo?: boolean;
   hideTotalAfterVat?: boolean;
   hideVat?: boolean;
   id?: number;
@@ -94,6 +95,7 @@ export interface Branch {
   saleNumber?: number;
   saleSymbole?: null | string;
   schemeId?: null | string;
+  sealUrl?: null | string;
   sellingWithPricePolicy?: boolean;
   separateUnit?: boolean;
   separateUnitBuyOffer?: boolean;
@@ -101,6 +103,7 @@ export interface Branch {
   separateUnitBuys?: boolean;
   separateUnitTransferred?: boolean;
   seperateSaleOffer?: boolean;
+  signatureUrl?: null | string;
   streetName?: null | string;
   taxNo?: null | string;
   tbL005ID?: number;

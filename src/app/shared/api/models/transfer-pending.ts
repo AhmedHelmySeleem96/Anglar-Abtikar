@@ -3,10 +3,10 @@
 import { ClientType } from './client-type';
 import { DocType } from './doc-type';
 import { PaymentType } from './payment-type';
-import { TransferDetailsBuilding } from './transfer-details-building';
+import { TransferDetailsPending } from './transfer-details-pending';
 import { TransferDocStatus } from './transfer-doc-status';
 import { TransferStatus } from './transfer-status';
-export interface TransferBuilding {
+export interface TransferPending {
   approvalBy?: null | string;
   approvalDate?: string;
   bankGuid?: string;
@@ -85,7 +85,7 @@ export interface TransferBuilding {
   totalInvoiceVatAmount?: number;
   totalQty?: number;
   totalVatRate?: number;
-  transferDetailsBuilding?: null | Array<TransferDetailsBuilding>;
+  transferDetailsBuilding?: null | Array<TransferDetailsPending>;
   transferDocStatus?: TransferDocStatus;
   transferStatus?: TransferStatus;
   treasuryId?: number;

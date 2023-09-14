@@ -66,6 +66,7 @@ export interface StoreAdjustment {
   storeName?: null | string;
   totalBookQty?: number;
   totalCorrectAmount?: number;
+  totalCorrectQty?: number;
   totalDisc?: number;
   totalDiscRate?: number;
   totalDiscafterVat?: number;
@@ -75,7 +76,7 @@ export interface StoreAdjustment {
   totalInvoiceDu?: number;
   totalInvoiceGross?: number;
   totalInvoiceVatAmount?: number;
-  totalSubtraction?: number;
+  totalSubtractionQty?: number;
   totalVatRate?: number;
   treasuryId?: number;
   updateFlag?: null | string;

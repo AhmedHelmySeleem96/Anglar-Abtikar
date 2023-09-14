@@ -78,6 +78,7 @@ createForm(): FormGroup {
       allowenceType: new FormControl(null,Validators.required),
       allowenceValueType: new FormControl(null,Validators.required),
       allowenceValue: new FormControl(null,Validators.required),
+      allowencePaidTimeId: new FormControl(null,Validators.required),
     })
 }
 ngOnInit(): void {
@@ -117,6 +118,7 @@ setEdit(contract: any) {
     allowenceType: contract.AllowenceType,
     allowenceValueType: contract.AllowenceValueType,
     allowenceValue: contract.AllowenceValue,
+    allowencePaidTimeId : contract.AllowencePaidTimeId
   });
   this.branch.nativeElement.value = this.getBranch(contract.BranchId)?.NameAr
   this.job.nativeElement.value = this.getJob(contract.JobId)?.NameAr

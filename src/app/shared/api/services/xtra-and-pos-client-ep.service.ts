@@ -13,6 +13,7 @@ import { RequestBuilder } from '../request-builder';
 import { Client } from '../models/client';
 import { ClientGroupManagment } from '../models/client-group-managment';
 import { ClientItems } from '../models/client-items';
+import { JqdtParams } from '../models/jqdt-params';
 
 @Injectable({ providedIn: 'root' })
 export class XtraAndPosClientEpService extends BaseService {
@@ -712,6 +713,97 @@ export class XtraAndPosClientEpService extends BaseService {
     context?: HttpContext
   ): Observable<void> {
     return this.httpDeleteExtraAndPosClientDeleteClienItems$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPostExtraAndPosClientClientsDataTable()` */
+  static readonly HttpPostExtraAndPosClientClientsDataTablePath = '/ExtraAndPOS_Client/ClientsDataTable';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostExtraAndPosClientClientsDataTable()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosClientClientsDataTable$Response(
+    params?: {
+      body?: JqdtParams
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosClientEpService.HttpPostExtraAndPosClientClientsDataTablePath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostExtraAndPosClientClientsDataTable$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosClientClientsDataTable(
+    params?: {
+      body?: JqdtParams
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostExtraAndPosClientClientsDataTable$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetExtraAndPosClientGetClientTree()` */
+  static readonly HttpGetExtraAndPosClientGetClientTreePath = '/ExtraAndPOS_Client/GetClientTree';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetExtraAndPosClientGetClientTree()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetExtraAndPosClientGetClientTree$Response(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosClientEpService.HttpGetExtraAndPosClientGetClientTreePath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetExtraAndPosClientGetClientTree$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetExtraAndPosClientGetClientTree(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetExtraAndPosClientGetClientTree$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

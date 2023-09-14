@@ -19,7 +19,7 @@ import { StorageOpenDto } from '../models/storage-open-dto';
 import { StoreAdjustment } from '../models/store-adjustment';
 import { StoreAdjustmentUploadedFile } from '../models/store-adjustment-uploaded-file';
 import { Transfer } from '../models/transfer';
-import { TransferBuilding } from '../models/transfer-building';
+import { TransferPending } from '../models/transfer-pending';
 
 @Injectable({ providedIn: 'root' })
 export class XtraAndPosStorageEpService extends BaseService {
@@ -687,7 +687,7 @@ export class XtraAndPosStorageEpService extends BaseService {
    */
   httpPutExtraAndPosStorageTransferApprovalTransferBuilding$Response(
     params?: {
-      body?: TransferBuilding
+      body?: TransferPending
     },
     context?: HttpContext
   ): Observable<StrictHttpResponse<void>> {
@@ -714,7 +714,7 @@ export class XtraAndPosStorageEpService extends BaseService {
    */
   httpPutExtraAndPosStorageTransferApprovalTransferBuilding(
     params?: {
-      body?: TransferBuilding
+      body?: TransferPending
     },
     context?: HttpContext
   ): Observable<void> {

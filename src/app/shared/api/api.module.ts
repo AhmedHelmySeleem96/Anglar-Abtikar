@@ -18,6 +18,7 @@ import { ExtraAndPosBankAccountEpService } from './services/extra-and-pos-bank-a
 import { ExtraAndPosBankEpService } from './services/extra-and-pos-bank-ep.service';
 import { ExtraAndPosBuyInvoiceEpService } from './services/extra-and-pos-buy-invoice-ep.service';
 import { ExtraAndPosReturnBuyInvoiceEpService } from './services/extra-and-pos-return-buy-invoice-ep.service';
+import { FinancialYearEpService } from './services/financial-year-ep.service';
 import { InitGlCreateEpService } from './services/init-gl-create-ep.service';
 import { InitGlReceptEpService } from './services/init-gl-recept-ep.service';
 import { ItemUnitEpService } from './services/item-unit-ep.service';
@@ -51,6 +52,7 @@ import { XtraAndPosEmployeeEpService } from './services/xtra-and-pos-employee-ep
 import { XtraAndPosExchangeRateEpService } from './services/xtra-and-pos-exchange-rate-ep.service';
 import { XtraAndPosFinanceEpService } from './services/xtra-and-pos-finance-ep.service';
 import { XtraAndPosGeneralLedgerEpService } from './services/xtra-and-pos-general-ledger-ep.service';
+import { XtraAndPosGlobalService } from './services/xtra-and-pos-global.service';
 import { XtraAndPosHospitalService } from './services/xtra-and-pos-hospital.service';
 import { XtraAndPosHrEmployeeService } from './services/xtra-and-pos-hr-employee.service';
 import { XtraAndPosIncomeStatementEpService } from './services/xtra-and-pos-income-statement-ep.service';
@@ -72,7 +74,9 @@ import { XtraAndPosStorageEpService } from './services/xtra-and-pos-storage-ep.s
 import { XtraAndPosSupplierEpService } from './services/xtra-and-pos-supplier-ep.service';
 import { XtraAndPosTreasuriesEpService } from './services/xtra-and-pos-treasuries-ep.service';
 import { XtraAndPosTreasuryEpService } from './services/xtra-and-pos-treasury-ep.service';
+import { XtraAndPosVacationTypesService } from './services/xtra-and-pos-vacation-types.service';
 import { XtraAndPosWorkCardService } from './services/xtra-and-pos-work-card.service';
+import { XtraAndPosZktFingerPrintService } from './services/xtra-and-pos-zkt-finger-print.service';
 
 /**
  * Module that provides all services and configuration.
@@ -96,6 +100,7 @@ import { XtraAndPosWorkCardService } from './services/xtra-and-pos-work-card.ser
     ExtraAndPosBankEpService,
     ExtraAndPosBuyInvoiceEpService,
     ExtraAndPosReturnBuyInvoiceEpService,
+    FinancialYearEpService,
     InitGlCreateEpService,
     InitGlReceptEpService,
     ItemUnitEpService,
@@ -129,6 +134,7 @@ import { XtraAndPosWorkCardService } from './services/xtra-and-pos-work-card.ser
     XtraAndPosExchangeRateEpService,
     XtraAndPosFinanceEpService,
     XtraAndPosGeneralLedgerEpService,
+    XtraAndPosGlobalService,
     XtraAndPosHospitalService,
     XtraAndPosHrEmployeeService,
     XtraAndPosIncomeStatementEpService,
@@ -150,7 +156,9 @@ import { XtraAndPosWorkCardService } from './services/xtra-and-pos-work-card.ser
     XtraAndPosSupplierEpService,
     XtraAndPosTreasuriesEpService,
     XtraAndPosTreasuryEpService,
+    XtraAndPosVacationTypesService,
     XtraAndPosWorkCardService,
+    XtraAndPosZktFingerPrintService,
     ApiConfiguration
   ],
 })

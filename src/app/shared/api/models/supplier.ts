@@ -19,6 +19,7 @@ export interface Supplier {
   debt?: number;
   defaultDiscPer?: number;
   discountPercentage?: number;
+  district?: null | string;
   docNo?: null | string;
   docRefGuid?: string;
   email?: null | string;
@@ -26,6 +27,7 @@ export interface Supplier {
   firstTransaction?: string;
   forwardSale?: null | string;
   forwardSaleId?: number;
+  governorate?: null | string;
   guid?: string;
   handlingStatus?: null | string;
   handlingStatusId?: number;
@@ -48,6 +50,7 @@ export interface Supplier {
   modifyCount?: number;
   nameAr?: null | string;
   nameEn?: null | string;
+  nationalAddress?: null | string;
   nationalId?: number;
   no?: number;
   notes?: null | string;
@@ -64,6 +67,8 @@ export interface Supplier {
   privateCoding?: null | string;
   representative?: null | string;
   representativeId?: number;
+  specialNumber?: null | string;
+  street?: null | string;
   suppliersClassification?: null | string;
   suppliersClassificationId?: number;
   suppliersGroup?: null | string;

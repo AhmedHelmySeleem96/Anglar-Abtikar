@@ -21,9 +21,11 @@ export interface Client {
   debt?: number;
   defaultDiscPer?: number;
   delegate?: number;
+  district?: null | string;
   docNo?: null | string;
   docRefGuid?: string;
   firstDate?: string;
+  governorate?: null | string;
   guid?: string;
   handlingCondition?: number;
   id?: number;
@@ -41,6 +43,7 @@ export interface Client {
   modifyCount?: number;
   nameAr?: null | string;
   nameEn?: null | string;
+  nationalAddress?: null | string;
   nationalID?: null | string;
   no?: number;
   notes?: null | string;
@@ -52,6 +55,8 @@ export interface Client {
   region?: number;
   salesManId?: number;
   salesManName?: null | string;
+  specialNumber?: null | string;
+  street?: null | string;
   taxNo?: null | string;
   tbL016ID?: number;
   termSale?: number;

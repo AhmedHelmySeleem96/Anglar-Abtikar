@@ -2,6 +2,7 @@
 /* eslint-disable */
 export interface SeedOptions {
   client?: boolean;
+  clientGroup?: boolean;
   financeSettings?: boolean;
   identity?: boolean;
   password: string;

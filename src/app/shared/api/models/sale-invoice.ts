@@ -61,6 +61,7 @@ export interface SaleInvoice {
   saleInvNotes?: null | Array<SaleInvNotes>;
   saleInvoiceDepts?: null | Array<SaleInvoiceDepts>;
   saleInvoiceDetails?: null | Array<SaleInvoiceDetails>;
+  saleInvoiceURLFile?: null | string;
   saleOfferId?: number;
   saleRatingNotes?: null | Array<SaleRatingNotes>;
   salesManId?: number;

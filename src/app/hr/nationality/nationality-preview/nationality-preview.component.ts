@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { XtraAndPosNationalityService } from 'src/app/shared/api';
 import { ExportData } from 'src/app/services/Export-data.service';
@@ -35,7 +35,7 @@ export class NationalityPreviewComponent implements OnInit  {
         this.nationalityData = jsonData.Obj.nationality;
       });
       this.cols = [
-        { field: 'Id', header: 'CityId' },
+        { field: 'Id', header: 'Id' },
         { field: 'CreatedDate', header: 'CreatedDate' },
         { field: 'NameAr', header: 'NameAr' },
         { field: 'NameEn', header: 'NameEn' },
@@ -124,7 +124,7 @@ export class NationalityPreviewComponent implements OnInit  {
     }
     showDeleteConfirm(nationality: any) {
       this.toastr
-        .info('Do you want to delete this city?', 'Confirmation', {
+        .info('Do you want to delete this nationality?', 'Confirmation', {
           timeOut: 0,
           extendedTimeOut: 0,
           closeButton: true,
@@ -145,7 +145,7 @@ export class NationalityPreviewComponent implements OnInit  {
         this.refreshTable();
         this.formNationality.reset();
       }, (error: any) => {
-        this.toastr.error('Failed to delete city.');
+        this.toastr.error('Failed to delete nationality.');
       });
     }
 

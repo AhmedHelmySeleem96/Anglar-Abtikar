@@ -60,6 +60,8 @@ EmpContractsComponent,
         path : "workCard" , loadChildren: () => import('./work-card/work-card.module').then(m => m.WorkCardModule)
       },{
         path : "empContract" , loadChildren: () => import('./emp-contracts/emp-contracts.module').then(m => m.EmpContractModule)
+      },{
+        path : "vacTypes" , loadChildren: () => import('./vac-types/vac-types.module').then(m => m.VacTypesModule)
       }]
     }]),
     TranslateModule,

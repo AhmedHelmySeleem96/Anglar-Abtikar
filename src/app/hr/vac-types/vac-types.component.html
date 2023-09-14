@@ -1,0 +1,139 @@
+<div class="createDiv">
+
+  <div class="tab-pane fade show active" id="rounded-corner-pills-icon-home" role="tabpanel" aria-labelledby="rounded-corner-pills-icon-home-tab" style="min-height:300px">
+
+    <div class="card bg-light mb-3">
+        <div class="card-body">
+          <h3>{{ "Hr.VacTypes" | translate }}</h3>
+  <form #formElement [formGroup]="formVac" (ngSubmit)="onSubmit(formVac)" class="form">
+<div class="row">
+  <div class="form-group col-md-6 mt-5">
+    <label for="vacNameAr">{{ 'Hr.VacNameAr' | translate }}</label>
+    <input  id="vacNameAr" maxlength="100"  formControlName="nameAr" required class="form-control">
+  </div>
+
+  <div class="form-group col-md-6 mt-5">
+    <label for="vacNameEn">{{ 'Hr.VacNameEn' | translate }}</label>
+    <input   id="vacNameEn"  maxlength="100" formControlName="nameEn" required  class="form-control">
+  </div>
+</div>
+<div class="row">
+  <div class="form-group col-md-6 mt-5">
+    <label for="SalaryDeduction">{{ 'Hr.SelectSalaryDeduction' | translate }}</label>
+            <select   id="SalaryDeduction" formControlName="salaryDeduction"  class="form-control"  >
+              <option  value="" disabled selected>{{ 'Hr.SelectSalaryDeduction' | translate }}</option>
+              <option *ngFor="let salary of salarDeductionData " [value]="salary.id">{{ salary.name }}</option>
+            </select>
+    </div>
+  <div class="form-group col-md-6 mt-5">
+    <label for="maxVacDays">{{ 'Hr.MaxVacDays' | translate }}</label>
+    <input type="number" maxlength="3"   id="maxVacDays"  formControlName="maxVacDays"  class="form-control">
+  </div>
+
+</div>
+<div class="row">
+  <div class="form-group col-md-6 mt-5">
+    <label for="vacRejectPeriod">{{ 'Hr.VacRejectPeriod' | translate }}</label>
+    <input type="number" maxlength="3"  id="vacRejectPeriod"  formControlName="vacRejectPeriod"  class="form-control">
+  </div>
+  <div class="form-group col-md-6 mt-5">
+    <label for="isMustAlternative">{{ 'Hr.SelectIsMustAlternative' | translate }}</label>
+            <select   id="isMustAlternative" formControlName="isMustAlternative"  class="form-control"  >
+              <option  value="" disabled selected>{{ 'Hr.SelectIsMustAlternative' | translate }}</option>
+              <option *ngFor="let value of boolData " [value]="value.value">{{ value.id }}</option>
+            </select>
+    </div>
+</div>
+<div class="row">
+  <div class="form-group col-md-6 mt-5">
+    <label for="isExtendOrCut">{{ 'Hr.SelectIsExtendOrCut' | translate }}</label>
+            <select   id="isExtendOrCut" formControlName="isExtendOrCut"  class="form-control"  >
+              <option  value="" disabled selected>{{ 'Hr.SelectIsExtendOrCut' | translate }}</option>
+              <option *ngFor="let value of boolData " [value]="value.value">{{ value.id }}</option>
+            </select>
+    </div>
+    <div class="form-group col-md-6 mt-5">
+      <label for="isDeportation">{{ 'Hr.SelectIsDeportation' | translate }}</label>
+              <select   id="isExtendOrCut" formControlName="isDeportation"  class="form-control"  >
+                <option  value="" disabled selected>{{ 'Hr.SelectIsDeportation' | translate }}</option>
+                <option *ngFor="let value of boolData " [value]="value.value">{{ value.id }}</option>
+              </select>
+      </div>
+</div>
+<div class="row">
+  <div class="form-group col-md-6 mt-5">
+    <label for="notes">{{ 'Hr.Notes' | translate }}</label>
+    <input   id="notes"maxlength="150"  type="notes" formControlName="notes"  class="form-control">
+  </div>
+  <div class="form-group col-md-6 mt-5">
+  <label for="StatusId">{{ 'Hr.SelectStatus' | translate }}</label>
+          <select   id="StatusId" formControlName="statusId"  class="form-control"  >
+            <option  value="" disabled selected>{{ 'Hr.SelectStatus' | translate }}</option>
+            <option *ngFor="let status of statusData " [value]="status.id">{{ status.name }}</option>
+          </select>
+  </div>
+</div>
+
+  </form>
+</div>
+<div class="table-responsive mt-1 ">
+  <div class="col-md-3 mb-2 mt-2">
+    <input (input)="onSearch($event)" class="form-control form-control-sm " type="search" placeholder="{{ 'navBar.Search' | translate }}">
+  </div>
+
+  <div class="table-container" id="pdfContent">
+
+    <p-table
+    #dt
+    [rowsPerPageOptions]="[5, 10, 15, 20]"
+    [paginator]="true"
+    [rows]="5"
+    [columns]="cols"
+    [value]="vacData"
+    sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" >
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field" [style.text-align]="'right'">
+            {{ col.header | translate }}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+          <th class="ui-sortable-column table-data" [style.text-align]="'right'">
+            {{ 'Actions' | translate }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-vac let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns" [style.text-align]="'right'">
+            <span class="table-data" *ngIf="col.field == 'VacId'">
+              {{ getVac(vac[col.field])?.NameAr }}
+            </span>
+            <span class="table-data" *ngIf="col.field == 'CreatedDate'">
+              {{ vac[col.field] | date:'shortDate' }}
+            </span>
+            <span class="table-data" *ngIf="col.field != 'VacId' &&col.field != 'CreatedDate'">
+              {{ vac[col.field] }}
+            </span>
+          </td>
+          <td>
+            <div style="text-align: center">
+              <img src="assets/images/editIcon.png" class="mx-3" (click)=" setEdit(vac)" />
+              <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteConfirm(vac)" />
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-2 text-center">
+  <button type="submit" (click)="onSubmit(formVac)" class="btn btn-success" >{{ 'Save' | translate }}</button>
+  <button  (click)="printPdf()" class="btn btn-info" >{{"Hr.Print" | translate}}</button>
+  <button  (click)="exportData()" class="btn btn-info" id="viewBtn">{{"Hr.Export" | translate}}</button>
+  <button (click)="goHome()" class="btn btn-warning Dnone" id="editBtn">{{"Cancel" | translate}}</button>
+</div>

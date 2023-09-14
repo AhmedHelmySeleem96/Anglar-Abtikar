@@ -162,6 +162,7 @@
   "DocNameAr": "Document Name ",
   "DocNameEn": "Document Name English",
   "HolidayDays" : "Holiday Days",
+  "VacTypes": "Vac Types",
   "NewEmpContract": "New Employee Contract",
   "OldEmpContract": "Existing Employee Contract",
   "EmpContracts": " Employee Contract",
@@ -177,8 +178,15 @@
   "AllowenceValue": "Allowance Value",
   "NumberOfDays" : "Number Of Days",
   "EndDateError":"End Date < Start Date",
-  "EndContractError":"End Date < Start Date"
-
+  "EndContractError":"End Date < Start Date",
+  "VacNameAr": "Vacation Name (Arabic)",
+  "VacNameEn": "Vacation Name (English)",
+  "SelectSalaryDeduction": "Select Salary Deduction",
+  "MaxVacDays": "Maximum Vacation Days",
+  "VacRejectPeriod": "Vacation Rejection Period",
+  "SelectIsMustAlternative": " Is Must Alternative",
+  "SelectIsExtendOrCut": " Is Extend or Cut",
+  "SelectIsDeportation": " Is Deportation"
 },
 "Id":"Id",
 "CityId":"City Id",

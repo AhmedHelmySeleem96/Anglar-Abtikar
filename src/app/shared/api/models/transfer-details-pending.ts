@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { TransferStatus } from './transfer-status';
-export interface TransferDetailsBuilding {
+export interface TransferDetailsPending {
   bonus?: boolean;
   branchId?: number;
   branchName?: null | string;
