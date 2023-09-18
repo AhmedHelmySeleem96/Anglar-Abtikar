@@ -11,7 +11,7 @@ export class EmpContractsComponent {
   newContactClick(){
     this.router.navigateByUrl('hr/empContract/newEmpcontract');
   }
-  oldContactClick(){
-    this.router.navigateByUrl('hr/empContract/oldEmpcontract');
+  transContactClick(){
+    this.router.navigateByUrl('hr/empContract/transEmpcontract');
   }
 }

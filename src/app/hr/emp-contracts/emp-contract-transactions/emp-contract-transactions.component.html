@@ -1,0 +1,342 @@
+
+<div class="createDiv">
+
+  <div class="tab-pane fade show active" id="rounded-corner-pills-icon-home" role="tabpanel" aria-labelledby="rounded-corner-pills-icon-home-tab" style="min-height:300px">
+
+    <div class="card bg-light mb-3">
+        <div class="card-body">
+  <h3>{{ "Hr.TransEmpContract" | translate }}</h3>
+  <form #formElement [formGroup]="formContract" (ngSubmit)="onSubmit(formContract)" class="form">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 mb-2 search">
+          <input #inputSearch (input)="onSearchLookup($event)" class="form-control form-control-sm" type="search" placeholder="{{ 'navBar.Search' | translate }}">
+        </div>
+      </div>
+      <p-table *ngIf="searchTableVisible"
+      [rowsPerPageOptions]="[5, 10, 15, 20]"
+      [paginator]="true"
+      [rows]="5"
+      [columns]="searchCols"
+      [value]="EmployeeData"
+      sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}"   #dr>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field" [style.text-align]="'right'" >
+              {{ col.header | translate }}
+              <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+            <th class="ui-sortable-column table-data" [style.text-align]="'right'">
+              {{ 'Select' | translate }}
+            </th>
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-emp let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns" [style.text-align]="'right'">
+              <span class="table-data" *ngIf="col.field == 'NameAr'||col.field == 'NameEn' ||col.field == 'Id' ">
+                {{ emp[col.field]  }}
+              </span>
+            </td>
+            <td>
+              <div style="text-align: center">
+                <img src="assets/images/editIcon.png" class="mx-3" (click)=" fillEmp(emp)" />
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  <div class="row">
+    <div class="form-group col-md-2 mt-5">
+      <label for="branchId">{{ 'Hr.BranchId' | translate }}</label>
+      <input #branch id="branchId" readonly formControlName="branchId"  class="form-control">
+  </div>
+  <div class="form-group col-md-2 mt-5">
+    <label for="employeeId">{{ 'EmployeeId' | translate }}</label>
+    <input id="employeeId"  readonly formControlName="employeeId"  class="form-control">
+  </div>
+  <div class="form-group col-md-2 mt-5">
+    <label for="employeeName">{{ 'Hr.EmployeeName' | translate }}</label>
+    <input id="employeeName"  #empName readonly  class="form-control">
+  </div>
+  <div class="form-group col-md-2 mt-5">
+    <label for="jobId">{{ 'Hr.JobId' | translate }}</label>
+    <input #job id="jobId"  readonly formControlName="jobId"  class="form-control">
+  </div>
+  <div class="form-group col-md-2 mt-5">
+    <label for="divisionId">{{ 'Hr.DivisionId' | translate }}</label>
+    <input #division id="divisionId"  readonly formControlName="divisionId"  class="form-control">
+  </div>
+  <p-tabView>
+    <ng-template pTemplate="header">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" pTabTitle="بيانات العقد"></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" pTabTitle="البدلات للعقد الجديد"></a>
+            </li>
+        </ul>
+    </ng-template>
+    <p-tabPanel header="{{ 'Hr.ContractInfo' | translate }}">
+        <div class="row col-md-4 ">
+          <a class="fancy" (click)="transDialogClick()" >
+            <span class="top-key"></span>
+            <span class="text">{{ 'Hr.Transactions' | translate }}</span>
+            <span class="bottom-key-1"></span>
+            <span class="bottom-key-2"></span>
+          </a>
+      </div>
+
+      <div class="row col-md-6 mt-5">
+        <label for="StatusId">{{ 'Hr.SelectStatus' | translate }}</label>
+        <select   id="StatusId" formControlName="statusId"  class="form-control"  >
+          <option  value="" disabled selected>{{ 'Hr.SelectStatus' | translate }}</option>
+          <option *ngFor="let status of statusData " [value]="status.id">{{ status.name }}</option>
+        </select>
+    </div>
+      <div class="row">
+        <div class="form-group col-md-3 mt-5">
+          <label for="contractNo">{{ 'Hr.ContractNo' | translate }}</label>
+          <input readonly id="contractNo" formControlName="contractNo"  class="form-control">
+        </div>
+        <div class="form-group col-md-3 mt-5">
+          <label for="contractStartDate">{{ 'Hr.ContractStartDate' | translate }}</label>
+          <input readonly type="date" (change)="onchangeStatDate()" id="contractStartDate" formControlName="contractStartDate"   class="form-control">
+        </div>
+        <div class="form-group col-md-3 mt-5">
+          <label for="contractPeriod">{{ 'Hr.ContractPeriod' | translate }}</label>
+          <input readonly id="contractPeriod"  (change)="contractStartDateChange($event)" formControlName="contractPeriod"  class="form-control">
+        </div>
+        <div class="form-group col-md-3 mt-5">
+          <label for="contractEndDate">{{ 'Hr.ContractEndDate' | translate }}</label>
+          <input readonly type="date" readonly id="contractEndDate" formControlName="contractEndDate"   class="form-control">
+        </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-md-6 mt-5">
+            <label for="basicSalary">{{ 'Hr.BasicSalary' | translate }}</label>
+            <input readonly id="basicSalary" formControlName="basicSalary"  class="form-control">
+          </div>
+          <div class="form-group col-md-6 mt-5" >
+            <label for="workCardId">{{ 'Hr.WorkCardId' | translate }}</label>
+            <select readonly  id="workCardId" formControlName="workCardId" class="form-control">
+              <option  value="" disabled selected>{{ 'Hr.WorkCardId' | translate }}</option>
+              <option *ngFor="let item of workCardData " [value]="item.Id">{{ item.NameAr }}</option>
+            </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group ">
+          <label for="fileUpload">{{ 'Hr.CopyOfContract' | translate }}</label>
+          <p-fileUpload id="fileUpload"   url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" >
+            <ng-template pTemplate="content" >
+                <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                </ul>
+            </ng-template>
+        </p-fileUpload>
+        </div>
+    </div>
+    </p-tabPanel>
+    <p-tabPanel header="{{ 'Hr.Allowencenav' | translate }}">
+      <div class="row">
+        <div class="form-group col-md-3 mt-5">
+          <label for="allowenceId">{{ 'Hr.Allowencenav' | translate }}</label>
+          <select  id="allowenceId" formControlName="allowenceId" class="form-control">
+          <option  value="" disabled selected>{{ 'Hr.Allowencenav' | translate }}</option>
+          <option *ngFor="let item of allowenceData " [value]="item.Id">{{ item.NameAr }}</option>
+        </select>
+        </div>
+        <div class="form-group col-md-3 mt-5">
+          <label for="allowenceType">{{ 'Hr.AllowenceType' | translate }}</label>
+          <select  id="allowenceType" formControlName="allowenceType" class="form-control">
+          <option  value="" disabled selected>{{ 'Hr.AllowenceType' | translate }}</option>
+          <option *ngFor="let item of allowenceTypeData " [value]="item.id">{{ item.name }}</option>
+        </select>
+        </div>
+        <div class="form-group col-md-3 mt-5">
+          <label for="allowenceValueType">{{ 'Hr.AllowenceValueType' | translate }}</label>
+              <select (change)="allowenceValueTypeChange($event)" id="allowenceValueType" formControlName="allowenceValueType" class="form-control">
+              <option  value="" disabled selected>{{ 'Hr.AllowenceValueType' | translate }}</option>
+              <option  *ngFor="let item of allowenceValueTypeData " [value]="item.id">{{ item.name }}</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3 mt-5">
+          <label for="allowencePaidTimeId">{{ 'Hr.AllowencePaidTimeId' | translate }}</label>
+          <select  id="allowencePaidTimeId" formControlName="allowencePaidTimeId" class="form-control">
+          <option  value="" disabled selected>{{ 'Hr.AllowencePaidTimeId' | translate }}</option>
+          <option *ngFor="let item of allowencePaidTimes " [value]="item.Id">{{ item.name }}</option>
+        </select>
+        </div>
+      </div>
+      <div class="row">
+        <div *ngIf="displayOperation" class="mt-2 text-center col-md-4 mt-5">
+          <label  for="operation">{{ 'Hr.Operation' | translate }}</label>
+          <input #inputOperation id="operation" formControlName="operation"  class="form-control">
+         </div>
+        <div class="form-group col-md-4 mt-5">
+          <label for="allowenceValue">{{ 'Hr.AllowenceValue' | translate }}</label>
+          <input  id="allowenceValue" formControlName="allowenceValue"  class="form-control">
+        </div>
+        <div class="form-group col-md-4 mt-5">
+          <label for="currencyId">{{ 'Hr.CurrencyId' | translate }}</label>
+          <select  id="currencyId" formControlName="currencyId" class="form-control">
+          <option  value="" disabled selected>{{ 'Hr.CurrencyId' | translate }}</option>
+          <option *ngFor="let item of currencyData " [value]="item.Id">{{ item.NameAr }}</option>
+        </select>
+        </div>
+
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+  </div>
+</form>
+
+<div class="container">
+
+  <div class="col-md-3 mb-2 mt-2">
+    <input (input)="onSearch($event)" class="form-control form-control-sm " type="search" placeholder="{{ 'navBar.Search' | translate }}">
+  </div>
+  <p-table
+  [rowsPerPageOptions]="[5, 10, 15, 20]"
+  [paginator]="true"
+  [rows]="5"
+  [columns]="cols"
+  [value]="ContractData"
+  sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}"  #dt>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field" [style.text-align]="'right'" >
+          {{ col.header | translate }}
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
+        <th class="ui-sortable-column table-data" [style.text-align]="'right'">
+          {{ 'Actions' | translate }}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-Contract let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns" [style.text-align]="'right'">
+          <span class="table-data" *ngIf="col.field == 'CreatedDate'">
+            {{ Contract[col.field] | date:'shortDate' }}
+          </span>
+          <span class="table-data" *ngIf="col.field == 'StatusId'">
+            {{ getStatus(Contract[col.field])?.name }}
+          </span>
+          <span class="table-data" *ngIf="col.field == 'BranchId'">
+            {{ getBranch(Contract[col.field])?.NameAr }}
+          </span>
+          <span class="table-data" *ngIf="col.field == 'EmployeeId'">
+            {{ getEmployee(Contract[col.field])?.NameAr }}
+          </span>
+          <span class="table-data" *ngIf="col.field == 'JobId'">
+            {{ getJob(Contract[col.field])?.NameAr }}
+          </span>
+          <span class="table-data" *ngIf="col.field != 'CreatedDate'&&col.field != 'ContractCategoryId' &&col.field != 'BranchId' && col.field != 'StatusId'
+          && col.field != 'EmployeeId'&& col.field != 'JobId'    ">
+            {{ Contract[col.field] }}
+          </span>
+        </td>
+        <td>
+          <div style="text-align: center">
+            <img src="assets/images/editIcon.png" class="mx-3" (click)=" setEdit(Contract)" />
+            <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteConfirm(Contract)" />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-2 text-center">
+  <button type="submit" (click)="onSubmit(formContract)" class="btn btn-success ms-2" >{{ 'Save' | translate }}</button>
+  <button  (click)="printPdf()" class="btn btn-info ms-2" >{{"Hr.Print" | translate}}</button>
+  <button  (click)="exportData()" class="btn btn-info ms-2" id="viewBtn">{{"Hr.Export" | translate}}</button>
+  <button (click)="goHome()" class="btn btn-warning Dnone ms-2" id="editBtn">{{"Cancel" | translate}}</button>
+</div>
+<p-dialog
+      style="border-radius: 22px"
+      position="center"
+      header="{{ 'Transactions' | translate }}"
+      [(visible)]="transDialog"
+      [responsive]="true"
+      [style]="{ width: '900px', minWidth: '800px', minHeight: '433px' }"
+      [minY]="130"
+      [minX]="150"
+      [maximizable]="true"
+    >
+      <div class="container form-group" *ngIf="transDialog">
+        <div class="row">
+          <div *ngIf="btnsReniew" class="mt-2 text-center col-md-2 mr-5">
+            <button (click)="btnsReniew =true && btnReniewOnly = true"   class="btn btn-info mr-5" >{{ 'Hr.Reniew' | translate }}</button>
+          </div>
+          <div class="mt-2 text-center col-md-2 mr-5">
+            <button (click)="btnsReniew =true && btnReniewAndProm = true"    class="btn btn-info mr-5" >{{'Hr.ReniewAndPromotion'|translate}}</button>
+          </div>
+        </div>
+        <div class="row" >
+          <div class="form-group col-md-6 mt-5" >
+            <label for="reniewType">{{ 'Hr.reniewType' | translate }}</label>
+            <select  id="reniewType" formControlName="reniewType" class="form-control">
+              <option  value="" disabled selected>{{ 'Hr.ReniewType' | translate }}</option>
+              <!-- <option *ngFor="let item of workCardData " [value]="item.Id">{{ item.NameAr }}</option> -->
+            </select>
+        </div>
+          <div class="form-group col-md-6 mt-5">
+            <label for="reniewPeriod">{{ 'Hr.ReniewPeriod' | translate }}</label>
+            <input  id="reniewPeriod" formControlName="reniewPeriod"  class="form-control">
+          </div>
+
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6 mt-5">
+          <label for="reniewEndDate">{{ 'Hr.ReniewEndDate' | translate }}</label>
+          <input readonly type="date"  id="reniewEndDate" formControlName="reniewEndDate"  class="form-control">
+        </div>
+        <div class="form-group col-md-6 mt-5" *ngIf="btnReniewAndProm">
+          <label for="jobDifinitionId">{{ 'Hr.JobDifinitionId' | translate }}</label>
+          <select  id="jobDifinitionId" formControlName="jobDifinitionId" class="form-control">
+            <option  value="" disabled selected>{{ 'Hr.JobDifinitionId' | translate }}</option>
+            <!-- <option *ngFor="let item of workCardData " [value]="item.Id">{{ item.NameAr }}</option> -->
+          </select>
+        </div>
+      </div>
+      <div class="row"  *ngIf="btnReniewAndProm">
+        <div class="form-group col-md-6 mt-5">
+          <label for="divisionId">{{ 'Hr.DivisionId' | translate }}</label>
+          <input readonly  id="divisionId" formControlName="divisionId"  class="form-control">
+        </div>
+        <div class="form-group col-md-6 mt-5">
+          <label for="jobNammeId">{{ 'Hr.JobNammeId' | translate }}</label>
+          <select  id="jobNammeId" formControlName="jobNammeId" class="form-control">
+            <option  value="" disabled selected>{{ 'Hr.JobNammeId' | translate }}</option>
+            <!-- <option *ngFor="let item of workCardData " [value]="item.Id">{{ item.NameAr }}</option> -->
+          </select>
+        </div>
+      </div>
+      <div class="row"  *ngIf="btnReniewAndProm">
+        <div class="form-group col-md-6 mt-5">
+          <label for="basicSalary">{{ 'Hr.BasicSalary' | translate }}</label>
+          <input readonly  id="basicSalary" formControlName="basicSalary"  class="form-control">
+        </div>
+        <div class="form-group col-md-6 mt-5">
+          <label for="currencyId">{{ 'Hr.CurrencyId' | translate }}</label>
+          <select  id="currencyId" formControlName="currencyId" class="form-control">
+          <option  value="" disabled selected>{{ 'Hr.CurrencyId' | translate }}</option>
+          <option *ngFor="let item of currencyData " [value]="item.Id">{{ item.NameAr }}</option>
+        </select>
+        </div>
+      </div>
+      </div>
+      <p-footer>
+        <button  type="button" (click)="confirmOperation()" class="btn-ok">OK</button>
+      </p-footer>
+    </p-dialog>

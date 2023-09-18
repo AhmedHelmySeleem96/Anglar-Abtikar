@@ -9,22 +9,22 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MessagesModule } from 'primeng/messages';
 import { EmpContractNewComponent } from './emp-contract-new/emp-contract-new.component';
-import { EmpContractOldComponent } from './emp-contract-old/emp-contract-old.component';
 import { EmpContractsComponent } from './emp-contracts.component';
 import { TabViewModule } from 'primeng/tabview';
 import { FileUploadModule } from 'primeng/fileupload';
 import { DialogModule } from 'primeng/dialog';
+import { EmpContractTransactionsComponent } from './emp-contract-transactions/emp-contract-transactions.component';
 
 @NgModule({
   declarations: [
     EmpContractNewComponent,
-    EmpContractOldComponent,
+    EmpContractTransactionsComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild([{path :'' ,component:EmpContractsComponent}
     ,{path:'newEmpcontract' ,component:EmpContractNewComponent},
-    {path :'oldEmpcontract' ,component:EmpContractOldComponent}]
+  {path:'transEmpcontract' , component:EmpContractTransactionsComponent}]
    ),
     TranslateModule,
     FormsModule,
