@@ -134,3 +134,11 @@ input[type='checkbox']:checked + .switch {
   right: 0;
   width: 0;
  }
+.center-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.p-tabview-nav {
+  margin-top: 1rem!important;
+}

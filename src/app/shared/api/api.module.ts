@@ -47,8 +47,11 @@ import { XtraAndPosCountryService } from './services/xtra-and-pos-country.servic
 import { XtraAndPosDailyMovmentEpService } from './services/xtra-and-pos-daily-movment-ep.service';
 import { XtraAndPosDefaultOptionsEpService } from './services/xtra-and-pos-default-options-ep.service';
 import { XtraAndPosDocTypesService } from './services/xtra-and-pos-doc-types.service';
+import { XtraAndPosEmpAllownceTransactionsService } from './services/xtra-and-pos-emp-allownce-transactions.service';
+import { XtraAndPosEmpContractTransactionsService } from './services/xtra-and-pos-emp-contract-transactions.service';
 import { XtraAndPosEmployeeContractService } from './services/xtra-and-pos-employee-contract.service';
 import { XtraAndPosEmployeeEpService } from './services/xtra-and-pos-employee-ep.service';
+import { XtraAndPosEmpVacationTransactionsService } from './services/xtra-and-pos-emp-vacation-transactions.service';
 import { XtraAndPosExchangeRateEpService } from './services/xtra-and-pos-exchange-rate-ep.service';
 import { XtraAndPosFinanceEpService } from './services/xtra-and-pos-finance-ep.service';
 import { XtraAndPosGeneralLedgerEpService } from './services/xtra-and-pos-general-ledger-ep.service';
@@ -129,8 +132,11 @@ import { XtraAndPosZktFingerPrintService } from './services/xtra-and-pos-zkt-fin
     XtraAndPosDailyMovmentEpService,
     XtraAndPosDefaultOptionsEpService,
     XtraAndPosDocTypesService,
+    XtraAndPosEmpAllownceTransactionsService,
+    XtraAndPosEmpContractTransactionsService,
     XtraAndPosEmployeeContractService,
     XtraAndPosEmployeeEpService,
+    XtraAndPosEmpVacationTransactionsService,
     XtraAndPosExchangeRateEpService,
     XtraAndPosFinanceEpService,
     XtraAndPosGeneralLedgerEpService,

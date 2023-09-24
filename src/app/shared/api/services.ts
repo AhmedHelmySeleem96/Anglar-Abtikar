@@ -41,8 +41,11 @@ export { XtraAndPosCountryService } from './services/xtra-and-pos-country.servic
 export { XtraAndPosDailyMovmentEpService } from './services/xtra-and-pos-daily-movment-ep.service';
 export { XtraAndPosDefaultOptionsEpService } from './services/xtra-and-pos-default-options-ep.service';
 export { XtraAndPosDocTypesService } from './services/xtra-and-pos-doc-types.service';
+export { XtraAndPosEmpAllownceTransactionsService } from './services/xtra-and-pos-emp-allownce-transactions.service';
+export { XtraAndPosEmpContractTransactionsService } from './services/xtra-and-pos-emp-contract-transactions.service';
 export { XtraAndPosEmployeeContractService } from './services/xtra-and-pos-employee-contract.service';
 export { XtraAndPosEmployeeEpService } from './services/xtra-and-pos-employee-ep.service';
+export { XtraAndPosEmpVacationTransactionsService } from './services/xtra-and-pos-emp-vacation-transactions.service';
 export { XtraAndPosExchangeRateEpService } from './services/xtra-and-pos-exchange-rate-ep.service';
 export { XtraAndPosFinanceEpService } from './services/xtra-and-pos-finance-ep.service';
 export { XtraAndPosGeneralLedgerEpService } from './services/xtra-and-pos-general-ledger-ep.service';
