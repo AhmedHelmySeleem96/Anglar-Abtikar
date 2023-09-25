@@ -66,7 +66,7 @@
             <button style="width: max-content;" (click)="btnReniewClick(2)"    class="btn btn-info mr-5" >{{'Hr.ReniewAndPromotion'|translate}}</button>
           </div>
         </div>
-  <form [formGroup]="formReniew" (ngSubmit)="onSubmit(formReniew)" class="form" *ngIf="btnReniewAndProm || btnReniewOnly">
+  <form [formGroup]="formReniew"  class="form" *ngIf="btnReniewAndProm || btnReniewOnly">
     <div class="row" *ngIf="btnReniewAndProm || btnReniewOnly">
       <div class="form-group col-md-4 mt-5">
         <label for="StatusId">{{ 'Hr.SelectStatus' | translate }}</label>
@@ -145,7 +145,7 @@
         </div>
       </p-footer>
     </p-dialog>
-  <form [formGroup]="formReniew" (ngSubmit)="onSubmit(formReniew)" class="form" >
+  <form [formGroup]="formReniew"  class="form" >
     <div class="row">
       <div class=" col-md-2 mt-3">
         <label for="branchId">{{ 'Hr.BranchId' | translate }}</label>
@@ -153,7 +153,7 @@
     </div>
     <div class=" col-md-2 mt-3">
       <label for="employeeId">{{ 'EmployeeId' | translate }}</label>
-      <input id="employeeId" formControlName ="employeeId"  readonly   class="form-control">
+      <input #empId id="employeeId" formControlName ="employeeId"  readonly   class="form-control">
     </div>
     <div class=" col-md-2 mt-3">
       <label for="employeeName">{{ 'Hr.EmployeeName' | translate }}</label>
@@ -183,6 +183,9 @@
             <li class="nav-item">
               <a class="nav-link" pTabTitle="الاجازات"></a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" pTabTitle="اعدادات الموظف"></a>
+            </li>
         </ul>
     </ng-template>
     <p-tabPanel header="{{ 'Hr.ContractInfo' | translate }}">
@@ -195,7 +198,7 @@
           </a>
       </div>
 
-      <form  [formGroup]="formContract" (ngSubmit)="onSubmit(formContract)" class="form">
+      <form  [formGroup]="formContract"  class="form">
         <div class="row">
           <div class="form-group col-md-3 mt-5">
             <label for="contractNo">{{ 'Hr.ContractNo' | translate }}</label>
@@ -307,7 +310,7 @@
           <span class="bottom-key-2"></span>
         </a>
     </div>
-  <form [formGroup]="formAllowence" (ngSubmit)="onSubmit(formAllowence)" class="form" >
+  <form [formGroup]="formAllowence"  class="form" >
     <div *ngIf="addAllowence">
       <div class="row" >
         <div class=" col-md-3 mt-5" >
@@ -428,7 +431,7 @@
 
     </p-tabPanel>
     <p-tabPanel header="{{ 'Hr.Vacations' | translate }}">
-      <form [formGroup]="formVac" (ngSubmit)="onSubmit(formVac)" class="form" >
+      <form [formGroup]="formVac"  class="form" >
         <div class="contrainer">
           <div class="row">
             <div class=" col-md-6 mt-5">
@@ -523,6 +526,7 @@
         </ng-template>
       </p-table>
   </p-tabPanel>
+
   </p-tabView>
   </div>
 </div>

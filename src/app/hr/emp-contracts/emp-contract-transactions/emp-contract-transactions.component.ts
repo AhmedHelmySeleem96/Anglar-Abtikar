@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -43,7 +44,8 @@ export class EmpContractTransactionsComponent implements OnInit  {
     private XtraAndPosEmpContractTransactionsService  : XtraAndPosEmpContractTransactionsService,
     private XtraAndPosEmpVacationTransactionsService : XtraAndPosEmpVacationTransactionsService,
     private XtraAndPosJobNameService :XtraAndPosJobNameService,
-    private XtraAndPosVacationTypesService : XtraAndPosVacationTypesService
+    private XtraAndPosVacationTypesService : XtraAndPosVacationTypesService,
+    private ViewportScroller : ViewportScroller
     ){
     this.formReniew = this.createFormReniew();
     this.formAllowence = this.createFormAllowence();
@@ -74,6 +76,7 @@ periodReadOnly =false ;
 @ViewChild('dr') dr: any;
 @ViewChild('inputSearch') inputSearch: any;
 @ViewChild('branch') branch: any;
+@ViewChild('empId') empId: any;
 @ViewChild('empName') empName: any;
 @ViewChild('job') job: any;
 @ViewChild('division') division: any;
@@ -104,6 +107,7 @@ return this.fb.group({
   allowenceValueTypeId: new FormControl(null),
   allowenceValue: new FormControl(null),
   allowencePaidTimeId: new FormControl(null),
+  currencyId: new FormControl(null),
 })
 }
 createFormReniew() : FormGroup{
@@ -178,16 +182,11 @@ ngOnInit(): void {
     { field: 'NameAr', header: 'NameAr' },
     { field: 'NameEn', header: 'NameEn' },
   ];
-  this.getData();
   this.refreshTable();
+  this.getData();
 }
 
-focusOnForm() {
-  if (this.formElement && this.formElement.nativeElement) {
-    this.formElement.nativeElement.scrollIntoView({ behavior: 'smooth' });
-    this.formElement.nativeElement.focus();
-  }
-}
+
 onSearch(searchValue:Event): void {
   this.dt.filterGlobal((searchValue.target as HTMLInputElement).value, 'contains');
 }
@@ -310,7 +309,6 @@ getAllowence(id :any){
   return this.allowenceData.filter((r)=>r.Id===id)[0]
 }
 getAllowenceType(id :any){
-  debugger
   return this.allowenceTypeData.filter((r)=>r.Id===id)[0]
 }
 printPdf() {
@@ -419,6 +417,9 @@ if(value==3){
   operationColumns: { id: string, value: number }[] = [];
   displayOperation = false ;
 setContractEdit(contract:any){
+
+  this.transDialog =true ;
+  this.btnReniewAndProm = true ;
   this.formReniew.patchValue({
       statusId: contract.StatusId,
       reniewTypeId: contract.ReniewTypeId,
@@ -432,7 +433,14 @@ setContractEdit(contract:any){
   });
   this.branch.nativeElement.value = this.getBranch(contract.BranchId)?.NameAr;
   this.empName.nativeElement.value = this.getEmployee(contract.EmployeeId)?.NameAr;
+  this.empId.nativeElement.value = contract.EmployeeId;
+  this.isEdit = true;
+this.currentContractId = contract.Id;
+
+  this.ViewportScroller.scrollToPosition([10,10]) ;
+
 }
+currentVacId : any ;
 setVacEdit(vac:any){
   this.formVac.patchValue({
     vacTypeId: vac.VacTypeId,
@@ -446,8 +454,16 @@ this.formVac.get('employeeId')?.setValue(vac.EployeeId);
 this.formVac.get('branchId')?.setValue(vac.BranchId);
   this.branch.nativeElement.value = this.getBranch(vac.BranchId)?.NameAr;
   this.empName.nativeElement.value = this.getEmployee(vac.EmployeeId)?.NameAr;
+  this.empId.nativeElement.value = vac.EmployeeId;
+
+  this.isEdit = true;
+this.currentVacId = vac.Id;
+
+  this.ViewportScroller.scrollToPosition([10,10]) ;
 }
+currentAllowenceId : any ;
 setAllowenceEdit(allowence:any){
+  this.addAllowence =true ;
   this.formAllowence.patchValue({
     allowenceId: allowence.AllowenceId,
     allowenceTypeId: allowence.AllowenceTypeId,
@@ -461,6 +477,13 @@ setAllowenceEdit(allowence:any){
 this.formAllowence.get('branchId')?.setValue(allowence.BranchId);
 this.branch.nativeElement.value = this.getBranch(allowence.BranchId)?.NameAr;
 this.empName.nativeElement.value = this.getEmployee(allowence.EmployeeId)?.NameAr;
+this.empId.nativeElement.value = allowence.EmployeeId;
+
+this.isEdit = true;
+this.currentAllowenceId = allowence.Id;
+
+this.ViewportScroller.scrollToPosition([10,10]) ;
+
 }
   confirmOperation(){
     this.transDialog = false ;
@@ -594,6 +617,8 @@ this.empName.nativeElement.value = this.getEmployee(allowence.EmployeeId)?.NameA
   }
   }
   onSubmitReniew(form : FormGroup){
+    if(!this.isEdit){
+
     this.transDialog = false;
     if(this.formReniew.valid)
     {
@@ -612,8 +637,30 @@ this.empName.nativeElement.value = this.getEmployee(allowence.EmployeeId)?.NameA
     })}else{
       this.toastr.success("ادخل البيانات المطلوبة")
     }
+
+  }else{
+    let model = this.formVac.value;
+    model.Id = this.currentContractId;
+    const empId = this.formReniew.get('employeeId')?.value;
+    const branchId = this.formReniew.get('branchId')?.value;
+    this.formReniew.get('employeeId')?.setValue(empId);
+    this.formReniew.get('branchId')?.setValue(branchId);
+    this.XtraAndPosEmpContractTransactionsService.httpPutXtraAndPosEmpContractTransactionsUpdate({
+      id: this.currentContractId,
+      body: model
+    }).subscribe((value: any) => {
+      let jsonData = JSON.parse(value);
+      this.toastr.success(jsonData.Message);
+      this.refreshTable();
+      this.isEdit=false;
+      this.formReniew.reset();
+
+    });
+  }
   }
   onSubmitVac(form : FormGroup){
+    if(!this.isEdit){
+
     this.transDialog = false;
     const empId = this.formReniew.get('employeeId')?.value;
     const branchId = this.formReniew.get('branchId')?.value;
@@ -636,8 +683,29 @@ this.empName.nativeElement.value = this.getEmployee(allowence.EmployeeId)?.NameA
     })}else{
       this.toastr.success("ادخل البيانات المطلوبة")
     }
+  }else{
+    let model = this.formVac.value;
+    model.Id = this.currentVacId;
+    const empId = this.formReniew.get('employeeId')?.value;
+    const branchId = this.formReniew.get('branchId')?.value;
+    this.formVac.get('employeeId')?.setValue(empId);
+    this.formVac.get('branchId')?.setValue(branchId);
+    this.XtraAndPosEmpVacationTransactionsService.httpPutXtraAndPosEmpVacationTransactionsUpdate({
+      id: this.currentVacId,
+      body: model
+    }).subscribe((value: any) => {
+      let jsonData = JSON.parse(value);
+      this.toastr.success(jsonData.Message);
+      this.refreshTable();
+      this.isEdit=false;
+      this.formVac.reset();
+
+    });
   }
+
+}
   onSubmitAllowence(form : FormGroup){
+    if(!this.isEdit){
     this.transDialog = false;
     const empId = this.formReniew.get('employeeId')?.value;
     const branchId = this.formReniew.get('branchId')?.value;
@@ -660,10 +728,27 @@ this.empName.nativeElement.value = this.getEmployee(allowence.EmployeeId)?.NameA
     })}else{
       this.toastr.success("ادخل البيانات المطلوبة")
     }
-  }
-  onSubmit(form : FormGroup){
+  }else{
+    let model = this.formAllowence.value;
+    model.Id = this.currentAllowenceId;
+    const empId = this.formReniew.get('employeeId')?.value;
+    const branchId = this.formReniew.get('branchId')?.value;
+    this.formAllowence.get('employeeId')?.setValue(empId);
+    this.formAllowence.get('branchId')?.setValue(branchId);
+    this.XtraAndPosEmpAllownceTransactionsService.httpPutXtraAndPosEmpAllownceTransactionsUpdate({
+      id: this.currentAllowenceId,
+      body: model
+    }).subscribe((value: any) => {
+      let jsonData = JSON.parse(value);
+      this.toastr.success(jsonData.Message);
+      this.refreshTable();
+      this.isEdit=false;
+      this.formAllowence.reset();
 
+    });
   }
+}
+
   showDeleteVacConfirm(vac: any) {
     this.toastr
       .info('Do you want to delete this vac?', 'Confirmation', {
