@@ -7,11 +7,11 @@ import { ToastrService } from 'ngx-toastr';
 import { ExportData } from 'src/app/services/Export-data.service';
 import { XtraAndPosLookUpsService,XtraAndPosBranchEpService,
    XtraAndPosEmployeeContractService, XtraAndPosJobDifinitionService,
-    CurrencyEpService, XtraAndPosOrgStructuresService,
-     EmployeeContractDto, XtraAndPosWorkCardService, XtraAndPosAllowenceService,
+    CurrencyEpService,
+     EmployeeContractDto, XtraAndPosWorkCardService, XtraAndPosAllowanceService,
       XtraAndPosHrEmployeeService,
       XtraAndPosJobNameService,
-      XtraAndPosEmployeeAllowenceTrxService,
+      XtraAndPosEmployeeAllowanceTrxService,
       XtraAndPosEmployeeContractTrxService,
       XtraAndPosEmployeeVacationsService,
       XtraAndPosEmpVacationTypesService,
@@ -34,12 +34,12 @@ export class EmpContractTransactionsComponent implements OnInit  {
     ,private XtraAndPosBranchEpService : XtraAndPosBranchEpService
     ,public translate : TranslateService
     ,private XtraAndPosWorkCardService: XtraAndPosWorkCardService
-    ,private XtraAndPosAllowenceService : XtraAndPosAllowenceService
+    ,private XtraAndPosAllowanceService : XtraAndPosAllowanceService
     ,private fb:FormBuilder,
     private XtraAndPosEmployeeContractService: XtraAndPosEmployeeContractService,
     private XtraAndPosHrEmployeeService :XtraAndPosHrEmployeeService,
     private  XtraAndPosJobDifinitionService :XtraAndPosJobDifinitionService,
-    private XtraAndPosEmpAllownceTransactionsService : XtraAndPosEmployeeAllowenceTrxService,
+    private XtraAndPosEmpAllownceTransactionsService : XtraAndPosEmployeeAllowanceTrxService,
     private XtraAndPosEmpContractTransactionsService  : XtraAndPosEmployeeContractTrxService,
     private XtraAndPosEmpVacationTransactionsService : XtraAndPosEmployeeVacationsService,
     private XtraAndPosJobNameService :XtraAndPosJobNameService,
@@ -47,12 +47,12 @@ export class EmpContractTransactionsComponent implements OnInit  {
     private ViewportScroller : ViewportScroller
     ){
     this.formReniew = this.createFormReniew();
-    this.formAllowence = this.createFormAllowence();
+    this.formAllowance = this.createFormAllowance();
     this.formVac = this.createFormVac();
     this.formContract = this.createForm();}
     formReniew : FormGroup;
     formContract : FormGroup;
-    formAllowence : FormGroup;
+    formAllowance : FormGroup;
     formVac : FormGroup;
     currencyData :any [] = [] ;
     statusData : any[] = [];
@@ -60,14 +60,14 @@ export class EmpContractTransactionsComponent implements OnInit  {
     branchData : any[] = [] ;
     currentContractId: any  ;
     workCardData :any[]  = [] ;
-    allowenceTypeData :any[]  = [] ;
+    allowanceTypeData :any[]  = [] ;
     vacTypesData :any[]  = [] ;
-    allowenceValueTypeData :any[]  = [] ;
+    allowanceValueTypeData :any[]  = [] ;
     orgStructuresData :any[]  = [] ;
-    addAllowence = false ;
+    addAllowance = false ;
 cols : any  ;
 searchCols : any  ;
-allowenceCols : any  ;
+allowanceCols : any  ;
 vacCols : any  ;
 isEdit:boolean= false ;
 periodReadOnly =false ;
@@ -85,8 +85,8 @@ periodReadOnly =false ;
 @ViewChild('formElement') formElement!: ElementRef;
 ContractData :any[] = [] ;
 EmployeeData :any[] = [] ;
-allowenceData  :any[] = [] ;
-allowencePaidTimes  :any[] = [] ;
+allowanceData  :any[] = [] ;
+allowancePaidTimes  :any[] = [] ;
 transDialog =false ;
 btnReniewOnly = false;
 btnReniewAndProm = false;
@@ -95,17 +95,17 @@ jobNamesData : any [] = [] ;
 displayPrivew : boolean = false;
 numberColumns : EmployeeContractDto [] = [] ;
 contractTrxData :any[] = [] ;
-allowenceTrxData :any[] = [] ;
+allowanceTrxData :any[] = [] ;
 vacTrxData :any[] = [] ;
-createFormAllowence():FormGroup{
+createFormAllowance():FormGroup{
 return this.fb.group({
-  allowenceId: new FormControl(null),
+  allowanceId: new FormControl(null),
   employeeId: new FormControl(null, [Validators.required]),
   branchId: new FormControl(null, [Validators.required]),
-  allowenceTypeId: new FormControl(null),
-  allowenceValueTypeId: new FormControl(null),
-  allowenceValue: new FormControl(null),
-  allowencePaidTimeId: new FormControl(null),
+  allowanceTypeId: new FormControl(null),
+  allowanceValueTypeId: new FormControl(null),
+  allowanceValue: new FormControl(null),
+  allowancePaidTimeId: new FormControl(null),
   currencyId: new FormControl(null),
 })
 }
@@ -118,7 +118,7 @@ createFormReniew() : FormGroup{
     reniewEndDate: new FormControl(null, [Validators.required]),
     jobDifinitionId: new FormControl(null),
     divisionId: new FormControl(null),
-    jobNammeId: new FormControl(null),
+    jobNameId: new FormControl(null),
     basicSalary: new FormControl(null),
     currencyId: new FormControl(null),
     statusId: new FormControl(null, [Validators.required]),
@@ -168,13 +168,13 @@ ngOnInit(): void {
     { field: 'VacEndDate', header: 'VacEndDate' },
     { field: 'EmpReplacementId', header: 'EmpReplacementId' },
   ];
-  this.allowenceCols = [
+  this.allowanceCols = [
     { field: 'Id', header: 'Id' },
     { field: 'CreatedDate', header: 'CreatedDate' },
     { field: 'BranchId', header: 'BranchId' },
     { field: 'EmployeeId', header: 'NameAr' },
-    { field: 'AllowenceId', header: 'Allowence' },
-    { field: 'AllowenceTypeId', header: 'AllowenceType' },
+    { field: 'AllowanceId', header: 'Allowance' },
+    { field: 'AllowanceTypeId', header: 'AllowanceType' },
   ];
   this.searchCols = [
     { field: 'Id', header: 'EmployeeId' },
@@ -198,9 +198,9 @@ getData(){
     let jsonworkCardData = JSON.parse(value);
     this.workCardData = jsonworkCardData.Obj.card;
   });
-  this.XtraAndPosAllowenceService.httpGetXtraAndPosAllowenceGetAllowenceService().subscribe((value: any) => {
+  this.XtraAndPosAllowanceService.httpGetXtraAndPosAllowanceGetAllowanceService().subscribe((value: any) => {
     let jsonworkCardData = JSON.parse(value);
-    this.allowenceData = jsonworkCardData.Obj.allowence;
+    this.allowanceData = jsonworkCardData.Obj.allowance;
   });
   this.XtraAndPosHrEmployeeService.httpGetXtraAndPosHrEmployeeGetHrEmployeeService().subscribe((value: any) => {
     let jsonEmployeeData = JSON.parse(value);
@@ -214,17 +214,17 @@ getData(){
     let jsonData = JSON.parse(value);
     this.reniewTypeData = jsonData;
   });
-  this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetAllowencePaidTimes().subscribe((value:any)=>{
+  this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetAllowancePaidTimes().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
-    this.allowencePaidTimes = jsonData;
+    this.allowancePaidTimes = jsonData;
   });
-  this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetAllowenceTypes().subscribe((value:any)=>{
+  this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetAllowanceTypes().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
-    this.allowenceTypeData = jsonData;
+    this.allowanceTypeData = jsonData;
   });
-  this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetAllowenceValueTypes().subscribe((value:any)=>{
+  this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetAllowanceValueTypes().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
-    this.allowenceValueTypeData = jsonData;
+    this.allowanceValueTypeData = jsonData;
   });
   this.CurrencyEpService.httpGetCurrencyGetAll().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
@@ -282,9 +282,9 @@ refreshTable() {
     let jsonContractData = JSON.parse(value);
     this.contractTrxData = jsonContractData.Obj.contract;
   });
-  this.XtraAndPosEmpAllownceTransactionsService.httpGetXtraAndPosEmployeeAllowenceTrxGetEmployeeAllowenceTrxService().subscribe((value: any) => {
+  this.XtraAndPosEmpAllownceTransactionsService.httpGetXtraAndPosEmployeeAllowanceTrxGetEmployeeAllowanceTrxService().subscribe((value: any) => {
     let jsonContractData = JSON.parse(value);
-    this.allowenceTrxData = jsonContractData.Obj.allowence;
+    this.allowanceTrxData = jsonContractData.Obj.allowance;
   });
   this.XtraAndPosEmpVacationTransactionsService.httpGetXtraAndPosEmployeeVacationsGetEmployeeVacationsService().subscribe((value: any) => {
     let jsonContractData = JSON.parse(value);
@@ -304,11 +304,11 @@ getBranch(id :any){
 getEmployee(id :any){
   return this.EmployeeData.filter((r)=>r.Id===id)[0]
 }
-getAllowence(id :any){
-  return this.allowenceData.filter((r)=>r.Id===id)[0]
+getAllowance(id :any){
+  return this.allowanceData.filter((r)=>r.Id===id)[0]
 }
-getAllowenceType(id :any){
-  return this.allowenceTypeData.filter((r)=>r.Id===id)[0]
+getAllowanceType(id :any){
+  return this.allowanceTypeData.filter((r)=>r.Id===id)[0]
 }
 printPdf() {
   const tableData = this.ContractData.map((contract) => {
@@ -400,7 +400,7 @@ this.ExportData.toExcel(tableData,'contract.xlsx')
   getJob(id :any){
     return this.JobData.filter((r)=>r.Id===id)[0]
   }
-  allowenceValueTypeChange(event:Event){
+  allowanceValueTypeChange(event:Event){
 let target =  event.target as HTMLSelectElement;
 let value = Number(target.value)
 if(value==3){
@@ -426,7 +426,7 @@ setContractEdit(contract:any){
       reniewEndDate: contract.ReniewEndDate,
       jobDifinitionId: contract.JobDifinitionId,
       divisionId: contract.DivisionId,
-      jobNammeId: contract.JobNammeId,
+      jobNameId: contract.JobNameId,
       basicSalary: contract.BasicSalary,
       currencyId: contract.CurrencyId,
   });
@@ -460,26 +460,26 @@ this.currentVacId = vac.Id;
 
   this.ViewportScroller.scrollToPosition([10,10]) ;
 }
-currentAllowenceId : any ;
-setAllowenceEdit(allowence:any){
-  this.addAllowence =true ;
-  this.formAllowence.patchValue({
-    allowenceId: allowence.AllowenceId,
-    allowenceTypeId: allowence.AllowenceTypeId,
-    allowenceValueTypeId: allowence.AllowenceValueTypeId,
-    allowencePaidTimeId: allowence.AllowencePaidTimeId,
-    operation: allowence.Operation,
-    allowenceValue: allowence.AllowenceValue,
-    currencyId: allowence.CurrencyId,
+currentAllowanceId : any ;
+setAllowanceEdit(allowance:any){
+  this.addAllowance =true ;
+  this.formAllowance.patchValue({
+    allowanceId: allowance.AllowanceId,
+    allowanceTypeId: allowance.AllowanceTypeId,
+    allowanceValueTypeId: allowance.AllowanceValueTypeId,
+    allowancePaidTimeId: allowance.AllowancePaidTimeId,
+    operation: allowance.Operation,
+    allowanceValue: allowance.AllowanceValue,
+    currencyId: allowance.CurrencyId,
   });
-  this.formAllowence.get('employeeId')?.setValue(allowence.EmployeeId);
-this.formAllowence.get('branchId')?.setValue(allowence.BranchId);
-this.branch.nativeElement.value = this.getBranch(allowence.BranchId)?.NameAr;
-this.empName.nativeElement.value = this.getEmployee(allowence.EmployeeId)?.NameAr;
-this.empId.nativeElement.value = allowence.EmployeeId;
+  this.formAllowance.get('employeeId')?.setValue(allowance.EmployeeId);
+this.formAllowance.get('branchId')?.setValue(allowance.BranchId);
+this.branch.nativeElement.value = this.getBranch(allowance.BranchId)?.NameAr;
+this.empName.nativeElement.value = this.getEmployee(allowance.EmployeeId)?.NameAr;
+this.empId.nativeElement.value = allowance.EmployeeId;
 
 this.isEdit = true;
-this.currentAllowenceId = allowence.Id;
+this.currentAllowanceId = allowance.Id;
 
 this.ViewportScroller.scrollToPosition([10,10]) ;
 
@@ -493,17 +493,17 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
     }
     if(this.operation==1){
       opr = "X"
-      this.formAllowence.get('allowenceValue')?.setValue(Number( columnValues[0])*Number( columnValues[1]))
+      this.formAllowance.get('allowanceValue')?.setValue(Number( columnValues[0])*Number( columnValues[1]))
     }else if(this.operation ==2 ){
       opr = "/"
-      this.formAllowence.get('allowenceValue')?.setValue(Number( columnValues[0])/Number( columnValues[1]))
+      this.formAllowance.get('allowanceValue')?.setValue(Number( columnValues[0])/Number( columnValues[1]))
     }else if(this.operation ==3 ){
       opr = "+"
-      this.formAllowence.get('allowenceValue')?.setValue(Number( columnValues[0])+Number(columnValues[1]))
+      this.formAllowance.get('allowanceValue')?.setValue(Number( columnValues[0])+Number(columnValues[1]))
 
     }else if(this.operation ==4 ){
       opr = "-"
-      this.formAllowence.get('allowenceValue')?.setValue(Number( columnValues[0])-Number( columnValues[1]))
+      this.formAllowance.get('allowanceValue')?.setValue(Number( columnValues[0])-Number( columnValues[1]))
     }
     let columnNames =  this.operationColumns.map(r=>r.id)
     if(this.percentage.nativeElement.value!=null){
@@ -575,8 +575,8 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
 
 
   }
-  addAllowenceClick(){
-    this.addAllowence = true;
+  addAllowanceClick(){
+    this.addAllowance = true;
   }
   contractPeriodDateChange(event :Event){
     const target = event.target as HTMLInputElement;
@@ -703,23 +703,23 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
   }
 
 }
-  onSubmitAllowence(form : FormGroup){
+  onSubmitAllowance(form : FormGroup){
     if(!this.isEdit){
     this.transDialog = false;
     const empId = this.formReniew.get('employeeId')?.value;
     const branchId = this.formReniew.get('branchId')?.value;
-    this.formAllowence.get('employeeId')?.setValue(empId);
-    this.formAllowence.get('branchId')?.setValue(branchId);
-    if(this.formAllowence.valid)
+    this.formAllowance.get('employeeId')?.setValue(empId);
+    this.formAllowance.get('branchId')?.setValue(branchId);
+    if(this.formAllowance.valid)
     {
-    const model = this.formAllowence.value;
+    const model = this.formAllowance.value;
 
-    this.XtraAndPosEmpAllownceTransactionsService.httpPostXtraAndPosEmployeeAllowenceTrxCreateEmployeeAllowenceTrxService({
+    this.XtraAndPosEmpAllownceTransactionsService.httpPostXtraAndPosEmployeeAllowanceTrxCreateEmployeeAllowanceTrxService({
       body : model
     }).subscribe((value:any)=>{
       let jsonData = JSON.parse(value);
         this.toastr.success(jsonData.Message)
-        this.formAllowence.reset();
+        this.formAllowance.reset();
         this.refreshTable();
     },
     (error: any) => {
@@ -728,21 +728,21 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
       this.toastr.success("ادخل البيانات المطلوبة")
     }
   }else{
-    let model = this.formAllowence.value;
-    model.Id = this.currentAllowenceId;
+    let model = this.formAllowance.value;
+    model.Id = this.currentAllowanceId;
     const empId = this.formReniew.get('employeeId')?.value;
     const branchId = this.formReniew.get('branchId')?.value;
-    this.formAllowence.get('employeeId')?.setValue(empId);
-    this.formAllowence.get('branchId')?.setValue(branchId);
-    this.XtraAndPosEmpAllownceTransactionsService.httpPutXtraAndPosEmployeeAllowenceTrxUpdateEmployeeAllowenceTrxService({
-      id: this.currentAllowenceId,
+    this.formAllowance.get('employeeId')?.setValue(empId);
+    this.formAllowance.get('branchId')?.setValue(branchId);
+    this.XtraAndPosEmpAllownceTransactionsService.httpPutXtraAndPosEmployeeAllowanceTrxUpdateEmployeeAllowanceTrxService({
+      id: this.currentAllowanceId,
       body: model
     }).subscribe((value: any) => {
       let jsonData = JSON.parse(value);
       this.toastr.success(jsonData.Message);
       this.refreshTable();
       this.isEdit=false;
-      this.formAllowence.reset();
+      this.formAllowance.reset();
 
     });
   }
@@ -774,9 +774,9 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
       this.toastr.error('Failed to delete vac.');
     });
   }
-  showDeleteAllowenceConfirm(allowence: any) {
+  showDeleteAllowanceConfirm(allowance: any) {
     this.toastr
-      .info('Do you want to delete this allowence?', 'Confirmation', {
+      .info('Do you want to delete this allowance?', 'Confirmation', {
         timeOut: 0,
         extendedTimeOut: 0,
         closeButton: true,
@@ -784,12 +784,12 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
         tapToDismiss: false,
       })
       .onTap.subscribe(() => {
-        this.deleteAllowence(allowence);
+        this.deleteAllowance(allowance);
       this.empName.nativeElement.value = "";
       });
   }
-  deleteAllowence(contract: any) {
-    this.XtraAndPosEmpAllownceTransactionsService.httpDeleteXtraAndPosEmployeeAllowenceTrxDeleteEmployeeAllowenceTrxService({
+  deleteAllowance(contract: any) {
+    this.XtraAndPosEmpAllownceTransactionsService.httpDeleteXtraAndPosEmployeeAllowanceTrxDeleteEmployeeAllowanceTrxService({
       id: contract.Id,
     }).subscribe((value: any) => {
       let jsonData = JSON.parse(value);
@@ -797,7 +797,7 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
       this.toastr.success(jsonData.Message);
       this.refreshTable();
     }, (error: any) => {
-      this.toastr.error('Failed to delete allowence.');
+      this.toastr.error('Failed to delete allowance.');
     });
   }
 }

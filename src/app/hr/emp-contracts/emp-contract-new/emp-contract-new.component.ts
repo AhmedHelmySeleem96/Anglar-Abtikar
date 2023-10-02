@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ExportData } from 'src/app/services/Export-data.service';
-import { XtraAndPosLookUpsService,XtraAndPosBranchEpService, XtraAndPosEmployeeContractService, XtraAndPosNationalityService, XtraAndPosSpecializationsService, XtraAndPosJobDifinitionService, XtraAndPosJobNameService, CurrencyEpService, RoleGroupEpService, ApplicationUser, XtraAndPosOrgStructuresService, ExtraAndPosBankEpService, EmployeeContractDto, XtraAndPosWorkCardService, XtraAndPosAllowenceService, XtraAndPosHrEmployeeService } from 'src/app/shared/api';
+import { XtraAndPosLookUpsService,XtraAndPosBranchEpService, XtraAndPosEmployeeContractService, XtraAndPosNationalityService, XtraAndPosSpecializationsService, XtraAndPosJobDifinitionService, XtraAndPosJobNameService, CurrencyEpService, RoleGroupEpService, ApplicationUser, XtraAndPosOrgStructuresService, ExtraAndPosBankEpService, EmployeeContractDto, XtraAndPosWorkCardService, XtraAndPosAllowanceService, XtraAndPosHrEmployeeService } from 'src/app/shared/api';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class EmpContractNewComponent implements OnInit  {
     ,private XtraAndPosBranchEpService : XtraAndPosBranchEpService
     ,public translate : TranslateService
     ,private XtraAndPosWorkCardService: XtraAndPosWorkCardService
-    ,private XtraAndPosAllowenceService : XtraAndPosAllowenceService
+    ,private XtraAndPosAllowanceService : XtraAndPosAllowanceService
     ,private fb:FormBuilder,
     private XtraAndPosEmployeeContractService: XtraAndPosEmployeeContractService,
     private XtraAndPosHrEmployeeService :XtraAndPosHrEmployeeService,
@@ -36,8 +36,8 @@ export class EmpContractNewComponent implements OnInit  {
     branchData : any[] = [] ;
     currentContractId: any  ;
     workCardData :any[]  = [] ;
-    allowenceTypeData :any[]  = [] ;
-    allowenceValueTypeData :any[]  = [] ;
+    allowanceTypeData :any[]  = [] ;
+    allowanceValueTypeData :any[]  = [] ;
     orgStructuresData :any[]  = [] ;
 
 cols : any  ;
@@ -57,8 +57,8 @@ periodReadOnly =false ;
 @ViewChild('formElement') formElement!: ElementRef;
 ContractData :any[] = [] ;
 EmployeeData :any[] = [] ;
-allowenceData  :any[] = [] ;
-allowencePaidTimes  :any[] = [] ;
+allowanceData  :any[] = [] ;
+allowancePaidTimes  :any[] = [] ;
 JobData  :any[] = [] ;
 displayPrivew : boolean = false;
 numberColumns : EmployeeContractDto [] = [] ;
@@ -75,11 +75,11 @@ createForm(): FormGroup {
       basicSalary: new FormControl(null,Validators.required),
       currencyId: new FormControl(null,Validators.required),
       workCardId: new FormControl(null,Validators.required),
-      allowenceId: new FormControl(null,Validators.required),
-      allowenceType: new FormControl(null,Validators.required),
-      allowenceValueType: new FormControl(null,Validators.required),
-      allowenceValue: new FormControl(null,Validators.required),
-      allowencePaidTimeId: new FormControl(null,Validators.required),
+      allowanceId: new FormControl(null,Validators.required),
+      allowanceType: new FormControl(null,Validators.required),
+      allowanceValueType: new FormControl(null,Validators.required),
+      allowanceValue: new FormControl(null,Validators.required),
+      allowancePaidTimeId: new FormControl(null,Validators.required),
     })
 }
 ngOnInit(): void {
@@ -115,11 +115,11 @@ setEdit(contract: any) {
     basicSalary: contract.BasicSalary,
     currencyId: contract.CurrencyId,
     workCardId: contract.WorkCardId,
-    allowenceId: contract.AllowenceId,
-    allowenceType: contract.AllowenceType,
-    allowenceValueType: contract.AllowenceValueType,
-    allowenceValue: contract.AllowenceValue,
-    allowencePaidTimeId : contract.AllowencePaidTimeId
+    allowanceId: contract.AllowanceId,
+    allowanceType: contract.AllowanceType,
+    allowanceValueType: contract.AllowanceValueType,
+    allowanceValue: contract.AllowanceValue,
+    allowancePaidTimeId : contract.AllowancePaidTimeId
   });
   this.branch.nativeElement.value = this.getBranch(contract.BranchId)?.NameAr
   this.job.nativeElement.value = this.getJob(contract.JobId)?.NameAr
@@ -151,9 +151,9 @@ getData(){
     let jsonData = JSON.parse(value);
     this.orgStructuresData = jsonData.Obj.orgStructures;
   });
-  this.XtraAndPosAllowenceService.httpGetXtraAndPosAllowenceGetAllowenceService().subscribe((value: any) => {
+  this.XtraAndPosAllowanceService.httpGetXtraAndPosAllowanceGetAllowanceService().subscribe((value: any) => {
     let jsonworkCardData = JSON.parse(value);
-    this.allowenceData = jsonworkCardData.Obj.allowence;
+    this.allowanceData = jsonworkCardData.Obj.allowance;
   });
   this.XtraAndPosHrEmployeeService.httpGetXtraAndPosHrEmployeeGetHrEmployeeService().subscribe((value: any) => {
     let jsonEmployeeData = JSON.parse(value);
@@ -163,17 +163,17 @@ getData(){
     let jsonData = JSON.parse(value);
     this.statusData = jsonData;
   });
-  this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetAllowencePaidTimes().subscribe((value:any)=>{
+  this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetAllowancePaidTimes().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
-    this.allowencePaidTimes = jsonData;
+    this.allowancePaidTimes = jsonData;
   });
-  this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetAllowenceTypes().subscribe((value:any)=>{
+  this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetAllowanceTypes().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
-    this.allowenceTypeData = jsonData;
+    this.allowanceTypeData = jsonData;
   });
-  this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetAllowenceValueTypes().subscribe((value:any)=>{
+  this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetAllowanceValueTypes().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
-    this.allowenceValueTypeData = jsonData;
+    this.allowanceValueTypeData = jsonData;
   });
   this.CurrencyEpService.httpGetCurrencyGetAll().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
@@ -363,7 +363,7 @@ contractStartDateChange(event :Event){
   getJob(id :any){
     return this.JobData.filter((r)=>r.Id===id)[0]
   }
-  allowenceValueTypeChange(event:Event){
+  allowanceValueTypeChange(event:Event){
 let target =  event.target as HTMLSelectElement;
 let value = Number(target.value)
 if(value==3){
@@ -401,17 +401,17 @@ if(value==3){
     }
     if(this.operation==1){
       opr = "X"
-      this.formContract.get('allowenceValue')?.setValue(Number( columnValues[0])*Number( columnValues[1]))
+      this.formContract.get('allowanceValue')?.setValue(Number( columnValues[0])*Number( columnValues[1]))
     }else if(this.operation ==2 ){
       opr = "/"
-      this.formContract.get('allowenceValue')?.setValue(Number( columnValues[0])/Number( columnValues[1]))
+      this.formContract.get('allowanceValue')?.setValue(Number( columnValues[0])/Number( columnValues[1]))
     }else if(this.operation ==3 ){
       opr = "+"
-      this.formContract.get('allowenceValue')?.setValue(Number( columnValues[0])+Number(columnValues[1]))
+      this.formContract.get('allowanceValue')?.setValue(Number( columnValues[0])+Number(columnValues[1]))
 
     }else if(this.operation ==4 ){
       opr = "-"
-      this.formContract.get('allowenceValue')?.setValue(Number( columnValues[0])-Number( columnValues[1]))
+      this.formContract.get('allowanceValue')?.setValue(Number( columnValues[0])-Number( columnValues[1]))
     }
     let columnNames =  this.operationColumns.map(r=>r.id)
     if(this.percentage.nativeElement.value!=null){

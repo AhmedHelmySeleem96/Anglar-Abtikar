@@ -32,7 +32,7 @@ export { TrailBalanceControllerService } from './services/trail-balance-controll
 export { UserEpService } from './services/user-ep.service';
 export { WebsiteEpService } from './services/website-ep.service';
 export { XtraAndPosAccTreeEpService } from './services/xtra-and-pos-acc-tree-ep.service';
-export { XtraAndPosAllowenceService } from './services/xtra-and-pos-allowence.service';
+export { XtraAndPosAllowanceService } from './services/xtra-and-pos-allowance.service';
 export { XtraAndPosBranchEpService } from './services/xtra-and-pos-branch-ep.service';
 export { XtraAndPosBuyOfferPricesEpService } from './services/xtra-and-pos-buy-offer-prices-ep.service';
 export { XtraAndPosCityService } from './services/xtra-and-pos-city.service';
@@ -43,7 +43,7 @@ export { XtraAndPosCountryService } from './services/xtra-and-pos-country.servic
 export { XtraAndPosDailyMovmentEpService } from './services/xtra-and-pos-daily-movment-ep.service';
 export { XtraAndPosDefaultOptionsEpService } from './services/xtra-and-pos-default-options-ep.service';
 export { XtraAndPosDocTypesService } from './services/xtra-and-pos-doc-types.service';
-export { XtraAndPosEmployeeAllowenceTrxService } from './services/xtra-and-pos-employee-allowence-trx.service';
+export { XtraAndPosEmployeeAllowanceTrxService } from './services/xtra-and-pos-employee-allowance-trx.service';
 export { XtraAndPosEmployeeContractService } from './services/xtra-and-pos-employee-contract.service';
 export { XtraAndPosEmployeeContractTrxService } from './services/xtra-and-pos-employee-contract-trx.service';
 export { XtraAndPosEmployeeEpService } from './services/xtra-and-pos-employee-ep.service';

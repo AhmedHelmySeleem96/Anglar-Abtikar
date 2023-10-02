@@ -3,7 +3,7 @@
 export { AccTree } from './models/acc-tree';
 export { AccountingPeriod } from './models/accounting-period';
 export { AchievingTargets } from './models/achieving-targets';
-export { AllowenceDto } from './models/allowence-dto';
+export { AllowanceDto } from './models/allowance-dto';
 export { ApplicationUser } from './models/application-user';
 export { Bank } from './models/bank';
 export { BankAccount } from './models/bank-account';
@@ -47,7 +47,7 @@ export { DocTypesDto } from './models/doc-types-dto';
 export { DocsStatus } from './models/docs-status';
 export { EmpVacationTypesDto } from './models/emp-vacation-types-dto';
 export { Employee } from './models/employee';
-export { EmployeeAllowenceTrxDto } from './models/employee-allowence-trx-dto';
+export { EmployeeAllowanceTrxDto } from './models/employee-allowance-trx-dto';
 export { EmployeeContractDto } from './models/employee-contract-dto';
 export { EmployeeContractTrxDto } from './models/employee-contract-trx-dto';
 export { EmployeeCreateDto } from './models/employee-create-dto';

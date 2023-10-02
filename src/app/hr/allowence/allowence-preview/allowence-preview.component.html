@@ -4,17 +4,17 @@
 
     <div class="card bg-light mb-3">
         <div class="card-body">
-            <h3>{{ "Hr.Allowence" | translate }}</h3>
-  <form #formElement [formGroup]="formAllowence" (ngSubmit)="onSubmit(formAllowence)" class="form">
+            <h3>{{ "Hr.Allowance" | translate }}</h3>
+  <form #formElement [formGroup]="formAllowance" (ngSubmit)="onSubmit(formAllowance)" class="form">
 
-    <div class="form-group mt-5" [ngClass]="{'invalid-control': formAllowence.get('NameAr')?.invalid && formAllowence.get('NameAr')?.touched}">
-      <label for="allowenceNameAr">{{ 'Hr.AllowenceNameAr' | translate }}</label>
-      <input  id="allowenceNameAr" type="allowenceNameAr" formControlName="NameAr" maxlength="100" required class="form-control">
+    <div class="form-group mt-5" [ngClass]="{'invalid-control': formAllowance.get('NameAr')?.invalid && formAllowance.get('NameAr')?.touched}">
+      <label for="allowanceNameAr">{{ 'Hr.AllowanceNameAr' | translate }}</label>
+      <input  id="allowanceNameAr" type="allowanceNameAr" formControlName="NameAr" maxlength="100" required class="form-control">
     </div>
 
     <div class="form-group mt-5">
-      <label for="allowenceNameEn">{{ 'Hr.AllowenceNameEn' | translate }}</label>
-      <input   id="allowenceNameEn" type="allowenceNameEn" formControlName="NameEn" maxlength="100"   class="form-control">
+      <label for="allowanceNameEn">{{ 'Hr.AllowanceNameEn' | translate }}</label>
+      <input   id="allowanceNameEn" type="allowanceNameEn" formControlName="NameEn" maxlength="100"   class="form-control">
     </div>
 
     <div class="form-group mt-5" *ngIf="isEdit">
@@ -43,7 +43,7 @@
     [paginator]="true"
     [rows]="5"
     [columns]="cols"
-    [value]="allowenceData"
+    [value]="allowanceData"
     sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" >
       <ng-template pTemplate="header" let-columns>
         <tr>
@@ -56,23 +56,23 @@
           </th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-allowence let-columns="columns">
+      <ng-template pTemplate="body" let-allowance let-columns="columns">
         <tr>
           <td *ngFor="let col of columns" [style.text-align]="'right'">
-            <span class="table-data" *ngIf="col.field == 'AllowenceId'">
-              {{ getallowence(allowence[col.field])?.NameAr }}
+            <span class="table-data" *ngIf="col.field == 'AllowanceId'">
+              {{ getallowance(allowance[col.field])?.NameAr }}
             </span>
             <span class="table-data" *ngIf="col.field == 'CreatedDate'">
-              {{ allowence[col.field] | date:'shortDate' }}
+              {{ allowance[col.field] | date:'shortDate' }}
             </span>
-            <span class="table-data" *ngIf="col.field != 'AllowenceId' &&col.field != 'CreatedDate'">
-              {{ allowence[col.field] }}
+            <span class="table-data" *ngIf="col.field != 'AllowanceId' &&col.field != 'CreatedDate'">
+              {{ allowance[col.field] }}
             </span>
           </td>
           <td>
             <div style="text-align: center">
-              <img src="assets/images/editIcon.png" class="mx-3" (click)=" setEdit(allowence)" />
-              <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteConfirm(allowence)" />
+              <img src="assets/images/editIcon.png" class="mx-3" (click)=" setEdit(allowance)" />
+              <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteConfirm(allowance)" />
             </div>
           </td>
         </tr>
@@ -86,7 +86,7 @@
 </div>
 </div>
 <div class="mt-2 text-center">
-  <button type="submit" (click)="onSubmit(formAllowence)" class="btn btn-success" >{{ 'Save' | translate }}</button>
+  <button type="submit" (click)="onSubmit(formAllowance)" class="btn btn-success" >{{ 'Save' | translate }}</button>
   <button  (click)="printPdf()" class="btn btn-info" >{{"Hr.Print" | translate}}</button>
   <button  (click)="exportData()" class="btn btn-info" id="viewBtn">{{"Hr.Export" | translate}}</button>
   <button (click)="goHome()" class="btn btn-warning Dnone" id="editBtn">{{"Cancel" | translate}}</button>

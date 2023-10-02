@@ -9,12 +9,12 @@ import { CountryComponent } from './country/country.component';
 import { NationalityComponent } from './nationality/nationality.component';
 import { OrgstructlevelComponent } from './orgstructlevel/orgstructlevel.component';
 import { OrgstructuresComponent } from './orgstructures/orgstructures.component';
-import { AllowenceComponent } from './allowence/allowence.component';
 import { HospitalComponent } from './hospital/hospital.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { SpecializationsComponent } from './specializations/specializations.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmpContractsComponent } from './emp-contracts/emp-contracts.component';
+import { AllowanceComponent } from './allowence/allowence.component';
 @NgModule({
   declarations: [
   CityComponent,
@@ -23,7 +23,7 @@ import { EmpContractsComponent } from './emp-contracts/emp-contracts.component';
   NationalityComponent,
   OrgstructlevelComponent,
   OrgstructuresComponent,
-  AllowenceComponent,
+  AllowanceComponent,
   HospitalComponent,
 JobsComponent,
 SpecializationsComponent,
@@ -47,7 +47,7 @@ EmpContractsComponent,
       },{
         path : "hospital" , loadChildren: () => import('./hospital/hospital.module').then(m => m.HospitalModule)
       },{
-        path : "allowence" , loadChildren: () => import('./allowence/allowence.module').then(m => m.AllowenecModule)
+        path : "allowance" , loadChildren: () => import('./allowence/allowence.module').then(m => m.AllowenecModule)
       },{
         path : "jobs" , loadChildren: () => import('./jobs/jobs.module').then(m => m.JobModule)
       },{

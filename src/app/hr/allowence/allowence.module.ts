@@ -6,17 +6,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
-import { AllowenceCreateComponent } from './allowence-create/allowence-create.component';
-import { AllowencePreviewComponent } from './allowence-preview/allowence-preview.component';
+import { AllowanceCreateComponent } from './allowence-create/allowence-create.component';
+import { AllowancePreviewComponent } from './allowence-preview/allowence-preview.component';
 @NgModule({
   declarations: [
-    AllowenceCreateComponent,
-    AllowencePreviewComponent
+    AllowanceCreateComponent,
+    AllowancePreviewComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild([{path :'' ,component:AllowencePreviewComponent}
-    ,{path:'createAllowence' ,component:AllowenceCreateComponent}]
+    RouterModule.forChild([{path :'' ,component:AllowancePreviewComponent}
+    ,{path:'createAllowance' ,component:AllowanceCreateComponent}]
    ),
     TranslateModule,
     FormsModule,

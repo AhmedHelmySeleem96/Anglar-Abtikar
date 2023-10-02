@@ -38,7 +38,7 @@ import { TrailBalanceControllerService } from './services/trail-balance-controll
 import { UserEpService } from './services/user-ep.service';
 import { WebsiteEpService } from './services/website-ep.service';
 import { XtraAndPosAccTreeEpService } from './services/xtra-and-pos-acc-tree-ep.service';
-import { XtraAndPosAllowenceService } from './services/xtra-and-pos-allowence.service';
+import { XtraAndPosAllowanceService } from './services/xtra-and-pos-allowance.service';
 import { XtraAndPosBranchEpService } from './services/xtra-and-pos-branch-ep.service';
 import { XtraAndPosBuyOfferPricesEpService } from './services/xtra-and-pos-buy-offer-prices-ep.service';
 import { XtraAndPosCityService } from './services/xtra-and-pos-city.service';
@@ -49,7 +49,7 @@ import { XtraAndPosCountryService } from './services/xtra-and-pos-country.servic
 import { XtraAndPosDailyMovmentEpService } from './services/xtra-and-pos-daily-movment-ep.service';
 import { XtraAndPosDefaultOptionsEpService } from './services/xtra-and-pos-default-options-ep.service';
 import { XtraAndPosDocTypesService } from './services/xtra-and-pos-doc-types.service';
-import { XtraAndPosEmployeeAllowenceTrxService } from './services/xtra-and-pos-employee-allowence-trx.service';
+import { XtraAndPosEmployeeAllowanceTrxService } from './services/xtra-and-pos-employee-allowance-trx.service';
 import { XtraAndPosEmployeeContractService } from './services/xtra-and-pos-employee-contract.service';
 import { XtraAndPosEmployeeContractTrxService } from './services/xtra-and-pos-employee-contract-trx.service';
 import { XtraAndPosEmployeeEpService } from './services/xtra-and-pos-employee-ep.service';
@@ -125,7 +125,7 @@ import { XtraAndPosWorkCardService } from './services/xtra-and-pos-work-card.ser
     UserEpService,
     WebsiteEpService,
     XtraAndPosAccTreeEpService,
-    XtraAndPosAllowenceService,
+    XtraAndPosAllowanceService,
     XtraAndPosBranchEpService,
     XtraAndPosBuyOfferPricesEpService,
     XtraAndPosCityService,
@@ -136,7 +136,7 @@ import { XtraAndPosWorkCardService } from './services/xtra-and-pos-work-card.ser
     XtraAndPosDailyMovmentEpService,
     XtraAndPosDefaultOptionsEpService,
     XtraAndPosDocTypesService,
-    XtraAndPosEmployeeAllowenceTrxService,
+    XtraAndPosEmployeeAllowanceTrxService,
     XtraAndPosEmployeeContractService,
     XtraAndPosEmployeeContractTrxService,
     XtraAndPosEmployeeEpService,

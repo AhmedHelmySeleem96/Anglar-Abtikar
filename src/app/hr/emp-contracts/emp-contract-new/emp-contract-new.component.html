@@ -128,34 +128,34 @@
         </div>
     </div>
     </p-tabPanel>
-    <p-tabPanel header="{{ 'Hr.Allowencenav' | translate }}">
+    <p-tabPanel header="{{ 'Hr.Allowancenav' | translate }}">
       <div class="row">
         <div class="form-group col-md-3 mt-5">
-          <label for="allowenceId">{{ 'Hr.Allowencenav' | translate }}</label>
-          <select  id="allowenceId" formControlName="allowenceId" class="form-control">
-          <option  value="" disabled selected>{{ 'Hr.Allowencenav' | translate }}</option>
-          <option *ngFor="let item of allowenceData " [value]="item.Id">{{ item.NameAr }}</option>
+          <label for="allowanceId">{{ 'Hr.Allowancenav' | translate }}</label>
+          <select  id="allowanceId" formControlName="allowanceId" class="form-control">
+          <option  value="" disabled selected>{{ 'Hr.Allowancenav' | translate }}</option>
+          <option *ngFor="let item of allowanceData " [value]="item.Id">{{ item.NameAr }}</option>
         </select>
         </div>
         <div class="form-group col-md-3 mt-5">
-          <label for="allowenceType">{{ 'Hr.AllowenceType' | translate }}</label>
-          <select  id="allowenceType" formControlName="allowenceType" class="form-control">
-          <option  value="" disabled selected>{{ 'Hr.AllowenceType' | translate }}</option>
-          <option *ngFor="let item of allowenceTypeData " [value]="item.id">{{ item.name }}</option>
+          <label for="allowanceType">{{ 'Hr.AllowanceType' | translate }}</label>
+          <select  id="allowanceType" formControlName="allowanceType" class="form-control">
+          <option  value="" disabled selected>{{ 'Hr.AllowanceType' | translate }}</option>
+          <option *ngFor="let item of allowanceTypeData " [value]="item.id">{{ item.name }}</option>
         </select>
         </div>
         <div class="form-group col-md-3 mt-5">
-          <label for="allowenceValueType">{{ 'Hr.AllowenceValueType' | translate }}</label>
-              <select (change)="allowenceValueTypeChange($event)" id="allowenceValueType" formControlName="allowenceValueType" class="form-control">
-              <option  value="" disabled selected>{{ 'Hr.AllowenceValueType' | translate }}</option>
-              <option  *ngFor="let item of allowenceValueTypeData " [value]="item.id">{{ item.name }}</option>
+          <label for="allowanceValueType">{{ 'Hr.AllowanceValueType' | translate }}</label>
+              <select (change)="allowanceValueTypeChange($event)" id="allowanceValueType" formControlName="allowanceValueType" class="form-control">
+              <option  value="" disabled selected>{{ 'Hr.AllowanceValueType' | translate }}</option>
+              <option  *ngFor="let item of allowanceValueTypeData " [value]="item.id">{{ item.name }}</option>
             </select>
         </div>
         <div class="form-group col-md-3 mt-5">
-          <label for="allowencePaidTimeId">{{ 'Hr.AllowencePaidTimeId' | translate }}</label>
-          <select  id="allowencePaidTimeId" formControlName="allowencePaidTimeId" class="form-control">
-          <option  value="" disabled selected>{{ 'Hr.AllowencePaidTimeId' | translate }}</option>
-          <option *ngFor="let item of allowencePaidTimes " [value]="item.id">{{ item.name }}</option>
+          <label for="allowancePaidTimeId">{{ 'Hr.AllowancePaidTimeId' | translate }}</label>
+          <select  id="allowancePaidTimeId" formControlName="allowancePaidTimeId" class="form-control">
+          <option  value="" disabled selected>{{ 'Hr.AllowancePaidTimeId' | translate }}</option>
+          <option *ngFor="let item of allowancePaidTimes " [value]="item.id">{{ item.name }}</option>
         </select>
         </div>
       </div>
@@ -165,8 +165,8 @@
           <input #inputOperation id="operation" formControlName="operation"  class="form-control">
          </div>
         <div class="form-group col-md-4 mt-5">
-          <label for="allowenceValue">{{ 'Hr.AllowenceValue' | translate }}</label>
-          <input  id="allowenceValue" formControlName="allowenceValue"  class="form-control">
+          <label for="allowanceValue">{{ 'Hr.AllowanceValue' | translate }}</label>
+          <input  id="allowanceValue" formControlName="allowanceValue"  class="form-control">
         </div>
         <div class="form-group col-md-4 mt-5">
           <label for="currencyId">{{ 'Hr.CurrencyId' | translate }}</label>

@@ -21,7 +21,7 @@ export class WorkCardComponent implements OnInit  {
     ){};
     workCardData :any[] = [] ;
     statusData :any[] = [] ;
-    allowenceData :any[] = [] ;
+    allowanceData :any[] = [] ;
 cols :any ;
 unspecifiedHours  =false;
 deleteId : any ;
@@ -70,9 +70,9 @@ ngOnInit(): void {
     let jsonData = JSON.parse(value);
     this.statusData = jsonData;
   });
-  this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetLatestAllowence().subscribe((value:any)=>{
+  this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetLatestAllowance().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
-    this.allowenceData = jsonData;
+    this.allowanceData = jsonData;
   });
 }
 get holidaysDayIds() {

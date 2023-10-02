@@ -118,8 +118,8 @@
         <input readonly  id="divisionId" formControlName="divisionId"  class="form-control">
       </div>
       <div class="form-group col-md-6 mt-5">
-        <label for="jobNammeId">{{ 'Hr.JobNameId' | translate }}</label>
-        <select  id="jobNammeId" formControlName="jobNammeId" class="form-control">
+        <label for="jobNameId">{{ 'Hr.JobNameId' | translate }}</label>
+        <select  id="jobNameId" formControlName="jobNameId" class="form-control">
           <option  value="" disabled selected>{{ 'Hr.JobNamm=eId' | translate }}</option>
           <option *ngFor="let item of jobNamesData " [value]="item.Id">{{ item.NameAr }}</option>
         </select>
@@ -301,44 +301,44 @@
 
       </div>
     </p-tabPanel>
-    <p-tabPanel header="{{ 'Hr.Allowencenav' | translate }}">
+    <p-tabPanel header="{{ 'Hr.Allowancenav' | translate }}">
       <div class="row col-md-4 " >
-        <a class="fancy" (click)="addAllowenceClick()" >
+        <a class="fancy" (click)="addAllowanceClick()" >
           <span class="top-key"></span>
-          <span class="text">{{ 'Hr.AddAllowence' | translate }}</span>
+          <span class="text">{{ 'Hr.AddAllowance' | translate }}</span>
           <span class="bottom-key-1"></span>
           <span class="bottom-key-2"></span>
         </a>
     </div>
-  <form [formGroup]="formAllowence"  class="form" >
-    <div *ngIf="addAllowence">
+  <form [formGroup]="formAllowance"  class="form" >
+    <div *ngIf="addAllowance">
       <div class="row" >
         <div class=" col-md-3 mt-5" >
-          <label for="allowenceId">{{ 'Hr.Allowencenav' | translate }}</label>
-          <select  formControlName="allowenceId" id="allowenceId"  class="form-control">
-          <option  value="" disabled selected>{{ 'Hr.Allowencenav' | translate }}</option>
-          <option *ngFor="let item of allowenceData " [value]="item.Id">{{ item.NameAr }}</option>
+          <label for="allowanceId">{{ 'Hr.Allowancenav' | translate }}</label>
+          <select  formControlName="allowanceId" id="allowanceId"  class="form-control">
+          <option  value="" disabled selected>{{ 'Hr.Allowancenav' | translate }}</option>
+          <option *ngFor="let item of allowanceData " [value]="item.Id">{{ item.NameAr }}</option>
         </select>
         </div>
         <div class=" col-md-3 mt-5">
-          <label for="allowenceType">{{ 'Hr.AllowenceType' | translate }}</label>
-          <select  formControlName="allowenceTypeId"  id="allowenceType"  class="form-control">
-          <option  value="" disabled selected>{{ 'Hr.AllowenceType' | translate }}</option>
-          <option *ngFor="let item of allowenceTypeData " [value]="item.id">{{ item.name }}</option>
+          <label for="allowanceType">{{ 'Hr.AllowanceType' | translate }}</label>
+          <select  formControlName="allowanceTypeId"  id="allowanceType"  class="form-control">
+          <option  value="" disabled selected>{{ 'Hr.AllowanceType' | translate }}</option>
+          <option *ngFor="let item of allowanceTypeData " [value]="item.id">{{ item.name }}</option>
         </select>
         </div>
         <div class=" col-md-3 mt-5">
-          <label for="allowenceValueType">{{ 'Hr.AllowenceValueType' | translate }}</label>
-              <select formControlName="allowenceValueTypeId" (change)="allowenceValueTypeChange($event)" id="allowenceValueType"  class="form-control">
-              <option  value="" disabled selected>{{ 'Hr.AllowenceValueType' | translate }}</option>
-              <option  *ngFor="let item of allowenceValueTypeData " [value]="item.id">{{ item.name }}</option>
+          <label for="allowanceValueType">{{ 'Hr.AllowanceValueType' | translate }}</label>
+              <select formControlName="allowanceValueTypeId" (change)="allowanceValueTypeChange($event)" id="allowanceValueType"  class="form-control">
+              <option  value="" disabled selected>{{ 'Hr.AllowanceValueType' | translate }}</option>
+              <option  *ngFor="let item of allowanceValueTypeData " [value]="item.id">{{ item.name }}</option>
             </select>
         </div>
         <div class=" col-md-3 mt-5">
-          <label for="allowencePaidTimeId">{{ 'Hr.AllowencePaidTimeId' | translate }}</label>
-          <select  formControlName="allowencePaidTimeId" id="allowencePaidTimeId"s class="form-control">
-          <option  value="" disabled selected>{{ 'Hr.AllowencePaidTimeId' | translate }}</option>
-          <option *ngFor="let item of allowencePaidTimes " [value]="item.id">{{ item.name }}</option>
+          <label for="allowancePaidTimeId">{{ 'Hr.AllowancePaidTimeId' | translate }}</label>
+          <select  formControlName="allowancePaidTimeId" id="allowancePaidTimeId"s class="form-control">
+          <option  value="" disabled selected>{{ 'Hr.AllowancePaidTimeId' | translate }}</option>
+          <option *ngFor="let item of allowancePaidTimes " [value]="item.id">{{ item.name }}</option>
         </select>
         </div>
       </div>
@@ -348,8 +348,8 @@
           <input formControlName="operation" #inputOperation id="operation"   class="form-control">
          </div>
         <div class=" col-md-4 mt-5">
-          <label for="allowenceValue">{{ 'Hr.AllowenceValue' | translate }}</label>
-          <input  formControlName="allowenceValue" id="allowenceValue"   class="form-control">
+          <label for="allowanceValue">{{ 'Hr.AllowanceValue' | translate }}</label>
+          <input  formControlName="allowanceValue" id="allowanceValue"   class="form-control">
         </div>
         <div class=" col-md-4 mt-5">
           <label for="currencyId">{{ 'Hr.CurrencyId' | translate }}</label>
@@ -361,13 +361,13 @@
 
       </div>
       <div class="center-btn">
-        <button  type="submit" (click)="onSubmitAllowence(formAllowence)" style="width: 150px;" class="btn btn-success mt-2 mr-3" >{{ 'Save' | translate }}</button>
-        <button  (click)="addAllowence=false"  style="width: 150px;" class="btn btn-success mt-2 mr-3" >{{ 'Preview' | translate }}</button>
+        <button  type="submit" (click)="onSubmitAllowance(formAllowance)" style="width: 150px;" class="btn btn-success mt-2 mr-3" >{{ 'Save' | translate }}</button>
+        <button  (click)="addAllowance=false"  style="width: 150px;" class="btn btn-success mt-2 mr-3" >{{ 'Preview' | translate }}</button>
       </div>
     </div>
   </form>
 
-  <div class="container" *ngIf="!addAllowence ">
+  <div class="container" *ngIf="!addAllowance ">
 
     <div class="col-md-3 mb-2 mt-2">
       <input (input)="onSearch($event)" class="form-control form-control-sm " type="search" placeholder="{{ 'navBar.Search' | translate }}">
@@ -376,8 +376,8 @@
     [rowsPerPageOptions]="[5, 10, 15, 20]"
     [paginator]="true"
     [rows]="5"
-    [columns]="allowenceCols"
-    [value]="allowenceTrxData"
+    [columns]="allowanceCols"
+    [value]="allowanceTrxData"
     sortMode="multiple" styleClass="p-datatable-striped mt-5" [tableStyle]="{'min-width': '50rem'}"  #dt>
       <ng-template pTemplate="header" let-columns>
         <tr>
@@ -405,21 +405,21 @@
             <span class="table-data" *ngIf="col.field == 'EmployeeId'">
               {{ getEmployee(Contract[col.field])?.NameAr }}
             </span>
-            <span class="table-data" *ngIf="col.field == 'AllowenceId'">
-              {{ getAllowence(Contract[col.field])?.NameAr }}
+            <span class="table-data" *ngIf="col.field == 'AllowanceId'">
+              {{ getAllowance(Contract[col.field])?.NameAr }}
             </span>
-            <span class="table-data" *ngIf="col.field == 'AllowenceTypeId'">
-              {{ getAllowenceType(Contract[col.field])?.name }}
+            <span class="table-data" *ngIf="col.field == 'AllowanceTypeId'">
+              {{ getAllowanceType(Contract[col.field])?.name }}
             </span>
             <span class="table-data" *ngIf="col.field != 'CreatedDate'&&col.field != 'ContractCategoryId' &&col.field != 'BranchId' && col.field != 'StatusId'
-            && col.field != 'EmployeeId'&& col.field != 'AllowenceId' && col.field != 'AllowenceTypeId'    ">
+            && col.field != 'EmployeeId'&& col.field != 'AllowanceId' && col.field != 'AllowanceTypeId'    ">
               {{ Contract[col.field] }}
             </span>
           </td>
           <td>
             <div style="text-align: center">
-              <img src="assets/images/editIcon.png" class="mx-3" (click)=" setAllowenceEdit(Contract)" />
-              <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteAllowenceConfirm(Contract)" />
+              <img src="assets/images/editIcon.png" class="mx-3" (click)=" setAllowanceEdit(Contract)" />
+              <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteAllowanceConfirm(Contract)" />
             </div>
           </td>
         </tr>

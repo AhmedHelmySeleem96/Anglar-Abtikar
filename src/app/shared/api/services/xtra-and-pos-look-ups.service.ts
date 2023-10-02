@@ -237,21 +237,21 @@ export class XtraAndPosLookUpsService extends BaseService {
     );
   }
 
-  /** Path part for operation `httpGetXtraAndPosLookUpsGetLatestAllowence()` */
-  static readonly HttpGetXtraAndPosLookUpsGetLatestAllowencePath = '/XtraAndPOS_LookUps/GetLatestAllowence';
+  /** Path part for operation `httpGetXtraAndPosLookUpsGetLatestAllowance()` */
+  static readonly HttpGetXtraAndPosLookUpsGetLatestAllowancePath = '/XtraAndPOS_LookUps/GetLatestAllowance';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `httpGetXtraAndPosLookUpsGetLatestAllowence()` instead.
+   * To access only the response body, use `httpGetXtraAndPosLookUpsGetLatestAllowance()` instead.
    *
    * This method doesn't expect any request body.
    */
-  httpGetXtraAndPosLookUpsGetLatestAllowence$Response(
+  httpGetXtraAndPosLookUpsGetLatestAllowance$Response(
     params?: {
     },
     context?: HttpContext
   ): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(this.rootUrl, XtraAndPosLookUpsService.HttpGetXtraAndPosLookUpsGetLatestAllowencePath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosLookUpsService.HttpGetXtraAndPosLookUpsGetLatestAllowancePath, 'get');
     if (params) {
     }
 
@@ -267,35 +267,35 @@ export class XtraAndPosLookUpsService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `httpGetXtraAndPosLookUpsGetLatestAllowence$Response()` instead.
+   * To access the full response (for headers, for example), `httpGetXtraAndPosLookUpsGetLatestAllowance$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  httpGetXtraAndPosLookUpsGetLatestAllowence(
+  httpGetXtraAndPosLookUpsGetLatestAllowance(
     params?: {
     },
     context?: HttpContext
   ): Observable<void> {
-    return this.httpGetXtraAndPosLookUpsGetLatestAllowence$Response(params, context).pipe(
+    return this.httpGetXtraAndPosLookUpsGetLatestAllowance$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
 
-  /** Path part for operation `httpGetXtraAndPosLookUpsGetAllowenceTypes()` */
-  static readonly HttpGetXtraAndPosLookUpsGetAllowenceTypesPath = '/XtraAndPOS_LookUps/GetAllowenceTypes';
+  /** Path part for operation `httpGetXtraAndPosLookUpsGetAllowanceTypes()` */
+  static readonly HttpGetXtraAndPosLookUpsGetAllowanceTypesPath = '/XtraAndPOS_LookUps/GetAllowanceTypes';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `httpGetXtraAndPosLookUpsGetAllowenceTypes()` instead.
+   * To access only the response body, use `httpGetXtraAndPosLookUpsGetAllowanceTypes()` instead.
    *
    * This method doesn't expect any request body.
    */
-  httpGetXtraAndPosLookUpsGetAllowenceTypes$Response(
+  httpGetXtraAndPosLookUpsGetAllowanceTypes$Response(
     params?: {
     },
     context?: HttpContext
   ): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(this.rootUrl, XtraAndPosLookUpsService.HttpGetXtraAndPosLookUpsGetAllowenceTypesPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosLookUpsService.HttpGetXtraAndPosLookUpsGetAllowanceTypesPath, 'get');
     if (params) {
     }
 
@@ -311,35 +311,35 @@ export class XtraAndPosLookUpsService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `httpGetXtraAndPosLookUpsGetAllowenceTypes$Response()` instead.
+   * To access the full response (for headers, for example), `httpGetXtraAndPosLookUpsGetAllowanceTypes$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  httpGetXtraAndPosLookUpsGetAllowenceTypes(
+  httpGetXtraAndPosLookUpsGetAllowanceTypes(
     params?: {
     },
     context?: HttpContext
   ): Observable<void> {
-    return this.httpGetXtraAndPosLookUpsGetAllowenceTypes$Response(params, context).pipe(
+    return this.httpGetXtraAndPosLookUpsGetAllowanceTypes$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
 
-  /** Path part for operation `httpGetXtraAndPosLookUpsGetAllowenceValueTypes()` */
-  static readonly HttpGetXtraAndPosLookUpsGetAllowenceValueTypesPath = '/XtraAndPOS_LookUps/GetAllowenceValueTypes';
+  /** Path part for operation `httpGetXtraAndPosLookUpsGetAllowanceValueTypes()` */
+  static readonly HttpGetXtraAndPosLookUpsGetAllowanceValueTypesPath = '/XtraAndPOS_LookUps/GetAllowanceValueTypes';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `httpGetXtraAndPosLookUpsGetAllowenceValueTypes()` instead.
+   * To access only the response body, use `httpGetXtraAndPosLookUpsGetAllowanceValueTypes()` instead.
    *
    * This method doesn't expect any request body.
    */
-  httpGetXtraAndPosLookUpsGetAllowenceValueTypes$Response(
+  httpGetXtraAndPosLookUpsGetAllowanceValueTypes$Response(
     params?: {
     },
     context?: HttpContext
   ): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(this.rootUrl, XtraAndPosLookUpsService.HttpGetXtraAndPosLookUpsGetAllowenceValueTypesPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosLookUpsService.HttpGetXtraAndPosLookUpsGetAllowanceValueTypesPath, 'get');
     if (params) {
     }
 
@@ -355,35 +355,35 @@ export class XtraAndPosLookUpsService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `httpGetXtraAndPosLookUpsGetAllowenceValueTypes$Response()` instead.
+   * To access the full response (for headers, for example), `httpGetXtraAndPosLookUpsGetAllowanceValueTypes$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  httpGetXtraAndPosLookUpsGetAllowenceValueTypes(
+  httpGetXtraAndPosLookUpsGetAllowanceValueTypes(
     params?: {
     },
     context?: HttpContext
   ): Observable<void> {
-    return this.httpGetXtraAndPosLookUpsGetAllowenceValueTypes$Response(params, context).pipe(
+    return this.httpGetXtraAndPosLookUpsGetAllowanceValueTypes$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
 
-  /** Path part for operation `httpGetXtraAndPosLookUpsGetAllowencePaidTimes()` */
-  static readonly HttpGetXtraAndPosLookUpsGetAllowencePaidTimesPath = '/XtraAndPOS_LookUps/GetAllowencePaidTimes';
+  /** Path part for operation `httpGetXtraAndPosLookUpsGetAllowancePaidTimes()` */
+  static readonly HttpGetXtraAndPosLookUpsGetAllowancePaidTimesPath = '/XtraAndPOS_LookUps/GetAllowancePaidTimes';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `httpGetXtraAndPosLookUpsGetAllowencePaidTimes()` instead.
+   * To access only the response body, use `httpGetXtraAndPosLookUpsGetAllowancePaidTimes()` instead.
    *
    * This method doesn't expect any request body.
    */
-  httpGetXtraAndPosLookUpsGetAllowencePaidTimes$Response(
+  httpGetXtraAndPosLookUpsGetAllowancePaidTimes$Response(
     params?: {
     },
     context?: HttpContext
   ): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(this.rootUrl, XtraAndPosLookUpsService.HttpGetXtraAndPosLookUpsGetAllowencePaidTimesPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosLookUpsService.HttpGetXtraAndPosLookUpsGetAllowancePaidTimesPath, 'get');
     if (params) {
     }
 
@@ -399,16 +399,16 @@ export class XtraAndPosLookUpsService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `httpGetXtraAndPosLookUpsGetAllowencePaidTimes$Response()` instead.
+   * To access the full response (for headers, for example), `httpGetXtraAndPosLookUpsGetAllowancePaidTimes$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  httpGetXtraAndPosLookUpsGetAllowencePaidTimes(
+  httpGetXtraAndPosLookUpsGetAllowancePaidTimes(
     params?: {
     },
     context?: HttpContext
   ): Observable<void> {
-    return this.httpGetXtraAndPosLookUpsGetAllowencePaidTimes$Response(params, context).pipe(
+    return this.httpGetXtraAndPosLookUpsGetAllowancePaidTimes$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

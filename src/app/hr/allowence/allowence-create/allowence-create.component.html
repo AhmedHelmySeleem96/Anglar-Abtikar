@@ -1,13 +1,13 @@
 <div class="col-7 mx-auto py-4 py-md-5 px-lg-4">
-  <h3>{{ "Hr.Allowencenav" | translate }}</h3>
-  <form [formGroup]="formAllowence" (ngSubmit)="OnSubmit(formAllowence)" class="form">
+  <h3>{{ "Hr.Allowancenav" | translate }}</h3>
+  <form [formGroup]="formAllowance" (ngSubmit)="OnSubmit(formAllowance)" class="form">
 
     <div class="form-group mt-5">
-      <input  id="NameAr" type="NameAr" formControlName="NameAr" maxlength="100" required placeholder="{{ 'Hr.AllowenceNameAr' | translate }}" class="form-control">
+      <input  id="NameAr" type="NameAr" formControlName="NameAr" maxlength="100" required placeholder="{{ 'Hr.AllowanceNameAr' | translate }}" class="form-control">
     </div>
 
     <div class="form-group mt-5">
-      <input   id="NameEn" type="NameEn" formControlName="NameEn" maxlength="100"  placeholder="{{ 'Hr.AllowenceNameEn' | translate }}" class="form-control">
+      <input   id="NameEn" type="NameEn" formControlName="NameEn" maxlength="100"  placeholder="{{ 'Hr.AllowanceNameEn' | translate }}" class="form-control">
     </div>
     <div class="form-group mt-5" *ngIf="isEdit">
       <label for="StatusId">{{ 'Hr.SelectStatus' | translate }}</label>

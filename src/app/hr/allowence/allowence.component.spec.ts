@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AllowenceComponent } from './allowence.component';
+import { AllowanceComponent } from './allowance.component';
 
-describe('AllowenceComponent', () => {
-  let component: AllowenceComponent;
-  let fixture: ComponentFixture<AllowenceComponent>;
+describe('AllowanceComponent', () => {
+  let component: AllowanceComponent;
+  let fixture: ComponentFixture<AllowanceComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AllowenceComponent ]
+      declarations: [ AllowanceComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AllowenceComponent);
+    fixture = TestBed.createComponent(AllowanceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

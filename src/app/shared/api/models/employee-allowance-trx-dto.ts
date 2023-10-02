@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface EmployeeAllowenceTrxDto {
+export interface EmployeeAllowanceTrxDto {
   allowanceId?: null | number;
   allowancePaidTimeId?: null | number;
   allowanceTypeId?: null | number;

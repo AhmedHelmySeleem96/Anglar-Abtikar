@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AllowencePreviewComponent } from './allowence-preview.component';
+import { AllowancePreviewComponent } from './allowance-preview.component';
 
-describe('AllowencePreviewComponent', () => {
-  let component: AllowencePreviewComponent;
-  let fixture: ComponentFixture<AllowencePreviewComponent>;
+describe('AllowancePreviewComponent', () => {
+  let component: AllowancePreviewComponent;
+  let fixture: ComponentFixture<AllowancePreviewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AllowencePreviewComponent ]
+      declarations: [ AllowancePreviewComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AllowencePreviewComponent);
+    fixture = TestBed.createComponent(AllowancePreviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
