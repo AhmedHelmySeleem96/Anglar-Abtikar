@@ -1,31 +1,37 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface JobDifinition {
+import { AchievingTargets } from './achieving-targets';
+import { Offers } from './offers';
+export interface ClientContract {
+  achievingTargets?: null | Array<AchievingTargets>;
   branchId?: number;
   branchName?: null | string;
   cancelBy?: null | string;
   cancelById?: number;
   cancelDate?: string;
+  clientId?: number;
+  clientName?: null | string;
   companyId?: number;
   companyName?: null | string;
+  contractEndDate?: string;
+  contractNo?: null | string;
+  contractStartingDate?: string;
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
+  customerDiscount?: boolean;
+  customerDiscountPercentage?: number;
+  docNo?: null | string;
   docRefGuid?: string;
   guid?: string;
   id?: number;
+  isAchievingTargets?: boolean;
   isActive?: boolean;
   isCanceled?: boolean;
   isUpdated?: boolean;
-  jobCategoryId?: null | number;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;
   lastUpdatedDate?: string;
-  level1Id?: null | number;
-  level2Id?: null | number;
-  level3Id?: null | number;
-  level4Id?: null | number;
-  maxJobsNo?: null | number;
   modifyById?: null | string;
   modifyByName?: null | string;
   modifyCount?: number;
@@ -33,8 +39,9 @@ export interface JobDifinition {
   nameEn?: null | string;
   no?: number;
   notes?: null | string;
-  sno?: null | number;
-  statusId?: number;
+  offers?: null | Array<Offers>;
   updateFlag?: null | string;
   updatedCount?: number;
+  warehouseSupply?: boolean;
+  warehouseSupplyDiscountPercentage?: number;
 }

@@ -1,9 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-import { TreasuryTransactionDetail } from './treasury-transaction-detail';
-import { TreasuryType } from './treasury-type';
-export interface TreasuryTransaction {
-  adjective?: number;
+export interface CurrencyExchange {
   branchId?: number;
   branchName?: null | string;
   cancelBy?: null | string;
@@ -14,14 +11,11 @@ export interface TreasuryTransaction {
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
-  curencyId?: number;
-  curencyName?: null | string;
+  currencyId?: number;
+  currencyName?: null | string;
   docDate?: string;
-  docGuid?: string;
   docNo?: number;
-  docNoManual?: number;
   docRefGuid?: string;
-  equivalentPrice?: number;
   exchangeRate?: number;
   guid?: string;
   id?: number;
@@ -31,8 +25,6 @@ export interface TreasuryTransaction {
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;
   lastUpdatedDate?: string;
-  mainBank?: number;
-  mainCostCenter?: number;
   modifyById?: null | string;
   modifyByName?: null | string;
   modifyCount?: number;
@@ -40,14 +32,6 @@ export interface TreasuryTransaction {
   nameEn?: null | string;
   no?: number;
   notes?: null | string;
-  totalAfterVat?: number;
-  totalAmount?: number;
-  totalVat?: number;
-  treasuryId?: number;
-  treasuryName?: null | string;
-  treasuryTransactionsDetails?: null | Array<TreasuryTransactionDetail>;
-  treasuryType?: TreasuryType;
-  typeofpayment?: number;
   updateFlag?: null | string;
   updatedCount?: number;
 }

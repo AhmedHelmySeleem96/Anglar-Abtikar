@@ -252,53 +252,6 @@ export class XtraAndPosReturnSaleInvoiceEpService extends BaseService {
     );
   }
 
-  /** Path part for operation `httpDeleteExtraAndPosReturnSaleInvoiceDeleteReturnSaleInvoice()` */
-  static readonly HttpDeleteExtraAndPosReturnSaleInvoiceDeleteReturnSaleInvoicePath = '/ExtraAndPOS_ReturnSaleInvoice/DeleteReturnSaleInvoice';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `httpDeleteExtraAndPosReturnSaleInvoiceDeleteReturnSaleInvoice()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  httpDeleteExtraAndPosReturnSaleInvoiceDeleteReturnSaleInvoice$Response(
-    params: {
-      id: number;
-    },
-    context?: HttpContext
-  ): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(this.rootUrl, XtraAndPosReturnSaleInvoiceEpService.HttpDeleteExtraAndPosReturnSaleInvoiceDeleteReturnSaleInvoicePath, 'delete');
-    if (params) {
-      rb.query('id', params.id, {"style":"form"});
-    }
-
-    return this.http.request(
-      rb.build({ responseType: 'text', accept: '*/*', context })
-    ).pipe(
-      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `httpDeleteExtraAndPosReturnSaleInvoiceDeleteReturnSaleInvoice$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  httpDeleteExtraAndPosReturnSaleInvoiceDeleteReturnSaleInvoice(
-    params: {
-      id: number;
-    },
-    context?: HttpContext
-  ): Observable<void> {
-    return this.httpDeleteExtraAndPosReturnSaleInvoiceDeleteReturnSaleInvoice$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
-    );
-  }
-
   /** Path part for operation `httpPostExtraAndPosReturnSaleInvoiceCustomerInvoice()` */
   static readonly HttpPostExtraAndPosReturnSaleInvoiceCustomerInvoicePath = '/ExtraAndPOS_ReturnSaleInvoice/CustomerInvoice';
 
@@ -342,6 +295,100 @@ export class XtraAndPosReturnSaleInvoiceEpService extends BaseService {
     context?: HttpContext
   ): Observable<void> {
     return this.httpPostExtraAndPosReturnSaleInvoiceCustomerInvoice$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPostExtraAndPosReturnSaleInvoiceUpdateReturnSaleInvoice()` */
+  static readonly HttpPostExtraAndPosReturnSaleInvoiceUpdateReturnSaleInvoicePath = '/ExtraAndPOS_ReturnSaleInvoice/UpdateReturnSaleInvoice';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostExtraAndPosReturnSaleInvoiceUpdateReturnSaleInvoice()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosReturnSaleInvoiceUpdateReturnSaleInvoice$Response(
+    params?: {
+      body?: SaleInvoiceReturn
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosReturnSaleInvoiceEpService.HttpPostExtraAndPosReturnSaleInvoiceUpdateReturnSaleInvoicePath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostExtraAndPosReturnSaleInvoiceUpdateReturnSaleInvoice$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosReturnSaleInvoiceUpdateReturnSaleInvoice(
+    params?: {
+      body?: SaleInvoiceReturn
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostExtraAndPosReturnSaleInvoiceUpdateReturnSaleInvoice$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpDeleteExtraAndPosReturnSaleInvoiceDeleteReturnSaleInvoice()` */
+  static readonly HttpDeleteExtraAndPosReturnSaleInvoiceDeleteReturnSaleInvoicePath = '/ExtraAndPOS_ReturnSaleInvoice/DeleteReturnSaleInvoice';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpDeleteExtraAndPosReturnSaleInvoiceDeleteReturnSaleInvoice()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpDeleteExtraAndPosReturnSaleInvoiceDeleteReturnSaleInvoice$Response(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosReturnSaleInvoiceEpService.HttpDeleteExtraAndPosReturnSaleInvoiceDeleteReturnSaleInvoicePath, 'delete');
+    if (params) {
+      rb.query('id', params.id, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpDeleteExtraAndPosReturnSaleInvoiceDeleteReturnSaleInvoice$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpDeleteExtraAndPosReturnSaleInvoiceDeleteReturnSaleInvoice(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpDeleteExtraAndPosReturnSaleInvoiceDeleteReturnSaleInvoice$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

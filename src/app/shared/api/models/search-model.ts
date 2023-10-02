@@ -5,6 +5,7 @@ import { SearchStatus } from './search-status';
 export interface SearchModel {
   branchID?: number;
   companyID?: number;
+  costCenterID?: number;
   customerId?: number;
   fromDate?: string;
   groupGuid?: string;
@@ -18,6 +19,7 @@ export interface SearchModel {
   paymentMethod?: PaymentMethod;
   paymentType?: number;
   pricingID?: number;
+  projectId?: number;
   salesManId?: number;
   searchStatus?: SearchStatus;
   shiftID?: number;

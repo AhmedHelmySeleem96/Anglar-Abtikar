@@ -69,6 +69,7 @@ export interface Supplier {
   representativeId?: number;
   specialNumber?: null | string;
   street?: null | string;
+  supplierCode?: null | string;
   suppliersClassification?: null | string;
   suppliersClassificationId?: number;
   suppliersGroup?: null | string;
@@ -80,6 +81,7 @@ export interface Supplier {
   totalSales?: number;
   updateFlag?: null | string;
   updatedCount?: number;
+  vatClient?: boolean;
   webSite?: null | string;
   whatsApp?: null | string;
 }

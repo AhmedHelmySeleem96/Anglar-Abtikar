@@ -109,4 +109,145 @@ export class XtraAndPosFinanceEpService extends BaseService {
     );
   }
 
+  /** Path part for operation `httpGetExtraAndPosFinanceAccountsGuideByTerm()` */
+  static readonly HttpGetExtraAndPosFinanceAccountsGuideByTermPath = '/ExtraAndPOS_Finance/AccountsGuideByTerm';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetExtraAndPosFinanceAccountsGuideByTerm()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetExtraAndPosFinanceAccountsGuideByTerm$Response(
+    params?: {
+      term?: string;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosFinanceEpService.HttpGetExtraAndPosFinanceAccountsGuideByTermPath, 'get');
+    if (params) {
+      rb.query('term', params.term, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetExtraAndPosFinanceAccountsGuideByTerm$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetExtraAndPosFinanceAccountsGuideByTerm(
+    params?: {
+      term?: string;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetExtraAndPosFinanceAccountsGuideByTerm$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetExtraAndPosFinanceAccountsForFinanceSettings()` */
+  static readonly HttpGetExtraAndPosFinanceAccountsForFinanceSettingsPath = '/ExtraAndPOS_Finance/AccountsForFinanceSettings';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetExtraAndPosFinanceAccountsForFinanceSettings()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetExtraAndPosFinanceAccountsForFinanceSettings$Response(
+    params?: {
+      term?: string;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosFinanceEpService.HttpGetExtraAndPosFinanceAccountsForFinanceSettingsPath, 'get');
+    if (params) {
+      rb.query('term', params.term, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetExtraAndPosFinanceAccountsForFinanceSettings$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetExtraAndPosFinanceAccountsForFinanceSettings(
+    params?: {
+      term?: string;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetExtraAndPosFinanceAccountsForFinanceSettings$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetExtraAndPosFinanceCheckAccountsGuideByGuid()` */
+  static readonly HttpGetExtraAndPosFinanceCheckAccountsGuideByGuidPath = '/ExtraAndPOS_Finance/CheckAccountsGuideByGuid';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetExtraAndPosFinanceCheckAccountsGuideByGuid()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetExtraAndPosFinanceCheckAccountsGuideByGuid$Response(
+    params: {
+      Guid: string;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosFinanceEpService.HttpGetExtraAndPosFinanceCheckAccountsGuideByGuidPath, 'get');
+    if (params) {
+      rb.query('Guid', params.Guid, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetExtraAndPosFinanceCheckAccountsGuideByGuid$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetExtraAndPosFinanceCheckAccountsGuideByGuid(
+    params: {
+      Guid: string;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetExtraAndPosFinanceCheckAccountsGuideByGuid$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
 }

@@ -12,6 +12,7 @@ export interface SupplierGroupManagment {
   createByName?: null | string;
   createdDate?: string;
   docRefGuid?: string;
+  groupCode?: null | string;
   guid?: string;
   id?: number;
   isActive?: boolean;

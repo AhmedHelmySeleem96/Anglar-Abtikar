@@ -10,6 +10,7 @@ import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 import { RequestBuilder } from '../request-builder';
 
+import { JqdtParams } from '../models/jqdt-params';
 import { Supplier } from '../models/supplier';
 import { SupplierGroupManagment } from '../models/supplier-group-managment';
 
@@ -59,6 +60,50 @@ export class XtraAndPosSupplierEpService extends BaseService {
     context?: HttpContext
   ): Observable<void> {
     return this.httpGetExtraAndPosSupplierManagementInfo$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetExtraAndPosSupplierGroupManagementInfo()` */
+  static readonly HttpGetExtraAndPosSupplierGroupManagementInfoPath = '/ExtraAndPOS_Supplier/GroupManagementInfo';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetExtraAndPosSupplierGroupManagementInfo()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetExtraAndPosSupplierGroupManagementInfo$Response(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosSupplierEpService.HttpGetExtraAndPosSupplierGroupManagementInfoPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetExtraAndPosSupplierGroupManagementInfo$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetExtraAndPosSupplierGroupManagementInfo(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetExtraAndPosSupplierGroupManagementInfo$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
@@ -341,6 +386,100 @@ export class XtraAndPosSupplierEpService extends BaseService {
     context?: HttpContext
   ): Observable<void> {
     return this.httpDeleteExtraAndPosSupplierDeleteSupplierGroupManagment$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPostExtraAndPosSupplierSuppliersDataTable()` */
+  static readonly HttpPostExtraAndPosSupplierSuppliersDataTablePath = '/ExtraAndPOS_Supplier/SuppliersDataTable';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostExtraAndPosSupplierSuppliersDataTable()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosSupplierSuppliersDataTable$Response(
+    params?: {
+      body?: JqdtParams
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosSupplierEpService.HttpPostExtraAndPosSupplierSuppliersDataTablePath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostExtraAndPosSupplierSuppliersDataTable$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosSupplierSuppliersDataTable(
+    params?: {
+      body?: JqdtParams
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostExtraAndPosSupplierSuppliersDataTable$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPostExtraAndPosSupplierSuppliergroupDataTable()` */
+  static readonly HttpPostExtraAndPosSupplierSuppliergroupDataTablePath = '/ExtraAndPOS_Supplier/suppliergroupDataTable';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostExtraAndPosSupplierSuppliergroupDataTable()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosSupplierSuppliergroupDataTable$Response(
+    params?: {
+      body?: JqdtParams
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosSupplierEpService.HttpPostExtraAndPosSupplierSuppliergroupDataTablePath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostExtraAndPosSupplierSuppliergroupDataTable$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosSupplierSuppliergroupDataTable(
+    params?: {
+      body?: JqdtParams
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostExtraAndPosSupplierSuppliergroupDataTable$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

@@ -19,6 +19,7 @@ export interface ItemSpare {
   isUpdated?: boolean;
   itemSpareId?: number;
   itemSpareName?: null | string;
+  itemUnitId?: number;
   itemUnitSpareId?: number;
   itemUnitSpareName?: null | string;
   lastModifiedDate?: string;

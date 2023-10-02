@@ -8,6 +8,7 @@ export interface CompanySetting {
   cancelById?: number;
   cancelDate?: string;
   commercialNo?: null | string;
+  companyAddreess?: null | string;
   companyId?: number;
   companyName?: null | string;
   createById?: null | string;

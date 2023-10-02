@@ -35,6 +35,8 @@ export interface StorageOpenDto {
   docProjectName?: null | string;
   docRefGuid?: string;
   docType?: DocType;
+  equalvment?: number;
+  exchangePrice?: number;
   extraDisc?: number;
   guid?: string;
   id?: number;

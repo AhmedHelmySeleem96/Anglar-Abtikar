@@ -1,6 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface JobName {
+export interface AchievingTargets {
+  achievingTargetsName?: null | string;
+  autoRepeat?: boolean;
   branchId?: number;
   branchName?: null | string;
   cancelBy?: null | string;
@@ -8,9 +10,11 @@ export interface JobName {
   cancelDate?: string;
   companyId?: number;
   companyName?: null | string;
+  contractId?: number;
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
+  discountPercentage?: number;
   docRefGuid?: string;
   guid?: string;
   id?: number;
@@ -27,7 +31,10 @@ export interface JobName {
   nameEn?: null | string;
   no?: number;
   notes?: null | string;
-  statusId?: number;
+  salesFrom?: number;
+  salesTo?: number;
+  targetOfferStartingDate?: string;
+  targetOffersEndDate?: string;
   updateFlag?: null | string;
   updatedCount?: number;
 }

@@ -1,9 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface StoreAdjustmentDetalils {
-  aw?: number;
+export interface SendAndReceiveDetails {
   bonus?: boolean;
-  bookQty?: number;
   branchId?: number;
   branchName?: null | string;
   cancelBy?: null | string;
@@ -12,7 +10,6 @@ export interface StoreAdjustmentDetalils {
   clientDesc?: number;
   companyId?: number;
   companyName?: null | string;
-  correctAmount?: null | string;
   correctQty?: number;
   correctWA?: number;
   createById?: null | string;
@@ -20,7 +17,6 @@ export interface StoreAdjustmentDetalils {
   createdDate?: string;
   discount?: number;
   discountPercent?: number;
-  docNo?: number;
   docRefGuid?: string;
   extraDiscountAmount?: number;
   extraDiscountPer?: number;
@@ -29,6 +25,7 @@ export interface StoreAdjustmentDetalils {
   isActive?: boolean;
   isCanceled?: boolean;
   isUpdated?: boolean;
+  itemBalance?: number;
   itemID?: number;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;
@@ -47,10 +44,9 @@ export interface StoreAdjustmentDetalils {
   productGuide?: string;
   productId?: number;
   quantity?: number;
+  receivedQty?: number;
   returnedQty?: number;
-  stock?: number;
-  storeAdjustmentId?: number;
-  subtractionQty?: number;
+  sendAndReceiveId?: number;
   totalDisc?: number;
   totalPrice?: number;
   totalPriceAfterDiscount?: number;

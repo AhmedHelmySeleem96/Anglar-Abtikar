@@ -20,6 +20,8 @@ export interface TreasuryTransactionOut {
   docNo?: number;
   docNoManual?: number;
   docRefGuid?: string;
+  equivalentPrice?: number;
+  exchangeRate?: number;
   guid?: string;
   id?: number;
   isActive?: boolean;

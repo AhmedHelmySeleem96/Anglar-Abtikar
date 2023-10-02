@@ -32,6 +32,8 @@ export interface Branch {
   createdDate?: string;
   discountRate?: boolean;
   docRefGuid?: string;
+  entity?: boolean;
+  entityVatNo?: boolean;
   environmentMode?: EnvironmentMode;
   guid?: string;
   hideBalance?: boolean;
@@ -64,6 +66,16 @@ export interface Branch {
   isDirectSale?: boolean;
   isMustOpenShift?: boolean;
   isUpdated?: boolean;
+  itemCodeBuyInvoice?: boolean;
+  itemCodeBuyOffer?: boolean;
+  itemCodeBuyOfferPriceBalance?: boolean;
+  itemCodePriceList?: boolean;
+  itemCodeSaleInvoice?: boolean;
+  itemCodeSaleOffer?: boolean;
+  itemCodeSpendAndReceive?: boolean;
+  itemCodeStorageOpenBalance?: boolean;
+  itemCodeStoreAdjustment?: boolean;
+  itemCodeTransfer?: boolean;
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;
   lastUpdatedDate?: string;
@@ -101,6 +113,7 @@ export interface Branch {
   separateUnitBuyOffer?: boolean;
   separateUnitBuyOfferPrice?: boolean;
   separateUnitBuys?: boolean;
+  separateUnitStoreAdjustment?: boolean;
   separateUnitTransferred?: boolean;
   seperateSaleOffer?: boolean;
   signatureUrl?: null | string;

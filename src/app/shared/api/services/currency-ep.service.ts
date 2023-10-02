@@ -11,6 +11,7 @@ import { StrictHttpResponse } from '../strict-http-response';
 import { RequestBuilder } from '../request-builder';
 
 import { Currency } from '../models/currency';
+import { CurrencyExchange } from '../models/currency-exchange';
 
 @Injectable({ providedIn: 'root' })
 export class CurrencyEpService extends BaseService {
@@ -246,6 +247,238 @@ export class CurrencyEpService extends BaseService {
     context?: HttpContext
   ): Observable<void> {
     return this.httpGetCurrencyGetById$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetCurrencyExchangeCurrencyExchangeManagementInfo()` */
+  static readonly HttpGetCurrencyExchangeCurrencyExchangeManagementInfoPath = '/CurrencyExchange/CurrencyExchangeManagementInfo';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetCurrencyExchangeCurrencyExchangeManagementInfo()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetCurrencyExchangeCurrencyExchangeManagementInfo$Response(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, CurrencyEpService.HttpGetCurrencyExchangeCurrencyExchangeManagementInfoPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetCurrencyExchangeCurrencyExchangeManagementInfo$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetCurrencyExchangeCurrencyExchangeManagementInfo(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetCurrencyExchangeCurrencyExchangeManagementInfo$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPostCurrencyExchangeCreateCurrencyExchange()` */
+  static readonly HttpPostCurrencyExchangeCreateCurrencyExchangePath = '/CurrencyExchange/CreateCurrencyExchange';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostCurrencyExchangeCreateCurrencyExchange()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostCurrencyExchangeCreateCurrencyExchange$Response(
+    params?: {
+      body?: CurrencyExchange
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, CurrencyEpService.HttpPostCurrencyExchangeCreateCurrencyExchangePath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostCurrencyExchangeCreateCurrencyExchange$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostCurrencyExchangeCreateCurrencyExchange(
+    params?: {
+      body?: CurrencyExchange
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostCurrencyExchangeCreateCurrencyExchange$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPutCurrencyExchangeUpdateCurrencyExchange()` */
+  static readonly HttpPutCurrencyExchangeUpdateCurrencyExchangePath = '/CurrencyExchange/UpdateCurrencyExchange';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPutCurrencyExchangeUpdateCurrencyExchange()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPutCurrencyExchangeUpdateCurrencyExchange$Response(
+    params?: {
+      body?: CurrencyExchange
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, CurrencyEpService.HttpPutCurrencyExchangeUpdateCurrencyExchangePath, 'put');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPutCurrencyExchangeUpdateCurrencyExchange$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPutCurrencyExchangeUpdateCurrencyExchange(
+    params?: {
+      body?: CurrencyExchange
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPutCurrencyExchangeUpdateCurrencyExchange$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpDeleteCurrencyExchangeDeleteCurrencyExchange()` */
+  static readonly HttpDeleteCurrencyExchangeDeleteCurrencyExchangePath = '/CurrencyExchange/DeleteCurrencyExchange';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpDeleteCurrencyExchangeDeleteCurrencyExchange()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpDeleteCurrencyExchangeDeleteCurrencyExchange$Response(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, CurrencyEpService.HttpDeleteCurrencyExchangeDeleteCurrencyExchangePath, 'delete');
+    if (params) {
+      rb.query('id', params.id, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpDeleteCurrencyExchangeDeleteCurrencyExchange$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpDeleteCurrencyExchangeDeleteCurrencyExchange(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpDeleteCurrencyExchangeDeleteCurrencyExchange$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetCurrencyExchangeGetCurrencyExchangeByCurrencyId()` */
+  static readonly HttpGetCurrencyExchangeGetCurrencyExchangeByCurrencyIdPath = '/CurrencyExchange/GetCurrencyExchangeByCurrencyId';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetCurrencyExchangeGetCurrencyExchangeByCurrencyId()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetCurrencyExchangeGetCurrencyExchangeByCurrencyId$Response(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, CurrencyEpService.HttpGetCurrencyExchangeGetCurrencyExchangeByCurrencyIdPath, 'get');
+    if (params) {
+      rb.query('id', params.id, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetCurrencyExchangeGetCurrencyExchangeByCurrencyId$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetCurrencyExchangeGetCurrencyExchangeByCurrencyId(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetCurrencyExchangeGetCurrencyExchangeByCurrencyId$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

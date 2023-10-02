@@ -55,6 +55,9 @@ export interface FinanceSettings {
   nameEn?: null | string;
   no?: number;
   notes?: null | string;
+  payedAccount?: string;
+  payedAccountID?: number;
+  payedAccountName?: null | string;
   salesAccount?: string;
   salesAccountCode?: null | string;
   salesAccountID?: number;

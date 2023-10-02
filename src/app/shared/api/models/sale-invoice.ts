@@ -29,6 +29,7 @@ export interface SaleInvoice {
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
+  curancyId?: number;
   debt?: number;
   docDate?: string;
   docGuid?: string;
@@ -37,6 +38,8 @@ export interface SaleInvoice {
   docProjectName?: null | string;
   docRefGuid?: string;
   docType?: DocType;
+  equalvment?: number;
+  exchangePrice?: number;
   extraDisc?: number;
   guid?: string;
   id?: number;

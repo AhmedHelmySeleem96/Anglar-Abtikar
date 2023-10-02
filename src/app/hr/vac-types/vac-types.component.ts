@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {  Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { XtraAndPosLookUpsService, XtraAndPosVacationTypesService } from 'src/app/shared/api';
+import { XtraAndPosEmpVacationTypesService, XtraAndPosLookUpsService } from 'src/app/shared/api';
 import { ExportData } from 'src/app/services/Export-data.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
@@ -14,7 +14,7 @@ export class VacTypesComponent  implements OnInit {
   constructor(private router: Router,private toastr:ToastrService,
     private fb:FormBuilder,
     private XtraAndPosLookUpsService:XtraAndPosLookUpsService
-    ,private XtraAndPosVacationTypesService :  XtraAndPosVacationTypesService
+    ,private XtraAndPosVacationTypesService :  XtraAndPosEmpVacationTypesService
     ,private ExportData :ExportData){};
     addVac(){
       this.router.navigateByUrl('hr/vac/createVac');
@@ -55,7 +55,7 @@ boolData = [
       this.getData();
     }
     getData(){
-      this.XtraAndPosVacationTypesService.httpGetXtraAndPosVacationTypesGetVacationTypesService().subscribe((value:any)=>{
+      this.XtraAndPosVacationTypesService.httpGetXtraAndPosEmpVacationTypesGetEmpVacationTypesService().subscribe((value:any)=>{
         let jsonData = JSON.parse(value);
         this.vacData = jsonData.Obj.vac;
       });
@@ -118,7 +118,7 @@ boolData = [
         model.isMustAlternative =false ;
       }
        model.statusId= 1  ;
-      this.XtraAndPosVacationTypesService.httpPostXtraAndPosVacationTypesCreateVacationTypesService({
+      this.XtraAndPosVacationTypesService.httpPostXtraAndPosEmpVacationTypesCreateEmpVacationTypesService({
         body : model
       }).subscribe((value:any)=>{
         let jsonData = JSON.parse(value);
@@ -131,7 +131,7 @@ boolData = [
     }else{
       let model = this.formVac.value;
       model.Id = this.currentvacId;
-      this.XtraAndPosVacationTypesService.httpPutXtraAndPosVacationTypesUpdateVacationTypesService({
+      this.XtraAndPosVacationTypesService.httpPutXtraAndPosEmpVacationTypesUpdateEmpVacationTypesService({
         id : this.currentvacId,
         body: model
       }).subscribe((value: any) => {
@@ -186,7 +186,7 @@ boolData = [
         });
     }
     deleteVac(vac: any) {
-      this.XtraAndPosVacationTypesService.httpDeleteXtraAndPosVacationTypesDeleteVacationTypesService({
+      this.XtraAndPosVacationTypesService.httpDeleteXtraAndPosEmpVacationTypesDeleteEmpVacationTypesService({
         id: vac.Id,
       }).subscribe((value: any) => {
         let jsonData = JSON.parse(value);
@@ -200,7 +200,7 @@ boolData = [
     }
 
     refreshTable() {
-      this.XtraAndPosVacationTypesService.httpGetXtraAndPosVacationTypesGetVacationTypesService().subscribe((value: any) => {
+      this.XtraAndPosVacationTypesService.httpGetXtraAndPosEmpVacationTypesGetEmpVacationTypesService().subscribe((value: any) => {
         let jsonvacData = JSON.parse(value);
         this.vacData = jsonvacData.Obj.vac;
       });

@@ -12,33 +12,27 @@ import { RequestBuilder } from '../request-builder';
 
 
 @Injectable({ providedIn: 'root' })
-export class XtraAndPosZktFingerPrintService extends BaseService {
+export class ItemOfferEpService extends BaseService {
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
   }
 
-  /** Path part for operation `httpPostXtraAndPosZktFingerPrintConnectToZkt()` */
-  static readonly HttpPostXtraAndPosZktFingerPrintConnectToZktPath = '/XtraAndPos_ZktFingerPrint/ConnectToZkt';
+  /** Path part for operation `httpGetItemOfferGetPageInfo()` */
+  static readonly HttpGetItemOfferGetPageInfoPath = '/ItemOffer/GetPageInfo';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `httpPostXtraAndPosZktFingerPrintConnectToZkt()` instead.
+   * To access only the response body, use `httpGetItemOfferGetPageInfo()` instead.
    *
    * This method doesn't expect any request body.
    */
-  httpPostXtraAndPosZktFingerPrintConnectToZkt$Response(
-    params: {
-      ipAddress?: string;
-      port?: string;
-      machineNumber: number;
+  httpGetItemOfferGetPageInfo$Response(
+    params?: {
     },
     context?: HttpContext
   ): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(this.rootUrl, XtraAndPosZktFingerPrintService.HttpPostXtraAndPosZktFingerPrintConnectToZktPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, ItemOfferEpService.HttpGetItemOfferGetPageInfoPath, 'get');
     if (params) {
-      rb.query('ipAddress', params.ipAddress, {"style":"form"});
-      rb.query('port', params.port, {"style":"form"});
-      rb.query('machineNumber', params.machineNumber, {"style":"form"});
     }
 
     return this.http.request(
@@ -53,19 +47,16 @@ export class XtraAndPosZktFingerPrintService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `httpPostXtraAndPosZktFingerPrintConnectToZkt$Response()` instead.
+   * To access the full response (for headers, for example), `httpGetItemOfferGetPageInfo$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  httpPostXtraAndPosZktFingerPrintConnectToZkt(
-    params: {
-      ipAddress?: string;
-      port?: string;
-      machineNumber: number;
+  httpGetItemOfferGetPageInfo(
+    params?: {
     },
     context?: HttpContext
   ): Observable<void> {
-    return this.httpPostXtraAndPosZktFingerPrintConnectToZkt$Response(params, context).pipe(
+    return this.httpGetItemOfferGetPageInfo$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

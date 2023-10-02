@@ -1,7 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface VacationTypesDto {
-  date?: null | string;
+export interface EmpVacationTypesDto {
   isDeportation?: null | boolean;
   isExtendOrCut?: null | boolean;
   isMustAlternative?: null | boolean;

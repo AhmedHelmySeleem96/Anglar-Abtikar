@@ -1,8 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
 import { EmployeeFiles } from './employee-files';
-import { JobDifinition } from './job-difinition';
-import { JobName } from './job-name';
 export interface Employee {
   bankAccount?: null | string;
   bankAccountId?: number;
@@ -22,6 +20,7 @@ export interface Employee {
   dealingWithCustomersId?: number;
   docRefGuid?: string;
   educationalStage?: null | string;
+  employeeNo?: null | string;
   employeefileId?: number;
   employeefiles?: null | Array<EmployeeFiles>;
   firstName?: null | string;
@@ -32,10 +31,8 @@ export interface Employee {
   isCanceled?: boolean;
   isSalesRepresentative?: boolean;
   isUpdated?: boolean;
-  job?: JobDifinition;
   jobId?: number;
   jobName?: null | string;
-  jobNames?: JobName;
   jobTitle?: null | string;
   lastModifiedDate?: string;
   lastName?: null | string;

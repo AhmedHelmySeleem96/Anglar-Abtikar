@@ -2,7 +2,6 @@
 /* eslint-disable */
 export interface EmployeeContractDto {
   allowenceId?: null | number;
-  allowencePaidTimeId?: null | number;
   allowenceType?: null | number;
   allowenceValue?: null | number;
   allowenceValueType?: null | number;

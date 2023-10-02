@@ -12,6 +12,7 @@ import { RequestBuilder } from '../request-builder';
 
 import { ItemBalanceStorageDto } from '../models/item-balance-storage-dto';
 import { ItemColor } from '../models/item-color';
+import { JqdtParams } from '../models/jqdt-params';
 import { RequestResult } from '../models/request-result';
 import { SearchStorage } from '../models/search-storage';
 import { Storage } from '../models/storage';
@@ -158,6 +159,53 @@ export class XtraAndPosStorageEpService extends BaseService {
     context?: HttpContext
   ): Observable<void> {
     return this.httpPutExtraandposStorageUpdateStoreAdjustment$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPutExtraandposStorageGetStoreAdjustmentByArrow()` */
+  static readonly HttpPutExtraandposStorageGetStoreAdjustmentByArrowPath = '/extraandpos_storage/GetStoreAdjustmentByArrow';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPutExtraandposStorageGetStoreAdjustmentByArrow()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPutExtraandposStorageGetStoreAdjustmentByArrow$Response(
+    params?: {
+      body?: StoreAdjustment
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosStorageEpService.HttpPutExtraandposStorageGetStoreAdjustmentByArrowPath, 'put');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPutExtraandposStorageGetStoreAdjustmentByArrow$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPutExtraandposStorageGetStoreAdjustmentByArrow(
+    params?: {
+      body?: StoreAdjustment
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPutExtraandposStorageGetStoreAdjustmentByArrow$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
@@ -904,6 +952,53 @@ export class XtraAndPosStorageEpService extends BaseService {
     context?: HttpContext
   ): Observable<void> {
     return this.httpPostExtraAndPosOpenBalanceByArrowOpenByArrow$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPostExtraAndPosSorageOpenBalanceSorageOpenBalanceDataTable()` */
+  static readonly HttpPostExtraAndPosSorageOpenBalanceSorageOpenBalanceDataTablePath = '/ExtraAndPOS_SorageOpenBalance/SorageOpenBalanceDataTable';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostExtraAndPosSorageOpenBalanceSorageOpenBalanceDataTable()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosSorageOpenBalanceSorageOpenBalanceDataTable$Response(
+    params?: {
+      body?: JqdtParams
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosStorageEpService.HttpPostExtraAndPosSorageOpenBalanceSorageOpenBalanceDataTablePath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostExtraAndPosSorageOpenBalanceSorageOpenBalanceDataTable$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosSorageOpenBalanceSorageOpenBalanceDataTable(
+    params?: {
+      body?: JqdtParams
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostExtraAndPosSorageOpenBalanceSorageOpenBalanceDataTable$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

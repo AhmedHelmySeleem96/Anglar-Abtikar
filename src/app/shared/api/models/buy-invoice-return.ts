@@ -37,6 +37,8 @@ export interface BuyInvoiceReturn {
   docProjectName?: null | string;
   docRefGuid?: string;
   docType?: DocType;
+  equalvment?: number;
+  exchangePrice?: number;
   extraDisc?: number;
   guid?: string;
   id?: number;

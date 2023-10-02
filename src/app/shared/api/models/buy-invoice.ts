@@ -33,6 +33,8 @@ export interface BuyInvoice {
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
+  curancyId?: number;
+  curancyName?: null | string;
   debt?: number;
   docDate?: string;
   docGuid?: string;
@@ -41,6 +43,8 @@ export interface BuyInvoice {
   docProjectName?: null | string;
   docRefGuid?: string;
   docType?: DocType;
+  equalvment?: number;
+  exchangePrice?: number;
   extraDisc?: number;
   guid?: string;
   id?: number;

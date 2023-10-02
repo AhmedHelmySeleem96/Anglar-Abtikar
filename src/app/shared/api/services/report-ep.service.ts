@@ -1057,4 +1057,239 @@ export class ReportEpService extends BaseService {
     );
   }
 
+  /** Path part for operation `httpPostItemSalesReportItemSalesReport()` */
+  static readonly HttpPostItemSalesReportItemSalesReportPath = '/ItemSalesReport/ItemSalesReport';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostItemSalesReportItemSalesReport()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpPostItemSalesReportItemSalesReport$Response(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, ReportEpService.HttpPostItemSalesReportItemSalesReportPath, 'post');
+    if (params) {
+      rb.query('id', params.id, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostItemSalesReportItemSalesReport$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpPostItemSalesReportItemSalesReport(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostItemSalesReportItemSalesReport$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPostItemSalesReportSalesManReport()` */
+  static readonly HttpPostItemSalesReportSalesManReportPath = '/ItemSalesReport/SalesManReport';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostItemSalesReportSalesManReport()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpPostItemSalesReportSalesManReport$Response(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, ReportEpService.HttpPostItemSalesReportSalesManReportPath, 'post');
+    if (params) {
+      rb.query('id', params.id, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostItemSalesReportSalesManReport$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpPostItemSalesReportSalesManReport(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostItemSalesReportSalesManReport$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPostItemSalesReportTaxesInvoicecReport()` */
+  static readonly HttpPostItemSalesReportTaxesInvoicecReportPath = '/ItemSalesReport/TaxesInvoicecReport';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostItemSalesReportTaxesInvoicecReport()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpPostItemSalesReportTaxesInvoicecReport$Response(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, ReportEpService.HttpPostItemSalesReportTaxesInvoicecReportPath, 'post');
+    if (params) {
+      rb.query('id', params.id, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostItemSalesReportTaxesInvoicecReport$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpPostItemSalesReportTaxesInvoicecReport(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostItemSalesReportTaxesInvoicecReport$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPostItemSalesReportMonthTaxReport()` */
+  static readonly HttpPostItemSalesReportMonthTaxReportPath = '/ItemSalesReport/MonthTaxReport';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostItemSalesReportMonthTaxReport()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpPostItemSalesReportMonthTaxReport$Response(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, ReportEpService.HttpPostItemSalesReportMonthTaxReportPath, 'post');
+    if (params) {
+      rb.query('id', params.id, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostItemSalesReportMonthTaxReport$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpPostItemSalesReportMonthTaxReport(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostItemSalesReportMonthTaxReport$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetStorageOpenBalanceStorageOpenBalanceReport()` */
+  static readonly HttpGetStorageOpenBalanceStorageOpenBalanceReportPath = '/StorageOpenBalance/StorageOpenBalanceReport';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetStorageOpenBalanceStorageOpenBalanceReport()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetStorageOpenBalanceStorageOpenBalanceReport$Response(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, ReportEpService.HttpGetStorageOpenBalanceStorageOpenBalanceReportPath, 'get');
+    if (params) {
+      rb.query('id', params.id, {"style":"form"});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetStorageOpenBalanceStorageOpenBalanceReport$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetStorageOpenBalanceStorageOpenBalanceReport(
+    params: {
+      id: number;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetStorageOpenBalanceStorageOpenBalanceReport$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
 }

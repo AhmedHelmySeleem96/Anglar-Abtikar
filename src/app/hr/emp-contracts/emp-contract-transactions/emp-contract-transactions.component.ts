@@ -10,12 +10,12 @@ import { XtraAndPosLookUpsService,XtraAndPosBranchEpService,
     CurrencyEpService, XtraAndPosOrgStructuresService,
      EmployeeContractDto, XtraAndPosWorkCardService, XtraAndPosAllowenceService,
       XtraAndPosHrEmployeeService,
-      XtraAndPosEmpAllownceTransactionsService,
-      XtraAndPosEmpContractTransactionsService,
-      XtraAndPosEmpVacationTransactionsService,
       XtraAndPosJobNameService,
-      HrEmployeeDto,
-      XtraAndPosVacationTypesService} from 'src/app/shared/api';
+      XtraAndPosEmployeeAllowenceTrxService,
+      XtraAndPosEmployeeContractTrxService,
+      XtraAndPosEmployeeVacationsService,
+      XtraAndPosEmpVacationTypesService,
+      } from 'src/app/shared/api';
 
 @Component({
   selector: 'app-emp-contract-transactions',
@@ -39,12 +39,11 @@ export class EmpContractTransactionsComponent implements OnInit  {
     private XtraAndPosEmployeeContractService: XtraAndPosEmployeeContractService,
     private XtraAndPosHrEmployeeService :XtraAndPosHrEmployeeService,
     private  XtraAndPosJobDifinitionService :XtraAndPosJobDifinitionService,
-    private XtraAndPosOrgStructuresService:XtraAndPosOrgStructuresService,
-    private XtraAndPosEmpAllownceTransactionsService : XtraAndPosEmpAllownceTransactionsService,
-    private XtraAndPosEmpContractTransactionsService  : XtraAndPosEmpContractTransactionsService,
-    private XtraAndPosEmpVacationTransactionsService : XtraAndPosEmpVacationTransactionsService,
+    private XtraAndPosEmpAllownceTransactionsService : XtraAndPosEmployeeAllowenceTrxService,
+    private XtraAndPosEmpContractTransactionsService  : XtraAndPosEmployeeContractTrxService,
+    private XtraAndPosEmpVacationTransactionsService : XtraAndPosEmployeeVacationsService,
     private XtraAndPosJobNameService :XtraAndPosJobNameService,
-    private XtraAndPosVacationTypesService : XtraAndPosVacationTypesService,
+    private XtraAndPosVacationTypesService : XtraAndPosEmpVacationTypesService,
     private ViewportScroller : ViewportScroller
     ){
     this.formReniew = this.createFormReniew();
@@ -243,7 +242,7 @@ getData(){
     let jsonContractData = JSON.parse(value);
     this.ContractData = jsonContractData.Obj.empContract;
   });
-  this.XtraAndPosVacationTypesService.httpGetXtraAndPosVacationTypesGetVacationTypesService().subscribe((value: any) => {
+  this.XtraAndPosVacationTypesService.httpGetXtraAndPosEmpVacationTypesGetEmpVacationTypesService().subscribe((value: any) => {
     let jsonContractData = JSON.parse(value);
     this.vacTypesData = jsonContractData.Obj.vac;
   });
@@ -266,7 +265,7 @@ showDeleteConfirm(contract: any) {
     });
 }
 deleteContract(contract: any) {
-  this.XtraAndPosEmpContractTransactionsService.httpDeleteXtraAndPosEmpContractTransactionsDelete({
+  this.XtraAndPosEmpContractTransactionsService.httpDeleteXtraAndPosEmployeeContractTrxDeleteEmployeeContractTrxService({
     id: contract.Id,
   }).subscribe((value: any) => {
     let jsonData = JSON.parse(value);
@@ -279,15 +278,15 @@ deleteContract(contract: any) {
 }
 
 refreshTable() {
-  this.XtraAndPosEmpContractTransactionsService.httpGetXtraAndPosEmpContractTransactionsGet().subscribe((value: any) => {
+  this.XtraAndPosEmpContractTransactionsService.httpGetXtraAndPosEmployeeContractTrxGetEmployeeContractTrxService().subscribe((value: any) => {
     let jsonContractData = JSON.parse(value);
     this.contractTrxData = jsonContractData.Obj.contract;
   });
-  this.XtraAndPosEmpAllownceTransactionsService.httpGetXtraAndPosEmpAllownceTransactionsGet().subscribe((value: any) => {
+  this.XtraAndPosEmpAllownceTransactionsService.httpGetXtraAndPosEmployeeAllowenceTrxGetEmployeeAllowenceTrxService().subscribe((value: any) => {
     let jsonContractData = JSON.parse(value);
     this.allowenceTrxData = jsonContractData.Obj.allowence;
   });
-  this.XtraAndPosEmpVacationTransactionsService.httpGetXtraAndPosEmpVacationTransactionsGet().subscribe((value: any) => {
+  this.XtraAndPosEmpVacationTransactionsService.httpGetXtraAndPosEmployeeVacationsGetEmployeeVacationsService().subscribe((value: any) => {
     let jsonContractData = JSON.parse(value);
     this.vacTrxData = jsonContractData.Obj.vac;
   });
@@ -624,7 +623,7 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
     {
     const model = this.formReniew.value;
 
-    this.XtraAndPosEmpContractTransactionsService.httpPostXtraAndPosEmpContractTransactionsCreate({
+    this.XtraAndPosEmpContractTransactionsService.httpPostXtraAndPosEmployeeContractTrxCreateEmployeeContractTrxService({
       body : model
     }).subscribe((value:any)=>{
       let jsonData = JSON.parse(value);
@@ -645,7 +644,7 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
     const branchId = this.formReniew.get('branchId')?.value;
     this.formReniew.get('employeeId')?.setValue(empId);
     this.formReniew.get('branchId')?.setValue(branchId);
-    this.XtraAndPosEmpContractTransactionsService.httpPutXtraAndPosEmpContractTransactionsUpdate({
+    this.XtraAndPosEmpContractTransactionsService.httpPutXtraAndPosEmployeeContractTrxUpdateEmployeeContractTrxService({
       id: this.currentContractId,
       body: model
     }).subscribe((value: any) => {
@@ -670,7 +669,7 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
     {
     const model = this.formVac.value;
 
-    this.XtraAndPosEmpVacationTransactionsService.httpPostXtraAndPosEmpVacationTransactionsCreate({
+    this.XtraAndPosEmpVacationTransactionsService.httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationsService({
       body : model
     }).subscribe((value:any)=>{
       let jsonData = JSON.parse(value);
@@ -690,7 +689,7 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
     const branchId = this.formReniew.get('branchId')?.value;
     this.formVac.get('employeeId')?.setValue(empId);
     this.formVac.get('branchId')?.setValue(branchId);
-    this.XtraAndPosEmpVacationTransactionsService.httpPutXtraAndPosEmpVacationTransactionsUpdate({
+    this.XtraAndPosEmpVacationTransactionsService.httpPutXtraAndPosEmployeeVacationsUpdateEmployeeVacationsService({
       id: this.currentVacId,
       body: model
     }).subscribe((value: any) => {
@@ -715,7 +714,7 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
     {
     const model = this.formAllowence.value;
 
-    this.XtraAndPosEmpAllownceTransactionsService.httpPostXtraAndPosEmpAllownceTransactionsCreate({
+    this.XtraAndPosEmpAllownceTransactionsService.httpPostXtraAndPosEmployeeAllowenceTrxCreateEmployeeAllowenceTrxService({
       body : model
     }).subscribe((value:any)=>{
       let jsonData = JSON.parse(value);
@@ -735,7 +734,7 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
     const branchId = this.formReniew.get('branchId')?.value;
     this.formAllowence.get('employeeId')?.setValue(empId);
     this.formAllowence.get('branchId')?.setValue(branchId);
-    this.XtraAndPosEmpAllownceTransactionsService.httpPutXtraAndPosEmpAllownceTransactionsUpdate({
+    this.XtraAndPosEmpAllownceTransactionsService.httpPutXtraAndPosEmployeeAllowenceTrxUpdateEmployeeAllowenceTrxService({
       id: this.currentAllowenceId,
       body: model
     }).subscribe((value: any) => {
@@ -764,7 +763,7 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
       });
   }
   deleteVac(contract: any) {
-    this.XtraAndPosEmpVacationTransactionsService.httpDeleteXtraAndPosEmpVacationTransactionsDelete({
+    this.XtraAndPosEmpVacationTransactionsService.httpDeleteXtraAndPosEmployeeVacationsDeleteEmployeeVacationsService({
       id: contract.Id,
     }).subscribe((value: any) => {
       let jsonData = JSON.parse(value);
@@ -790,7 +789,7 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
       });
   }
   deleteAllowence(contract: any) {
-    this.XtraAndPosEmpAllownceTransactionsService.httpDeleteXtraAndPosEmpAllownceTransactionsDelete({
+    this.XtraAndPosEmpAllownceTransactionsService.httpDeleteXtraAndPosEmployeeAllowenceTrxDeleteEmployeeAllowenceTrxService({
       id: contract.Id,
     }).subscribe((value: any) => {
       let jsonData = JSON.parse(value);

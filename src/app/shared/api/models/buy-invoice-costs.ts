@@ -16,7 +16,10 @@ export interface BuyInvoiceCosts {
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
+  curancyId?: number;
+  curancyName?: number;
   docRefGuid?: string;
+  effecentPrice?: number;
   guid?: string;
   id?: number;
   isActive?: boolean;

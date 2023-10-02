@@ -3,12 +3,9 @@
 import { ClientType } from './client-type';
 import { DocType } from './doc-type';
 import { PaymentType } from './payment-type';
-import { TransferDetailsPending } from './transfer-details-pending';
-import { TransferDocStatus } from './transfer-doc-status';
-import { TransferStatus } from './transfer-status';
-export interface TransferPending {
-  approvalBy?: null | string;
-  approvalDate?: string;
+import { SendAndReceiveDetails } from './send-and-receive-details';
+import { TransferType } from './transfer-type';
+export interface SendAndReceive {
   bankGuid?: string;
   bankId?: number;
   bankName?: null | string;
@@ -51,9 +48,7 @@ export interface TransferPending {
   guid?: string;
   id?: number;
   isActive?: boolean;
-  isApproval?: null | boolean;
   isCanceled?: boolean;
-  isStorgeUser?: boolean;
   isUpdated?: boolean;
   itemsNo?: number;
   lastModifiedDate?: string;
@@ -70,12 +65,11 @@ export interface TransferPending {
   pricePolicyId?: number;
   pricePolicyName?: null | string;
   qrCode?: null | string;
+  sendAndReceiveDetails?: null | Array<SendAndReceiveDetails>;
   shiftId?: number;
   storeGuid?: string;
   storeId?: number;
   storeName?: null | string;
-  toStoreId?: number;
-  toStoreName?: null | string;
   totalDisc?: number;
   totalDiscRate?: number;
   totalDiscafterVat?: number;
@@ -87,9 +81,7 @@ export interface TransferPending {
   totalInvoiceVatAmount?: number;
   totalQty?: number;
   totalVatRate?: number;
-  transferDetailsBuilding?: null | Array<TransferDetailsPending>;
-  transferDocStatus?: TransferDocStatus;
-  transferStatus?: TransferStatus;
+  transferType?: TransferType;
   treasuryId?: number;
   updateFlag?: null | string;
   updatedCount?: number;

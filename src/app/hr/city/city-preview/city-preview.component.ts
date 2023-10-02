@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ExportData } from 'src/app/services/Export-data.service';
-import { XtraAndPosCityService, XtraAndPosCountryService } from 'src/app/shared/api';
+import {  XtraAndPosCityService, XtraAndPosCountryService } from 'src/app/shared/api';
 @Component({
   selector: 'app-city-preview',
   templateUrl: './city-preview.component.html',
@@ -14,7 +14,8 @@ export class CityPreviewComponent implements OnInit {
   constructor(private router: Router,private toastr:ToastrService
     ,private XtraAndPOS_City :XtraAndPosCityService,
     private fb:FormBuilder
-    ,private XtraAndPos_Country :  XtraAndPosCountryService,private ExportData :ExportData){};
+    ,private XtraAndPos_Country :  XtraAndPosCountryService,
+    private ExportData :ExportData){};
     AddCity(){
       this.router.navigateByUrl('hr/city/createCity');
   }
@@ -27,7 +28,7 @@ export class CityPreviewComponent implements OnInit {
   countryData :any[] = [] ;
   cols :any ;
   currentcityId: any ;
-@ViewChild('formElement') formElement!: ElementRef;
+  @ViewChild('formElement') formElement!: ElementRef;
   @ViewChild('dt') dt: any;
   ngOnInit(): void {
     this.XtraAndPOS_City.httpGetXtraAndPosCityGetCityService().subscribe((value : any)=>{
@@ -67,11 +68,10 @@ export class CityPreviewComponent implements OnInit {
     }
   }
   OnSubmit(Form: FormGroup) {
-    debugger
     if(!this.isEdit){
     if(this.formCity.valid)
     {
-    let model = this.formCity.value;
+    let model  = this.formCity.value;
     this.XtraAndPOS_City.httpPostXtraAndPosCityCreateCityService({
       body : model
     }).subscribe((value:any)=>{

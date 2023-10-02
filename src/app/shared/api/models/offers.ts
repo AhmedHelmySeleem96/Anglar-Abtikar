@@ -1,9 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
-import { TreasuryTransactionDetail } from './treasury-transaction-detail';
-import { TreasuryType } from './treasury-type';
-export interface TreasuryTransaction {
-  adjective?: number;
+import { ContractStatus } from './contract-status';
+export interface Offers {
   branchId?: number;
   branchName?: null | string;
   cancelBy?: null | string;
@@ -11,18 +9,13 @@ export interface TreasuryTransaction {
   cancelDate?: string;
   companyId?: number;
   companyName?: null | string;
+  contractId?: number;
+  contractStatus?: ContractStatus;
   createById?: null | string;
   createByName?: null | string;
   createdDate?: string;
-  curencyId?: number;
-  curencyName?: null | string;
-  docDate?: string;
-  docGuid?: string;
-  docNo?: number;
-  docNoManual?: number;
+  discountPercentage?: number;
   docRefGuid?: string;
-  equivalentPrice?: number;
-  exchangeRate?: number;
   guid?: string;
   id?: number;
   isActive?: boolean;
@@ -31,8 +24,7 @@ export interface TreasuryTransaction {
   lastModifiedDate?: string;
   lastUpdatedBy?: null | string;
   lastUpdatedDate?: string;
-  mainBank?: number;
-  mainCostCenter?: number;
+  manualDisplay?: boolean;
   modifyById?: null | string;
   modifyByName?: null | string;
   modifyCount?: number;
@@ -40,14 +32,9 @@ export interface TreasuryTransaction {
   nameEn?: null | string;
   no?: number;
   notes?: null | string;
-  totalAfterVat?: number;
-  totalAmount?: number;
-  totalVat?: number;
-  treasuryId?: number;
-  treasuryName?: null | string;
-  treasuryTransactionsDetails?: null | Array<TreasuryTransactionDetail>;
-  treasuryType?: TreasuryType;
-  typeofpayment?: number;
+  offerName?: null | string;
+  offerStartingDate?: string;
+  offersEndDate?: string;
   updateFlag?: null | string;
   updatedCount?: number;
 }

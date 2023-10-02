@@ -39,6 +39,8 @@ export interface Transfer {
   docType?: DocType;
   employeeId?: number;
   employeeName?: null | string;
+  equalvment?: number;
+  exchangePrice?: number;
   extraDisc?: number;
   fromStoreId?: number;
   fromStoreName?: null | string;

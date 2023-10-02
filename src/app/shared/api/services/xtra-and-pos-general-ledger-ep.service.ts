@@ -252,6 +252,53 @@ export class XtraAndPosGeneralLedgerEpService extends BaseService {
     );
   }
 
+  /** Path part for operation `httpPostExtraAndPosGlTaxsearch()` */
+  static readonly HttpPostExtraAndPosGlTaxsearchPath = '/ExtraAndPOS_Gl/Taxsearch';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostExtraAndPosGlTaxsearch()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosGlTaxsearch$Response(
+    params?: {
+      body?: SearchModel
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosGeneralLedgerEpService.HttpPostExtraAndPosGlTaxsearchPath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostExtraAndPosGlTaxsearch$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostExtraAndPosGlTaxsearch(
+    params?: {
+      body?: SearchModel
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostExtraAndPosGlTaxsearch$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
   /** Path part for operation `httpGetExtraAndPosGlAccountStatementInfo()` */
   static readonly HttpGetExtraAndPosGlAccountStatementInfoPath = '/ExtraAndPOS_Gl/AccountStatementInfo';
 

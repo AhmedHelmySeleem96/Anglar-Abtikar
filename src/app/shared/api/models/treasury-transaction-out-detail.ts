@@ -28,6 +28,8 @@ export interface TreasuryTransactionOutDetail {
   docProjectsId?: number;
   docProjectsName?: null | string;
   docRefGuid?: string;
+  entityName?: null | string;
+  entityVatNo?: null | string;
   guid?: string;
   id?: number;
   isActive?: boolean;

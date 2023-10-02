@@ -8,6 +8,7 @@ export interface Client {
   cancelBy?: null | string;
   cancelById?: number;
   cancelDate?: string;
+  clientCode?: null | string;
   commercialNo?: null | string;
   companyId?: number;
   companyName?: null | string;
@@ -16,6 +17,7 @@ export interface Client {
   createdDate?: string;
   creditDays?: number;
   creditNotes?: null | string;
+  customerGroupName?: null | string;
   customerGroups?: number;
   customerRatings?: number;
   debt?: number;
@@ -38,6 +40,7 @@ export interface Client {
   lastUpdatedDate?: string;
   mainClientId?: number;
   mainClientName?: null | string;
+  mainCode?: null | string;
   modifyById?: null | string;
   modifyByName?: null | string;
   modifyCount?: number;
@@ -65,4 +68,5 @@ export interface Client {
   totalSales?: number;
   updateFlag?: null | string;
   updatedCount?: number;
+  vatClient?: boolean;
 }

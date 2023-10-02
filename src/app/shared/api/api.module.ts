@@ -9,6 +9,7 @@ import { BudgetReportEpService } from './services/budget-report-ep.service';
 import { BuyInvoiceCostsControllerService } from './services/buy-invoice-costs-controller.service';
 import { BuyOfferTransactionEpService } from './services/buy-offer-transaction-ep.service';
 import { CartEpService } from './services/cart-ep.service';
+import { ClientContractEpService } from './services/client-contract-ep.service';
 import { CollectionInvoiceControllerService } from './services/collection-invoice-controller.service';
 import { CurrencyEpService } from './services/currency-ep.service';
 import { DashboardEpService } from './services/dashboard-ep.service';
@@ -21,6 +22,7 @@ import { ExtraAndPosReturnBuyInvoiceEpService } from './services/extra-and-pos-r
 import { FinancialYearEpService } from './services/financial-year-ep.service';
 import { InitGlCreateEpService } from './services/init-gl-create-ep.service';
 import { InitGlReceptEpService } from './services/init-gl-recept-ep.service';
+import { ItemOfferEpService } from './services/item-offer-ep.service';
 import { ItemUnitEpService } from './services/item-unit-ep.service';
 import { LdgerEpService } from './services/ldger-ep.service';
 import { ManageUserEpService } from './services/manage-user-ep.service';
@@ -47,11 +49,12 @@ import { XtraAndPosCountryService } from './services/xtra-and-pos-country.servic
 import { XtraAndPosDailyMovmentEpService } from './services/xtra-and-pos-daily-movment-ep.service';
 import { XtraAndPosDefaultOptionsEpService } from './services/xtra-and-pos-default-options-ep.service';
 import { XtraAndPosDocTypesService } from './services/xtra-and-pos-doc-types.service';
-import { XtraAndPosEmpAllownceTransactionsService } from './services/xtra-and-pos-emp-allownce-transactions.service';
-import { XtraAndPosEmpContractTransactionsService } from './services/xtra-and-pos-emp-contract-transactions.service';
+import { XtraAndPosEmployeeAllowenceTrxService } from './services/xtra-and-pos-employee-allowence-trx.service';
 import { XtraAndPosEmployeeContractService } from './services/xtra-and-pos-employee-contract.service';
+import { XtraAndPosEmployeeContractTrxService } from './services/xtra-and-pos-employee-contract-trx.service';
 import { XtraAndPosEmployeeEpService } from './services/xtra-and-pos-employee-ep.service';
-import { XtraAndPosEmpVacationTransactionsService } from './services/xtra-and-pos-emp-vacation-transactions.service';
+import { XtraAndPosEmployeeVacationsService } from './services/xtra-and-pos-employee-vacations.service';
+import { XtraAndPosEmpVacationTypesService } from './services/xtra-and-pos-emp-vacation-types.service';
 import { XtraAndPosExchangeRateEpService } from './services/xtra-and-pos-exchange-rate-ep.service';
 import { XtraAndPosFinanceEpService } from './services/xtra-and-pos-finance-ep.service';
 import { XtraAndPosGeneralLedgerEpService } from './services/xtra-and-pos-general-ledger-ep.service';
@@ -73,13 +76,12 @@ import { XtraAndPosSaleInvoiceEpService } from './services/xtra-and-pos-sale-inv
 import { XtraAndPosSaleOfferPricesEpService } from './services/xtra-and-pos-sale-offer-prices-ep.service';
 import { XtraAndPosShiftEpService } from './services/xtra-and-pos-shift-ep.service';
 import { XtraAndPosSpecializationsService } from './services/xtra-and-pos-specializations.service';
+import { XtraAndPosSpendAndReceiveGoodsEpService } from './services/xtra-and-pos-spend-and-receive-goods-ep.service';
 import { XtraAndPosStorageEpService } from './services/xtra-and-pos-storage-ep.service';
 import { XtraAndPosSupplierEpService } from './services/xtra-and-pos-supplier-ep.service';
 import { XtraAndPosTreasuriesEpService } from './services/xtra-and-pos-treasuries-ep.service';
 import { XtraAndPosTreasuryEpService } from './services/xtra-and-pos-treasury-ep.service';
-import { XtraAndPosVacationTypesService } from './services/xtra-and-pos-vacation-types.service';
 import { XtraAndPosWorkCardService } from './services/xtra-and-pos-work-card.service';
-import { XtraAndPosZktFingerPrintService } from './services/xtra-and-pos-zkt-finger-print.service';
 
 /**
  * Module that provides all services and configuration.
@@ -94,6 +96,7 @@ import { XtraAndPosZktFingerPrintService } from './services/xtra-and-pos-zkt-fin
     BuyInvoiceCostsControllerService,
     BuyOfferTransactionEpService,
     CartEpService,
+    ClientContractEpService,
     CollectionInvoiceControllerService,
     CurrencyEpService,
     DashboardEpService,
@@ -106,6 +109,7 @@ import { XtraAndPosZktFingerPrintService } from './services/xtra-and-pos-zkt-fin
     FinancialYearEpService,
     InitGlCreateEpService,
     InitGlReceptEpService,
+    ItemOfferEpService,
     ItemUnitEpService,
     LdgerEpService,
     ManageUserEpService,
@@ -132,11 +136,12 @@ import { XtraAndPosZktFingerPrintService } from './services/xtra-and-pos-zkt-fin
     XtraAndPosDailyMovmentEpService,
     XtraAndPosDefaultOptionsEpService,
     XtraAndPosDocTypesService,
-    XtraAndPosEmpAllownceTransactionsService,
-    XtraAndPosEmpContractTransactionsService,
+    XtraAndPosEmployeeAllowenceTrxService,
     XtraAndPosEmployeeContractService,
+    XtraAndPosEmployeeContractTrxService,
     XtraAndPosEmployeeEpService,
-    XtraAndPosEmpVacationTransactionsService,
+    XtraAndPosEmployeeVacationsService,
+    XtraAndPosEmpVacationTypesService,
     XtraAndPosExchangeRateEpService,
     XtraAndPosFinanceEpService,
     XtraAndPosGeneralLedgerEpService,
@@ -158,13 +163,12 @@ import { XtraAndPosZktFingerPrintService } from './services/xtra-and-pos-zkt-fin
     XtraAndPosSaleOfferPricesEpService,
     XtraAndPosShiftEpService,
     XtraAndPosSpecializationsService,
+    XtraAndPosSpendAndReceiveGoodsEpService,
     XtraAndPosStorageEpService,
     XtraAndPosSupplierEpService,
     XtraAndPosTreasuriesEpService,
     XtraAndPosTreasuryEpService,
-    XtraAndPosVacationTypesService,
     XtraAndPosWorkCardService,
-    XtraAndPosZktFingerPrintService,
     ApiConfiguration
   ],
 })
