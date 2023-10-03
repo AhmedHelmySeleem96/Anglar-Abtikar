@@ -49,9 +49,11 @@ export class EmpContractTransactionsComponent implements OnInit  {
     this.formReniew = this.createFormReniew();
     this.formAllowance = this.createFormAllowance();
     this.formVac = this.createFormVac();
-    this.formContract = this.createForm();}
+    this.formContract = this.createForm();
+    this.formVacPrevious = this.createFormPrevious();}
     formReniew : FormGroup;
     formContract : FormGroup;
+    formVacPrevious:FormGroup;
     formAllowance : FormGroup;
     formVac : FormGroup;
     currencyData :any [] = [] ;
@@ -135,6 +137,13 @@ createFormVac() : FormGroup{
     vacEndDate: new FormControl(null, [Validators.required]),
     empReplacementId: new FormControl(null, [Validators.required]),
     notes: new FormControl(null)
+  })
+}
+createFormPrevious() : FormGroup{
+  return this.fb.group({
+    employeeId: new FormControl(null, [Validators.required]),
+    vacTypeId: new FormControl(null, [Validators.required]),
+    previousBalance: new FormControl(null, [Validators.required]),
   })
 }
 createForm(): FormGroup {

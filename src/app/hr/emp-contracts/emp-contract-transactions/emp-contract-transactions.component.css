@@ -111,7 +111,7 @@ input[type='checkbox']:checked + .switch {
 
  .fancy:hover {
   color: white;
-  background: #172d50;;
+  background: #172d50;
  }
 
  .fancy:hover::before {
@@ -141,4 +141,26 @@ input[type='checkbox']:checked + .switch {
 }
 .p-tabview-nav {
   margin-top: 1rem!important;
+}
+
+.square:hover {
+  -webkit-transform: translate(20px, -10px);
+  -ms-transform: translate(10px, -10px);
+  transform: translate(10px, -10px);
+  -webkit-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+   }
+
+
+.square{
+width: 174px;
+height: 140px;
+background: white;
+border-radius: 25px;
+box-shadow: 0px 20px 50px #D9DBDF;
+-webkit-transition: all 0.3s ease;
+-o-transition: all 0.3s ease;
+transition: all 0.3s ease;
+border-style: groove;
+border-color: #172d50;
 }

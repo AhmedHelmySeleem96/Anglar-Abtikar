@@ -10,6 +10,8 @@ import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 import { RequestBuilder } from '../request-builder';
 
+import { EmpPreviousVacationsBalanceDto } from '../models/emp-previous-vacations-balance-dto';
+import { EmployeeVacationTrxDto } from '../models/employee-vacation-trx-dto';
 import { EmployeeVacationsDto } from '../models/employee-vacations-dto';
 
 @Injectable({ providedIn: 'root' })
@@ -65,6 +67,100 @@ export class XtraAndPosEmployeeVacationsService extends BaseService {
     );
   }
 
+  /** Path part for operation `httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationBalanceService()` */
+  static readonly HttpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationBalanceServicePath = '/XtraAndPOS_EmployeeVacations/CreateEmployeeVacationBalanceService';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationBalanceService()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationBalanceService$Response(
+    params?: {
+      body?: EmpPreviousVacationsBalanceDto
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosEmployeeVacationsService.HttpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationBalanceServicePath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationBalanceService$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationBalanceService(
+    params?: {
+      body?: EmpPreviousVacationsBalanceDto
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationBalanceService$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationTrxService()` */
+  static readonly HttpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationTrxServicePath = '/XtraAndPOS_EmployeeVacations/CreateEmployeeVacationTrxService';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationTrxService()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationTrxService$Response(
+    params?: {
+      body?: EmployeeVacationTrxDto
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosEmployeeVacationsService.HttpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationTrxServicePath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationTrxService$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationTrxService(
+    params?: {
+      body?: EmployeeVacationTrxDto
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationTrxService$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
   /** Path part for operation `httpPutXtraAndPosEmployeeVacationsUpdateEmployeeVacationsService()` */
   static readonly HttpPutXtraAndPosEmployeeVacationsUpdateEmployeeVacationsServicePath = '/XtraAndPOS_EmployeeVacations/UpdateEmployeeVacationsService';
 
@@ -111,6 +207,56 @@ export class XtraAndPosEmployeeVacationsService extends BaseService {
     context?: HttpContext
   ): Observable<void> {
     return this.httpPutXtraAndPosEmployeeVacationsUpdateEmployeeVacationsService$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpPutXtraAndPosEmployeeVacationsUpdateEmployeeVacationTrxService()` */
+  static readonly HttpPutXtraAndPosEmployeeVacationsUpdateEmployeeVacationTrxServicePath = '/XtraAndPOS_EmployeeVacations/UpdateEmployeeVacationTrxService';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpPutXtraAndPosEmployeeVacationsUpdateEmployeeVacationTrxService()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPutXtraAndPosEmployeeVacationsUpdateEmployeeVacationTrxService$Response(
+    params: {
+      id: number;
+      body?: EmployeeVacationTrxDto
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosEmployeeVacationsService.HttpPutXtraAndPosEmployeeVacationsUpdateEmployeeVacationTrxServicePath, 'put');
+    if (params) {
+      rb.query('id', params.id, {"style":"form"});
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpPutXtraAndPosEmployeeVacationsUpdateEmployeeVacationTrxService$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  httpPutXtraAndPosEmployeeVacationsUpdateEmployeeVacationTrxService(
+    params: {
+      id: number;
+      body?: EmployeeVacationTrxDto
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpPutXtraAndPosEmployeeVacationsUpdateEmployeeVacationTrxService$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
@@ -202,6 +348,50 @@ export class XtraAndPosEmployeeVacationsService extends BaseService {
     context?: HttpContext
   ): Observable<void> {
     return this.httpGetXtraAndPosEmployeeVacationsGetEmployeeVacationsService$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `httpGetXtraAndPosEmployeeVacationsGetEmployeeVacationTrxService()` */
+  static readonly HttpGetXtraAndPosEmployeeVacationsGetEmployeeVacationTrxServicePath = '/XtraAndPOS_EmployeeVacations/GetEmployeeVacationTrxService';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetXtraAndPosEmployeeVacationsGetEmployeeVacationTrxService()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosEmployeeVacationsGetEmployeeVacationTrxService$Response(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosEmployeeVacationsService.HttpGetXtraAndPosEmployeeVacationsGetEmployeeVacationTrxServicePath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetXtraAndPosEmployeeVacationsGetEmployeeVacationTrxService$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosEmployeeVacationsGetEmployeeVacationTrxService(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetXtraAndPosEmployeeVacationsGetEmployeeVacationTrxService$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

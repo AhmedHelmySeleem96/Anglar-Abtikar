@@ -431,6 +431,24 @@
 
     </p-tabPanel>
     <p-tabPanel header="{{ 'Hr.Vacations' | translate }}">
+      <form [formGroup]="formVacPrevious"  class="form" >
+
+      <div  class="container">
+        <div class="row">
+          <div class="square mr-2"  *ngFor="let vac of vacTypesData ">
+            <div class="row mt-2 ">
+              <label>{{vac.NameAr}}</label>
+            </div>
+            <div class="row mt-2 ">
+              <label>{{vac.MaxVacDays}}</label>
+            </div>
+            <div class="row mt-2 ">
+              <input class="mr-2 " style="width: 40vh;" formControlName="previousBalance">
+            </div>
+          </div>
+        </div>
+      </div>
+      </form>
       <form [formGroup]="formVac"  class="form" >
         <div class="contrainer">
           <div class="row">
