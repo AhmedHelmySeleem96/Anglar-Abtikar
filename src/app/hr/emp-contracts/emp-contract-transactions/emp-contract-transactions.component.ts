@@ -99,6 +99,9 @@ numberColumns : EmployeeContractDto [] = [] ;
 contractTrxData :any[] = [] ;
 allowanceTrxData :any[] = [] ;
 vacTrxData :any[] = [] ;
+vacTrxDialog = false ;
+vacTrxDeduction = false;
+vacTrxExtension = false ;
 createFormAllowance():FormGroup{
 return this.fb.group({
   allowanceId: new FormControl(null),
@@ -127,6 +130,7 @@ createFormReniew() : FormGroup{
 
   })
 }
+vacTypeValue:any ;
 createFormVac() : FormGroup{
   return this.fb.group({
     employeeId: new FormControl(null, [Validators.required]),
@@ -142,10 +146,11 @@ createFormVac() : FormGroup{
 createFormPrevious() : FormGroup{
   return this.fb.group({
     employeeId: new FormControl(null, [Validators.required]),
-    vacTypeId: new FormControl(null, [Validators.required]),
     previousBalance: new FormControl(null, [Validators.required]),
+    vacTypeId: new FormControl(null, [Validators.required]),
   })
 }
+
 createForm(): FormGroup {
   return this.fb.group({
    branchId: new FormControl(null),
@@ -251,10 +256,16 @@ getData(){
     let jsonContractData = JSON.parse(value);
     this.ContractData = jsonContractData.Obj.empContract;
   });
-  this.XtraAndPosVacationTypesService.httpGetXtraAndPosEmpVacationTypesGetEmpVacationTypesService().subscribe((value: any) => {
-    let jsonContractData = JSON.parse(value);
-    this.vacTypesData = jsonContractData.Obj.vac;
-  });
+    this.XtraAndPosVacationTypesService.httpGetXtraAndPosEmpVacationTypesGetEmpVacationTypesService().subscribe((value: any) => {
+      let jsonContractData = JSON.parse(value);
+      this.vacTypesData = jsonContractData.Obj.vac;
+       for (const vac of this.vacTypesData) {
+    this.formVacPrevious.get('vacTypeId')?.setValue(vac.Id)
+  }
+    });
+
+;
+
 }
 getStatus(Id :any){
   return this.statusData.filter(r=>r.id===Id)[0];
@@ -367,7 +378,10 @@ this.ExportData.toExcel(tableData,'contract.xlsx')
       this.searchTableVisible = false
     }
   }
+  previousBalance :any[]=[] ;
+  hasPreviousBalance =false;
   fillEmp(emp :any){
+    debugger
     this.formReniew.get('statusId')?.setValue('1');
     this.formReniew.get('branchId')?.setValue(emp.BranchId);
     if(this.branch){
@@ -398,6 +412,17 @@ this.ExportData.toExcel(tableData,'contract.xlsx')
       workCardId: emp.WorkCardId,
     });
     this.searchTableVisible = false
+    this.XtraAndPosEmpVacationTransactionsService.httpGetXtraAndPosEmployeeVacationsGetEmployeeVacationBalanceService({employeeId:Number(emp.EmployeeId)}).subscribe((value: any) => {
+      let jsonContractData = JSON.parse(value);
+      this.previousBalance = jsonContractData.Obj.vac;
+    });
+    console.log(this.previousBalance)
+    if(this.previousBalance.length>0){
+      this.hasPreviousBalance = true ;
+      this.formVacPrevious.get('previousBalance')?.setValue(this.previousBalance[0].PreviousBalance);
+    }else{
+      this.hasPreviousBalance = false ;
+    }
   }
 
   getLevelName(id: any) {
@@ -458,15 +483,18 @@ setVacEdit(vac:any){
     empReplacementId: vac.EmpReplacementId,
     notes: vac.Notes,
   })
-this.formVac.get('employeeId')?.setValue(vac.EployeeId);
-this.formVac.get('branchId')?.setValue(vac.BranchId);
+  this.formVac.get('employeeId')?.setValue(vac.EployeeId);
+  this.formVac.get('branchId')?.setValue(vac.BranchId);
   this.branch.nativeElement.value = this.getBranch(vac.BranchId)?.NameAr;
   this.empName.nativeElement.value = this.getEmployee(vac.EmployeeId)?.NameAr;
   this.empId.nativeElement.value = vac.EmployeeId;
-
+  if(this.previousBalance){
+    this.formVacPrevious.patchValue({
+      previousBalance : this.previousBalance[0].PreviousBalance
+    })
+  }
   this.isEdit = true;
-this.currentVacId = vac.Id;
-
+  this.currentVacId = vac.Id;
   this.ViewportScroller.scrollToPosition([10,10]) ;
 }
 currentAllowanceId : any ;
@@ -668,7 +696,12 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
   }
   onSubmitVac(form : FormGroup){
     if(!this.isEdit){
-
+      if(!this.previousBalance){
+        const modelPrevious = this.formVacPrevious.value ;
+        this.XtraAndPosEmpVacationTransactionsService.httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationBalanceService({body:modelPrevious})
+        .subscribe((value:any)=>{
+        })
+      }
     this.transDialog = false;
     const empId = this.formReniew.get('employeeId')?.value;
     const branchId = this.formReniew.get('branchId')?.value;

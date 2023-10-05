@@ -436,6 +436,7 @@
       <div  class="container">
         <div class="row">
           <div class="square mr-2"  *ngFor="let vac of vacTypesData ">
+            <input type="hidden" formControlName="vacTypeId" [value]="vac.Id" >
             <div class="row mt-2 ">
               <label>{{vac.NameAr}}</label>
             </div>
@@ -443,7 +444,8 @@
               <label>{{vac.MaxVacDays}}</label>
             </div>
             <div class="row mt-2 ">
-              <input class="mr-2 " style="width: 40vh;" formControlName="previousBalance">
+              <label for="previousBalance">رصيد سابق</label>
+              <input id="previousBalance" [readOnly]="hasPreviousBalance" class="mr-2  " style="width: 20vh;" formControlName="previousBalance">
             </div>
           </div>
         </div>
@@ -536,13 +538,37 @@
             </td>
             <td>
               <div style="text-align: center">
-                <img src="assets/images/editIcon.png" class="mx-3" (click)=" setVacEdit(Vac)" />
-                <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteVacConfirm(Vac)" />
+                <img src="assets/images/editIcon.png" ngbTooltip="{{'Hr.Edit'|translate}}" class="mr-2" (click)=" setVacEdit(Vac)" />
+                <img src="assets/images/editIcon.png" ngbTooltip="{{'Hr.Transaction'|translate}}" class="mr-2" (click)=" setVacEdit(Vac)" />
+                <img src="assets/images/deleteTableIcon.png" ngbTooltip="{{'Hr.Delete'|translate}}" class="mr-2" (click)="showDeleteVacConfirm(Vac)" />
               </div>
             </td>
           </tr>
         </ng-template>
       </p-table>
+      <p-dialog
+    style="border-radius: 22px"
+    position="center"
+    header="{{ 'Hr.VacTrx' | translate }}"
+    [(visible)]="vacTrxDialog"
+    [responsive]="true"
+    [style]="{ width: '900px', minWidth: '800px', minHeight: '433px' }"
+    [minY]="130"
+    [minX]="150"
+    [maximizable]="true"
+  >
+  <div class="row">
+    <!-- <div  class="mt-2 text-center col-md-2 mr-5">
+      <button style="width: max-content;" (click)="btnDeductionClick(1)"    class="btn btn-info mr-5" >{{ 'Hr.Deduction' | translate }}</button>
+    </div>
+    <div class="mt-2 text-center col-md-2 mr-5">
+      <button style="width: max-content;"  (click)="btnDeductionClick(2)"   class="btn btn-info mr-5" >{{'Hr.Extension'|translate}}</button>
+    </div> -->
+  </div>
+    <p-footer>
+      <button  type="button" (click)="confirmOperation()" class="btn-ok">OK</button>
+    </p-footer>
+  </p-dialog>
   </p-tabPanel>
 
   </p-tabView>

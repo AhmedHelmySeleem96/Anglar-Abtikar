@@ -58,6 +58,7 @@
 "LevelId" : "LevelId",
 "BranchId" : "Branch",
   "CountryNameAr" : "Country Name Ar",
+  "previousBalance":"previousBalance",
   "CountryNameEn" : "Country Name En",
   "NationalityNameAr" : "Nationality Name Ar",
   "NationalityNameEn" : "Nationality Name En",

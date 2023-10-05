@@ -14,6 +14,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { FileUploadModule } from 'primeng/fileupload';
 import { DialogModule } from 'primeng/dialog';
 import { EmpContractTransactionsComponent } from './emp-contract-transactions/emp-contract-transactions.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { EmpContractTransactionsComponent } from './emp-contract-transactions/em
     MessagesModule,
     TabViewModule,
     FileUploadModule,
-    DialogModule
+    DialogModule,
+    NgbModule
   ]
 })
 export class EmpContractModule {
