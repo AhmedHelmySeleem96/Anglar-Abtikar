@@ -1,20 +1,48 @@
-<div class="login-box">
-  <h2>Login</h2>
-  <form>
-    <div class="user-box">
-      <input formControlNam="UserName" type="text" name="" required="">
-      <label>Username</label>
-    </div>
-    <div class="user-box">
-      <input type="password" formControlNam="Password" name="" required="">
-      <label>Password</label>
-    </div>
-    <a href="#">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      Submit
-    </a>
-  </form>
-</div>
+<div class="baking">
+  <!-- <div class="container"> -->
+
+      <div class="item second"> 
+        <p class="company">شركه الابتكار</p>
+        <!-- <img class="imgBackground" src="../Ibtekar/Imagesa/auhimg.jpg" alt=""> -->
+      </div>
+      <div class="item first">
+          <h4 class="mt-lg-3">تسجيل الدخول</h4>
+          <img class="logo" src="../../../../assets/images/logo.jpg">
+          <form (ngsubmit)="submitlogin( Formlogin)" [formGroup]="Formlogin">
+              <div class="form-group w-75 mx-auto mt-lg-3">
+                <input type="email" formControlName="UserName" class="form-control text-center" [ngStyle]="{'border-color': Formlogin.get('UserName')?.errors? 'grey' : 'grey'}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              </div>
+              <div *ngIf="Formlogin.get('UserName')?.errors && Formlogin.get('UserName')?.touched" class="alert alert-danger w-75 mx-auto mt-1">
+                <p>Please enter UserName</p>
+              </div>
+              <div class="form-group w-75 mx-auto mt-lg-2">
+                <input type="password"  formControlName="Password" class="form-control text-center" [ngStyle]="{'border-color': Formlogin.get('Password')?.errors? 'grey' : 'grey'}"  id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <div *ngIf="Formlogin.get('Password')?.errors && Formlogin.get('Password')?.touched" class="alert alert-danger alert alert-danger w-75 mx-auto mt-1">
+                <p>Please enter password</p>
+              </div>
+
+
+              <div  class="form-group" [formGroup]="Formlogin"> 
+                <select  class="form-control w-75 mx-auto mt-lg-2"  style="text-align: center;" formControlName="selectedBranchId" [ngStyle]="{'border-color': Formlogin.get('UserName')?.errors? 'grey' : 'grey'}"> 
+                    <option [ngValue]=null>اختر الفرع</option> 
+                    <option *ngFor="let branch of branchData" [ngValue]="branch.id">{{ branch.name }}</option> 
+                </select> 
+            </div>
+            <div *ngIf="Formlogin.get('Password')?.errors && Formlogin.get('selectedBranchId')?.touched" class="alert alert-danger alert alert-danger w-75 mx-auto mt-1">
+              <p>Please select Branch</p>
+            </div>
+
+              <div class="form-group w-75 mx-auto mt-lg-2" style="text-align: right; margin-top: 5px;"> 
+                <p style="font-size:small;">V1.1</p> 
+              </div>
+              <div class="form-group  w-75 mx-auto " style="text-align: right; margin-top: 5px;"> 
+                <input type="checkbox" class="form-check-input" formControlName="Rememberme" id="exampleCheck1" > <!-- Added margin to the left of the input --> 
+                <label class="form-check-label " for="exampleCheck1" style="margin-right:5%;">تذكرني</label> 
+            </div> 
+
+              <button type="submit" [disabled]="Formlogin.invalid" (click)="submitlogin(Formlogin)" class="btn btn-primary w-75 mx-auto mt-lg-2">تسجيل الدخول</button>
+            </form>
+      </div>   
+     <div class="clearfix"></div>
+  </div>
