@@ -431,26 +431,28 @@
 
     </p-tabPanel>
     <p-tabPanel header="{{ 'Hr.Vacations' | translate }}">
-      <form [formGroup]="formVacPrevious"  class="form" >
-
-      <div  class="container">
-        <div class="row">
-          <div class="square mr-2"  *ngFor="let vac of vacTypesData ">
-            <input type="hidden" formControlName="vacTypeId" [value]="vac.Id" >
-            <div class="row mt-2 ">
-              <label>{{vac.NameAr}}</label>
-            </div>
-            <div class="row mt-2 ">
-              <label>{{vac.MaxVacDays}}</label>
-            </div>
-            <div class="row mt-2 ">
-              <label for="previousBalance">رصيد سابق</label>
-              <input id="previousBalance" [readOnly]="hasPreviousBalance" class="mr-2  " style="width: 20vh;" formControlName="previousBalance">
+      <div  *ngFor="let vac of vacTypesData; let i = index" >
+        <form [formGroup]="formVacPrevious[i]"  class="form" >
+          <div  class="container">
+            <div class="row">
+              <div class="square mr-2"  >
+                <input type="hidden" formControlName="vacTypeId" [value]="vac.Id" >
+                <div class="row mt-2 ">
+                  <label>{{vac.NameAr}}</label>
+                </div>
+                <div class="row mt-2 ">
+                  <label>{{vac.MaxVacDays}}</label>
+                </div>
+                <div class="row mt-2 ">
+                  <label for="previousBalance">رصيد سابق</label>
+                  <input id="previousBalance" [readOnly]="hasPreviousBalance" class="mr-2  " style="width: 20vh;" formControlName="previousBalance">
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+          </form>
       </div>
-      </form>
+
       <form [formGroup]="formVac"  class="form" >
         <div class="contrainer">
           <div class="row">
@@ -570,7 +572,121 @@
     </p-footer>
   </p-dialog>
   </p-tabPanel>
+  <p-tabPanel header="{{ 'Hr.EmployeeSetting' | translate }}">
+    <form [formGroup]="formEmployeeSetting"  class="form" >
 
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="employeeAccountId">Employee Account</label>
+          <select class="form-control" id="employeeAccountId" formControlName="employeeAccountId">
+            <!-- Add your options here -->
+          </select>
+       </div>
+       <div class="form-group col-md-6">
+          <label for="tresauryId">Tresaury</label>
+          <select class="form-control" id="tresauryId" formControlName="tresauryId">
+            <!-- Add your options here -->
+          </select>
+       </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label for="inventoryId">Inventory</label>
+          <select class="form-control" id="inventoryId" formControlName="inventoryId">
+            <!-- Add your options here -->
+          </select>
+       </div>
+       <div class="form-group col-md-4">
+          <label for="customerGroupId">Customer Group</label>
+          <select class="form-control" id="customerGroupId" formControlName="customerGroupId">
+            <!-- Add your options here -->
+          </select>
+       </div>
+       <div class="form-group col-md-4">
+        <label for="salesPriceId">Sales Price</label>
+        <select class="form-control" id="salesPriceId" formControlName="salesPriceId">
+          <!-- Add your options here -->
+        </select>
+     </div>
+      </div>
+<div class="row">
+
+ <div class="form-group col-md-6">
+    <div class="form-check">
+      <label class="checkbox">
+        <input class="m-2" type="checkbox" formControlName="canAddDiscount" id="canAddDiscount" >
+        <span class="m-2"></span>{{ 'Hr.CanAddDiscount' | translate }}
+    </label>
+    </div>
+ </div>
+ <div class="form-group  col-md-6">
+  <div class="form-check">
+    <label class="checkbox">
+      <input class="m-2" type="checkbox" formControlName="canAddSalesPrice" id="canAddSalesPrice" >
+      <span class="m-2"></span>{{ 'Hr.CanAddSalesPrice' | translate }}
+  </label>
+  </div>
+</div>
+</div>
+
+    </form>
+
+    <div class="center-btn">
+      <button  type="submit" (click)="onSubmitVac(formVac)" style="width: 150px;" class="btn btn-success mt-2" >{{ 'Save' | translate }}</button>
+    </div>
+    <p-table
+    [rowsPerPageOptions]="[5, 10, 15, 20]"
+    [paginator]="true"
+    [rows]="5"
+    [columns]="vacCols"
+    [value]="vacTrxData"
+    sortMode="multiple" styleClass="p-datatable-striped mt-5" [tableStyle]="{'min-width': '50rem'}"  #dt>
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field" [style.text-align]="'right'" >
+            {{ col.header | translate }}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+          <th class="ui-sortable-column table-data" [style.text-align]="'right'">
+            {{ 'Actions' | translate }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-Vac let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns" [style.text-align]="'right'">
+            <span class="table-data" *ngIf="col.field == 'CreatedDate'">
+              {{ Vac[col.field] | date:'shortDate' }}
+            </span>
+            <span class="table-data" *ngIf="col.field == 'StatusId'">
+              {{ getStatus(Vac[col.field])?.name }}
+            </span>
+            <span class="table-data" *ngIf="col.field == 'BranchId'">
+              {{ getBranch(Vac[col.field])?.NameAr }}
+            </span>
+            <span class="table-data" *ngIf="col.field == 'EmployeeId'">
+              {{ getEmployee(Vac[col.field])?.NameAr }}
+            </span>
+            <span class="table-data" *ngIf="col.field == 'EmpReplacementId'">
+              {{ getEmployee(Vac[col.field])?.NameAr }}
+            </span>
+            <span class="table-data" *ngIf="col.field != 'CreatedDate'&&col.field != 'VacCategoryId' &&col.field != 'BranchId' && col.field != 'StatusId'
+            && col.field != 'EmployeeId'&& col.field != 'EmpReplacementId'    ">
+              {{ Vac[col.field] }}
+            </span>
+          </td>
+          <td>
+            <div style="text-align: center">
+              <img src="assets/images/editIcon.png" ngbTooltip="{{'Hr.Edit'|translate}}" class="mr-2" (click)=" setVacEdit(Vac)" />
+              <img src="assets/images/editIcon.png" ngbTooltip="{{'Hr.Transaction'|translate}}" class="mr-2" (click)=" setVacEdit(Vac)" />
+              <img src="assets/images/deleteTableIcon.png" ngbTooltip="{{'Hr.Delete'|translate}}" class="mr-2" (click)="showDeleteVacConfirm(Vac)" />
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+</p-tabPanel>
   </p-tabView>
   </div>
 </div>
@@ -627,3 +743,6 @@
       <button  type="button" (click)="confirmOperation()" class="btn-ok">OK</button>
     </p-footer>
   </p-dialog>
+
+
+

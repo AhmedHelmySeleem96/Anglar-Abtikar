@@ -53,6 +53,7 @@ import { XtraAndPosEmployeeAllowanceTrxService } from './services/xtra-and-pos-e
 import { XtraAndPosEmployeeContractService } from './services/xtra-and-pos-employee-contract.service';
 import { XtraAndPosEmployeeContractTrxService } from './services/xtra-and-pos-employee-contract-trx.service';
 import { XtraAndPosEmployeeEpService } from './services/xtra-and-pos-employee-ep.service';
+import { XtraAndPosEmployeeSettingService } from './services/xtra-and-pos-employee-setting.service';
 import { XtraAndPosEmployeeVacationsService } from './services/xtra-and-pos-employee-vacations.service';
 import { XtraAndPosEmpVacationTypesService } from './services/xtra-and-pos-emp-vacation-types.service';
 import { XtraAndPosExchangeRateEpService } from './services/xtra-and-pos-exchange-rate-ep.service';
@@ -140,6 +141,7 @@ import { XtraAndPosWorkCardService } from './services/xtra-and-pos-work-card.ser
     XtraAndPosEmployeeContractService,
     XtraAndPosEmployeeContractTrxService,
     XtraAndPosEmployeeEpService,
+    XtraAndPosEmployeeSettingService,
     XtraAndPosEmployeeVacationsService,
     XtraAndPosEmpVacationTypesService,
     XtraAndPosExchangeRateEpService,

@@ -47,6 +47,7 @@ export { XtraAndPosEmployeeAllowanceTrxService } from './services/xtra-and-pos-e
 export { XtraAndPosEmployeeContractService } from './services/xtra-and-pos-employee-contract.service';
 export { XtraAndPosEmployeeContractTrxService } from './services/xtra-and-pos-employee-contract-trx.service';
 export { XtraAndPosEmployeeEpService } from './services/xtra-and-pos-employee-ep.service';
+export { XtraAndPosEmployeeSettingService } from './services/xtra-and-pos-employee-setting.service';
 export { XtraAndPosEmployeeVacationsService } from './services/xtra-and-pos-employee-vacations.service';
 export { XtraAndPosEmpVacationTypesService } from './services/xtra-and-pos-emp-vacation-types.service';
 export { XtraAndPosExchangeRateEpService } from './services/xtra-and-pos-exchange-rate-ep.service';

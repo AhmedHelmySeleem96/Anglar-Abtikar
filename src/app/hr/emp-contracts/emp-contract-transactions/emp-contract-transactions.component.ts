@@ -15,6 +15,8 @@ import { XtraAndPosLookUpsService,XtraAndPosBranchEpService,
       XtraAndPosEmployeeContractTrxService,
       XtraAndPosEmployeeVacationsService,
       XtraAndPosEmpVacationTypesService,
+      ExtraAndPosBankAccountEpService,
+      XtraAndPosClientEpService,
       } from 'src/app/shared/api';
 
 @Component({
@@ -44,18 +46,23 @@ export class EmpContractTransactionsComponent implements OnInit  {
     private XtraAndPosEmpVacationTransactionsService : XtraAndPosEmployeeVacationsService,
     private XtraAndPosJobNameService :XtraAndPosJobNameService,
     private XtraAndPosVacationTypesService : XtraAndPosEmpVacationTypesService,
-    private ViewportScroller : ViewportScroller
+    private ViewportScroller : ViewportScroller,
+    private ExtraAndPosBankAccountEpService : ExtraAndPosBankAccountEpService,
+    private  XtraAndPosClientEpService : XtraAndPosClientEpService,
+
     ){
     this.formReniew = this.createFormReniew();
     this.formAllowance = this.createFormAllowance();
     this.formVac = this.createFormVac();
     this.formContract = this.createForm();
-    this.formVacPrevious = this.createFormPrevious();}
+    this.formEmployeeSetting = this.createformEmployeeSetting();
+  }
     formReniew : FormGroup;
     formContract : FormGroup;
-    formVacPrevious:FormGroup;
+    formVacPrevious:FormGroup[]=[];
     formAllowance : FormGroup;
     formVac : FormGroup;
+    formEmployeeSetting :FormGroup;
     currencyData :any [] = [] ;
     statusData : any[] = [];
     reniewTypeData : any[] = [];
@@ -92,6 +99,7 @@ allowancePaidTimes  :any[] = [] ;
 transDialog =false ;
 btnReniewOnly = false;
 btnReniewAndProm = false;
+employeeSettingsCols :any;
 JobData  :any[] = [] ;
 jobNamesData : any [] = [] ;
 displayPrivew : boolean = false;
@@ -130,6 +138,18 @@ createFormReniew() : FormGroup{
 
   })
 }
+createformEmployeeSetting() : FormGroup{
+  return this.fb.group({
+    employeeId: new FormControl(null, [Validators.required]),
+    employeeAccountId: new FormControl(null, [Validators.required]),
+    tresauryId: new FormControl(null, [Validators.required]),
+    inventoryId: new FormControl(null, [Validators.required]),
+    customerGroupId: new FormControl(null, [Validators.required]),
+    salesPriceId: new FormControl(null, [Validators.required]),
+    canAddDiscount:new FormControl(false, [Validators.required]),
+    canAddSalesPrice:new FormControl(false, [Validators.required]),
+  })
+}
 vacTypeValue:any ;
 createFormVac() : FormGroup{
   return this.fb.group({
@@ -143,14 +163,13 @@ createFormVac() : FormGroup{
     notes: new FormControl(null)
   })
 }
-createFormPrevious() : FormGroup{
+createFormPrevious(obj: any): FormGroup {
   return this.fb.group({
     employeeId: new FormControl(null, [Validators.required]),
     previousBalance: new FormControl(null, [Validators.required]),
-    vacTypeId: new FormControl(null, [Validators.required]),
-  })
+    vacTypeId: new FormControl(obj.Id, [Validators.required]),
+  });
 }
-
 createForm(): FormGroup {
   return this.fb.group({
    branchId: new FormControl(null),
@@ -182,6 +201,15 @@ ngOnInit(): void {
     { field: 'VacEndDate', header: 'VacEndDate' },
     { field: 'EmpReplacementId', header: 'EmpReplacementId' },
   ];
+  this.employeeSettingsCols = [
+    { field: 'EmployeeAccountId', header: 'Employee Account' },
+    { field: 'TresauryId', header: 'Tresaury' },
+    { field: 'InventoryId', header: 'Inventory' },
+    { field: 'CustomerGroupId', header: 'Customer Group' },
+    { field: 'SalesPriceId', header: 'Sales Price' },
+    { field: 'CanAddDiscount', header: 'Can Add Discount' },
+    { field: 'CanAddSalesPrice', header: 'Can Add Sales Price' },
+];
   this.allowanceCols = [
     { field: 'Id', header: 'Id' },
     { field: 'CreatedDate', header: 'CreatedDate' },
@@ -259,9 +287,18 @@ getData(){
     this.XtraAndPosVacationTypesService.httpGetXtraAndPosEmpVacationTypesGetEmpVacationTypesService().subscribe((value: any) => {
       let jsonContractData = JSON.parse(value);
       this.vacTypesData = jsonContractData.Obj.vac;
-       for (const vac of this.vacTypesData) {
-    this.formVacPrevious.get('vacTypeId')?.setValue(vac.Id)
-  }
+      this.vacTypesData.forEach(obj => {
+        this.formVacPrevious.push(this.createFormPrevious(obj));
+
+      });
+      //
+      // const vacId = this.vacTypesData.map(r=>r.Id);
+      // for(let i of vacId){
+      //   this.formVacPrevious.forEach(formGroup => {
+      //     formGroup.get('vacTypeId')?.setValue(i);
+      //   });
+      // }
+
     });
 
 ;
@@ -381,7 +418,6 @@ this.ExportData.toExcel(tableData,'contract.xlsx')
   previousBalance :any[]=[] ;
   hasPreviousBalance =false;
   fillEmp(emp :any){
-    debugger
     this.formReniew.get('statusId')?.setValue('1');
     this.formReniew.get('branchId')?.setValue(emp.BranchId);
     if(this.branch){
@@ -415,14 +451,25 @@ this.ExportData.toExcel(tableData,'contract.xlsx')
     this.XtraAndPosEmpVacationTransactionsService.httpGetXtraAndPosEmployeeVacationsGetEmployeeVacationBalanceService({employeeId:Number(emp.EmployeeId)}).subscribe((value: any) => {
       let jsonContractData = JSON.parse(value);
       this.previousBalance = jsonContractData.Obj.vac;
+
+      if(this.previousBalance.length==0){
+        this.hasPreviousBalance = false ;
+        this.formVacPrevious.forEach(formGroup => {
+          formGroup.get('employeeId')?.setValue(emp.EmployeeId);
+        });
+      }else{
+        this.hasPreviousBalance = true ;
+        this.formVacPrevious.forEach((form, index) => {
+          form.patchValue({
+            employeeId: emp.EmployeeId,
+            vacTypeId: this.previousBalance[index].VacTypeId,
+            previousBalance: this.previousBalance[index].PreviousBalance
+          });
+        });
+      }
     });
-    console.log(this.previousBalance)
-    if(this.previousBalance.length>0){
-      this.hasPreviousBalance = true ;
-      this.formVacPrevious.get('previousBalance')?.setValue(this.previousBalance[0].PreviousBalance);
-    }else{
-      this.hasPreviousBalance = false ;
-    }
+
+
   }
 
   getLevelName(id: any) {
@@ -473,7 +520,8 @@ this.currentContractId = contract.Id;
   this.ViewportScroller.scrollToPosition([10,10]) ;
 
 }
-currentVacId : any ;
+currentEmployeeSettingId : any ;
+currentVacId :any ;
 setVacEdit(vac:any){
   this.formVac.patchValue({
     vacTypeId: vac.VacTypeId,
@@ -488,13 +536,30 @@ setVacEdit(vac:any){
   this.branch.nativeElement.value = this.getBranch(vac.BranchId)?.NameAr;
   this.empName.nativeElement.value = this.getEmployee(vac.EmployeeId)?.NameAr;
   this.empId.nativeElement.value = vac.EmployeeId;
-  if(this.previousBalance){
-    this.formVacPrevious.patchValue({
-      previousBalance : this.previousBalance[0].PreviousBalance
-    })
-  }
+  // if(this.previousBalance){
+  //   this.formVacPrevious.patchValue({
+  //     previousBalance : this.previousBalance[0].PreviousBalance
+  //   })
+  // }
   this.isEdit = true;
   this.currentVacId = vac.Id;
+  this.ViewportScroller.scrollToPosition([10,10]) ;
+}
+setEmployeeSettingEdit(empSetting:any){
+  this.formEmployeeSetting.patchValue({
+    employeeAccountId: empSetting.EmployeeAccountId,
+    tresauryId: empSetting.TresauryId,
+    inventoryId: empSetting.InventoryId,
+    customerGroupId: empSetting.CustomerGroupId,
+    salesPriceId: empSetting.SalesPriceId,
+    canAddDiscount: empSetting.CanAddDiscount,
+    canAddSalesPrice: empSetting.CanAddSalesPrice,
+  })
+  this.formEmployeeSetting.get('employeeId')?.setValue(empSetting.EployeeId);
+  this.formEmployeeSetting.get('branchId')?.setValue(empSetting.BranchId);
+
+  this.isEdit = true;
+  this.currentEmployeeSettingId = empSetting.Id;
   this.ViewportScroller.scrollToPosition([10,10]) ;
 }
 currentAllowanceId : any ;
@@ -695,9 +760,11 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
   }
   }
   onSubmitVac(form : FormGroup){
-    if(!this.isEdit){
-      if(!this.previousBalance){
-        const modelPrevious = this.formVacPrevious.value ;
+if(!this.isEdit){
+
+
+      if(this.previousBalance.length==0){
+        const modelPrevious = this.formVacPrevious.map(r=>r.value) ;
         this.XtraAndPosEmpVacationTransactionsService.httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationBalanceService({body:modelPrevious})
         .subscribe((value:any)=>{
         })

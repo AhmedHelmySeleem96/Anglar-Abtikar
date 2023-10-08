@@ -54,6 +54,7 @@ export { EmployeeContractDto } from './models/employee-contract-dto';
 export { EmployeeContractTrxDto } from './models/employee-contract-trx-dto';
 export { EmployeeCreateDto } from './models/employee-create-dto';
 export { EmployeeFiles } from './models/employee-files';
+export { EmployeeSettingDto } from './models/employee-setting-dto';
 export { EmployeeVacationTrxDto } from './models/employee-vacation-trx-dto';
 export { EmployeeVacationsDto } from './models/employee-vacations-dto';
 export { EnvironmentMode } from './models/environment-mode';
