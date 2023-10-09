@@ -25,7 +25,7 @@
               {{ col.header | translate }}
               <p-sortIcon [field]="col.field"></p-sortIcon>
             </th>
-            <th class="ui-sortable-column table-data" [style.text-align]="'right'">
+            <th class="ui-sortable-column table-data" [style.text-align]="'center'">
               {{ 'Select' | translate }}
             </th>
 
@@ -34,7 +34,10 @@
         <ng-template pTemplate="body" let-emp let-columns="columns">
           <tr>
             <td *ngFor="let col of columns" [style.text-align]="'right'">
-              <span class="table-data" *ngIf="col.field == 'NameAr'||col.field == 'NameEn' ||col.field == 'Id' ">
+              <span class="table-data" *ngIf="col.field == 'EmployeeId'">
+                {{ getEmployee(emp[col.field])?.NameAr  }}
+              </span>
+              <span class="table-data" *ngIf="col.field != 'NameAr' ">
                 {{ emp[col.field]  }}
               </span>
             </td>
@@ -431,27 +434,30 @@
 
     </p-tabPanel>
     <p-tabPanel header="{{ 'Hr.Vacations' | translate }}">
-      <div  *ngFor="let vac of vacTypesData; let i = index" >
-        <form [formGroup]="formVacPrevious[i]"  class="form" >
-          <div  class="container">
-            <div class="row">
-              <div class="square mr-2"  >
-                <input type="hidden" formControlName="vacTypeId" [value]="vac.Id" >
-                <div class="row mt-2 ">
-                  <label>{{vac.NameAr}}</label>
-                </div>
-                <div class="row mt-2 ">
-                  <label>{{vac.MaxVacDays}}</label>
-                </div>
-                <div class="row mt-2 ">
-                  <label for="previousBalance">رصيد سابق</label>
-                  <input id="previousBalance" [readOnly]="hasPreviousBalance" class="mr-2  " style="width: 20vh;" formControlName="previousBalance">
+      <div class="d-flex">
+        <div  *ngFor="let vac of vacTypesData; let i = index" class="mr-3">
+          <form [formGroup]="formVacPrevious[i]"  class="form" >
+            <div  class="container">
+              <div class="row">
+                <div class="square mr-2"  >
+                  <input type="hidden" formControlName="vacTypeId" [value]="vac.Id" >
+                  <div class="row mt-2 ">
+                    <label>{{vac.NameAr}}</label>
+                  </div>
+                  <div class="row mt-2 ">
+                    <label>{{vac.MaxVacDays}}</label>
+                  </div>
+                  <div class="row mt-2 ">
+                    <label for="previousBalance">{{'Hr.PreviousBalance'|translate}}</label>
+                    <input id="previousBalance" type="number" [readOnly]="hasPreviousBalance" class="mr-2  " style="width: 20vh;" formControlName="previousBalance">
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          </form>
+            </form>
+        </div>
       </div>
+
 
       <form [formGroup]="formVac"  class="form" >
         <div class="contrainer">
@@ -576,38 +582,49 @@
     <form [formGroup]="formEmployeeSetting"  class="form" >
 
       <div class="row">
-        <div class="form-group col-md-6">
-          <label for="employeeAccountId">Employee Account</label>
-          <select class="form-control" id="employeeAccountId" formControlName="employeeAccountId">
-            <!-- Add your options here -->
-          </select>
-       </div>
-       <div class="form-group col-md-6">
-          <label for="tresauryId">Tresaury</label>
-          <select class="form-control" id="tresauryId" formControlName="tresauryId">
-            <!-- Add your options here -->
-          </select>
-       </div>
-      </div>
-      <div class="row">
         <div class="form-group col-md-4">
-          <label for="inventoryId">Inventory</label>
-          <select class="form-control" id="inventoryId" formControlName="inventoryId">
+          <label for="employeeAccountId">{{ 'Hr.employeeAccount' | translate }}</label>
+          <select class="form-control" id="employeeAccountId" formControlName="employeeAccountId">
+            <option  value="" disabled selected>{{ 'Hr.employeeAccount' | translate }}</option>
+
             <!-- Add your options here -->
           </select>
        </div>
        <div class="form-group col-md-4">
-          <label for="customerGroupId">Customer Group</label>
-          <select class="form-control" id="customerGroupId" formControlName="customerGroupId">
+          <label for="tresauryId">{{'Hr.Tresaury'|translate}}</label>
+          <select class="form-control" id="tresauryId" formControlName="tresauryId">
+            <option  value="" disabled selected>{{ 'Hr.Tresaury' | translate }}</option>
             <!-- Add your options here -->
           </select>
        </div>
        <div class="form-group col-md-4">
-        <label for="salesPriceId">Sales Price</label>
-        <select class="form-control" id="salesPriceId" formControlName="salesPriceId">
+        <label for="inventoryId">{{ 'Hr.Inventory' | translate }}</label>
+        <select class="form-control" id="inventoryId" formControlName="inventoryId">
+          <option  value="" disabled selected>{{ 'Hr.Inventory' | translate }}</option>
           <!-- Add your options here -->
         </select>
      </div>
+      </div>
+      <div class="row">
+
+       <div class="form-group col-md-4">
+          <label for="customerGroupId">{{ 'Hr.customerGroup' | translate }}</label>
+          <select class="form-control" id="customerGroupId" formControlName="customerGroupId">
+            <option  value="" disabled selected>{{ 'Hr.customerGroup' | translate }}</option>
+            <!-- Add your options here -->
+          </select>
+       </div>
+       <div class="form-group col-md-4">
+        <label for="salesPriceId">{{ 'Hr.SalesPrice' | translate }}</label>
+        <select class="form-control" id="salesPriceId" formControlName="salesPriceId">
+          <option  value="" disabled selected>{{ 'Hr.SalesPrice' | translate }}</option>
+          <!-- Add your options here -->
+        </select>
+     </div>
+     <div class="form-group col-md-4">
+      <label for="retirementPercentage">{{ 'Hr.RetirementPercentage' | translate }}</label>
+      <input  id="retirementPercentage" type="number" formControlName="retirementPercentage"  class="form-control">
+   </div>
       </div>
 <div class="row">
 

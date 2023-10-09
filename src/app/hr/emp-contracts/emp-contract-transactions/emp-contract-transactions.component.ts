@@ -219,9 +219,8 @@ ngOnInit(): void {
     { field: 'AllowanceTypeId', header: 'AllowanceType' },
   ];
   this.searchCols = [
-    { field: 'Id', header: 'EmployeeId' },
-    { field: 'NameAr', header: 'NameAr' },
-    { field: 'NameEn', header: 'NameEn' },
+    { field: 'Id', header: 'Id' },
+    { field: 'EmployeeId', header: 'NameAr' },
   ];
   this.refreshTable();
   this.getData();
@@ -784,6 +783,9 @@ if(!this.isEdit){
       let jsonData = JSON.parse(value);
         this.toastr.success(jsonData.Message)
         this.formVac.reset();
+        this.formVacPrevious.forEach(form=>{
+          form.reset();
+        })
         this.refreshTable();
     },
     (error: any) => {
