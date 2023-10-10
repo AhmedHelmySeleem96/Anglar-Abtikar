@@ -168,6 +168,7 @@
 "ContractEndDate": "تاريخ نهاية العقد",
 "BasicSalary": "الراتب الأساسي",
 "WorkCardId": " بطاقة الدوام",
+"loans":"سلف الموظفين",
 "CopyOfContract": "نسخة ضوئية من العقد",
 "NewContractAllowances": "بدلات العقد الجديد",
 "AllowanceName": "اسم البدل",
@@ -204,7 +205,20 @@
   "ReniewEndDate": "تاريخ نهاية التجديد",
   "Reniew" : "تجديد",
   "ReniewAndPromotion":"تجديد مع ترقيه",
-  "Preview" : "عرض"
+  "Preview" : "عرض",
+  "Depts": "المديونات",
+  "DeptEndDate":"تاريخ نهايه القسط",
+  "DeptValue":"قيمه القسط ",
+  "LastDeptValue":"قيمه اخر قسط ",
+  "StartDateDept":"تاريخ بدايه القسط",
+  "DeptsCount":"عدد الاقساط",
+  "TotalAmount":"اجمالي مبلغ السلفه",
+  "Currency":"العمله",
+  "OperationTypes":"انواع العمليات ",
+  "OperationNameAr":"مسمي العمليه",
+  "OperationNameEn":"مسمي العمليه بالانجليزي",
+  "StatusId":"الحالة"
+
 
 },
 "Id":"رقم",

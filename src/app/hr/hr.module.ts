@@ -28,13 +28,16 @@ import { AllowanceComponent } from './allowence/allowence.component';
 JobsComponent,
 SpecializationsComponent,
 EmployeeComponent,
-EmpContractsComponent,
+EmpContractsComponent
+
 
   ],
   imports: [
     CommonModule,
     RouterModule.forChild([{
       path : '',component:HrComponent,children :[{
+        path : "loans" , loadChildren: () => import('./loans/loans.module').then(m => m.LoansModule),
+      },{
         path : "city" , loadChildren: () => import('./city/city.module').then(m => m.CityModule),
       },{
         path : "country" , loadChildren: () => import('./country/country.module').then(m => m.CountryModule)

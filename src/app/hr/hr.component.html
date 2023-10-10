@@ -422,6 +422,9 @@
                     <li>
                       <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/workCard'">{{ "Hr.WorkCardId" | translate }}</a>
                     </li>
+                    <li>
+                        <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/loans'">{{ "Hr.loans" | translate }}</a>
+                      </li>
                     <li class="dropdown-submenu" >
                       <div (mouseleave)="isOpened = false" [ngClass]="{isOpened:isOpened}" >
                         <a class="d-block text-center pointer dropdown-toggle " (mouseenter)="$event.preventDefault(); isOpened=true" id="jobDropdownToggles" role="button" data-bs-toggle="dropdown" aria-expanded="false" >

@@ -1,0 +1,113 @@
+
+<div class="createDiv">
+
+    <div class="tab-pane fade show active" id="rounded-corner-pills-icon-home" role="tabpanel" aria-labelledby="rounded-corner-pills-icon-home-tab" style="min-height:300px">
+  
+      <div class="card bg-light mb-3s">
+          <div class="card-body">
+    <h3 style="text-align: center ; padding-bottom: 10px;">{{ 'Hr.loans'|translate}}</h3>
+    <form #formElement   class="form">
+      <div class="container">
+        <div class="row k-text-align-center">
+          <div class="col-lg-12 col-md-8 col-sm-4 mb-2 search k-text-align-center d-flex justify-content-center align-content-center">
+            <input #inputSearch (input)="($event)" class="form-control form-control-lg" type="search" placeholder="{{ 'navBar.Search' |translate }}">
+            <button class="btn   search    mx-2">
+              <svg width="20" height="20" fill="#fff" class="bi bi-search fw-bold" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    <div class="row d-flex justify-content-between mb-0">
+      <div class="form-group col-md-3 mt-0">
+        <label for="branchId">{{ 'Hr.BranchId'  |translate}}</label>
+        <input #branch id="branchId" readonly formControlName="branchId"  class="form-control">
+    </div>
+    <div class="form-group col-md-3 mt-0">
+      <label for="employeeName">{{ 'Hr.EmployeeName' |translate }}</label>
+      <input id="employeeName"  #empName readonly  class="form-control">
+    </div>
+    <div class="form-group col-md-3 mt-0">
+      <label for="jobId">{{ 'Hr.JobId' |translate }}</label>
+      <input #job id="jobId"  readonly formControlName="jobId"  class="form-control">
+    </div>
+    <div class="form-group col-md-3 mt-0">
+      <label for="divisionId">{{ 'Hr.DivisionId' |translate }}</label>
+      <input #division id="divisionId"  readonly formControlName="divisionId"  class="form-control">
+    </div>
+    </div>
+  </form>
+</div>
+  
+
+  
+
+
+
+  <div class="d-flex justify-content-between mb-0"> 
+
+  
+<div class="form-group col-md-6 mt-0"> 
+  <label for="TotalAmount">{{ 'Hr.TotalAmount'  |translate}}</label> 
+  <input #division id="divisionId" formControlName="divisionId" class="form-control"> 
+</div> 
+ 
+<div class="form-group col-md-6 mt-0"> 
+  <label for="Currency">{{ 'Hr.Currency'  |translate}}</label> 
+  <select class="form-control" formControlName="selectedBranchId"> 
+    <option value="">اختر العملة</option> 
+    <option *ngFor="let item of currencyData " [value]="item.Id">{{ item.NameAr }}</option>
+  </select> 
+</div>
+</div>
+
+  <div class="d-flex justify-content-between mb-0"> 
+    <div class="form-group col-md-6 mt-0"> 
+      <label for="StartDateDept">{{ 'Hr.StartDateDept' |translate}}</label>
+      <input type="date" id="contractStartDate" formControlName="contractStartDate"   class="form-control">
+    </div>
+
+    <div class="form-group col-md-6 mt-0"> 
+      <label for="DeptsCount">{{ 'Hr.DeptsCount'|translate }}</label> 
+      <input #division id="divisionId" formControlName="divisionId" class="form-control"> 
+    </div> 
+  </div>
+
+  <div class="d-flex justify-content-between mb-0"> 
+    <div class="form-group col-md-6 mt-0"> 
+      <label for="DeptEndDate">{{ 'Hr.DeptEndDate' |translate}}</label> 
+      <input #division id="divisionId" readonly formControlName="divisionId" class="form-control"> 
+    </div> 
+    <div class="form-group col-md-3 mt-0"> 
+      <label for="DeptValue">{{ 'Hr.DeptValue' |translate}}</label> 
+      <input #division id="divisionId" readonly formControlName="divisionId" class="form-control"> 
+    </div> 
+
+    <div class="form-group col-md-3 mt-0"> 
+      <label for="LastDeptValue">{{ 'Hr.LastDeptValue' |translate}}</label> 
+      <input #division id="divisionId" readonly formControlName="divisionId" class="form-control"> 
+    </div> 
+  </div>
+
+  <div class="d-flex justify-content-between mb-0"> 
+    <div class="form-group col-md-6 mt-0"> 
+      <label for="Depts">{{ 'Hr.Depts' |translate}}</label> 
+      <input #division id="divisionId" readonly formControlName="divisionId" class="form-control"> 
+    </div> 
+    <!-- <div class="form-group col-md-6 mt-0"> 
+      <label for="Notes">{{ 'Hr.Notes' }}</label> 
+      <input #division id="divisionId" formControlName="divisionId" class="form-control"> 
+    </div>  -->
+    <div class="form-group col-md-6 mt-0"> 
+      <label for="Notes">{{ 'Hr.Notes' |translate  }}</label> 
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea> 
+    </div>
+  </div>
+
+
+  
+  <div class="mb-3 text-center">
+    <button type="submit"  class="btn btn-success ms-2" >{{ 'Save' |translate }}</button>
+    <button  class="btn btn-warning Dnone ms-2" id="editBtn">{{"Cancel" |translate}}</button>
+  </div>

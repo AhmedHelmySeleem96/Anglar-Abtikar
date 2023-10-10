@@ -7,7 +7,7 @@
       </div>
       <div class="item first">
           <h4 class="mt-lg-3">تسجيل الدخول</h4>
-          <img class="logo" src="../../../../assets/images/logo.jpg">
+          <img class="logo" src="../../../../assets/lib/them/assets/img/logo.jpg">
           <form (ngsubmit)="submitlogin( Formlogin)" [formGroup]="Formlogin">
               <div class="form-group w-75 mx-auto mt-lg-3">
                 <input type="email" formControlName="UserName" class="form-control text-center" [ngStyle]="{'border-color': Formlogin.get('UserName')?.errors? 'grey' : 'grey'}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
@@ -26,7 +26,7 @@
               <div  class="form-group" [formGroup]="Formlogin"> 
                 <select  class="form-control w-75 mx-auto mt-lg-2"  style="text-align: center;" formControlName="selectedBranchId" [ngStyle]="{'border-color': Formlogin.get('UserName')?.errors? 'grey' : 'grey'}"> 
                     <option [ngValue]=null>اختر الفرع</option> 
-                    <option *ngFor="let branch of branchData" [ngValue]="branch.id">{{ branch.name }}</option> 
+                    <option *ngFor="let branch of branchData" [ngValue]="branch.BranchId">{{ branch.NameAr }}</option> 
                 </select> 
             </div>
             <div *ngIf="Formlogin.get('Password')?.errors && Formlogin.get('selectedBranchId')?.touched" class="alert alert-danger alert alert-danger w-75 mx-auto mt-1">
