@@ -28,7 +28,11 @@
 "AreYouSureToDelete" : "Are You Sure To Delete",
 "Confirmtoproceed": "Confirm to proceed",
 "EnterAllData":"Add All Data",
-
+"EmployeeAccount":"Employee Account",
+"Tresaury":"Tresaury",
+"Storage":"Storage",
+"ClientGroup":"Client Group",
+"SalesPrice":"Sales Price",
 "Hr":{
   "EmployeeInformation" : "EmployeeInformation",
   "Information" :"Information",
@@ -43,8 +47,8 @@
   "CanAddSalesPrice": "Can Add Sales Policy",
   "PreviousBalance":"Previous Balance",
   "Tresaury": "Treasury",
-  "Inventory": "Inventory",
-  "customerGroup": "Customer Group",
+  "Storage": "Storage",
+  "ClientGroup": "Client Group",
   "SalesPrice": "Sales Policy",
   "Save": "Save",
   "Actions": "Actions",

@@ -38,7 +38,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TabViewModule,
     FileUploadModule,
     DialogModule,
-    NgbModule
+    NgbModule,
   ]
 })
 export class EmpContractModule {

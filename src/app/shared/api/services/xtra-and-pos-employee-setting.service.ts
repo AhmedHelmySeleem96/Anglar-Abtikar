@@ -206,4 +206,48 @@ export class XtraAndPosEmployeeSettingService extends BaseService {
     );
   }
 
+  /** Path part for operation `httpGetXtraAndPosEmployeeSettingGetEmployeeInfoService()` */
+  static readonly HttpGetXtraAndPosEmployeeSettingGetEmployeeInfoServicePath = '/XtraAndPOS_EmployeeSetting/GetEmployeeInfoService';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `httpGetXtraAndPosEmployeeSettingGetEmployeeInfoService()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosEmployeeSettingGetEmployeeInfoService$Response(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, XtraAndPosEmployeeSettingService.HttpGetXtraAndPosEmployeeSettingGetEmployeeInfoServicePath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `httpGetXtraAndPosEmployeeSettingGetEmployeeInfoService$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  httpGetXtraAndPosEmployeeSettingGetEmployeeInfoService(
+    params?: {
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.httpGetXtraAndPosEmployeeSettingGetEmployeeInfoService$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
 }

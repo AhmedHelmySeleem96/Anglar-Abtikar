@@ -583,42 +583,42 @@
 
       <div class="row">
         <div class="form-group col-md-4">
-          <label for="employeeAccountId">{{ 'Hr.employeeAccount' | translate }}</label>
+          <label for="employeeAccountId">{{ 'Hr.EmployeeAccount' | translate }}</label>
           <select class="form-control" id="employeeAccountId" formControlName="employeeAccountId">
-            <option  value="" disabled selected>{{ 'Hr.employeeAccount' | translate }}</option>
-
-            <!-- Add your options here -->
+            <option  value="" disabled selected>{{ 'Hr.EmployeeAccount' | translate }}</option>
+            <option  *ngFor="let acc of accTreeData " [value]="acc.Id">{{ acc.NameAr }}</option>
           </select>
        </div>
        <div class="form-group col-md-4">
           <label for="tresauryId">{{'Hr.Tresaury'|translate}}</label>
           <select class="form-control" id="tresauryId" formControlName="tresauryId">
             <option  value="" disabled selected>{{ 'Hr.Tresaury' | translate }}</option>
-            <!-- Add your options here -->
+            <option  *ngFor="let tresaury of tresauryData " [value]="tresaury.Id">{{ tresaury.NameAr }}</option>
           </select>
        </div>
        <div class="form-group col-md-4">
-        <label for="inventoryId">{{ 'Hr.Inventory' | translate }}</label>
-        <select class="form-control" id="inventoryId" formControlName="inventoryId">
-          <option  value="" disabled selected>{{ 'Hr.Inventory' | translate }}</option>
-          <!-- Add your options here -->
+        <label for="storageId">{{ 'Hr.Storage' | translate }}</label>
+        <select class="form-control" id="storageId" formControlName="storageId">
+          <option  value="" disabled selected>{{ 'Hr.Storage' | translate }}</option>
+          <option  *ngFor="let storage of storageData " [value]="storage.Id">{{ storage.NameAr }}</option>
         </select>
      </div>
       </div>
       <div class="row">
 
        <div class="form-group col-md-4">
-          <label for="customerGroupId">{{ 'Hr.customerGroup' | translate }}</label>
-          <select class="form-control" id="customerGroupId" formControlName="customerGroupId">
-            <option  value="" disabled selected>{{ 'Hr.customerGroup' | translate }}</option>
-            <!-- Add your options here -->
+          <label for="clientGroupId">{{ 'Hr.ClientGroup' | translate }}</label>
+          <select class="form-control" id="clientGroupId" formControlName="clientGroupId">
+            <option  value="" disabled selected>{{ 'Hr.ClientGroup' | translate }}</option>
+            <option  *ngFor="let client of clientGroupData " [value]="client.Id">{{ client.NameAr }}</option>
+
           </select>
        </div>
        <div class="form-group col-md-4">
         <label for="salesPriceId">{{ 'Hr.SalesPrice' | translate }}</label>
         <select class="form-control" id="salesPriceId" formControlName="salesPriceId">
           <option  value="" disabled selected>{{ 'Hr.SalesPrice' | translate }}</option>
-          <!-- Add your options here -->
+          <option  *ngFor="let sales of salesPriceData " [value]="sales.Id">{{ sales.NameAr }}</option>
         </select>
      </div>
      <div class="form-group col-md-4">
@@ -649,14 +649,14 @@
     </form>
 
     <div class="center-btn">
-      <button  type="submit" (click)="onSubmitVac(formVac)" style="width: 150px;" class="btn btn-success mt-2" >{{ 'Save' | translate }}</button>
+      <button  type="submit" (click)="onSubmitEmployeeSetting(formEmployeeSetting)" style="width: 150px;" class="btn btn-success mt-2" >{{ 'Save' | translate }}</button>
     </div>
     <p-table
     [rowsPerPageOptions]="[5, 10, 15, 20]"
     [paginator]="true"
     [rows]="5"
-    [columns]="vacCols"
-    [value]="vacTrxData"
+    [columns]="employeeSettingsCols"
+    [value]="employeeSettingData"
     sortMode="multiple" styleClass="p-datatable-striped mt-5" [tableStyle]="{'min-width': '50rem'}"  #dt>
       <ng-template pTemplate="header" let-columns>
         <tr>
@@ -669,34 +669,34 @@
           </th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-Vac let-columns="columns">
+      <ng-template pTemplate="body" let-emp let-columns="columns">
         <tr>
           <td *ngFor="let col of columns" [style.text-align]="'right'">
-            <span class="table-data" *ngIf="col.field == 'CreatedDate'">
-              {{ Vac[col.field] | date:'shortDate' }}
+
+            <span class="table-data" *ngIf="col.field == 'EmployeeAccountId'">
+              {{ getAccTree(emp[col.field])?.NameAr }}
             </span>
-            <span class="table-data" *ngIf="col.field == 'StatusId'">
-              {{ getStatus(Vac[col.field])?.name }}
+            <span class="table-data" *ngIf="col.field == 'StorageId'">
+              {{ getStorage(emp[col.field])?.NameAr }}
             </span>
-            <span class="table-data" *ngIf="col.field == 'BranchId'">
-              {{ getBranch(Vac[col.field])?.NameAr }}
+            <span class="table-data" *ngIf="col.field == 'ClientGroupId'">
+              {{ getClientGroup(emp[col.field])?.NameAr }}
             </span>
-            <span class="table-data" *ngIf="col.field == 'EmployeeId'">
-              {{ getEmployee(Vac[col.field])?.NameAr }}
+            <span class="table-data" *ngIf="col.field == 'SalesPriceId'">
+              {{ getPricePolicy(emp[col.field])?.NameAr }}
             </span>
-            <span class="table-data" *ngIf="col.field == 'EmpReplacementId'">
-              {{ getEmployee(Vac[col.field])?.NameAr }}
+            <span class="table-data" *ngIf="col.field == 'TresauryId'">
+              {{ getTresaury(emp[col.field])?.NameAr }}
             </span>
-            <span class="table-data" *ngIf="col.field != 'CreatedDate'&&col.field != 'VacCategoryId' &&col.field != 'BranchId' && col.field != 'StatusId'
-            && col.field != 'EmployeeId'&& col.field != 'EmpReplacementId'    ">
-              {{ Vac[col.field] }}
+            <span class="table-data" *ngIf="col.field != 'EmployeeAccountId'&&col.field != 'StorageId'
+            &&col.field != 'ClientGroupId'&&col.field != 'SalesPriceId'&&col.field != 'TresauryId'">
+              {{ emp[col.field] }}
             </span>
           </td>
           <td>
             <div style="text-align: center">
-              <img src="assets/images/editIcon.png" ngbTooltip="{{'Hr.Edit'|translate}}" class="mr-2" (click)=" setVacEdit(Vac)" />
-              <img src="assets/images/editIcon.png" ngbTooltip="{{'Hr.Transaction'|translate}}" class="mr-2" (click)=" setVacEdit(Vac)" />
-              <img src="assets/images/deleteTableIcon.png" ngbTooltip="{{'Hr.Delete'|translate}}" class="mr-2" (click)="showDeleteVacConfirm(Vac)" />
+              <img src="assets/images/editIcon.png" ngbTooltip="{{'Hr.Edit'|translate}}" class="mr-2" (click)=" setEmployeeSettingEdit(emp)" />
+              <img src="assets/images/deleteTableIcon.png" ngbTooltip="{{'Hr.Delete'|translate}}" class="mr-2" (click)="showDeleteEmployeeSettingConfirm(emp)" />
             </div>
           </td>
         </tr>

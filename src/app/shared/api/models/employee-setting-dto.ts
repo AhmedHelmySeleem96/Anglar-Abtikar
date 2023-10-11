@@ -4,10 +4,11 @@ export interface EmployeeSettingDto {
   branchId?: number;
   canAddDiscount?: null | boolean;
   canAddSalesPrice?: null | boolean;
-  customerGroupId?: null | number;
+  clientGroupId?: null | number;
   employeeAccountId?: null | number;
   employeeId?: null | number;
-  inventoryId?: null | number;
+  retirementPercentage?: null | number;
   salesPriceId?: null | number;
+  storageId?: null | number;
   tresauryId?: null | number;
 }

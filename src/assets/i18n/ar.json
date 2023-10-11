@@ -1,7 +1,13 @@
 {
 
 "DIR": "rtl",
-
+"Preview":"عرض"
+,
+"EmployeeAccount":"حساب الموظف",
+"Tresaury":"الخزينة",
+"Storage":"المخزون",
+"ClientGroup":"مجموعة العملاء",
+"SalesPrice":"سياسه تسعير",
 "navBar":{
   "Home":"الرئيسية",
   "About":"عن الموقع",
@@ -20,8 +26,7 @@
   "Theme":"اللون",
   "Phone":"الهاتف",
   "Color":"اللون",
-  "Hr" : "شئون الموظفين",
-"Preview":"عرض"
+  "Hr" : "شئون الموظفين"
 },
 "AreYouSureToDelete" : "هل انت متاكد من حذف",
 "Confirmtoproceed": "تاكيد ليتم المسح",
@@ -41,9 +46,9 @@
 "Actions": "إجراءات",
 "CreatedDate": "تاريخ الإنشاء",
 "Tresaury": "الخزينة",
-  "Inventory": "المخزون",
-  "customerGroup": "مجموعة العملاء",
-  "SalesPrice": "سعر تسعير",
+  "Storage": "المخزون",
+  "ClientGroup": "مجموعة العملاء",
+  "SalesPrice": "سياسه تسعير",
   "EmployeeAccount":"حساب الموظف",
 "StatusId": "حالة",
 "EmployeeId": "موظف",

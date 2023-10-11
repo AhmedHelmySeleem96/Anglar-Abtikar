@@ -15,8 +15,8 @@ import { XtraAndPosLookUpsService,XtraAndPosBranchEpService,
       XtraAndPosEmployeeContractTrxService,
       XtraAndPosEmployeeVacationsService,
       XtraAndPosEmpVacationTypesService,
-      ExtraAndPosBankAccountEpService,
-      XtraAndPosClientEpService,
+      XtraAndPosAccTreeEpService,
+      XtraAndPosEmployeeSettingService,
       } from 'src/app/shared/api';
 
 @Component({
@@ -47,9 +47,8 @@ export class EmpContractTransactionsComponent implements OnInit  {
     private XtraAndPosJobNameService :XtraAndPosJobNameService,
     private XtraAndPosVacationTypesService : XtraAndPosEmpVacationTypesService,
     private ViewportScroller : ViewportScroller,
-    private ExtraAndPosBankAccountEpService : ExtraAndPosBankAccountEpService,
-    private  XtraAndPosClientEpService : XtraAndPosClientEpService,
-
+    private XtraAndPosAccTreeEpService : XtraAndPosAccTreeEpService,
+    private XtraAndPosEmployeeSettingService :XtraAndPosEmployeeSettingService
     ){
     this.formReniew = this.createFormReniew();
     this.formAllowance = this.createFormAllowance();
@@ -65,6 +64,11 @@ export class EmpContractTransactionsComponent implements OnInit  {
     formEmployeeSetting :FormGroup;
     currencyData :any [] = [] ;
     statusData : any[] = [];
+    accTreeData : any[] = [];
+    storageData : any[] = [];
+    clientGroupData : any[] = [];
+    tresauryData : any[] = [];
+    salesPriceData : any[] = [];
     reniewTypeData : any[] = [];
     branchData : any[] = [] ;
     currentContractId: any  ;
@@ -107,6 +111,7 @@ numberColumns : EmployeeContractDto [] = [] ;
 contractTrxData :any[] = [] ;
 allowanceTrxData :any[] = [] ;
 vacTrxData :any[] = [] ;
+employeeSettingData :any[] = [] ;
 vacTrxDialog = false ;
 vacTrxDeduction = false;
 vacTrxExtension = false ;
@@ -143,11 +148,12 @@ createformEmployeeSetting() : FormGroup{
     employeeId: new FormControl(null, [Validators.required]),
     employeeAccountId: new FormControl(null, [Validators.required]),
     tresauryId: new FormControl(null, [Validators.required]),
-    inventoryId: new FormControl(null, [Validators.required]),
-    customerGroupId: new FormControl(null, [Validators.required]),
+    storageId: new FormControl(null, [Validators.required]),
+    clientGroupId: new FormControl(null, [Validators.required]),
     salesPriceId: new FormControl(null, [Validators.required]),
     canAddDiscount:new FormControl(false, [Validators.required]),
     canAddSalesPrice:new FormControl(false, [Validators.required]),
+    retirementPercentage:new FormControl(null, [Validators.required]),
   })
 }
 vacTypeValue:any ;
@@ -202,13 +208,11 @@ ngOnInit(): void {
     { field: 'EmpReplacementId', header: 'EmpReplacementId' },
   ];
   this.employeeSettingsCols = [
-    { field: 'EmployeeAccountId', header: 'Employee Account' },
+    { field: 'EmployeeAccountId', header: 'EmployeeAccount' },
     { field: 'TresauryId', header: 'Tresaury' },
-    { field: 'InventoryId', header: 'Inventory' },
-    { field: 'CustomerGroupId', header: 'Customer Group' },
-    { field: 'SalesPriceId', header: 'Sales Price' },
-    { field: 'CanAddDiscount', header: 'Can Add Discount' },
-    { field: 'CanAddSalesPrice', header: 'Can Add Sales Price' },
+    { field: 'StorageId', header: 'Storage' },
+    { field: 'ClientGroupId', header: 'ClientGroup' },
+    { field: 'SalesPriceId', header: 'SalesPrice' },
 ];
   this.allowanceCols = [
     { field: 'Id', header: 'Id' },
@@ -259,6 +263,19 @@ getData(){
     let jsonData = JSON.parse(value);
     this.allowancePaidTimes = jsonData;
   });
+  this.XtraAndPosAccTreeEpService.httpGetExtraAndPosAccTreeManagementInfo().subscribe((value:any)=>{
+    let jsonData = JSON.parse(value);
+    this.accTreeData = jsonData.Obj.accTree;
+  });
+  this.XtraAndPosEmployeeSettingService.httpGetXtraAndPosEmployeeSettingGetEmployeeInfoService().subscribe((value:any)=>{
+    let jsonData = JSON.parse(value);
+    this.storageData = jsonData.Obj.storage;
+    this.clientGroupData = jsonData.Obj.clientGroupManagment;
+    this.tresauryData = jsonData.Obj.treasury;
+    this.salesPriceData = jsonData.Obj.pricingManagement;
+
+  });
+
   this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetAllowanceTypes().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
     this.allowanceTypeData = jsonData;
@@ -290,13 +307,7 @@ getData(){
         this.formVacPrevious.push(this.createFormPrevious(obj));
 
       });
-      //
-      // const vacId = this.vacTypesData.map(r=>r.Id);
-      // for(let i of vacId){
-      //   this.formVacPrevious.forEach(formGroup => {
-      //     formGroup.get('vacTypeId')?.setValue(i);
-      //   });
-      // }
+
 
     });
 
@@ -346,6 +357,10 @@ refreshTable() {
     let jsonContractData = JSON.parse(value);
     this.vacTrxData = jsonContractData.Obj.vac;
   });
+  this.XtraAndPosEmployeeSettingService.httpGetXtraAndPosEmployeeSettingGetEmployeeSettingService().subscribe((value: any) => {
+    let jsonContractData = JSON.parse(value);
+    this.employeeSettingData = jsonContractData.Obj.employeeSettings;
+  });
 }
 getContract(id :any){
   return this.ContractData.filter((r)=>r.Id===id)[0]
@@ -362,6 +377,21 @@ getEmployee(id :any){
 }
 getAllowance(id :any){
   return this.allowanceData.filter((r)=>r.Id===id)[0]
+}
+getAccTree(id :any){
+  return this.accTreeData.filter((r)=>r.Id===id)[0]
+}
+getPricePolicy(id :any){
+  return this.salesPriceData.filter((r)=>r.Id===id)[0]
+}
+getStorage(id :any){
+  return this.storageData.filter((r)=>r.Id===id)[0]
+}
+getTresaury(id :any){
+  return this.tresauryData.filter((r)=>r.Id===id)[0]
+}
+getClientGroup(id :any){
+  return this.clientGroupData.filter((r)=>r.Id===id)[0]
 }
 getAllowanceType(id :any){
   return this.allowanceTypeData.filter((r)=>r.Id===id)[0]
@@ -414,6 +444,8 @@ this.ExportData.toExcel(tableData,'contract.xlsx')
       this.searchTableVisible = false
     }
   }
+
+
   previousBalance :any[]=[] ;
   hasPreviousBalance =false;
   fillEmp(emp :any){
@@ -548,11 +580,12 @@ setEmployeeSettingEdit(empSetting:any){
   this.formEmployeeSetting.patchValue({
     employeeAccountId: empSetting.EmployeeAccountId,
     tresauryId: empSetting.TresauryId,
-    inventoryId: empSetting.InventoryId,
-    customerGroupId: empSetting.CustomerGroupId,
+    storageId: empSetting.StorageId,
+    clientGroupId: empSetting.ClientGroupId,
     salesPriceId: empSetting.SalesPriceId,
     canAddDiscount: empSetting.CanAddDiscount,
     canAddSalesPrice: empSetting.CanAddSalesPrice,
+    retirementPercentage: empSetting.RetirementPercentage,
   })
   this.formEmployeeSetting.get('employeeId')?.setValue(empSetting.EployeeId);
   this.formEmployeeSetting.get('branchId')?.setValue(empSetting.BranchId);
@@ -585,6 +618,7 @@ this.currentAllowanceId = allowance.Id;
 this.ViewportScroller.scrollToPosition([10,10]) ;
 
 }
+
   confirmOperation(){
     this.transDialog = false ;
     let opr : string='' ;
@@ -786,6 +820,11 @@ if(!this.isEdit){
         this.formVacPrevious.forEach(form=>{
           form.reset();
         })
+        this.formReniew.reset();
+        this.branch.nativeElement.value = ""
+        this.empName.nativeElement.value = ""
+        this.job.nativeElement.value = ""
+        this.division.nativeElement.value = ""
         this.refreshTable();
     },
     (error: any) => {
@@ -809,7 +848,11 @@ if(!this.isEdit){
       this.refreshTable();
       this.isEdit=false;
       this.formVac.reset();
-
+      this.formReniew.reset();
+      this.branch.nativeElement.value = ""
+      this.empName.nativeElement.value = ""
+      this.job.nativeElement.value = ""
+      this.division.nativeElement.value = ""
     });
   }
 
@@ -831,6 +874,11 @@ if(!this.isEdit){
       let jsonData = JSON.parse(value);
         this.toastr.success(jsonData.Message)
         this.formAllowance.reset();
+        this.formReniew.reset();
+        this.branch.nativeElement.value = ""
+        this.empName.nativeElement.value = ""
+        this.job.nativeElement.value = ""
+        this.division.nativeElement.value = ""
         this.refreshTable();
     },
     (error: any) => {
@@ -854,7 +902,11 @@ if(!this.isEdit){
       this.refreshTable();
       this.isEdit=false;
       this.formAllowance.reset();
-
+      this.formReniew.reset();
+      this.branch.nativeElement.value = ""
+      this.empName.nativeElement.value = ""
+      this.job.nativeElement.value = ""
+      this.division.nativeElement.value = ""
     });
   }
 }
@@ -909,6 +961,85 @@ if(!this.isEdit){
       this.refreshTable();
     }, (error: any) => {
       this.toastr.error('Failed to delete allowance.');
+    });
+  }
+  onSubmitEmployeeSetting(form:FormGroup){
+    if(!this.isEdit){
+      this.transDialog = false;
+      const empId = this.formReniew.get('employeeId')?.value;
+      const branchId = this.formReniew.get('branchId')?.value;
+      this.formEmployeeSetting.get('employeeId')?.setValue(empId);
+      this.formEmployeeSetting.get('branchId')?.setValue(branchId);
+      if(this.formEmployeeSetting.valid)
+      {
+      const model = this.formEmployeeSetting.value;
+
+      this.XtraAndPosEmployeeSettingService.httpPostXtraAndPosEmployeeSettingCreateEmployeeSettingService({
+        body : model
+      }).subscribe((value:any)=>{
+        let jsonData = JSON.parse(value);
+          this.toastr.success(jsonData.Message)
+          this.formEmployeeSetting.reset();
+        this.formReniew.reset();
+        this.branch.nativeElement.value = ""
+        this.empName.nativeElement.value = ""
+        this.job.nativeElement.value = ""
+        this.division.nativeElement.value = ""
+          this.refreshTable();
+      },
+      (error: any) => {
+        this.toastr.error('Failed to create Emp Setting.');
+      })}else{
+        this.toastr.success("ادخل البيانات المطلوبة")
+      }
+    }else{
+      let model = this.formEmployeeSetting.value;
+      model.Id = this.currentEmployeeSettingId;
+      const empId = this.formReniew.get('employeeId')?.value;
+      const branchId = this.formReniew.get('branchId')?.value;
+      this.formEmployeeSetting.get('employeeId')?.setValue(empId);
+      this.formEmployeeSetting.get('branchId')?.setValue(branchId);
+      this.XtraAndPosEmployeeSettingService.httpPutXtraAndPosEmployeeSettingUpdateEmployeeSettingService({
+        id: this.currentEmployeeSettingId,
+        body: model
+      }).subscribe((value: any) => {
+        let jsonData = JSON.parse(value);
+        this.toastr.success(jsonData.Message);
+        this.refreshTable();
+        this.isEdit=false;
+        this.formEmployeeSetting.reset();
+        this.formReniew.reset();
+        this.branch.nativeElement.value = ""
+  this.empName.nativeElement.value = ""
+  this.job.nativeElement.value = ""
+  this.division.nativeElement.value = ""
+      });
+    }
+  }
+  showDeleteEmployeeSettingConfirm(employeeSetting: any) {
+    this.toastr
+      .info('Do you want to delete this employeeSetting?', 'Confirmation', {
+        timeOut: 0,
+        extendedTimeOut: 0,
+        closeButton: true,
+        positionClass: 'toast-top-center',
+        tapToDismiss: false,
+      })
+      .onTap.subscribe(() => {
+        this.deleteEmployeeSetting(employeeSetting);
+      this.empName.nativeElement.value = "";
+      });
+  }
+  deleteEmployeeSetting(contract: any) {
+    this.XtraAndPosEmployeeSettingService.httpDeleteXtraAndPosEmployeeSettingDeleteEmployeeSettingService({
+      id: contract.Id,
+    }).subscribe((value: any) => {
+      let jsonData = JSON.parse(value);
+      this.toastr.clear();
+      this.toastr.success(jsonData.Message);
+      this.refreshTable();
+    }, (error: any) => {
+      this.toastr.error('Failed to delete employeeSetting.');
     });
   }
 }
