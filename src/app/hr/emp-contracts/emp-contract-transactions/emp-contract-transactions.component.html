@@ -547,7 +547,7 @@
             <td>
               <div style="text-align: center">
                 <img src="assets/images/editIcon.png" ngbTooltip="{{'Hr.Edit'|translate}}" class="mr-2" (click)=" setVacEdit(Vac)" />
-                <img src="assets/images/editIcon.png" ngbTooltip="{{'Hr.Transaction'|translate}}" class="mr-2" (click)=" setVacEdit(Vac)" />
+                <img src="assets/images/editIcon.png" ngbTooltip="{{'Hr.Transaction'|translate}}" class="mr-2" (click)=" vacTrxDialog =true ;  setVacEdit(Vac)" />
                 <img src="assets/images/deleteTableIcon.png" ngbTooltip="{{'Hr.Delete'|translate}}" class="mr-2" (click)="showDeleteVacConfirm(Vac)" />
               </div>
             </td>
@@ -565,16 +565,40 @@
     [minX]="150"
     [maximizable]="true"
   >
-  <div class="row">
-    <!-- <div  class="mt-2 text-center col-md-2 mr-5">
-      <button style="width: max-content;" (click)="btnDeductionClick(1)"    class="btn btn-info mr-5" >{{ 'Hr.Deduction' | translate }}</button>
-    </div>
-    <div class="mt-2 text-center col-md-2 mr-5">
-      <button style="width: max-content;"  (click)="btnDeductionClick(2)"   class="btn btn-info mr-5" >{{'Hr.Extension'|translate}}</button>
-    </div> -->
+  <div class="container">
+    <form [formGroup]="formVacTrx"  class="form" >
+      <div class="row">
+        <div  class="mt-2 text-center col-md-2 mr-5">
+          <button style="width: max-content;"  (click)="BtnVacTrx(1)  "   class="btn btn-info mr-5" >{{ 'Hr.Deduction' | translate }}</button>
+        </div>
+        <div class="mt-2 text-center col-md-2 mr-5">
+          <button style="width: max-content;"   (click)="BtnVacTrx(2)  "  class="btn btn-info mr-5" >{{'Hr.Extension'|translate}}</button>
+        </div>
+      </div>
+        <div class="row"  >
+          <div class="form-group col-md-6 mt-5" *ngIf="vacTrxDeduction||vacTrxExtension"  >
+            <label for="reason">{{ 'Hr.Reason' | translate }}</label>
+            <input  id="reason"  formControlName="reason"  class="form-control">
+        </div>
+        <div class="form-group col-md-6 mt-5" *ngIf="vacTrxDeduction" >
+          <label for="deductionDate">{{ 'Hr.DeductionDate' | translate }}</label>
+          <input  id="deductionDate" type="date" formControlName="deductionDate"  class="form-control">
+      </div>
+        </div>
+      <div class="row" *ngIf="vacTrxExtension" >
+        <div class="form-group col-md-6 " >
+          <label for="extensionPeriod">{{ 'Hr.ExtensionPeriod' | translate }}</label>
+          <input  (change)="extensionPeriodChange($event)" id="extensionPeriod"  formControlName="extensionPeriod"  class="form-control">
+        </div>
+        <div class="form-group col-md-6 " >
+          <label for="extensionEndDate">{{ 'Hr.ExtensionEndDate' | translate }}</label>
+          <input  id="extensionEndDate" readonly  formControlName="extensionEndDate"  class="form-control">
+      </div>
+      </div>
+    </form>
   </div>
     <p-footer>
-      <button  type="button" (click)="confirmOperation()" class="btn-ok">OK</button>
+      <button  type="button" (click)="onSubmitVacTrx(formVacTrx)" class="btn btn-success mt-2 mr-3">{{'Save'|translate}}</button>
     </p-footer>
   </p-dialog>
   </p-tabPanel>

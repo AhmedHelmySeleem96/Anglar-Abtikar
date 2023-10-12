@@ -54,6 +54,7 @@ export class EmpContractTransactionsComponent implements OnInit  {
     this.formAllowance = this.createFormAllowance();
     this.formVac = this.createFormVac();
     this.formContract = this.createForm();
+    this.formVacTrx = this.createFormVacTrx();
     this.formEmployeeSetting = this.createformEmployeeSetting();
   }
     formReniew : FormGroup;
@@ -61,6 +62,7 @@ export class EmpContractTransactionsComponent implements OnInit  {
     formVacPrevious:FormGroup[]=[];
     formAllowance : FormGroup;
     formVac : FormGroup;
+    formVacTrx : FormGroup;
     formEmployeeSetting :FormGroup;
     currencyData :any [] = [] ;
     statusData : any[] = [];
@@ -175,6 +177,17 @@ createFormPrevious(obj: any): FormGroup {
     previousBalance: new FormControl(null, [Validators.required]),
     vacTypeId: new FormControl(obj.Id, [Validators.required]),
   });
+}
+createFormVacTrx(): FormGroup {
+  return this.fb.group({
+    reason: new FormControl(null, [Validators.required]),
+    employeeId: new FormControl(null, [Validators.required]),
+    vacId: new FormControl(null, [Validators.required]),
+    deductionDate: new FormControl(null),
+    extensionPeriod: new FormControl(null),
+    extensionEndDate: new FormControl(null),
+    trxType : new FormControl(null,[Validators.required])
+ })
 }
 createForm(): FormGroup {
   return this.fb.group({
@@ -567,11 +580,7 @@ setVacEdit(vac:any){
   this.branch.nativeElement.value = this.getBranch(vac.BranchId)?.NameAr;
   this.empName.nativeElement.value = this.getEmployee(vac.EmployeeId)?.NameAr;
   this.empId.nativeElement.value = vac.EmployeeId;
-  // if(this.previousBalance){
-  //   this.formVacPrevious.patchValue({
-  //     previousBalance : this.previousBalance[0].PreviousBalance
-  //   })
-  // }
+
   this.isEdit = true;
   this.currentVacId = vac.Id;
   this.ViewportScroller.scrollToPosition([10,10]) ;
@@ -748,6 +757,18 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
       endDate.setDate(date.getDate() + addValue);
       const formattedEndDate = endDate.toISOString().slice(0, 10);
       this.formVac.get('vacEndDate')?.setValue(formattedEndDate);
+  }
+  }
+  extensionPeriodChange(event :Event){
+    const target = event.target as HTMLInputElement;
+    const addValue = Number(target.value);
+      const startDate = this.formVac.get('vacEndDate')?.value;
+    if (startDate && addValue) {
+      const date = new Date(startDate);
+      const endDate = new Date(date);
+      endDate.setDate(date.getDate() + addValue);
+      const formattedEndDate = endDate.toISOString().slice(0, 10);
+      this.formVacTrx.get('extensionEndDate')?.setValue(formattedEndDate);
   }
   }
   onSubmitReniew(form : FormGroup){
@@ -1041,6 +1062,49 @@ if(!this.isEdit){
     }, (error: any) => {
       this.toastr.error('Failed to delete employeeSetting.');
     });
+  }
+  BtnVacTrx(id : number){
+    if(id==1){
+      this.vacTrxDeduction = true ;
+      this.vacTrxExtension= false ;
+      this.formVacTrx.get('trxType')?.setValue(1);
+    }else{
+      this.vacTrxDeduction = false ;
+      this.vacTrxExtension= true ;
+      this.formVacTrx.get('trxType')?.setValue(2);
+
+    }
+  }
+  onSubmitVacTrx(form:FormGroup){
+
+      const empId = this.formReniew.get('employeeId')?.value;
+      const vacId = this.formReniew.get('branchId')?.value;
+      this.formVacTrx.get('employeeId')?.setValue(empId);
+      this.formVacTrx.get('vacId')?.setValue(vacId);
+      if(this.formVacTrx.valid)
+      {
+      const model = this.formVacTrx.value;
+
+      this.XtraAndPosEmpVacationTransactionsService.httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationTrxService({
+        body : model
+      }).subscribe((value:any)=>{
+        let jsonData = JSON.parse(value);
+          if(jsonData.IsSuccess){
+            this.toastr.success(jsonData.Message)
+            this.formVacTrx.reset();
+            this.vacTrxDeduction = false ;
+            this.vacTrxExtension= false ;
+            this.vacTrxDialog= false;
+          }else{
+            this.toastr.error(jsonData.Message)
+          }
+
+      },
+      (error: any) => {
+        this.toastr.error('Failed to create Emp Setting.');
+      })}else{
+        this.toastr.success("ادخل البيانات المطلوبة")
+      }
   }
 }
 
