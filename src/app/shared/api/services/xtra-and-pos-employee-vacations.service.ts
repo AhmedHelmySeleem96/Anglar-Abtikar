@@ -78,7 +78,7 @@ export class XtraAndPosEmployeeVacationsService extends BaseService {
    */
   httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationBalanceService$Response(
     params?: {
-      body?: EmpPreviousVacationsBalanceDto
+      body?: Array<EmpPreviousVacationsBalanceDto>
     },
     context?: HttpContext
   ): Observable<StrictHttpResponse<void>> {
@@ -105,7 +105,7 @@ export class XtraAndPosEmployeeVacationsService extends BaseService {
    */
   httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationBalanceService(
     params?: {
-      body?: EmpPreviousVacationsBalanceDto
+      body?: Array<EmpPreviousVacationsBalanceDto>
     },
     context?: HttpContext
   ): Observable<void> {

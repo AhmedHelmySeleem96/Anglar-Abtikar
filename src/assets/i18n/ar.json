@@ -1,7 +1,13 @@
 {
 
 "DIR": "rtl",
-
+"Preview":"عرض"
+,
+"EmployeeAccount":"حساب الموظف",
+"Tresaury":"الخزينة",
+"Storage":"المخزون",
+"ClientGroup":"مجموعة العملاء",
+"SalesPrice":"سياسه تسعير",
 "navBar":{
   "Home":"الرئيسية",
   "About":"عن الموقع",
@@ -21,7 +27,6 @@
   "Phone":"الهاتف",
   "Color":"اللون",
   "Hr" : "شئون الموظفين"
-
 },
 "AreYouSureToDelete" : "هل انت متاكد من حذف",
 "Confirmtoproceed": "تاكيد ليتم المسح",
@@ -32,6 +37,28 @@
 "Docs":"مستندات",
 "User"  :"المستخدم",
 "WorkCard": "بطاقة الدوام",
+"Deduction": "الخصم",
+"Extension": "التمديد",
+"Reason": "السبب",
+"DeductionDate": "تاريخ الخصم",
+"ExtensionPeriod": "فترة التمديد",
+"ExtensionEndDate": "تاريخ نهاية التمديد",
+"EmployeeSetting": "إعدادات الموظف",
+"RetirementPercentage": "نسبة التقاعد والتأمينات",
+"CanAddDiscount": "يمكن إضافة خصم",
+"CanAddSalesPrice": "يمكن إضافة سياسة تسعير",
+"Save": "حفظ",
+"PreviousBalance":"رصيد سابق",
+"Actions": "إجراءات",
+"CreatedDate": "تاريخ الإنشاء",
+"Tresaury": "الخزينة",
+  "Storage": "المخزون",
+  "ClientGroup": "مجموعة العملاء",
+  "SalesPrice": "سياسه تسعير",
+  "EmployeeAccount":"حساب الموظف",
+"StatusId": "حالة",
+"EmployeeId": "موظف",
+"VacCategoryId": "فئة الإجازة",
 "WorkCardNameAr": "اسم بطاقة الدوام ",
 "WorkCardNameEn": "اسم بطاقة الدوام بالانجليزية",
 "UnspecifiedHours": "ساعات غير محددة",

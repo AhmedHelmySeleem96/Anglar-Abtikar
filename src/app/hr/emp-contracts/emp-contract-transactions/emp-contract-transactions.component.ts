@@ -15,6 +15,8 @@ import { XtraAndPosLookUpsService,XtraAndPosBranchEpService,
       XtraAndPosEmployeeContractTrxService,
       XtraAndPosEmployeeVacationsService,
       XtraAndPosEmpVacationTypesService,
+      XtraAndPosAccTreeEpService,
+      XtraAndPosEmployeeSettingService,
       } from 'src/app/shared/api';
 
 @Component({
@@ -44,20 +46,31 @@ export class EmpContractTransactionsComponent implements OnInit  {
     private XtraAndPosEmpVacationTransactionsService : XtraAndPosEmployeeVacationsService,
     private XtraAndPosJobNameService :XtraAndPosJobNameService,
     private XtraAndPosVacationTypesService : XtraAndPosEmpVacationTypesService,
-    private ViewportScroller : ViewportScroller
+    private ViewportScroller : ViewportScroller,
+    private XtraAndPosAccTreeEpService : XtraAndPosAccTreeEpService,
+    private XtraAndPosEmployeeSettingService :XtraAndPosEmployeeSettingService
     ){
     this.formReniew = this.createFormReniew();
     this.formAllowance = this.createFormAllowance();
     this.formVac = this.createFormVac();
     this.formContract = this.createForm();
-    this.formVacPrevious = this.createFormPrevious();}
+    this.formVacTrx = this.createFormVacTrx();
+    this.formEmployeeSetting = this.createformEmployeeSetting();
+  }
     formReniew : FormGroup;
     formContract : FormGroup;
-    formVacPrevious:FormGroup;
+    formVacPrevious:FormGroup[]=[];
     formAllowance : FormGroup;
     formVac : FormGroup;
+    formVacTrx : FormGroup;
+    formEmployeeSetting :FormGroup;
     currencyData :any [] = [] ;
     statusData : any[] = [];
+    accTreeData : any[] = [];
+    storageData : any[] = [];
+    clientGroupData : any[] = [];
+    tresauryData : any[] = [];
+    salesPriceData : any[] = [];
     reniewTypeData : any[] = [];
     branchData : any[] = [] ;
     currentContractId: any  ;
@@ -92,6 +105,7 @@ allowancePaidTimes  :any[] = [] ;
 transDialog =false ;
 btnReniewOnly = false;
 btnReniewAndProm = false;
+employeeSettingsCols :any;
 JobData  :any[] = [] ;
 jobNamesData : any [] = [] ;
 displayPrivew : boolean = false;
@@ -99,6 +113,7 @@ numberColumns : EmployeeContractDto [] = [] ;
 contractTrxData :any[] = [] ;
 allowanceTrxData :any[] = [] ;
 vacTrxData :any[] = [] ;
+employeeSettingData :any[] = [] ;
 vacTrxDialog = false ;
 vacTrxDeduction = false;
 vacTrxExtension = false ;
@@ -130,6 +145,19 @@ createFormReniew() : FormGroup{
 
   })
 }
+createformEmployeeSetting() : FormGroup{
+  return this.fb.group({
+    employeeId: new FormControl(null, [Validators.required]),
+    employeeAccountId: new FormControl(null, [Validators.required]),
+    tresauryId: new FormControl(null, [Validators.required]),
+    storageId: new FormControl(null, [Validators.required]),
+    clientGroupId: new FormControl(null, [Validators.required]),
+    salesPriceId: new FormControl(null, [Validators.required]),
+    canAddDiscount:new FormControl(false, [Validators.required]),
+    canAddSalesPrice:new FormControl(false, [Validators.required]),
+    retirementPercentage:new FormControl(null, [Validators.required]),
+  })
+}
 vacTypeValue:any ;
 createFormVac() : FormGroup{
   return this.fb.group({
@@ -143,14 +171,24 @@ createFormVac() : FormGroup{
     notes: new FormControl(null)
   })
 }
-createFormPrevious() : FormGroup{
+createFormPrevious(obj: any): FormGroup {
   return this.fb.group({
     employeeId: new FormControl(null, [Validators.required]),
     previousBalance: new FormControl(null, [Validators.required]),
-    vacTypeId: new FormControl(null, [Validators.required]),
-  })
+    vacTypeId: new FormControl(obj.Id, [Validators.required]),
+  });
 }
-
+createFormVacTrx(): FormGroup {
+  return this.fb.group({
+    reason: new FormControl(null, [Validators.required]),
+    employeeId: new FormControl(null, [Validators.required]),
+    vacId: new FormControl(null, [Validators.required]),
+    deductionDate: new FormControl(null),
+    extensionPeriod: new FormControl(null),
+    extensionEndDate: new FormControl(null),
+    trxType : new FormControl(null,[Validators.required])
+ })
+}
 createForm(): FormGroup {
   return this.fb.group({
    branchId: new FormControl(null),
@@ -182,6 +220,13 @@ ngOnInit(): void {
     { field: 'VacEndDate', header: 'VacEndDate' },
     { field: 'EmpReplacementId', header: 'EmpReplacementId' },
   ];
+  this.employeeSettingsCols = [
+    { field: 'EmployeeAccountId', header: 'EmployeeAccount' },
+    { field: 'TresauryId', header: 'Tresaury' },
+    { field: 'StorageId', header: 'Storage' },
+    { field: 'ClientGroupId', header: 'ClientGroup' },
+    { field: 'SalesPriceId', header: 'SalesPrice' },
+];
   this.allowanceCols = [
     { field: 'Id', header: 'Id' },
     { field: 'CreatedDate', header: 'CreatedDate' },
@@ -191,9 +236,8 @@ ngOnInit(): void {
     { field: 'AllowanceTypeId', header: 'AllowanceType' },
   ];
   this.searchCols = [
-    { field: 'Id', header: 'EmployeeId' },
-    { field: 'NameAr', header: 'NameAr' },
-    { field: 'NameEn', header: 'NameEn' },
+    { field: 'Id', header: 'Id' },
+    { field: 'EmployeeId', header: 'NameAr' },
   ];
   this.refreshTable();
   this.getData();
@@ -232,6 +276,19 @@ getData(){
     let jsonData = JSON.parse(value);
     this.allowancePaidTimes = jsonData;
   });
+  this.XtraAndPosAccTreeEpService.httpGetExtraAndPosAccTreeManagementInfo().subscribe((value:any)=>{
+    let jsonData = JSON.parse(value);
+    this.accTreeData = jsonData.Obj.accTree;
+  });
+  this.XtraAndPosEmployeeSettingService.httpGetXtraAndPosEmployeeSettingGetEmployeeInfoService().subscribe((value:any)=>{
+    let jsonData = JSON.parse(value);
+    this.storageData = jsonData.Obj.storage;
+    this.clientGroupData = jsonData.Obj.clientGroupManagment;
+    this.tresauryData = jsonData.Obj.treasury;
+    this.salesPriceData = jsonData.Obj.pricingManagement;
+
+  });
+
   this.XtraAndPosLookUpsService.httpGetXtraAndPosLookUpsGetAllowanceTypes().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
     this.allowanceTypeData = jsonData;
@@ -259,9 +316,12 @@ getData(){
     this.XtraAndPosVacationTypesService.httpGetXtraAndPosEmpVacationTypesGetEmpVacationTypesService().subscribe((value: any) => {
       let jsonContractData = JSON.parse(value);
       this.vacTypesData = jsonContractData.Obj.vac;
-       for (const vac of this.vacTypesData) {
-    this.formVacPrevious.get('vacTypeId')?.setValue(vac.Id)
-  }
+      this.vacTypesData.forEach(obj => {
+        this.formVacPrevious.push(this.createFormPrevious(obj));
+
+      });
+
+
     });
 
 ;
@@ -310,6 +370,10 @@ refreshTable() {
     let jsonContractData = JSON.parse(value);
     this.vacTrxData = jsonContractData.Obj.vac;
   });
+  this.XtraAndPosEmployeeSettingService.httpGetXtraAndPosEmployeeSettingGetEmployeeSettingService().subscribe((value: any) => {
+    let jsonContractData = JSON.parse(value);
+    this.employeeSettingData = jsonContractData.Obj.employeeSettings;
+  });
 }
 getContract(id :any){
   return this.ContractData.filter((r)=>r.Id===id)[0]
@@ -326,6 +390,21 @@ getEmployee(id :any){
 }
 getAllowance(id :any){
   return this.allowanceData.filter((r)=>r.Id===id)[0]
+}
+getAccTree(id :any){
+  return this.accTreeData.filter((r)=>r.Id===id)[0]
+}
+getPricePolicy(id :any){
+  return this.salesPriceData.filter((r)=>r.Id===id)[0]
+}
+getStorage(id :any){
+  return this.storageData.filter((r)=>r.Id===id)[0]
+}
+getTresaury(id :any){
+  return this.tresauryData.filter((r)=>r.Id===id)[0]
+}
+getClientGroup(id :any){
+  return this.clientGroupData.filter((r)=>r.Id===id)[0]
 }
 getAllowanceType(id :any){
   return this.allowanceTypeData.filter((r)=>r.Id===id)[0]
@@ -378,10 +457,11 @@ this.ExportData.toExcel(tableData,'contract.xlsx')
       this.searchTableVisible = false
     }
   }
+
+
   previousBalance :any[]=[] ;
   hasPreviousBalance =false;
   fillEmp(emp :any){
-    debugger
     this.formReniew.get('statusId')?.setValue('1');
     this.formReniew.get('branchId')?.setValue(emp.BranchId);
     if(this.branch){
@@ -415,14 +495,25 @@ this.ExportData.toExcel(tableData,'contract.xlsx')
     this.XtraAndPosEmpVacationTransactionsService.httpGetXtraAndPosEmployeeVacationsGetEmployeeVacationBalanceService({employeeId:Number(emp.EmployeeId)}).subscribe((value: any) => {
       let jsonContractData = JSON.parse(value);
       this.previousBalance = jsonContractData.Obj.vac;
+
+      if(this.previousBalance.length==0){
+        this.hasPreviousBalance = false ;
+        this.formVacPrevious.forEach(formGroup => {
+          formGroup.get('employeeId')?.setValue(emp.EmployeeId);
+        });
+      }else{
+        this.hasPreviousBalance = true ;
+        this.formVacPrevious.forEach((form, index) => {
+          form.patchValue({
+            employeeId: emp.EmployeeId,
+            vacTypeId: this.previousBalance[index].VacTypeId,
+            previousBalance: this.previousBalance[index].PreviousBalance
+          });
+        });
+      }
     });
-    console.log(this.previousBalance)
-    if(this.previousBalance.length>0){
-      this.hasPreviousBalance = true ;
-      this.formVacPrevious.get('previousBalance')?.setValue(this.previousBalance[0].PreviousBalance);
-    }else{
-      this.hasPreviousBalance = false ;
-    }
+
+
   }
 
   getLevelName(id: any) {
@@ -473,7 +564,8 @@ this.currentContractId = contract.Id;
   this.ViewportScroller.scrollToPosition([10,10]) ;
 
 }
-currentVacId : any ;
+currentEmployeeSettingId : any ;
+currentVacId :any ;
 setVacEdit(vac:any){
   this.formVac.patchValue({
     vacTypeId: vac.VacTypeId,
@@ -488,13 +580,27 @@ setVacEdit(vac:any){
   this.branch.nativeElement.value = this.getBranch(vac.BranchId)?.NameAr;
   this.empName.nativeElement.value = this.getEmployee(vac.EmployeeId)?.NameAr;
   this.empId.nativeElement.value = vac.EmployeeId;
-  if(this.previousBalance){
-    this.formVacPrevious.patchValue({
-      previousBalance : this.previousBalance[0].PreviousBalance
-    })
-  }
+
   this.isEdit = true;
   this.currentVacId = vac.Id;
+  this.ViewportScroller.scrollToPosition([10,10]) ;
+}
+setEmployeeSettingEdit(empSetting:any){
+  this.formEmployeeSetting.patchValue({
+    employeeAccountId: empSetting.EmployeeAccountId,
+    tresauryId: empSetting.TresauryId,
+    storageId: empSetting.StorageId,
+    clientGroupId: empSetting.ClientGroupId,
+    salesPriceId: empSetting.SalesPriceId,
+    canAddDiscount: empSetting.CanAddDiscount,
+    canAddSalesPrice: empSetting.CanAddSalesPrice,
+    retirementPercentage: empSetting.RetirementPercentage,
+  })
+  this.formEmployeeSetting.get('employeeId')?.setValue(empSetting.EployeeId);
+  this.formEmployeeSetting.get('branchId')?.setValue(empSetting.BranchId);
+
+  this.isEdit = true;
+  this.currentEmployeeSettingId = empSetting.Id;
   this.ViewportScroller.scrollToPosition([10,10]) ;
 }
 currentAllowanceId : any ;
@@ -521,6 +627,7 @@ this.currentAllowanceId = allowance.Id;
 this.ViewportScroller.scrollToPosition([10,10]) ;
 
 }
+
   confirmOperation(){
     this.transDialog = false ;
     let opr : string='' ;
@@ -652,6 +759,18 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
       this.formVac.get('vacEndDate')?.setValue(formattedEndDate);
   }
   }
+  extensionPeriodChange(event :Event){
+    const target = event.target as HTMLInputElement;
+    const addValue = Number(target.value);
+      const startDate = this.formVac.get('vacEndDate')?.value;
+    if (startDate && addValue) {
+      const date = new Date(startDate);
+      const endDate = new Date(date);
+      endDate.setDate(date.getDate() + addValue);
+      const formattedEndDate = endDate.toISOString().slice(0, 10);
+      this.formVacTrx.get('extensionEndDate')?.setValue(formattedEndDate);
+  }
+  }
   onSubmitReniew(form : FormGroup){
     if(!this.isEdit){
 
@@ -695,9 +814,11 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
   }
   }
   onSubmitVac(form : FormGroup){
-    if(!this.isEdit){
-      if(!this.previousBalance){
-        const modelPrevious = this.formVacPrevious.value ;
+if(!this.isEdit){
+
+
+      if(this.previousBalance.length==0){
+        const modelPrevious = this.formVacPrevious.map(r=>r.value) ;
         this.XtraAndPosEmpVacationTransactionsService.httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationBalanceService({body:modelPrevious})
         .subscribe((value:any)=>{
         })
@@ -717,6 +838,14 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
       let jsonData = JSON.parse(value);
         this.toastr.success(jsonData.Message)
         this.formVac.reset();
+        this.formVacPrevious.forEach(form=>{
+          form.reset();
+        })
+        this.formReniew.reset();
+        this.branch.nativeElement.value = ""
+        this.empName.nativeElement.value = ""
+        this.job.nativeElement.value = ""
+        this.division.nativeElement.value = ""
         this.refreshTable();
     },
     (error: any) => {
@@ -740,7 +869,11 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
       this.refreshTable();
       this.isEdit=false;
       this.formVac.reset();
-
+      this.formReniew.reset();
+      this.branch.nativeElement.value = ""
+      this.empName.nativeElement.value = ""
+      this.job.nativeElement.value = ""
+      this.division.nativeElement.value = ""
     });
   }
 
@@ -762,6 +895,11 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
       let jsonData = JSON.parse(value);
         this.toastr.success(jsonData.Message)
         this.formAllowance.reset();
+        this.formReniew.reset();
+        this.branch.nativeElement.value = ""
+        this.empName.nativeElement.value = ""
+        this.job.nativeElement.value = ""
+        this.division.nativeElement.value = ""
         this.refreshTable();
     },
     (error: any) => {
@@ -785,7 +923,11 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
       this.refreshTable();
       this.isEdit=false;
       this.formAllowance.reset();
-
+      this.formReniew.reset();
+      this.branch.nativeElement.value = ""
+      this.empName.nativeElement.value = ""
+      this.job.nativeElement.value = ""
+      this.division.nativeElement.value = ""
     });
   }
 }
@@ -841,6 +983,128 @@ this.ViewportScroller.scrollToPosition([10,10]) ;
     }, (error: any) => {
       this.toastr.error('Failed to delete allowance.');
     });
+  }
+  onSubmitEmployeeSetting(form:FormGroup){
+    if(!this.isEdit){
+      this.transDialog = false;
+      const empId = this.formReniew.get('employeeId')?.value;
+      const branchId = this.formReniew.get('branchId')?.value;
+      this.formEmployeeSetting.get('employeeId')?.setValue(empId);
+      this.formEmployeeSetting.get('branchId')?.setValue(branchId);
+      if(this.formEmployeeSetting.valid)
+      {
+      const model = this.formEmployeeSetting.value;
+
+      this.XtraAndPosEmployeeSettingService.httpPostXtraAndPosEmployeeSettingCreateEmployeeSettingService({
+        body : model
+      }).subscribe((value:any)=>{
+        let jsonData = JSON.parse(value);
+          this.toastr.success(jsonData.Message)
+          this.formEmployeeSetting.reset();
+        this.formReniew.reset();
+        this.branch.nativeElement.value = ""
+        this.empName.nativeElement.value = ""
+        this.job.nativeElement.value = ""
+        this.division.nativeElement.value = ""
+          this.refreshTable();
+      },
+      (error: any) => {
+        this.toastr.error('Failed to create Emp Setting.');
+      })}else{
+        this.toastr.success("ادخل البيانات المطلوبة")
+      }
+    }else{
+      let model = this.formEmployeeSetting.value;
+      model.Id = this.currentEmployeeSettingId;
+      const empId = this.formReniew.get('employeeId')?.value;
+      const branchId = this.formReniew.get('branchId')?.value;
+      this.formEmployeeSetting.get('employeeId')?.setValue(empId);
+      this.formEmployeeSetting.get('branchId')?.setValue(branchId);
+      this.XtraAndPosEmployeeSettingService.httpPutXtraAndPosEmployeeSettingUpdateEmployeeSettingService({
+        id: this.currentEmployeeSettingId,
+        body: model
+      }).subscribe((value: any) => {
+        let jsonData = JSON.parse(value);
+        this.toastr.success(jsonData.Message);
+        this.refreshTable();
+        this.isEdit=false;
+        this.formEmployeeSetting.reset();
+        this.formReniew.reset();
+        this.branch.nativeElement.value = ""
+  this.empName.nativeElement.value = ""
+  this.job.nativeElement.value = ""
+  this.division.nativeElement.value = ""
+      });
+    }
+  }
+  showDeleteEmployeeSettingConfirm(employeeSetting: any) {
+    this.toastr
+      .info('Do you want to delete this employeeSetting?', 'Confirmation', {
+        timeOut: 0,
+        extendedTimeOut: 0,
+        closeButton: true,
+        positionClass: 'toast-top-center',
+        tapToDismiss: false,
+      })
+      .onTap.subscribe(() => {
+        this.deleteEmployeeSetting(employeeSetting);
+      this.empName.nativeElement.value = "";
+      });
+  }
+  deleteEmployeeSetting(contract: any) {
+    this.XtraAndPosEmployeeSettingService.httpDeleteXtraAndPosEmployeeSettingDeleteEmployeeSettingService({
+      id: contract.Id,
+    }).subscribe((value: any) => {
+      let jsonData = JSON.parse(value);
+      this.toastr.clear();
+      this.toastr.success(jsonData.Message);
+      this.refreshTable();
+    }, (error: any) => {
+      this.toastr.error('Failed to delete employeeSetting.');
+    });
+  }
+  BtnVacTrx(id : number){
+    if(id==1){
+      this.vacTrxDeduction = true ;
+      this.vacTrxExtension= false ;
+      this.formVacTrx.get('trxType')?.setValue(1);
+    }else{
+      this.vacTrxDeduction = false ;
+      this.vacTrxExtension= true ;
+      this.formVacTrx.get('trxType')?.setValue(2);
+
+    }
+  }
+  onSubmitVacTrx(form:FormGroup){
+
+      const empId = this.formReniew.get('employeeId')?.value;
+      const vacId = this.formReniew.get('branchId')?.value;
+      this.formVacTrx.get('employeeId')?.setValue(empId);
+      this.formVacTrx.get('vacId')?.setValue(vacId);
+      if(this.formVacTrx.valid)
+      {
+      const model = this.formVacTrx.value;
+
+      this.XtraAndPosEmpVacationTransactionsService.httpPostXtraAndPosEmployeeVacationsCreateEmployeeVacationTrxService({
+        body : model
+      }).subscribe((value:any)=>{
+        let jsonData = JSON.parse(value);
+          if(jsonData.IsSuccess){
+            this.toastr.success(jsonData.Message)
+            this.formVacTrx.reset();
+            this.vacTrxDeduction = false ;
+            this.vacTrxExtension= false ;
+            this.vacTrxDialog= false;
+          }else{
+            this.toastr.error(jsonData.Message)
+          }
+
+      },
+      (error: any) => {
+        this.toastr.error('Failed to create Emp Setting.');
+      })}else{
+        this.toastr.success("ادخل البيانات المطلوبة")
+      }
   }
 }
 

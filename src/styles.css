@@ -40,3 +40,10 @@ background:#172d50 !important ;
 select.form-control:not([size]):not([multiple]) {
   height: calc(2.35rem + 2px) !important;
 }
+
+select {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 5L0 3h4zm0 0L0 0h4z'/%3E%3C/svg%3E");
+  background-position: left .5rem center;
+  background-repeat: no-repeat;
+  background-size: 1rem;
+}

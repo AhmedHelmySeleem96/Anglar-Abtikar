@@ -25,7 +25,7 @@
               {{ col.header | translate }}
               <p-sortIcon [field]="col.field"></p-sortIcon>
             </th>
-            <th class="ui-sortable-column table-data" [style.text-align]="'right'">
+            <th class="ui-sortable-column table-data" [style.text-align]="'center'">
               {{ 'Select' | translate }}
             </th>
 
@@ -34,7 +34,10 @@
         <ng-template pTemplate="body" let-emp let-columns="columns">
           <tr>
             <td *ngFor="let col of columns" [style.text-align]="'right'">
-              <span class="table-data" *ngIf="col.field == 'NameAr'||col.field == 'NameEn' ||col.field == 'Id' ">
+              <span class="table-data" *ngIf="col.field == 'EmployeeId'">
+                {{ getEmployee(emp[col.field])?.NameAr  }}
+              </span>
+              <span class="table-data" *ngIf="col.field != 'NameAr' ">
                 {{ emp[col.field]  }}
               </span>
             </td>
@@ -431,26 +434,31 @@
 
     </p-tabPanel>
     <p-tabPanel header="{{ 'Hr.Vacations' | translate }}">
-      <form [formGroup]="formVacPrevious"  class="form" >
-
-      <div  class="container">
-        <div class="row">
-          <div class="square mr-2"  *ngFor="let vac of vacTypesData ">
-            <input type="hidden" formControlName="vacTypeId" [value]="vac.Id" >
-            <div class="row mt-2 ">
-              <label>{{vac.NameAr}}</label>
+      <div class="d-flex">
+        <div  *ngFor="let vac of vacTypesData; let i = index" class="mr-3">
+          <form [formGroup]="formVacPrevious[i]"  class="form" >
+            <div  class="container">
+              <div class="row">
+                <div class="square mr-2"  >
+                  <input type="hidden" formControlName="vacTypeId" [value]="vac.Id" >
+                  <div class="row mt-2 ">
+                    <label>{{vac.NameAr}}</label>
+                  </div>
+                  <div class="row mt-2 ">
+                    <label>{{vac.MaxVacDays}}</label>
+                  </div>
+                  <div class="row mt-2 ">
+                    <label for="previousBalance">{{'Hr.PreviousBalance'|translate}}</label>
+                    <input id="previousBalance" type="number" [readOnly]="hasPreviousBalance" class="mr-2  " style="width: 20vh;" formControlName="previousBalance">
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="row mt-2 ">
-              <label>{{vac.MaxVacDays}}</label>
-            </div>
-            <div class="row mt-2 ">
-              <label for="previousBalance">رصيد سابق</label>
-              <input id="previousBalance" [readOnly]="hasPreviousBalance" class="mr-2  " style="width: 20vh;" formControlName="previousBalance">
-            </div>
-          </div>
+            </form>
         </div>
       </div>
-      </form>
+
+
       <form [formGroup]="formVac"  class="form" >
         <div class="contrainer">
           <div class="row">
@@ -539,7 +547,7 @@
             <td>
               <div style="text-align: center">
                 <img src="assets/images/editIcon.png" ngbTooltip="{{'Hr.Edit'|translate}}" class="mr-2" (click)=" setVacEdit(Vac)" />
-                <img src="assets/images/editIcon.png" ngbTooltip="{{'Hr.Transaction'|translate}}" class="mr-2" (click)=" setVacEdit(Vac)" />
+                <img src="assets/images/editIcon.png" ngbTooltip="{{'Hr.Transaction'|translate}}" class="mr-2" (click)=" vacTrxDialog =true ;  setVacEdit(Vac)" />
                 <img src="assets/images/deleteTableIcon.png" ngbTooltip="{{'Hr.Delete'|translate}}" class="mr-2" (click)="showDeleteVacConfirm(Vac)" />
               </div>
             </td>
@@ -557,20 +565,169 @@
     [minX]="150"
     [maximizable]="true"
   >
-  <div class="row">
-    <!-- <div  class="mt-2 text-center col-md-2 mr-5">
-      <button style="width: max-content;" (click)="btnDeductionClick(1)"    class="btn btn-info mr-5" >{{ 'Hr.Deduction' | translate }}</button>
-    </div>
-    <div class="mt-2 text-center col-md-2 mr-5">
-      <button style="width: max-content;"  (click)="btnDeductionClick(2)"   class="btn btn-info mr-5" >{{'Hr.Extension'|translate}}</button>
-    </div> -->
+  <div class="container">
+    <form [formGroup]="formVacTrx"  class="form" >
+      <div class="row">
+        <div  class="mt-2 text-center col-md-2 mr-5">
+          <button style="width: max-content;"  (click)="BtnVacTrx(1)  "   class="btn btn-info mr-5" >{{ 'Hr.Deduction' | translate }}</button>
+        </div>
+        <div class="mt-2 text-center col-md-2 mr-5">
+          <button style="width: max-content;"   (click)="BtnVacTrx(2)  "  class="btn btn-info mr-5" >{{'Hr.Extension'|translate}}</button>
+        </div>
+      </div>
+        <div class="row"  >
+          <div class="form-group col-md-6 mt-5" *ngIf="vacTrxDeduction||vacTrxExtension"  >
+            <label for="reason">{{ 'Hr.Reason' | translate }}</label>
+            <input  id="reason"  formControlName="reason"  class="form-control">
+        </div>
+        <div class="form-group col-md-6 mt-5" *ngIf="vacTrxDeduction" >
+          <label for="deductionDate">{{ 'Hr.DeductionDate' | translate }}</label>
+          <input  id="deductionDate" type="date" formControlName="deductionDate"  class="form-control">
+      </div>
+        </div>
+      <div class="row" *ngIf="vacTrxExtension" >
+        <div class="form-group col-md-6 " >
+          <label for="extensionPeriod">{{ 'Hr.ExtensionPeriod' | translate }}</label>
+          <input  (change)="extensionPeriodChange($event)" id="extensionPeriod"  formControlName="extensionPeriod"  class="form-control">
+        </div>
+        <div class="form-group col-md-6 " >
+          <label for="extensionEndDate">{{ 'Hr.ExtensionEndDate' | translate }}</label>
+          <input  id="extensionEndDate" readonly  formControlName="extensionEndDate"  class="form-control">
+      </div>
+      </div>
+    </form>
   </div>
     <p-footer>
-      <button  type="button" (click)="confirmOperation()" class="btn-ok">OK</button>
+      <button  type="button" (click)="onSubmitVacTrx(formVacTrx)" class="btn btn-success mt-2 mr-3">{{'Save'|translate}}</button>
     </p-footer>
   </p-dialog>
   </p-tabPanel>
+  <p-tabPanel header="{{ 'Hr.EmployeeSetting' | translate }}">
+    <form [formGroup]="formEmployeeSetting"  class="form" >
 
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label for="employeeAccountId">{{ 'Hr.EmployeeAccount' | translate }}</label>
+          <select class="form-control" id="employeeAccountId" formControlName="employeeAccountId">
+            <option  value="" disabled selected>{{ 'Hr.EmployeeAccount' | translate }}</option>
+            <option  *ngFor="let acc of accTreeData " [value]="acc.Id">{{ acc.NameAr }}</option>
+          </select>
+       </div>
+       <div class="form-group col-md-4">
+          <label for="tresauryId">{{'Hr.Tresaury'|translate}}</label>
+          <select class="form-control" id="tresauryId" formControlName="tresauryId">
+            <option  value="" disabled selected>{{ 'Hr.Tresaury' | translate }}</option>
+            <option  *ngFor="let tresaury of tresauryData " [value]="tresaury.Id">{{ tresaury.NameAr }}</option>
+          </select>
+       </div>
+       <div class="form-group col-md-4">
+        <label for="storageId">{{ 'Hr.Storage' | translate }}</label>
+        <select class="form-control" id="storageId" formControlName="storageId">
+          <option  value="" disabled selected>{{ 'Hr.Storage' | translate }}</option>
+          <option  *ngFor="let storage of storageData " [value]="storage.Id">{{ storage.NameAr }}</option>
+        </select>
+     </div>
+      </div>
+      <div class="row">
+
+       <div class="form-group col-md-4">
+          <label for="clientGroupId">{{ 'Hr.ClientGroup' | translate }}</label>
+          <select class="form-control" id="clientGroupId" formControlName="clientGroupId">
+            <option  value="" disabled selected>{{ 'Hr.ClientGroup' | translate }}</option>
+            <option  *ngFor="let client of clientGroupData " [value]="client.Id">{{ client.NameAr }}</option>
+
+          </select>
+       </div>
+       <div class="form-group col-md-4">
+        <label for="salesPriceId">{{ 'Hr.SalesPrice' | translate }}</label>
+        <select class="form-control" id="salesPriceId" formControlName="salesPriceId">
+          <option  value="" disabled selected>{{ 'Hr.SalesPrice' | translate }}</option>
+          <option  *ngFor="let sales of salesPriceData " [value]="sales.Id">{{ sales.NameAr }}</option>
+        </select>
+     </div>
+     <div class="form-group col-md-4">
+      <label for="retirementPercentage">{{ 'Hr.RetirementPercentage' | translate }}</label>
+      <input  id="retirementPercentage" type="number" formControlName="retirementPercentage"  class="form-control">
+   </div>
+      </div>
+<div class="row">
+
+ <div class="form-group col-md-6">
+    <div class="form-check">
+      <label class="checkbox">
+        <input class="m-2" type="checkbox" formControlName="canAddDiscount" id="canAddDiscount" >
+        <span class="m-2"></span>{{ 'Hr.CanAddDiscount' | translate }}
+    </label>
+    </div>
+ </div>
+ <div class="form-group  col-md-6">
+  <div class="form-check">
+    <label class="checkbox">
+      <input class="m-2" type="checkbox" formControlName="canAddSalesPrice" id="canAddSalesPrice" >
+      <span class="m-2"></span>{{ 'Hr.CanAddSalesPrice' | translate }}
+  </label>
+  </div>
+</div>
+</div>
+
+    </form>
+
+    <div class="center-btn">
+      <button  type="submit" (click)="onSubmitEmployeeSetting(formEmployeeSetting)" style="width: 150px;" class="btn btn-success mt-2" >{{ 'Save' | translate }}</button>
+    </div>
+    <p-table
+    [rowsPerPageOptions]="[5, 10, 15, 20]"
+    [paginator]="true"
+    [rows]="5"
+    [columns]="employeeSettingsCols"
+    [value]="employeeSettingData"
+    sortMode="multiple" styleClass="p-datatable-striped mt-5" [tableStyle]="{'min-width': '50rem'}"  #dt>
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field" [style.text-align]="'right'" >
+            {{ col.header | translate }}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+          <th class="ui-sortable-column table-data" [style.text-align]="'right'">
+            {{ 'Actions' | translate }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-emp let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns" [style.text-align]="'right'">
+
+            <span class="table-data" *ngIf="col.field == 'EmployeeAccountId'">
+              {{ getAccTree(emp[col.field])?.NameAr }}
+            </span>
+            <span class="table-data" *ngIf="col.field == 'StorageId'">
+              {{ getStorage(emp[col.field])?.NameAr }}
+            </span>
+            <span class="table-data" *ngIf="col.field == 'ClientGroupId'">
+              {{ getClientGroup(emp[col.field])?.NameAr }}
+            </span>
+            <span class="table-data" *ngIf="col.field == 'SalesPriceId'">
+              {{ getPricePolicy(emp[col.field])?.NameAr }}
+            </span>
+            <span class="table-data" *ngIf="col.field == 'TresauryId'">
+              {{ getTresaury(emp[col.field])?.NameAr }}
+            </span>
+            <span class="table-data" *ngIf="col.field != 'EmployeeAccountId'&&col.field != 'StorageId'
+            &&col.field != 'ClientGroupId'&&col.field != 'SalesPriceId'&&col.field != 'TresauryId'">
+              {{ emp[col.field] }}
+            </span>
+          </td>
+          <td>
+            <div style="text-align: center">
+              <img src="assets/images/editIcon.png" ngbTooltip="{{'Hr.Edit'|translate}}" class="mr-2" (click)=" setEmployeeSettingEdit(emp)" />
+              <img src="assets/images/deleteTableIcon.png" ngbTooltip="{{'Hr.Delete'|translate}}" class="mr-2" (click)="showDeleteEmployeeSettingConfirm(emp)" />
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+</p-tabPanel>
   </p-tabView>
   </div>
 </div>
@@ -627,3 +784,6 @@
       <button  type="button" (click)="confirmOperation()" class="btn-ok">OK</button>
     </p-footer>
   </p-dialog>
+
+
+
