@@ -4,16 +4,16 @@ import {RouterModule} from '@angular/router'
 import { LoansCreateComponent } from './loans-create/loans-create.component';
 import { LoansComponent } from './loans.component';
 import { TranslateService,TranslateModule } from '@ngx-translate/core';
-import { OperationTypesComponent } from './operation-types/operation-types.component';
-
+import {FormGroup,ReactiveFormsModule} from '@angular/forms'
+import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
-  declarations: [LoansCreateComponent,LoansComponent,OperationTypesComponent],
+  declarations: [LoansCreateComponent,LoansComponent],
   imports: [
-    CommonModule  ,TranslateModule,
+    CommonModule  ,TranslateModule,ReactiveFormsModule,TableModule,ToastModule,
       RouterModule.forChild([{path :'' ,component:LoansCreateComponent},
-    {path:'CreateLoans',component:LoansCreateComponent},
-    {path:'OperationTypes',component:OperationTypesComponent}]
+    {path:'CreateLoans',component:LoansCreateComponent}]
    )
   ,
  TranslateModule ]

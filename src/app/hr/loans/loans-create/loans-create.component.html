@@ -5,8 +5,8 @@
   
       <div class="card bg-light mb-3s">
           <div class="card-body">
-    <h3 style="text-align: center ; padding-bottom: 10px;">{{ 'Hr.loans'|translate}}</h3>
-    <form #formElement   class="form">
+    <h3 style=" padding-bottom: 10px;">{{ 'Hr.loans'|translate}}</h3>
+    <!-- <form #formElement   class="form">
       <div class="container">
         <div class="row k-text-align-center">
           <div class="col-lg-12 col-md-8 col-sm-4 mb-2 search k-text-align-center d-flex justify-content-center align-content-center">
@@ -19,43 +19,61 @@
           </div>
         </div>
       </div>
-    <div class="row d-flex justify-content-between mb-0">
+
+
+  </form> -->
+</div>
+
+<form [formGroup]="FormLoans">
+
+
+      <div class="row d-flex justify-content-between mb-0">
       <div class="form-group col-md-3 mt-0">
         <label for="branchId">{{ 'Hr.BranchId'  |translate}}</label>
-        <input #branch id="branchId" readonly formControlName="branchId"  class="form-control">
+        <!-- <input #branch id="branchId" readonly formControlName="branchId"  class="form-control"> -->
+        <select readonly class="form-control" formControlName="branchId"> 
+          <option  value="">اخترالفرع</option> 
+          <option   *ngFor="let item of currencyData " [value]="item.Id">{{ item.NameAr }}</option>
+        </select> 
     </div>
     <div class="form-group col-md-3 mt-0">
       <label for="employeeName">{{ 'Hr.EmployeeName' |translate }}</label>
-      <input id="employeeName"  #empName readonly  class="form-control">
+      <!-- <input id="employeeName"  #empName readonly formControlName="employeeId" class="form-control"> -->
+      <select readonly class="form-control" formControlName="employeeId"> 
+        <option  value="">اختر الموظف</option> 
+        <option   *ngFor="let item of currencyData " [value]="item.Id">{{ item.NameAr }}</option>
+      </select> 
     </div>
     <div class="form-group col-md-3 mt-0">
       <label for="jobId">{{ 'Hr.JobId' |translate }}</label>
-      <input #job id="jobId"  readonly formControlName="jobId"  class="form-control">
+      <!-- <input #job id="jobId"  readonly formControlName="jobId"  class="form-control"> -->
+      <select readonly class="form-control" formControlName="jobId"> 
+        <option  value="">اختر الوظيفه</option> 
+        <option   *ngFor="let item of currencyData " [value]="item.Id">{{ item.NameAr }}</option>
+      </select> 
     </div>
     <div class="form-group col-md-3 mt-0">
       <label for="divisionId">{{ 'Hr.DivisionId' |translate }}</label>
-      <input #division id="divisionId"  readonly formControlName="divisionId"  class="form-control">
+      <!-- <input #division id="divisionId"  readonly formControlName="debtId"  class="form-control"> -->
+      <select readonly class="form-control" formControlName="debtId"> 
+        <option  value="">اختر القسم</option> 
+        <option   *ngFor="let item of currencyData " [value]="item.Id">{{ item.NameAr }}</option>
+      </select> 
     </div>
     </div>
-  </form>
-</div>
-  
 
   
-
-
-
   <div class="d-flex justify-content-between mb-0"> 
 
   
 <div class="form-group col-md-6 mt-0"> 
   <label for="TotalAmount">{{ 'Hr.TotalAmount'  |translate}}</label> 
-  <input #division id="divisionId" formControlName="divisionId" class="form-control"> 
+  <input #division id="divisionId" formControlName="totaloan" class="form-control"> 
 </div> 
  
 <div class="form-group col-md-6 mt-0"> 
   <label for="Currency">{{ 'Hr.Currency'  |translate}}</label> 
-  <select class="form-control" formControlName="selectedBranchId"> 
+  <select class="form-control" formControlName="currencyId"> 
     <option value="">اختر العملة</option> 
     <option *ngFor="let item of currencyData " [value]="item.Id">{{ item.NameAr }}</option>
   </select> 
@@ -65,35 +83,35 @@
   <div class="d-flex justify-content-between mb-0"> 
     <div class="form-group col-md-6 mt-0"> 
       <label for="StartDateDept">{{ 'Hr.StartDateDept' |translate}}</label>
-      <input type="date" id="contractStartDate" formControlName="contractStartDate"   class="form-control">
+      <input type="date" id="contractStartDate" formControlName="startInstallment" (change)="onInputChange($event)"  class="form-control">
     </div>
 
     <div class="form-group col-md-6 mt-0"> 
       <label for="DeptsCount">{{ 'Hr.DeptsCount'|translate }}</label> 
-      <input #division id="divisionId" formControlName="divisionId" class="form-control"> 
+      <input #division id="divisionId" formControlName="installmentCount" (change)="onInputChange($event)" class="form-control"> 
     </div> 
   </div>
 
   <div class="d-flex justify-content-between mb-0"> 
     <div class="form-group col-md-6 mt-0"> 
       <label for="DeptEndDate">{{ 'Hr.DeptEndDate' |translate}}</label> 
-      <input #division id="divisionId" readonly formControlName="divisionId" class="form-control"> 
+      <input type="date"  id="divisionId" readonly formControlName="endInstallment" class="form-control"> 
     </div> 
     <div class="form-group col-md-3 mt-0"> 
       <label for="DeptValue">{{ 'Hr.DeptValue' |translate}}</label> 
-      <input #division id="divisionId" readonly formControlName="divisionId" class="form-control"> 
+      <input #division id="divisionId" readonly formControlName="installmentValue" class="form-control"> 
     </div> 
 
     <div class="form-group col-md-3 mt-0"> 
       <label for="LastDeptValue">{{ 'Hr.LastDeptValue' |translate}}</label> 
-      <input #division id="divisionId" readonly formControlName="divisionId" class="form-control"> 
+      <input #division id="divisionId" readonly formControlName="lastInstallmentValue" class="form-control"> 
     </div> 
   </div>
 
   <div class="d-flex justify-content-between mb-0"> 
     <div class="form-group col-md-6 mt-0"> 
       <label for="Depts">{{ 'Hr.Depts' |translate}}</label> 
-      <input #division id="divisionId" readonly formControlName="divisionId" class="form-control"> 
+      <input #division id="divisionId" readonly formControlName="debts" class="form-control"> 
     </div> 
     <!-- <div class="form-group col-md-6 mt-0"> 
       <label for="Notes">{{ 'Hr.Notes' }}</label> 
@@ -101,13 +119,139 @@
     </div>  -->
     <div class="form-group col-md-6 mt-0"> 
       <label for="Notes">{{ 'Hr.Notes' |translate  }}</label> 
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea> 
+      <textarea class="form-control" id="exampleFormControlTextarea1" formControlName="notes" rows="1"></textarea> 
     </div>
   </div>
 
-
   
   <div class="mb-3 text-center">
-    <button type="submit"  class="btn btn-success ms-2" >{{ 'Save' |translate }}</button>
+    <button [disabled]="FormLoans.invalid" type="submit"  class="btn btn-success ms-2" (click)="Submit(FormLoans)">{{ 'Save' |translate }}</button>
     <button  class="btn btn-warning Dnone ms-2" id="editBtn">{{"Cancel" |translate}}</button>
   </div>
+
+</form>
+
+
+
+
+<div class="table-responsive mt-1 ">
+  <div class="col-md-3 mb-2 mt-2">
+    <input  class="form-control form-control-sm " type="search" placeholder="{{ 'navBar.Search' | translate }}">
+  </div>
+
+  <div class="table-container" id="pdfContent">
+
+    <p-table
+    #dt
+    [rowsPerPageOptions]="[5, 10, 15, 20]"
+    [paginator]="true"
+    [rows]="5"
+    [columns]="cols"
+    [value]="LoanData"
+    sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" >
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field" [style.text-align]="'right'">
+            {{ col.header | translate }}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+          <th class="ui-sortable-column table-data" [style.text-align]="'right'">
+            {{ 'Actions' | translate }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-loan let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns" [style.text-align]="'right'">
+            <span class="table-data" *ngIf="col.field == 'Id'">
+              {{ getLoan(loan[col.field])?.Id }}
+            </span>
+            <span class="table-data" *ngIf="col.field == 'CreatedDate'">
+              {{ loan[col.field] | date:'shortDate' }}
+            </span>
+            <span class="table-data" *ngIf="col.field != 'Id' &&col.field != 'CreatedDate'">
+              {{ loan[col.field] }}
+            </span>
+          </td>
+          <td>
+            <div style="text-align: center">
+              <img src="assets/images/editIcon.png" class="mx-3" (click)=" setEdit(loan)" /> <span class="text-success">اعتماد</span>
+              <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteConfirm(loan)" /><span (click)="showDeleteConfirm(loan)" class="text-danger" >رفض</span>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+
+</div>
+</div>
+
+<form [formGroup]="FormLoans2" [hidden]="isVisible">
+
+<div class="container w-75">
+
+<div class="w-100  align-content-center align-items-center">
+
+<div class="d-flex justify-content-between mb-0"> 
+  <div class="form-group col-md-6 mt-0"> 
+    <label for="StartDateDept">{{ 'Hr.StartDateDept' |translate}}</label>
+    <input type="date" id="contractStartDate" formControlName="startInstallment" (change)="onInputChange($event)"  class="form-control">
+  </div>
+
+  <div class="form-group col-md-3 mt-0"> 
+    <label for="DeptsCount">{{ 'Hr.DeptsCount'|translate }}</label> 
+    <input #division id="divisionId" formControlName="installmentCount" (change)="onInputChange($event)" class="form-control"> 
+  </div> 
+
+  <div class="form-group col-md-3 mt-0"> 
+    <label for="TotalAmount">{{ 'Hr.TotalAmount'  |translate}}</label> 
+    <input #division id="divisionId" readonly formControlName="totaloan" class="form-control"> 
+  </div> 
+</div>
+
+<div class="d-flex justify-content-between mb-0"> 
+  <div class="form-group col-md-6 mt-0"> 
+    <label for="DeptEndDate">{{ 'Hr.DeptEndDate' |translate}}</label> 
+    <input type="date"  id="divisionId" readonly formControlName="endInstallment" class="form-control"> 
+  </div> 
+  <div class="form-group col-md-3 mt-0"> 
+    <label for="DeptValue">{{ 'Hr.DeptValue' |translate}}</label> 
+    <input #division id="divisionId" readonly formControlName="installmentValue" class="form-control"> 
+  </div> 
+
+  <div class="form-group col-md-3 mt-0"> 
+    <label for="LastDeptValue">{{ 'Hr.LastDeptValue' |translate}}</label> 
+    <input #division id="divisionId" readonly formControlName="lastInstallmentValue" class="form-control"> 
+  </div> 
+</div>
+
+<div class="mt-2 text-center">
+  <button type="submit" class="btn btn-success" (click)="Submit2(FormLoans2.value)">{{ 'post' | translate }}</button>
+  <!-- <button  class="btn btn-info" >{{"Hr.Print" | translate}}</button>
+  <button  class="btn btn-info" id="viewBtn">{{"Hr.Export" | translate}}</button> -->
+  <button  class="btn btn-warning Dnone" id="editBtn">{{"Cancel" | translate}}</button>
+</div>
+</div>
+
+</div>
+</form> 
+
+<!-- (click)=" setEdit(loan)" -->
+<!-- (click)="showDeleteConfirm(loan)" -->
+
+
+<p-toast position="center"></p-toast>
+<p-toast position="center" key="c" (onClose)="onDeleteReject()" [baseZIndex]="5000">
+  <ng-template let-message pTemplate="message">
+    <div style="text-align: center">
+      <i class="pi pi-exclamation-triangle" ></i>
+      <h3>{{ message.summary }}</h3>
+      <p>{{ message.detail }}</p>
+    </div>
+    <div class="bottom-buttons">
+      <button type="button" pButton (click)="onDeleteConfirm()" label="Yes" class="btn btn-danger">Yes</button>
+      <button type="button" pButton (click)="onDeleteReject()" label="No" class="btn btn-success">No</button>
+    </div>
+  </ng-template>
+</p-toast>

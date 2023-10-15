@@ -1,0 +1,43 @@
+<div class="tab-pane fade show active" id="rounded-corner-pills-icon-home" role="tabpanel" aria-labelledby="rounded-corner-pills-icon-home-tab" style="min-height:300px">
+
+  <div class="card bg-light mb-3">
+      <div class="card-body">
+    
+
+        <h3 style=" padding-bottom: 10px;">{{ "Hr.HrSettings" | translate }}</h3>
+
+        <div class="mt-2 text-center">
+          <button type="button" class="btn btn-info ms-2" [routerLink]="'/hr/HrSettings/AccountsSettings'">الربط مع الحسابات </button>
+          <button type="button" class="btn btn-info ms-2"[routerLink]="'/hr/HrSettings/Workflow'">دوره العمليات </button>
+          <button type="button" class="btn btn-info ms-2"[routerLink]="'/hr/HrSettings/Notification'" >التنبيهات </button>
+        </div>
+
+  </div> 
+</div> 
+
+<!-- <div class="tab-pane fade show active" id="rounded-corner-pills-icon-home" role="tabpanel" aria-labelledby="rounded-corner-pills-icon-home-tab" style="min-height:300px">
+
+    <div class="card bg-light mb-3">
+        <div class="card-body">
+          <h3 style=" padding-bottom: 10px;">{{ "Hr.workflow" | translate }}</h3>
+    </div> 
+  </div>  -->
+
+
+  <div class="d-flex justify-content-between mb-0 mt-5"> 
+    <div class="form-group col-md-6 mt-0"> 
+        <label for="Currency">{{ 'Hr.OperationType'  |translate}}</label> 
+        <select class="form-control" formControlName="StatuesId"> 
+            <option value="">{{'Hr.ChooseOperation' | translate}}</option> 
+          <option *ngFor="let  Operation of OperationData " [value]=" Operation.Id">{{  Operation.NameAr }}</option>
+        </select> 
+      </div>
+  </div>
+
+
+
+  <div class="mb-3 text-center">
+    <button type="submit"  class="btn btn-success ms-2" >{{ 'Save' |translate }}</button>
+    <button  class="btn btn-warning Dnone ms-2" id="editBtn">{{"Cancel" |translate}}</button>
+  </div>
+

@@ -425,6 +425,27 @@
                     <li>
                         <a class="d-block text-center pointer dropdown-item"  [routerLink]="'/hr/loans'">{{ "Hr.loans" | translate }}</a>
                       </li>
+                      <li class="dropdown-submenu" >
+                        <div (mouseleave)="isOpened = false" [ngClass]="{isOpened:isOpened}" >
+                          <a class="d-block text-center pointer dropdown-toggle " (mouseenter)="$event.preventDefault(); isOpened=true" id="jobDropdownToggles" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                            {{ "Hr.HrSettings" | translate }} &raquo;
+                          </a>
+                          <ul class=" pointer dropdown-menu" aria-labelledby="jobDropdownToggles">
+                            <li>
+                                <a class=" pointer dropdown-item"  [routerLink]="'/hr/HrSettings'">{{ "Hr.HrSettings" | translate }}</a>
+                              </li>
+                            <li>
+                              <a class="  pointer dropdown-item"  [routerLink]="'/hr/HrSettings/NotificationTypes'">{{ "Hr.NotificationTypes" | translate }}</a>
+                            </li>
+                            <li>
+                              <a class=" pointer dropdown-item"  [routerLink]="'/hr/HrSettings/OperationTypes'">{{ "Hr.OperationTypes" | translate }}</a>
+                            </li>
+                          </ul>
+  
+                        </div>
+                      </li>
+
+
                     <li class="dropdown-submenu" >
                       <div (mouseleave)="isOpened = false" [ngClass]="{isOpened:isOpened}" >
                         <a class="d-block text-center pointer dropdown-toggle " (mouseenter)="$event.preventDefault(); isOpened=true" id="jobDropdownToggles" role="button" data-bs-toggle="dropdown" aria-expanded="false" >

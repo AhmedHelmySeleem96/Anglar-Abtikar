@@ -109,7 +109,7 @@ export class LoginComponent implements OnInit , OnDestroy {
 
   submitlogin(forminfo:FormGroup)
   {
-    // debugger
+    debugger
       let model :LoginVm = {
       userName:this.Formlogin.get('UserName')?.value,
       password:this.Formlogin.get('Password')?.value,
@@ -118,7 +118,6 @@ export class LoginComponent implements OnInit , OnDestroy {
       companyId:1
 
     }
-    // localStorage.setItem('RememberLogin',String(model.rememberMe))
         this.PortalEpService.httpPostPortalLogin({ body : model}).subscribe((Response :any)=>{
         let jsonData = JSON.parse(Response);
         console.log(jsonData.IsSuccess)
@@ -127,6 +126,8 @@ export class LoginComponent implements OnInit , OnDestroy {
         localStorage.setItem('RememberLogin',String(model.rememberMe))
         localStorage.setItem('usertoken',jsonData.Obj)
         const DecodedToken:any=jwtDecode(jsonData.Obj);
+        console.log("aaaaaaaaaa");
+        console.log(DecodedToken);
         const userInfo=DecodedToken;
         // console.log(userInfo.sub);
         localStorage.setItem('UserName',userInfo.sub)
@@ -140,6 +141,29 @@ export class LoginComponent implements OnInit , OnDestroy {
         }
     })
 
+
+  //   this.UserEpService.httpPostLogin({ body : model}).subscribe((Response :any)=>{
+  //     let jsonData = JSON.parse(Response);
+  //     console.log(jsonData.IsSuccess)
+  //     if(jsonData.IsSuccess)
+  //     {
+  //     localStorage.setItem('RememberLogin',String(model.rememberMe))
+  //     localStorage.setItem('usertoken',jsonData.Obj)
+  //     const DecodedToken:any=jwtDecode(jsonData.Obj);
+  //     console.log("aaaaaaaaaa");
+  //     console.log(DecodedToken);
+  //     const userInfo=DecodedToken;
+  //     // console.log(userInfo.sub);
+  //     localStorage.setItem('UserName',userInfo.sub)
+  //     this.toastr.success(jsonData.Message)
+  //     this._Router.navigate(['/home'])
+
+  //     }else
+  //     {
+  //       this.toastr.error("Email or Password Is wrong Plz Try Again")
+  //       localStorage.setItem('RememberLogin','false')
+  //     }
+  // })
   }
   ngOnDestroy(): void {
 

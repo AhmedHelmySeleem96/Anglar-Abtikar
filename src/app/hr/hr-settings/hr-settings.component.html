@@ -1,0 +1,18 @@
+<div class="tab-pane fade show active" id="rounded-corner-pills-icon-home" role="tabpanel" aria-labelledby="rounded-corner-pills-icon-home-tab" style="min-height:300px">
+
+    <div class="card bg-light mb-3">
+        <div class="card-body">
+      
+
+          <h3 style=" padding-bottom: 10px;">{{ "Hr.HrSettings" | translate }}</h3>
+
+          <div class="mt-2 text-center">
+            <button type="button" class="btn btn-info ms-2" [routerLink]="'/hr/HrSettings/AccountsSettings'">الربط مع الحسابات </button>
+            <button type="button" class="btn btn-info ms-2"[routerLink]="'/hr/HrSettings/Workflow'">دوره العمليات </button>
+            <button type="button" class="btn btn-info ms-2"[routerLink]="'/hr/HrSettings/Notification'" >التنبيهات </button>
+          </div>
+
+    </div> 
+</div> 
+
+<router-outlet></router-outlet>

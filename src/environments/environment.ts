@@ -5,8 +5,8 @@
 export const environment = {
   production: true,
   //url:" http://xtra.ddns.me:9101",
-  url:"https://localhost:7500",
-  signalrUrl:"https://localhost:7500",
+  url:"https://localhost:7502",
+  signalrUrl:"https://localhost:7502",
   //signalrUrl:"http://xtra.ddns.me:9101/",
   host:"http://xtra.ddns.me:9101/",
   facebookUrl :'https://www.facebook.com/sharer.php?u=',

@@ -36,6 +36,8 @@ EmpContractsComponent
     CommonModule,
     RouterModule.forChild([{
       path : '',component:HrComponent,children :[{
+        path : "HrSettings" , loadChildren: () => import('./hr-settings/hr-settings.module').then(m => m.HrSettingsModule),
+      },{
         path : "loans" , loadChildren: () => import('./loans/loans.module').then(m => m.LoansModule),
       },{
         path : "city" , loadChildren: () => import('./city/city.module').then(m => m.CityModule),
