@@ -28,7 +28,8 @@ export class NotificationTypesComponent {
     cols :any ;
     deleteId : any ;
     @ViewChild('dt') dt: any;
-    FormNotificationTypes :FormGroup= this.fb.group({NotificationNameAr: new FormControl('', [Validators.required,Validators.minLength(3)]),
+    FormNotificationTypes :FormGroup= this.fb.group(
+      {NotificationNameAr: new FormControl('', [Validators.required,Validators.minLength(3)]),
     NotificationNameEn: new FormControl(''),
     StatuesId: new FormControl(1,[Validators.required]),
     Notes: new FormControl(null),})
@@ -169,6 +170,10 @@ getNotification(id :any){
         this.NotificationData = value.Obj.NotificationType;
         // console.log(this.NotificationData)
     });
+  }
+  onSearch(searchValue:Event): void {
+    
+    this.dt.filterGlobal((searchValue.target as HTMLInputElement).value, 'contains');
   }
 
 

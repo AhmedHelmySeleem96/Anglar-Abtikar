@@ -163,7 +163,11 @@ export class OperationTypesComponent {
   
       }
 
-
+      onSearch(searchValue:Event): void {
+    
+        this.dt.filterGlobal((searchValue.target as HTMLInputElement).value, 'contains');
+      }
+    
 
 
 

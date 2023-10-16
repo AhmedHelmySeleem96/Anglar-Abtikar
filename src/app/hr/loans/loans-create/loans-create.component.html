@@ -136,7 +136,9 @@
 
 <div class="table-responsive mt-1 ">
   <div class="col-md-3 mb-2 mt-2">
-    <input  class="form-control form-control-sm " type="search" placeholder="{{ 'navBar.Search' | translate }}">
+    <!-- <input  class="form-control form-control-sm " type="search" placeholder="{{ 'navBar.Search' | translate }}"> -->
+    <input (input)="onSearch($event)" class="form-control form-control-sm " type="search" placeholder="{{ 'navBar.Search' | translate }}">
+
   </div>
 
   <div class="table-container" id="pdfContent">
@@ -175,7 +177,9 @@
           </td>
           <td>
             <div style="text-align: center">
-              <img src="assets/images/editIcon.png" class="mx-3" (click)=" setEdit(loan)" /> <span class="text-success">اعتماد</span>
+              <img src="assets/images/editIcon.png" class="mx-3" (click)=" setEdit(loan)" /> 
+              <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteConfirm(loan)" /><span (click)="showDeleteConfirm(loan)" class="text-danger" >حذف</span>
+              <span class="text-success" (click)=" setEdit(loan)"> اعتماد </span>
               <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteConfirm(loan)" /><span (click)="showDeleteConfirm(loan)" class="text-danger" >رفض</span>
             </div>
           </td>

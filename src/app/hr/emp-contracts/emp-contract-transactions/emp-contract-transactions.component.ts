@@ -300,6 +300,15 @@ getData(){
   this.CurrencyEpService.httpGetCurrencyGetAll().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
     this.currencyData = jsonData.Obj.Currencies;
+
+    if (this.currencyData){
+      let defaultCur =  this.currencyData.filter(r=>r.IsDefault ==true );
+      if(defaultCur){
+        this.formContract.get('currencyId')?.setValue(defaultCur.map(r=>r.Id))
+        this.formReniew.get('currencyId')?.setValue(defaultCur.map(r=>r.Id))
+        this.formAllowance.get('currencyId')?.setValue(defaultCur.map(r=>r.Id))
+      }
+    };
   });
   this.XtraAndPosJobNameService.httpGetXtraAndPosJobNameGetJobNameService().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);

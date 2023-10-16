@@ -178,15 +178,23 @@ getData(){
   this.CurrencyEpService.httpGetCurrencyGetAll().subscribe((value:any)=>{
     let jsonData = JSON.parse(value);
     this.currencyData = jsonData.Obj.Currencies;
-  });
-  setTimeout(()=>{
+
     if (this.currencyData){
       let defaultCur =  this.currencyData.filter(r=>r.IsDefault ==true );
       if(defaultCur){
         this.formContract.get('currencyId')?.setValue(defaultCur.map(r=>r.Id))
       }
     };
-    },500)
+
+  });
+  // setTimeout(()=>{
+  //   if (this.currencyData){
+  //     let defaultCur =  this.currencyData.filter(r=>r.IsDefault ==true );
+  //     if(defaultCur){
+  //       this.formContract.get('currencyId')?.setValue(defaultCur.map(r=>r.Id))
+  //     }
+  //   };
+  //   },500)
   this.XtraAndPosJobDifinitionService.httpGetXtraAndPosJobDifinitionGetJobDifinitionService().subscribe((value: any) => {
     let jsonJobData = JSON.parse(value);
     this.JobData = jsonJobData.Obj.jobDif;

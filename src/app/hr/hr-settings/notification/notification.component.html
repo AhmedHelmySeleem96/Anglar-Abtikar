@@ -21,32 +21,33 @@
 </div> 
 </div>  -->
 
+<form [formGroup]="FormNotifications">
 <div class="d-flex justify-content-md-around mb-0 mt-5"> 
   
     <div class="form-group col-md-2 mt-0"> 
         <label for="Currency">{{ 'Hr.NotificationNameAr'  |translate}}</label> 
-        <select class="form-control" > 
+        <select class="form-control" formControlName="NotificationId" > 
             <option value="">{{'Hr.ChooseNotification' | translate}}</option> 
-          <option *ngFor="let  Notification of NotificationData " [value]=" Notification.Id">{{  Notification.NameAr }}</option>
+          <option *ngFor="let  Notification of NotificationTypes " [value]=" Notification.Id">{{  Notification.NameAr }}</option>
         </select> 
       </div>
 
       <div class="form-group col-md-2 mt-0"> 
         <label for="Currency">{{ 'Hr.NotificationType'  |translate}}</label> 
-        <select class="form-control" > 
+        <select class="form-control" formControlName="Notificationtype"> 
             <option value="">{{'Hr.ChooseNotificationType' | translate}}</option> 
-          <!-- <option *ngFor="let  Operation of OperationData " [value]=" Operation.Id">{{  Operation.NameAr }}</option> -->
+          <option *ngFor="let  Notification of GettNotificationTypesLookupsService " [value]=" Notification.id">{{  Notification.name }}</option>
         </select> 
       </div>
 
       <div class="form-group col-md-2 mt-0"> 
         <label for="Currency">{{ 'Hr.Count'  |translate}}</label> 
-        <input class="form-control"   type="text">
+        <input class="form-control"   type="text" formControlName="Value">
       </div>
 
       <div class="form-group col-md-2 mt-0"> 
         <label for="Currency">{{ 'Hr.Screens'  |translate}}</label> 
-        <select class="form-control" > 
+        <select class="form-control" formControlName="ScreenId"> 
             <option value="">{{'Hr.ChooseScreen' | translate}}</option> 
           <!-- <option *ngFor="let  Operation of OperationData " [value]=" Operation.Id">{{  Operation.NameAr }}</option> -->
         </select> 
@@ -54,7 +55,7 @@
 
       <div class="form-group col-md-2 mt-0"> 
         <label for="Currency">{{ 'Hr.ScreenFields'  |translate}}</label> 
-        <select class="form-control" > 
+        <select class="form-control" formControlName="FieldsScreenId"> 
             <option value="">{{'Hr.ChooseScreenField' | translate}}</option> 
           <!-- <option *ngFor="let  Operation of OperationData " [value]=" Operation.Id">{{  Operation.NameAr }}</option> -->
         </select> 
@@ -71,6 +72,82 @@
       </div> -->
   </div>
   <div class="mb-3 text-center mt-3">
-    <button  type="submit"   class="btn btn-success ms-2" >{{ 'Save' |translate }}</button>
+    <button  type="submit"   class="btn btn-success ms-2" (click)="Submit(FormNotifications)"  >{{ 'Save' |translate }}</button>
     <button  class="btn btn-warning Dnone ms-2" id="editBtn">{{"Cancel" |translate}}</button>
   </div>
+
+  <div class="table-responsive mt-1 ">
+    <div class="col-md-3 mb-2 mt-2">
+      <!-- <input  class="form-control form-control-sm " type="search" placeholder="{{ 'navBar.Search' | translate }}"> -->
+      <input (input)="onSearch($event)" class="form-control form-control-sm " type="search" placeholder="{{ 'navBar.Search' | translate }}">
+
+    </div>
+  
+  </div>
+</form>
+
+  <div class="table-container" id="pdfContent">
+
+    <p-table
+    #dt
+    [rowsPerPageOptions]="[5, 10, 15, 20]"
+    [paginator]="true"
+    [rows]="5"
+    [columns]="cols"
+    [value]="NotificationsData"
+    sortMode="multiple" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" >
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th class="table-data" *ngFor="let col of columns" [pSortableColumn]="col.field" [style.text-align]="'right'">
+            {{ col.header | translate }}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+          <th class="ui-sortable-column table-data" [style.text-align]="'right'">
+            {{ 'Actions' | translate }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-Notification let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns" [style.text-align]="'right'">
+            <span class="table-data" *ngIf="col.field != 'Id' &&col.field != 'CreatedDate'">
+              {{ Notification[col.field] }}
+            </span> 
+
+            <span class="table-data" *ngIf="col.field == 'NotificationId'">
+              {{ getNotificationName(Notification[col.field])?.NameAr }}
+            </span>
+
+            <span class="table-data" *ngIf="col.field == 'Notificationtype'">
+              {{ getNotificationType(Notification[col.field])?.name }}
+            </span>
+
+          </td>
+          <td>
+            <div style="text-align: center">
+              <img src="assets/images/editIcon.png" class="mx-3" (click)=" setEdit(Notification)" />
+              <img src="assets/images/deleteTableIcon.png" class="mx-3" (click)="showDeleteConfirm(Notification)" />
+              <!-- <img src="assets/images/deleteTableIcon.png" class="mx-3"  /> -->
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+
+</div>
+
+<p-toast position="center"></p-toast>
+<p-toast position="center" key="c" (onClose)="onDeleteReject()" [baseZIndex]="5000">
+  <ng-template let-message pTemplate="message">
+    <div style="text-align: center">
+      <i class="pi pi-exclamation-triangle" ></i>
+      <h3>{{ message.summary }}</h3>
+      <p>{{ message.detail }}</p>
+    </div>
+    <div class="bottom-buttons">
+      <button type="button" pButton (click)="onDeleteConfirm()" label="Yes" class="btn btn-danger">Yes</button>
+      <button type="button" pButton (click)="onDeleteReject()" label="No" class="btn btn-success">No</button>
+    </div>
+  </ng-template>
+</p-toast>

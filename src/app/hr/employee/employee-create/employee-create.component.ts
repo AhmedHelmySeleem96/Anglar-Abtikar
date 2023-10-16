@@ -186,6 +186,14 @@ export class EmployeeCreateComponent implements OnInit {
         this.CurrencyEpService.httpGetCurrencyGetAll().subscribe((value:any)=>{
           let jsonData = JSON.parse(value);
           this.currencyData = jsonData.Obj.Currencies;
+
+          if (this.currencyData){
+            let defaultCur =  this.currencyData.filter(r=>r.IsDefault ==true );
+            if(defaultCur){
+              this.formEmployee.get('currencyId')?.setValue(defaultCur.map(r=>r.Id))
+            }
+          };
+          
         });
         setTimeout(()=>{
           if (this.currencyData){

@@ -25,9 +25,35 @@ export class HrSettingsService {
  
     return this._httpclient.put(url, formData); 
   }
-  // DeleteNotificationService(id: number, ): Observable<any> { 
-  //   const url = `https://localhost:7502/XtraAndPOS_NotificationTypes/DeleteNotificationService?id=${id}`; 
  
-  //   return this._httpclient.delete(url); 
-  // }
+
+
+
+
+  GettNotificationService():Observable<any> 
+  { 
+    return this._httpclient.get('  https://localhost:7502/XtraAndPOS_Notification/GetNotificationService') 
+  }
+  PostNotificationService(formData:object):Observable<any> 
+  { 
+   return this._httpclient.post('https://localhost:7502/XtraAndPOS_Notification/CreateNotificationService',formData) 
+  }
+  PutNotificationService(id: number, formData: object): Observable<any> { 
+    const url = `https://localhost:7502/XtraAndPOS_Notification/UpdateNotificationService?id=${id}`; 
+ 
+    return this._httpclient.put(url, formData); 
+  }
+
+
+
+  GettNotificationTypesLookupsService():Observable<any> 
+  { 
+    return this._httpclient.get('https://localhost:7502/XtraAndPOS_LookUps/GetNotificationTypes') 
+  }
+
+  DeleteNotification(id: number, ): Observable<any> { 
+    const url = `https://localhost:7502/XtraAndPOS_Notification/DeleteNotificationService?id=${id}`; 
+    return this._httpclient.delete(url); 
+  }
+
 }

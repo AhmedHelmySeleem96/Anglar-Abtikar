@@ -95,6 +95,16 @@ export class LoansCreateComponent {
       let jsonData = JSON.parse(value);
       this.currencyData = jsonData.Obj.Currencies;
       console.log(this.currencyData);
+
+      
+    if (this.currencyData){
+      let defaultCur =  this.currencyData.filter(r=>r.IsDefault ==true );
+      if(defaultCur){
+        this.FormLoans.get('currencyId')?.setValue(defaultCur.map(r=>r.Id))
+        this.FormLoans2.get('currencyId')?.setValue(defaultCur.map(r=>r.Id))
+
+      }
+    };
     });
 
 
@@ -198,6 +208,11 @@ debugger;
           }
       
       
+    }
+
+    onSearch(searchValue:Event): void {
+    
+      this.dt.filterGlobal((searchValue.target as HTMLInputElement).value, 'contains');
     }
   
     getLoan(id :any){
